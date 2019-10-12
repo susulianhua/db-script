@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="commons" />
+        <module name="metadata" />
+        <module name="script" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="commons" target="1.5" />
+      <module name="database" target="1.5" />
+      <module name="fileresolver" target="1.5" />
+      <module name="framework" target="1.5" />
+      <module name="metadata" target="6" />
+      <module name="xstream" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

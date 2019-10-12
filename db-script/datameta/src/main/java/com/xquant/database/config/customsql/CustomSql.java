@@ -1,0 +1,58 @@
+/**
+ * Copyright (c) 2012-2017, www.tinygroup.org (luo_guo@icloud.com).
+ * <p>
+ * Licensed under the GPL, Version 3.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.gnu.org/licenses/gpl.html
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.xquant.database.config.customsql;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
+import com.xquant.database.config.SqlBody;
+import com.xquant.metadata.config.BaseObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 自定义SQL片段
+ *
+ * @author luoguo
+ */
+@XStreamAlias("custom-sql")
+public class CustomSql extends BaseObject {
+    @XStreamAsAttribute
+    private String type;// 自定义SQL的类型，可选的有before/after
+    @XStreamImplicit
+    private List<SqlBody> sqlBodyList;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<SqlBody> getSqlBodyList() {
+        if (sqlBodyList == null) {
+            sqlBodyList = new ArrayList<SqlBody>();
+        }
+        return sqlBodyList;
+    }
+
+    public void setSqlBodyList(List<SqlBody> sqlBodyList) {
+        this.sqlBodyList = sqlBodyList;
+    }
+
+}

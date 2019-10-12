@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/framework/commons/commons.iml" filepath="$PROJECT_DIR$/framework/commons/commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/datameta/metadata/metadata.iml" filepath="$PROJECT_DIR$/datameta/metadata/metadata.iml" />
+    </modules>
+  </component>
+</project>
