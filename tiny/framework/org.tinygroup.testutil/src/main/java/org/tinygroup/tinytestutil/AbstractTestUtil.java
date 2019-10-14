@@ -1,0 +1,187 @@
+/**
+ * Copyright (c) 2012-2017, www.tinygroup.org (luo_guo@icloud.com).
+ * <p>
+ * Licensed under the GPL, Version 3.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.gnu.org/licenses/gpl.html
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.tinygroup.tinytestutil;
+
+import org.tinygroup.application.Application;
+import org.tinygroup.application.ApplicationProcessor;
+import org.tinygroup.application.impl.ApplicationDefault;
+import org.tinygroup.beancontainer.BeanContainerFactory;
+import org.tinygroup.commons.io.StreamUtil;
+import org.tinygroup.config.ConfigurationManager;
+import org.tinygroup.config.util.ConfigurationUtil;
+import org.tinygroup.fileresolver.FileResolver;
+import org.tinygroup.fileresolver.FileResolverFactory;
+import org.tinygroup.fileresolver.FileResolverUtil;
+import org.tinygroup.fileresolver.impl.ConfigurationFileProcessor;
+import org.tinygroup.fileresolver.impl.LocalPropertiesFileProcessor;
+import org.tinygroup.fileresolver.impl.MergePropertiesFileProcessor;
+import org.tinygroup.fileresolver.util.FileResolverLoadUtil;
+import org.tinygroup.logger.Logger;
+import org.tinygroup.logger.LoggerFactory;
+import org.tinygroup.parser.filter.PathFilter;
+import org.tinygroup.remoteconfig.RemoteConfigReadClient;
+import org.tinygroup.remoteconfig.utils.RemoteConfigHandler;
+import org.tinygroup.springutil.SpringBeanContainer;
+import org.tinygroup.springutil.fileresolver.SpringBeansFileProcessor;
+import org.tinygroup.xmlparser.node.XmlNode;
+import org.tinygroup.xmlparser.parser.XmlStringParser;
+
+import java.io.InputStream;
+import java.util.List;
+
+/**
+ * 此类不推荐使用，建议用org.tinygroup.tinyrunner工程的Runner类取代
+ */
+@Deprecated
+public abstract class AbstractTestUtil {
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(AbstractTestUtil.class);
+    private static final String TINY_JAR_PATTERN = "org\\.tinygroup\\.(.)*\\.jar";
+    // private static FullContextFileRepository repository;
+    // private static VelocityHelperImpl helper;
+    // private static final String DEFAULT_FILERESOLVER_BEAN_XML =
+    // "/Application.preloadbeans.xml";
+    private static boolean init = false;
+    private static Application application;
+    private static String DEFAULT_CONFIG = "application.xml";
+    private static RemoteConfigReadClient remoteConfigReadClient;
+
+    public static void setRemoteConfigReadClient(
+            RemoteConfigReadClient remoteConfigReadClient) {
+        AbstractTestUtil.remoteConfigReadClient = remoteConfigReadClient;
+    }
+
+    public static void setInit(boolean init) {
+        AbstractTestUtil.init = init;
+    }
+
+    public static void init(String xmlFile, boolean classPathResolve) {
+        if (init) {
+            return;
+        }
+        initDirect(xmlFile, classPathResolve);
+    }
+
+    /**
+     * 初始化
+     *
+     * @param classPathResolve 是否对classPath进行处理
+     */
+    public static void initDirect(String xmlFile, boolean classPathResolve) {
+
+        // init(xmlFile, classPathResolve, null, null);
+        String configXml = xmlFile;
+        if (null == configXml || "".equals(configXml)) {
+            configXml = DEFAULT_CONFIG;
+        }
+        InputStream inputStream = AbstractTestUtil.class.getClassLoader()
+                .getResourceAsStream(configXml);
+        if (inputStream == null) {
+            inputStream = AbstractTestUtil.class.getResourceAsStream(configXml);
+        }
+        String applicationConfig = "";
+        if (inputStream != null) {
+            try {
+                applicationConfig = StreamUtil.readText(inputStream, "UTF-8",
+                        false);
+                application = new ApplicationDefault();
+                if (applicationConfig != null) {
+                    ConfigurationManager c = ConfigurationUtil
+                            .getConfigurationManager();
+                    XmlNode applicationXml = new XmlStringParser().parse(applicationConfig).getRoot();
+                    c.setApplicationConfiguration(applicationXml);
+
+                }
+                initSpring(applicationConfig);
+
+//                ConfigurationUtil.getConfigurationManager()
+//                        .distributeConfiguration();
+
+                FileResolver fileResolver = BeanContainerFactory
+                        .getBeanContainer(
+                                AbstractTestUtil.class.getClassLoader())
+                        .getBean(FileResolver.BEAN_NAME);
+                FileResolverUtil.addClassPathPattern(fileResolver);
+                fileResolver.addIncludePathPattern(TINY_JAR_PATTERN);
+                FileResolverLoadUtil.loadFileResolverConfig(fileResolver, applicationConfig);
+                XmlNode applicationXml = ConfigurationUtil
+                        .getConfigurationManager()
+                        .getApplicationConfiguration();
+                if (applicationXml != null) {
+                    List<XmlNode> processorConfigs = applicationXml
+                            .getSubNodesRecursively("application-processor");
+                    if (processorConfigs != null) {
+                        for (XmlNode processorConfig : processorConfigs) {
+                            String processorBean = processorConfig
+                                    .getAttribute("bean");
+                            ApplicationProcessor processor = BeanContainerFactory
+                                    .getBeanContainer(
+                                            AbstractTestUtil.class
+                                                    .getClassLoader()).getBean(
+                                            processorBean);// TODO
+                            application.addApplicationProcessor(processor);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                LOGGER.errorMessage("载入应用配置信息时出现异常，错误原因：{}！", e, e.getMessage());
+            }
+        }
+
+        application.init();
+        application.start();
+        init = true;
+    }
+
+    public static void stop() {
+        if (init && application != null) {
+            setRemoteConfigReadClient(null);
+            application.stop();
+        }
+    }
+
+    private static void initSpring(String applicationConfig) {
+        BeanContainerFactory.initBeanContainer(SpringBeanContainer.class
+                .getName());
+        FileResolver fileResolver = FileResolverFactory.getFileResolver();
+
+        FileResolverUtil.addClassPathPattern(fileResolver);
+
+        fileResolver.addIncludePathPattern(TINY_JAR_PATTERN);
+        FileResolverLoadUtil.loadFileResolverConfig(fileResolver, applicationConfig);
+
+        //加载本地
+        LocalPropertiesFileProcessor localFileProcessor = new LocalPropertiesFileProcessor(applicationConfig);
+        localFileProcessor.start();
+
+        //远程配置
+        if (remoteConfigReadClient != null) {
+            RemoteConfigHandler remoteConfig = new RemoteConfigHandler(applicationConfig, remoteConfigReadClient);
+            remoteConfig.start();
+        }
+
+        //合并替换配置
+        MergePropertiesFileProcessor mergeProcessor = new MergePropertiesFileProcessor();
+        mergeProcessor.start();
+
+        fileResolver.addFileProcessor(new SpringBeansFileProcessor());
+
+        fileResolver.addFileProcessor(new ConfigurationFileProcessor());
+        // SpringUtil.regSpringConfigXml(xmlFile);
+        fileResolver.resolve();
+    }
+
+}

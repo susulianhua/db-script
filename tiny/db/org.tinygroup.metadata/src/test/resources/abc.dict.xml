@@ -1,0 +1,8 @@
+<dicts>
+    <dict id="sex" name="sexname">
+        <dict-items>
+            <dict-item text="man" value="1" order=""></dict-item>
+            <dict-item text="woman" value="2" order=""></dict-item>
+        </dict-items>
+    </dict>
+</dicts>

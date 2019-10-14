@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <bean id="eventExecuteMonitorManager" name="eventExecuteMonitorManager"
+          scope="singleton" class="org.tinygroup.eventexecutemonitor.config.EventExecuteMonitorManagerImpl">
+
+        <property name="cepCoreAopManager">
+            <ref bean="cepcore_aop_bean"/>
+        </property>
+    </bean>
+
+    <bean id="eventExecuteMonitorConfig" name="eventExecuteMonitorConfig"
+          scope="singleton" class="org.tinygroup.eventexecutemonitor.config.EventExecuteMonitorConfig">
+        <property name="eventExecuteMonitorManager">
+            <ref bean="eventExecuteMonitorManager"/>
+        </property>
+    </bean>
+
+    <bean id="eventAfterLocalExecuteCounter" name="eventAfterLocalExecuteCounter"
+          scope="singleton" class="org.tinygroup.eventexecutemonitor.counter.EventAfterLocalExecuteCounter"/>
+
+    <bean id="eventAfterRemoteExecuteCounter" name="eventAfterRemoteExecuteCounter"
+          scope="singleton" class="org.tinygroup.eventexecutemonitor.counter.EventAfterRemoteExecuteCounter"/>
+
+    <bean id="eventBeforeLocalExecuteCounter" name="eventBeforeLocalExecuteCounter"
+          scope="singleton" class="org.tinygroup.eventexecutemonitor.counter.EventBeforeLocalExecuteCounter"/>
+
+    <bean id="eventBeforeRemoteExecuteCounter" name="eventBeforeRemoteExecuteCounter"
+          scope="singleton" class="org.tinygroup.eventexecutemonitor.counter.EventBeforeRemoteExecuteCounter"/>
+</beans>

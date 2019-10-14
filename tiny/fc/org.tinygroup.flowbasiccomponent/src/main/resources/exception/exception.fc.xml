@@ -1,0 +1,10 @@
+<components>
+    <component category="异常" name="throwException" bean="throwExceptionComponent" title="异常抛出"
+               icon="/icon/caculate.png">
+        <short-description>异常抛出</short-description>
+        <long-description>exceptionObject：异常对象。&#xd;
+            根据异常对象，主动抛出相应的异常。
+        </long-description>
+        <parameter name="exceptionObject" title="异常对象" type="java.lang.Object" array="false"/>
+    </component>
+</components>

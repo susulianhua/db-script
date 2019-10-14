@@ -1,0 +1,113 @@
+/**
+ * Copyright (c) 2012-2017, www.tinygroup.org (luo_guo@icloud.com).
+ * <p>
+ * Licensed under the GPL, Version 3.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.gnu.org/licenses/gpl.html
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.tinygroup.httpclient451.mock;
+
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.nio.SelectChannelConnector;
+import org.eclipse.jetty.server.ssl.SslSelectChannelConnector;
+import org.eclipse.jetty.servlet.ServletHandler;
+import org.eclipse.jetty.util.ssl.SslContextFactory;
+import org.tinygroup.httpclient451.MockUtil;
+import org.tinygroup.httpclient451.servlet.*;
+import org.tinygroup.vfs.VFS;
+
+
+/**
+ * Mock模拟HTTP服务
+ *
+ * @author yancheng11334
+ */
+public class MockServer {
+
+    private Server server;
+
+    public void start() {
+        init();
+        try {
+            server.start();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    protected void init() {
+        server = new Server();
+
+        //参考jetty.xml配置
+        SelectChannelConnector http = new SelectChannelConnector();
+        http.setPort(MockUtil.HTTP_PORT);
+        http.setMaxIdleTime(300000);
+        http.setAcceptors(2);
+        http.setStatsOn(false);
+        http.setConfidentialPort(MockUtil.HTTPS_PORT);
+        http.setLowResourcesConnections(20000);
+        http.setLowResourcesMaxIdleTime(5000);
+
+        //设置SSL上下文
+        SslContextFactory sslContextFactory = new SslContextFactory();
+        String path = VFS.resolveURL(this.getClass().getResource("/keystore")).getAbsolutePath();
+        //System.out.println("path1="+path);
+        sslContextFactory.setKeyStorePath(path);
+        sslContextFactory.setKeyStorePassword("123456");
+        sslContextFactory.setKeyManagerPassword("123456");
+
+        System.setProperty("javax.net.ssl.trustStore", path);
+        //System.setProperty("javax.net.ssl.tructStorePassword", "123456");
+        //System.setProperty("javax.net.ssl.keyStore",path);
+        //System.setProperty("javax.net.ssl.keyStorePassword", "123456");
+        SslSelectChannelConnector https = new SslSelectChannelConnector(sslContextFactory);
+        https.setPort(MockUtil.HTTPS_PORT);
+        https.setMaxIdleTime(400000);
+
+        server.setConnectors(new Connector[]{http, https});
+
+
+        ServletHandler handler = new ServletHandler();
+        server.setHandler(handler);
+        handler.addServletWithMapping(GBKServlet.class, "/charset1.do");
+        handler.addServletWithMapping(UTF8Servlet.class, "/charset2.do");
+        handler.addServletWithMapping(UrlParameterServlet.class, "/param.do");
+        handler.addServletWithMapping(HeaderServlet.class, "/header.do");
+        handler.addServletWithMapping(CookieServlet.class, "/cookie.do");
+        handler.addServletWithMapping(RedirectServlet.class, "/redirect.do");
+        handler.addServletWithMapping(UserAgentServlet.class, "/agent.do");
+        handler.addServletWithMapping(TextServlet.class, "/text.do");
+        handler.addServletWithMapping(FileServlet.class, "/file.do");
+        handler.addServletWithMapping(HelloWorldServlet.class, "/");
+        handler.addServletWithMapping(XmlHeaderServlet.class, "/xmlheader.do");
+
+        //handler.addServletWithMapping(MockBasicAuthenticationServlet.class, "/basicAuth");
+        //handler.addServletWithMapping(MockPartServlet.class, "/upload");
+
+        // Start things up!
+    }
+
+    public void join() {
+        try {
+            server.join();
+        } catch (InterruptedException e) {
+        }
+    }
+
+    public void stop() {
+        try {
+            server.stop();
+        } catch (Exception e) {
+        }
+    }
+}

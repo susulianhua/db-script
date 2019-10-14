@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <application-properties>
+        <file path="/ip.properties"></file>
+        <property name="ipVar" value="{ip}"></property>
+        <property name="schost" value="{TINY_ENV_SCHOST}"/>
+        <property name="scport" value="{TINY_ENV_SCPORT}"/>
+    </application-properties>
+    <value1 value="{ipVar}"></value1>
+    <value2 value="{ip}"></value2>
+    <value3 value="{schost}"></value3>
+    <value4 value="{scport}"></value4>
+</application>

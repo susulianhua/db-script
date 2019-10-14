@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <application-processors>
+        <application-processor bean="fileResolverProcessor"></application-processor>
+    </application-processors>
+
+    <el-util-config>
+        <el-util name="FlowTestUtil" class-path="org.tinygroup.flow.text.util.FlowTestUtil"></el-util>
+    </el-util-config>
+
+</application>

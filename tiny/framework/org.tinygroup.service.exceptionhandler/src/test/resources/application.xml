@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <application-processors>
+        <application-processor bean="fileResolverProcessor"></application-processor>
+        <application-processor bean="serviceApplicationProcessor"></application-processor>
+    </application-processors>
+
+    <exception-config>
+        <exception-handlers>
+            <!-- 此处配置的异常处理器，会被CEPCore服务执行时，用来做异常处理，CEPCore服务执行发生异常，会执行对应的异常处理器，执行完毕后，该异常会重新抛出-->
+            <exception-handler  exception="org.tinygroup.service.exception.ServiceRunException" handler="serviceRunExceptionHandler"/>
+        </exception-handlers>
+    </exception-config>
+</application>

@@ -1,0 +1,16 @@
+<xstream-configuration package-name="packageName-2">
+    <!-- 这个节点用于配置注解描述xml格式方式的类 -->
+    <xstream-annotation-classes>
+    </xstream-annotation-classes>
+    <!-- 这个节点用于配置xml描述xml方式的类 -->
+    <xstream-class-aliases>
+        <!-- type类名，alias-name以及类在xml中的根节点名 -->
+        <class-alias alias-name="USER" type="org.tinygroup.trans.xstream.base.test.User">
+            <xstream-class-property-alias property-name="name" alias-name="AAAA"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="age" alias-name="BBBB"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="male" alias-name="CCCC"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="weight" alias-name="DDDD"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="height" alias-name="EEEE"></xstream-class-property-alias>
+        </class-alias>
+    </xstream-class-aliases>
+</xstream-configuration>

@@ -1,0 +1,84 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+    <bean id="user2" scope="prototype" class="org.tinygroup.springutil.config.User">
+        <property name="name">
+            <value>aa1</value>
+        </property>
+        <property name="age">
+            <value>121</value>
+        </property>
+        <property name="cat">
+            <ref bean="cat1"/>
+        </property>
+    </bean>
+
+    <bean id="user" scope="singleton" class="org.tinygroup.springutil.config.User">
+        <property name="name">
+            <value>aa</value>
+        </property>
+        <property name="age">
+            <value>12</value>
+        </property>
+        <property name="cat">
+            <ref bean="cat"/>
+        </property>
+        <property name="cats">
+            <list>
+                <ref bean="cat"/>
+            </list>
+        </property>
+        <property name="catSet">
+            <list>
+                <ref bean="cat"/>
+            </list>
+        </property>
+        <property name="catMap">
+            <map>
+                <entry key="aa" value-ref="cat"></entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="cat" scope="singleton" class="org.tinygroup.springutil.config.Cat"/>
+    <bean id="cat1" scope="prototype" class="org.tinygroup.springutil.config.Cat"/>
+    <bean id="aaa1" scope="singleton" class="org.tinygroup.springutil.config.Aaa">
+        <property name="name">
+            <value>aaa1</value>
+        </property>
+    </bean>
+    <bean id="aaa" scope="singleton" class="org.tinygroup.springutil.config.Aaa">
+        <property name="name">
+            <value>aaa</value>
+        </property>
+    </bean>
+    <bean id="bbb" scope="singleton" class="org.tinygroup.springutil.config.Bbb"
+          autowire="byType"/>
+    <bean id="ccc" scope="singleton" class="org.tinygroup.springutil.config.Ccc"
+          autowire="byName"/>
+    <bean id="beanObject" scope="singleton"
+          class="org.tinygroup.springutil.config.BeanObject" autowire="byName"/>
+    <bean id="beanObject1" scope="singleton"
+          class="org.tinygroup.springutil.config.BeanObject" autowire="byName"/>
+
+    <bean id="decryptPropertyPlaceholderConfigurer" scope="singleton"
+          class="org.tinygroup.springutil.DecryptPropertyPlaceholderConfigurer">
+        <property name="order" value="1"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:/jdbc.properties</value>
+            </list>
+        </property>
+        <property name="decryptPropertyNames" value="jdbc.password"></property>
+    </bean>
+
+    <bean id="jdbcPojo" scope="singleton"
+          class="org.tinygroup.springutil.JdbcPojo">
+        <property name="url" value="${jdbc.url}"/>
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+</beans>

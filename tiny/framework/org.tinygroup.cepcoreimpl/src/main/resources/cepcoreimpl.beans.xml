@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="cepcore" scope="singleton" class="org.tinygroup.cepcoreimpl.CEPCoreImpl">
+        <property name="aopMananger" ref="cepcore_aop_bean"></property>
+        <property name="chain" ref="cep_process_filter_chain"></property>
+        <property name="dealer" ref="cepcore_dealer"></property>
+    </bean>
+    <bean id="cepcore_dealer" scope="singleton"
+          class="org.tinygroup.cepcoreimpl.CEPCoreDealer">
+    </bean>
+    <bean id="cep_process_filter_chain"
+          class="org.tinygroup.cepcore.impl.CEPCoreProcessFilterChainImpl">
+        <constructor-arg>
+            <list>
+                <ref bean="cep_thread_variable_change_filter"/>
+                <ref bean="cep_aop_filter"/>
+                <ref bean="cep_exception_deal_filter"/>
+                <ref bean="cep_context_change_filter"/>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>

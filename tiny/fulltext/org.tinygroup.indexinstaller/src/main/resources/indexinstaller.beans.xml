@@ -1,0 +1,25 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <bean id="indexInstallProcessor" scope="singleton"
+          class="org.tinygroup.indexinstaller.application.IndexInstallProcessor">
+        <property name="dataSources">
+            <list>
+                <ref bean="fileDataSource"/>
+                <ref bean="sqlDataSource"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="sqlDataSource" scope="singleton"
+          class="org.tinygroup.indexinstaller.impl.SqlDataSource">
+    </bean>
+
+    <bean id="fileDataSource" scope="singleton"
+          class="org.tinygroup.indexinstaller.impl.FileDataSource">
+    </bean>
+
+</beans>

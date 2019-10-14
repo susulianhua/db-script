@@ -1,0 +1,26 @@
+<flow id="FileIsExistTestFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="filePath" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="resultKey" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="result" type="java.lang.String" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="fileIsExist"/>
+      </next-nodes>
+    </node>
+    <node id="fileIsExist" name="fileIsExist" title="文件存在判断">
+      <component name="fileIsExist" title="文件存在判断">
+        <description>文件存在判断</description>
+        <properties>
+          <flow-property name="filePath" value="${filePath}" required="false" type="java.lang.String"/>
+          <flow-property name="resultKey" value="${resultKey}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

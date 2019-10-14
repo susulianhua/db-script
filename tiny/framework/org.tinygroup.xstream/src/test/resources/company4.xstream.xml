@@ -1,0 +1,29 @@
+<xstream-configuration package-name="testcompany4">
+
+    <xstream-annotation-classes>
+    </xstream-annotation-classes>
+
+    <xstream-class-aliases>
+        <class-alias alias-name="company" type="org.tinygroup.xstream.test.Company">
+            <xstream-class-property-alias property-name="name" alias-name="company-name" as-attribute="true"
+                                          implicit="false" omit="false"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="dontoutput" omit="true"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="num"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="money"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="departments" implicit="true"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="roles" alias-name="rolesa"></xstream-class-property-alias>
+        </class-alias>
+
+        <class-alias alias-name="department" type="org.tinygroup.xstream.test.Department">
+            <xstream-class-property-alias property-name="name" alias-name="department-name" as-attribute="false"
+                                          implicit="true" omit="false"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="peoples" alias-name="department-peoples" as-attribute="false"
+                                          implicit="true" omit="false"></xstream-class-property-alias>
+        </class-alias>
+
+        <class-alias alias-name="role" type="org.tinygroup.xstream.test.Role">
+            <xstream-class-property-alias property-name="name" alias-name="role-name" as-attribute="false"
+                                          omit="false"/>
+        </class-alias>
+    </xstream-class-aliases>
+</xstream-configuration>

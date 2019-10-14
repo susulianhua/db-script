@@ -1,0 +1,34 @@
+<default-values>
+    <default-value id="age_default" name="a_def">
+        <dialect-type-list>
+            <dialect-type language="mysql" value="20"></dialect-type>
+            <dialect-type language="oracle" value="100"></dialect-type>
+            <dialect-type language="h2" value="200"></dialect-type>
+            <dialect-type language="db2" value="200"></dialect-type>
+        </dialect-type-list>
+    </default-value>
+    <default-value id="name_default" name="name_def">
+        <dialect-type-list>
+            <dialect-type language="mysql" value="123456"></dialect-type>
+            <dialect-type language="oracle" value="654321"></dialect-type>
+            <dialect-type language="h2" value="123654"></dialect-type>
+            <dialect-type language="db2" value="123651"></dialect-type>
+        </dialect-type-list>
+    </default-value>
+    <default-value id="age_default2" name="a_def2">
+        <dialect-type-list>
+            <dialect-type language="mysql" value="1"></dialect-type>
+            <dialect-type language="oracle" value="1"></dialect-type>
+            <dialect-type language="h2" value="1"></dialect-type>
+            <dialect-type language="db2" value="1"></dialect-type>
+        </dialect-type-list>
+    </default-value>
+    <default-value id="userid_default" name="uid_def2">
+        <dialect-type-list>
+            <dialect-type language="mysql" value="1111"></dialect-type>
+            <dialect-type language="oracle" value="11111"></dialect-type>
+            <dialect-type language="h2" value="111111"></dialect-type>
+            <dialect-type language="db2" value="111111"></dialect-type>
+        </dialect-type-list>
+    </default-value>
+</default-values>

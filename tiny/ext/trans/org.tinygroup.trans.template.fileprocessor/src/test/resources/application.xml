@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <application-properties>
+    </application-properties>
+    <application-processors>
+        <application-processor bean="fileResolverProcessor"></application-processor>
+    </application-processors>
+</application>

@@ -1,0 +1,130 @@
+<components>
+  <component category="数据处理" name="dateCalculate" bean="dateCalculateComponent" title="日期偏移" icon="/icon/date.png">
+    <short-description>日期偏移</short-description>
+    <long-description>dateTime：指定日期；&#xd;
+calendarField:指定计算的日期字段，可是是年(1)，月(2)，日(5)等，取值请参考对象java.util.Calendar。&#xd;
+num：偏移天数，正数加负数减；&#xd;
+resultKey：结果集上下文存放key。&#xd;
+根据指定日志和偏移天数计算新的日期。偏移天数为正，日期向后推；偏移天数为负，日期向前推。并将结果返回给指定的key。&#xd;
+例如传入的日期为当前时间，偏移天数为5，则生成的新日期即为5天后的当前时间；偏移天数为-5，则生成的新日期即为5天前的当前时间。&#xd;
+对于resultKey，指的是context上下文中存放新日期的key。&#xd;
+例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为新的日期。&#xd;
+    </long-description>
+    <parameter name="dateTime" title="指定日期" type="long" array="false" required="true"/>
+    <parameter name="calendarField" title="日期字段" type="int" scope="in" array="false" required="true"/>
+    <parameter name="num" title="偏移天数，正数加负数减" type="int" array="false" required="true"/>
+    <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" array="false" required="true"/>
+  </component>
+  <component category="数据处理" name="serialNumberCreate" bean="serialNumberCreateComponent" title="生成流水号" icon="/icon/serianum.png">
+    <short-description>生成流水号</short-description>
+    <long-description>该组件需要指定名为dataSourceHold的DataSourceHold（org.tinygroup.flowcomponent.DataSourceHold）bean。&#xd;
+不允许多个DataSourceHold对象混用，只能指定一个。&#xd;
+但是对应dataSources属性可以配置单个，也可以配置多个。&#xd;
+&#xd;
+serialNumber：生成流水号标识；&#xd;
+resultKey：结果集上下文存放key。&#xd;
+生成流水号，并将结果返回给指定的key。&#xd;
+对于resultKey，指的是context上下文中存放生成的流水号的key。&#xd;
+例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为生成的流水号。&#xd;
+    </long-description>
+    <parameter name="serialNumber" title="生成流水号标识" type="java.lang.String" array="false" required="true"/>
+    <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" array="false" required="true"/>
+  </component>
+  <component category="数据处理" name="loggerPrint" bean="loggerPrintComponent" title="日志输出" icon="/icon/logger.png">
+    <short-description>日志输出</short-description>
+    <long-description>logLevel：日志级别&#xd;
+message：日志内容&#xd;
+输出指定日志级别的日志内容。	</long-description>
+    <parameter name="logLevel" title="日志级别" type="java.lang.String" array="false" required="true"/>
+    <parameter name="message" title="日志内容" type="java.lang.String" array="false"/>
+  </component>
+  <component category="数据处理" name="responseCodeConvert" bean="responseCodeConvertComponent" title="响应码转换" icon="/icon/transmit1.png">
+    <short-description>响应码转换</short-description>
+    <long-description>type：转换码类型；&#xd;
+input：需要转换的响应码；&#xd;
+resultKey：结果集上下文存放key。&#xd;
+根据转换码类型，将指定需要转换的响应码根据配置的规则转换成实际需要的响应码。&#xd;
+例如输入0001，根据规则输出9001。&#xd;
+对于resultKey，指的是context上下文中存放输出的响应码的key。&#xd;
+例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为输出的响应码。</long-description>
+    <parameter name="type" title="转换前数据类型" type="java.lang.String" array="false" required="true"/>
+    <parameter name="input" title="转换前数据" type="java.lang.String" array="false" required="true"/>
+    <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" array="false" required="true"/>
+  </component>
+  <component category="数据处理" name="threadSleep" bean="threadSleepComponent" title="线程休眠" icon="\icon\threadsleep.png">
+    <short-description>线程休眠</short-description>
+    <long-description>sleepTime:线程休眠时间；&#xd;
+timeUnit：休眠时间单位，为空时默认为毫秒(1),可填值有天(5)，小时(4)，分钟(3)，秒(2)。</long-description>
+    <parameter name="sleepTime" title="休眠时间" type="java.lang.Long" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="timeUnit" title="时间单位，可以为空，则默认为毫秒" type="java.lang.Integer" editType="textarea" scope="in" array="false"/>
+  </component>
+  <component category="数据处理" name="enumConvert" bean="enumConvertComponent" title="枚举转换器" icon="\icon\enumconvert.png">
+    <short-description>枚举转换器</short-description>
+    <long-description></long-description>
+    <parameter name="enumClassPath" title="转换的枚举类路径" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="value" title="转换值" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="type" title="枚举转换器类型" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="resultKey" title="转换结果上下文存放key" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+  </component>
+  <component category="数据处理" name="EncryptionAndDecryption" bean="enAndDecryptionComponent" title="加解密组件" icon="\icon\endecrypt.png">
+    <short-description>加解密组件</short-description>
+    <long-description>message:需要加解密的报文;&#xd;
+type:加密或者解密标识。默认值为加密(1)。可填值为加密(1),解密(2)。&#xd;
+resultKey：加解密结果上下文存放key。&#xd;
+执行加密或者解密操作，并将加密或者解密的结果放入指定的上下文中。</long-description>
+    <parameter name="message" title="需要加解密的报文" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="type" title="加密或者解密标识" type="java.lang.Integer" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="resultKey" title="加解密结果上下文存放key" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+  </component>
+  <component category="数据处理" name="iniOperator" bean="iniOperatorComponent" title="INI文件读取" icon="\icon\inioperator.png">
+    <short-description>INI文件读取</short-description>
+    <long-description>filePath：读取的ini文件全路径；&#xd;
+section：要获取的变量所在段名称，如[section];&#xd;
+variable：要获取的变量名称。&#xd;
+读取ini文件中某一个域段中的某一个属性的值。</long-description>
+    <parameter name="filePath" title="文件路径" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="section" title="要获取的变量所在段名称" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="variable" title="要获取的变量名称" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+  </component>
+  <component category="数据处理" name="monitorPrint" bean="monitorPrintComponent" title="写监控" icon="\icon\monprint.png">
+    <short-description>写监控</short-description>
+    <long-description>message：写入的监控信息;&#xd;
+filePath：写入文件路径。&#xd;
+将监控信息写入到指定文件中。</long-description>
+    <parameter name="message" title="写入的监控信息" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="filePath" title="写入文件路径" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+  </component>
+  <component category="数据处理" name="newInstance" bean="newInstanceComponent" title="类实例生成" icon="\icon\newInstance.png">
+    <short-description>类实例生成</short-description>
+    <long-description>beanId:类的bean;&#xd;
+classPath:类的全路径;&#xd;
+resultKey:上下文结果集存放key.&#xd;
+beanId和classPath必须有一个传值。&#xd;
+</long-description>
+    <parameter name="beanId" title="类的beanId" type="java.lang.String" editType="textarea" scope="in" array="false"/>
+    <parameter name="classPath" title="类路径" type="java.lang.String" editType="textarea" scope="in" array="false"/>
+    <parameter name="resultKey" title="上下文结果集存放key" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+  </component>
+  <component category="数据处理" name="enumSimpleConvert" bean="enumSimpleConvertComponent" title="枚举值转换简易模式" icon="\icon\enumconvert.png">
+    <short-description>枚举值转换简易模式</short-description>
+    <long-description>value:需要转换的值&#xd;
+resultKey:结果集上下文存放key</long-description>
+    <parameter name="value" title="需要转换的值" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+  </component>
+  <component category="数据处理" name="responseCodeSimpleConvert" bean="responseCodeSimpleConvertComponent" title="响应码转换简易模式" icon="\icon\transmit1.png">
+    <short-description>响应码转换简易模式</short-description>
+    <long-description>value:需要转换的值&#xd;
+resultKey:结果集上下文存放key</long-description>
+    <parameter name="value" title="需要转换的值" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+  </component>
+  <component category="数据处理" name="initializationProperties" bean="initializationPropertiesComponent" title="响应码枚举配置初始化" icon="\icon\initialization.png">
+    <short-description>响应码枚举配置初始化组件</short-description>
+    <long-description>filePath:配置文件路径&#xd;
+type:配置类型.可配置值为：0-枚举，1-响应码</long-description>
+    <parameter name="filePath" title="配置文件路径" type="java.lang.String" editType="textarea" scope="in" array="false" required="true"/>
+    <parameter name="type" title="配置文件类型" type="java.lang.Integer" editType="textarea" scope="in" array="false" required="true"/>
+  </component>
+</components>

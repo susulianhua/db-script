@@ -1,0 +1,6 @@
+<service-components>
+    <service-component
+            type="org.tinygroup.service.proxy.service.HelloService" bean="mixMixProxy"
+            group-id="org.tinygroup.service.proxy.service" artifact-id="helloService" >
+    </service-component>
+</service-components>

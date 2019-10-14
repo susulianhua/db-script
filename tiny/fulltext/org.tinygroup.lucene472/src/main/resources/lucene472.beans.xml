@@ -1,0 +1,39 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <bean id="luceneConfigManager" scope="singleton"
+          class="org.tinygroup.lucene472.manage.LuceneConfigManagerImpl">
+    </bean>
+
+    <bean id="luceneConfigProcessor" scope="singleton"
+          class="org.tinygroup.lucene472.fileresolver.LuceneConfigProcessor">
+        <property name="luceneConfigManager" ref="luceneConfigManager"></property>
+    </bean>
+
+    <bean id="luceneIndexOperator" scope="singleton"
+          class="org.tinygroup.lucene472.LuceneIndexOperator">
+    </bean>
+
+    <bean id="luceneUserIndexOperator" scope="prototype"
+          class="org.tinygroup.lucene472.LuceneUserIndexOperator">
+    </bean>
+
+    <bean id="luceneDynamicManager" scope="singleton"
+          class="org.tinygroup.lucene472.manage.LuceneDynamicManagerImpl">
+    </bean>
+
+    <bean id="luceneDynamicProcessor" scope="singleton"
+          class="org.tinygroup.lucene472.fileresolver.LuceneDynamicProcessor">
+        <property name="luceneDynamicManager" ref="luceneDynamicManager"></property>
+    </bean>
+
+    <bean id="luceneIndexInstallProcessor" scope="singleton"
+          class="org.tinygroup.lucene472.application.LuceneIndexInstallProcessor">
+        <property name="luceneConfigManager" ref="luceneConfigManager"></property>
+        <property name="luceneIndexOperator" ref="luceneIndexOperator"></property>
+    </bean>
+
+</beans>

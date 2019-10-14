@@ -1,0 +1,6 @@
+<xstream-configuration package-name="template-convert">
+    <xstream-annotation-classes>
+        <xstream-annotation-class
+                class-name="org.tinygroup.trans.template.TemplateConverts"/>
+    </xstream-annotation-classes>
+</xstream-configuration>

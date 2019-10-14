@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <application-properties>
+        <property name="SERVICE_WEBLAYER_HEAD" value="serviceConfigHead"/>
+    </application-properties>
+    <application-processors>
+        <application-processor bean="fileResolverProcessor"></application-processor>
+        <application-processor bean="serviceApplicationProcessor"></application-processor>
+    </application-processors>
+</application>

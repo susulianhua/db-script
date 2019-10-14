@@ -1,0 +1,22 @@
+<flow id="dbData2FileTest" enable="true" private-context="false">
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="dbData2File"/>
+      </next-nodes>
+    </node>
+    <node id="dbData2File" name="dbData2File" title="数据库数据导出">
+      <component name="dbData2File" title="数据库数据导出">
+        <description>数据库数据导出</description>
+        <properties>
+          <flow-property name="sql" value="${sql}" required="true" type="java.lang.String"/>
+          <flow-property name="filePath" value="${filePath}" required="true" type="java.lang.String"/>
+          <flow-property name="colSeparator" value="${colSeparator}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

@@ -1,0 +1,4 @@
+<service-components>
+    <service-component bean="classPublishService"  type="org.tinygroup.servicewrapper.ClassPublishService">
+    </service-component>
+</service-components>

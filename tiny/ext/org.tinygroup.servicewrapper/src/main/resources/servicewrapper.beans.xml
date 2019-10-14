@@ -1,0 +1,28 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+    <bean id="serviceWrapperConfigManager" scope="singleton"
+          class="org.tinygroup.servicewrapper.impl.ServiceWrapperConfigManagerImpl">
+    </bean>
+    <bean id="serviceWrapperFileProcessor" scope="singleton"
+          class="org.tinygroup.servicewrapper.fileresolver.ServiceWrapperFileProcessor">
+        <property name="manager" ref="serviceWrapperConfigManager"></property>
+    </bean>
+    <bean id="serviceWrapperInterceptor" class="org.tinygroup.servicewrapper.ServiceWrapperInterceptor">
+        <property name="core" ref="cepcore"/>
+        <property name="serviceIdAnaly" ref="defaultServiceIdAnaly"></property>
+        <property name="parameterNameDiscoverer" ref="serviceParameterNameDiscoverer"></property>
+    </bean>
+
+    <bean id="defaultServiceIdAnaly" scope="singleton"
+          class="org.tinygroup.servicewrapper.impl.DefaultServiceIdAnaly">
+        <property name="manager" ref="serviceWrapperConfigManager"></property>
+    </bean>
+
+    <bean id="serviceParameterNameDiscoverer" scope="singleton"
+          class="org.tinygroup.servicewrapper.namediscoverer.ServiceParameterNameDiscoverer">
+        <property name="core" ref="cepcore"/>
+        <property name="serviceIdAnaly" ref="defaultServiceIdAnaly"></property>
+    </bean>
+</beans>

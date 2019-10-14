@@ -1,0 +1,281 @@
+<service-components>
+    <service-component type="org.tinygroup.serviceweblayer.test.service.ServiceForTest" bean="">
+        <service-method local-name="basicServiceIntegerArray" service-id="basicServiceIntegerArray"
+                        method-name="basicServiceIntegerArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="java.lang.Integer" required="false" is-array="true"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceIntegerArrayResult" required="false" is-array="true"
+                            type="java.lang.Integer"/>
+        </service-method>
+        <service-method local-name="basicServiceFloatArray" service-id="basicServiceFloatArray"
+                        method-name="basicServiceFloatArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="f" type="float" required="false" is-array="true"/>
+            </service-parameters>
+            <service-result name="basicServiceFloatArrayResult" required="false" is-array="true" type="float"/>
+        </service-method>
+        <service-method local-name="basicServiceWrapperFloatArray" service-id="basicServiceWrapperFloatArray"
+                        method-name="basicServiceWrapperFloatArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="f" type="java.lang.Float" required="false" is-array="true"/>
+            </service-parameters>
+            <service-result name="basicServiceWrapperFloatArrayResult" required="false" is-array="true"
+                            type="java.lang.Float"/>
+        </service-method>
+        <service-method local-name="basicServiceIntegerList" service-id="basicServiceIntegerList"
+                        method-name="basicServiceIntegerList" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="java.lang.Integer" collection-type="java.util.List" required="false"
+                                   is-array="false"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceIntegerListResult" required="false" is-array="false"
+                            collection-type="java.util.List" type="java.lang.Integer"/>
+        </service-method>
+        <service-method local-name="basicServiceWrapperByteArray" service-id="basicServiceWrapperByteArray"
+                        method-name="basicServiceWrapperByteArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="bs" type="java.lang.Byte" required="false" is-array="true"/>
+            </service-parameters>
+            <service-result name="basicServiceWrapperByteArrayResult" required="false" is-array="true"
+                            type="java.lang.Byte"/>
+        </service-method>
+        <service-method local-name="objectServiceGradeList" service-id="objectServiceGradeList"
+                        method-name="objectServiceGradeList" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="grade" type="org.tinygroup.serviceweblayer.test.service.Grade"
+                                   collection-type="java.util.List" required="false" is-array="false"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="objectServiceGradeListResult" required="false" is-array="false"
+                            collection-type="java.util.List" type="org.tinygroup.serviceweblayer.test.service.Grade"/>
+        </service-method>
+        <service-method local-name="basicServiceCharArray" service-id="basicServiceCharArray"
+                        method-name="basicServiceCharArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="char" required="false" is-array="true"/>
+            </service-parameters>
+            <service-result name="basicServiceCharArrayResult" required="false" is-array="true" type="char"/>
+        </service-method>
+        <service-method local-name="basicServiceInt" service-id="basicServiceInt" method-name="basicServiceInt"
+                        cacheable="false" category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="int" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceIntResult" required="false" is-array="false" type="int"/>
+        </service-method>
+        <service-method local-name="basicServiceCharacter" service-id="basicServiceCharacter"
+                        method-name="basicServiceCharacter" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="java.lang.Character" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceCharacterResult" required="false" is-array="false"
+                            type="java.lang.Character"/>
+        </service-method>
+        <service-method local-name="basicServiceByte" service-id="basicServiceByte" method-name="basicServiceByte"
+                        cacheable="false" category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="b" type="byte" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceByteResult" required="false" is-array="false" type="byte"/>
+        </service-method>
+        <service-method local-name="basicServiceCharacterArray" service-id="basicServiceCharacterArray"
+                        method-name="basicServiceCharacterArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="java.lang.Character" required="false" is-array="true"/>
+            </service-parameters>
+            <service-result name="basicServiceCharacterArrayResult" required="false" is-array="true"
+                            type="java.lang.Character"/>
+        </service-method>
+        <service-method local-name="basicServiceChar" service-id="basicServiceChar" method-name="basicServiceChar"
+                        cacheable="false" category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="char" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceCharResult" required="false" is-array="false" type="char"/>
+        </service-method>
+        <service-method local-name="objectServiceSchoolArray" service-id="objectServiceSchoolArray"
+                        method-name="objectServiceSchoolArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="school" type="org.tinygroup.serviceweblayer.test.service.School"
+                                   required="false" is-array="true"/>
+            </service-parameters>
+            <service-result name="objectServiceSchoolArrayResult" required="false" is-array="true"
+                            type="org.tinygroup.serviceweblayer.test.service.School"/>
+        </service-method>
+        <service-method local-name="basicServiceWrapperByte" service-id="basicServiceWrapperByte"
+                        method-name="basicServiceWrapperByte" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="b" type="java.lang.Byte" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceWrapperByteResult" required="false" is-array="false"
+                            type="java.lang.Byte"/>
+        </service-method>
+        <service-method local-name="objectServiceGrade" service-id="objectServiceGrade" method-name="objectServiceGrade"
+                        cacheable="false" category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="grade" type="org.tinygroup.serviceweblayer.test.service.Grade" required="false"
+                                   is-array="false"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="objectServiceGradeResult" required="false" is-array="false"
+                            type="org.tinygroup.serviceweblayer.test.service.Grade"/>
+        </service-method>
+        <service-method local-name="basicWrapperServiceBooleanList" service-id="basicWrapperServiceBooleanList"
+                        method-name="basicWrapperServiceBooleanList" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="java.lang.Boolean" collection-type="java.util.List" required="false"
+                                   is-array="false"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicWrapperServiceBooleanListResult" required="false" is-array="false"
+                            collection-type="java.util.List" type="java.lang.Boolean"/>
+        </service-method>
+        <service-method local-name="basicServiceWrapperFloatList" service-id="basicServiceWrapperFloatList"
+                        method-name="basicServiceWrapperFloatList" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="f" type="java.lang.Float" collection-type="java.util.List" required="false"
+                                   is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceWrapperFloatListResult" required="false" is-array="false"
+                            collection-type="java.util.List" type="java.lang.Float"/>
+        </service-method>
+        <service-method local-name="objectServiceSchool" service-id="objectServiceSchool"
+                        method-name="objectServiceSchool" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="school" type="org.tinygroup.serviceweblayer.test.service.School"
+                                   required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="objectServiceSchoolResult" required="false" is-array="false"
+                            type="org.tinygroup.serviceweblayer.test.service.School"/>
+        </service-method>
+        <service-method local-name="basicWrapperServiceBoolean" service-id="basicWrapperServiceBoolean"
+                        method-name="basicWrapperServiceBoolean" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="java.lang.Boolean" required="false" is-array="false"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicWrapperServiceBooleanResult" required="false" is-array="false"
+                            type="java.lang.Boolean"/>
+        </service-method>
+        <service-method local-name="basicServiceWrapperFloat" service-id="basicServiceWrapperFloat"
+                        method-name="basicServiceWrapperFloat" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="f" type="java.lang.Float" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceWrapperFloatResult" required="false" is-array="false"
+                            type="java.lang.Float"/>
+        </service-method>
+        <service-method local-name="basicServiceBooleanArray" service-id="basicServiceBooleanArray"
+                        method-name="basicServiceBooleanArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="boolean" required="false" is-array="true"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceBooleanArrayResult" required="false" is-array="true" type="boolean"/>
+        </service-method>
+        <service-method local-name="basicServiceCharacterList" service-id="basicServiceCharacterList"
+                        method-name="basicServiceCharacterList" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="java.lang.Character" collection-type="java.util.List" required="false"
+                                   is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceCharacterListResult" required="false" is-array="false"
+                            collection-type="java.util.List" type="java.lang.Character"/>
+        </service-method>
+        <service-method local-name="objectServiceGradeArray" service-id="objectServiceGradeArray"
+                        method-name="objectServiceGradeArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="grade" type="org.tinygroup.serviceweblayer.test.service.Grade" required="false"
+                                   is-array="true"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="objectServiceGradeArrayResult" required="false" is-array="true"
+                            type="org.tinygroup.serviceweblayer.test.service.Grade"/>
+        </service-method>
+        <service-method local-name="basicServiceBoolean" service-id="basicServiceBoolean"
+                        method-name="basicServiceBoolean" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="boolean" required="false" is-array="false"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceBooleanResult" required="false" is-array="false" type="boolean"/>
+        </service-method>
+        <service-method local-name="basicServiceIntArray" service-id="basicServiceIntArray"
+                        method-name="basicServiceIntArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="int" required="false" is-array="true"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceIntArrayResult" required="false" is-array="true" type="int"/>
+        </service-method>
+        <service-method local-name="basicServiceFloat" service-id="basicServiceFloat" method-name="basicServiceFloat"
+                        cacheable="false" category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="f" type="float" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceFloatResult" required="false" is-array="false" type="float"/>
+        </service-method>
+        <service-method local-name="basicServiceInteger" service-id="basicServiceInteger"
+                        method-name="basicServiceInteger" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="i" type="java.lang.Integer" required="false" is-array="false"/>
+                <service-parameter name="a" type="java.lang.String" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceIntegerResult" required="false" is-array="false"
+                            type="java.lang.Integer"/>
+        </service-method>
+        <service-method local-name="basicServiceByteArray" service-id="basicServiceByteArray"
+                        method-name="basicServiceByteArray" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="bs" type="byte" required="false" is-array="true"/>
+            </service-parameters>
+            <service-result name="basicServiceByteArrayResult" required="false" is-array="true" type="byte"/>
+        </service-method>
+        <service-method local-name="basicServiceWrapperByteList" service-id="basicServiceWrapperByteList"
+                        method-name="basicServiceWrapperByteList" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="bs" type="java.lang.Byte" collection-type="java.util.List" required="false"
+                                   is-array="false"/>
+            </service-parameters>
+            <service-result name="basicServiceWrapperByteListResult" required="false" is-array="false"
+                            collection-type="java.util.List" type="java.lang.Byte"/>
+        </service-method>
+        <service-method local-name="objectServiceSchoolList" service-id="objectServiceSchoolList"
+                        method-name="objectServiceSchoolList" cacheable="false"
+                        category="org.tinygroup.serviceweblayer.test.service">
+            <service-parameters>
+                <service-parameter name="school" type="org.tinygroup.serviceweblayer.test.service.School"
+                                   collection-type="java.util.List" required="false" is-array="false"/>
+            </service-parameters>
+            <service-result name="objectServiceSchoolListResult" required="false" is-array="false"
+                            collection-type="java.util.List" type="org.tinygroup.serviceweblayer.test.service.School"/>
+        </service-method>
+    </service-component>
+</service-components>

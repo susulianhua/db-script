@@ -1,0 +1,18 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+    <bean id="userdemo" name="userdemo" scope="singleton"
+          class="org.tinygroup.validate.User">
+    </bean>
+    <bean id="sceneAddress" name="sceneAddress" scope="singleton"
+          class="org.tinygroup.validate.test.scene.SceneAddress">
+    </bean>
+    <bean id="sceneUser" name="sceneUser" scope="singleton"
+          class="org.tinygroup.validate.test.scene.SceneUser">
+    </bean>
+    <bean id="companyUser" name="companyUser" scope="singleton"
+          class="org.tinygroup.validate.test.property.CompanyUser">
+    </bean>
+</beans>

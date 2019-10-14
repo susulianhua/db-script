@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template-converts>
+    <scene-mapping>
+        <scene>100001</scene>
+        <class-script>
+            <class-path>org.tinygroup.trans.template.fileprocessor.testcase.User</class-path>
+            <script-path>/user.xml</script-path>
+        </class-script>
+        <class-script>
+            <class-path>org.tinygroup.protocol.convert.testcase.User1</class-path>
+            <script-path>/user.xml</script-path>
+        </class-script>
+        <class-script>
+            <class-path>org.tinygroup.protocol.convert.testcase.User2</class-path>
+            <script-path>/user.xml</script-path>
+        </class-script>
+        <class-script>
+            <class-path>org.tinygroup.protocol.convert.testcase.User3</class-path>
+            <script-path>/user.xml</script-path>
+        </class-script>
+        <class-script>
+            <class-path>org.tinygroup.protocol.convert.testcase.User4</class-path>
+            <script-path>/user.xml</script-path>
+        </class-script>
+    </scene-mapping>
+</template-converts>

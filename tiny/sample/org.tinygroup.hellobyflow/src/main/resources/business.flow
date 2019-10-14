@@ -1,0 +1,24 @@
+<flow id="business" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="true" name="name" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="true" name="result" type="java.lang.String" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="helloworld"/>
+      </next-nodes>
+    </node>
+    <node id="helloworld" name="helloworld" title="HelloWorld组件">
+      <component name="helloworld" title="HelloWorld组件">
+        <properties>
+          <flow-property name="name" value="${name}" required="true" type="java.lang.String"/>
+          <flow-property name="result" value="result" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

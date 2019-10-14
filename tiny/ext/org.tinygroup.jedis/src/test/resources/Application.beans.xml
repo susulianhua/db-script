@@ -1,0 +1,44 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName" default-lazy-init="true">
+    <bean id="fileResolver" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.FileResolverImpl">
+        <property name="fileProcessorList">
+            <list>
+                <ref bean="i18nFileProcessor"/>
+                <ref bean="xStreamFileProcessor"/>
+                <ref bean="jedisConfigsFileProcessor"/>
+                <ref bean="jedisSentinelConfigsFileProcessor"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="fileResolverProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.applicationprocessor.FileResolverProcessor">
+        <property name="fileResolver" ref="fileResolver"></property>
+    </bean>
+    <!-- 连接池的配置信息 -->
+    <bean id="jedisConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!-- 说明一个pool可以有多少个Jedis实例 -->
+        <property name="maxTotal" value="101"/>
+        <!-- 最大Idle -->
+        <property name="maxIdle" value="80"/>
+        <!-- 最小Idle -->
+        <property name="minIdle" value="50"/>
+        <!-- 获得一个jedis实例的时候是否检查连接可用性（ping()） -->
+        <property name="testOnBorrow" value="true"/>
+        <!-- return 一个jedis实例给pool时，是否检查连接可用性（ping()） -->
+        <property name="testOnReturn" value="true"/>
+        <!-- idle状态监测用异步线程evict进行检查， -->
+        <property name="testWhileIdle" value="true"/>
+        <!-- 一次最多evict的pool里的jedis实例个数 -->
+        <property name="numTestsPerEvictionRun" value="10"/>
+        <!-- test idle 线程的时间间隔 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!--最大等待wait时间 -->
+        <property name="maxWaitMillis" value="3000"/>
+
+    </bean>
+</beans>

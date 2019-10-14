@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		">
+
+    <int:gateway id="gateWayInter" service-interface="org.tinygroup.springintegration.ratelimit.test.GateWayInter"
+                 default-request-channel="inputActivatorChannel" default-reply-channel="inputActivatorChannel2"></int:gateway>
+
+    <int:channel id="inputActivatorChannel" />
+
+    <int:filter id="rateLimitfilterfilter" input-channel="inputActivatorChannel" output-channel="inputActivatorChannel2" ref="rateLimitFilter" discard-channel="discardChannel"/>
+
+    <int:channel id="discardChannel" />
+    <int:service-activator input-channel="discardChannel"
+                           ref="helloActivator" method="sayDiscard" />
+
+
+    <int:channel id="inputActivatorChannel2" />
+    <int:service-activator input-channel="inputActivatorChannel2"
+                           ref="helloActivator" method="sayHello" />
+
+
+    <bean id="helloActivator"
+          class="org.tinygroup.springintegration.ratelimit.test.HelloActivatorImpl" />
+
+    <bean id="javaSerializer" class="org.springframework.core.serializer.DefaultSerializer" />
+    <bean id="javaDeserializer" class="org.springframework.core.serializer.DefaultDeserializer" />
+
+    <!-- 限流相关bean -->
+    <bean id="rateLimitFilter" class="org.tinygroup.springintegration.ratelimit.RateLimitFilter">
+        <property name="rateLimiter" ref="rateLimiter"></property>
+    </bean>
+    <bean id="rateLimiter" class="org.tinygroup.springintegration.ratelimit.SmoothBurstyRateLimiterFactoryBean">
+        <property name="permitsPerSecond" value="2"></property>
+    </bean>
+    <bean id="rateLimiter2" class="org.tinygroup.springintegration.ratelimit.SmoothWarmingUpRateLimiterFactoryBean">
+        <property name="permitsPerSecond" value="1"></property>
+        <property name="warmupPeriod" value="1"></property>
+        <property name="unit" ref="timeUnit"></property>
+    </bean>
+    <bean id="timeUnit" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="java.util.concurrent.TimeUnit.SECONDS" />
+    </bean>
+
+</beans>

@@ -1,0 +1,53 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+    <bean id="fileResolver" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.FileResolverImpl">
+        <property name="fileProcessorList">
+            <list>
+                <ref bean="i18nFileProcessor"/>
+                <ref bean="xStreamFileProcessor"/>
+
+
+                <ref bean="flowComponentProcessor"/>
+                <ref bean="flowFileProcessor"/>
+                <ref bean="pageFlowComponentProcessor"/>
+                <ref bean="pageFlowFileProcessor"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="fileResolverProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.applicationprocessor.FileResolverProcessor">
+        <property name="fileResolver" ref="fileResolver"></property>
+    </bean>
+
+    <bean id="helloService" class="org.tinygroup.flowbasiccomponent.test.HelloService"/>
+
+    <bean id="demoCodeConvert" class="org.tinygroup.flowbasiccomponent.test.DemoCodeConvert"/>
+
+    <bean id="user" class="org.tinygroup.flowbasiccomponent.test.User"/>
+
+    <!--
+    <bean id="i18nFileProcessor" scope="singleton"
+        class="org.tinygroup.fileresolver.impl.XStreamFileProcessor">
+    </bean>
+    <bean id="xStreamFileProcessor" scope="singleton"
+        class="org.tinygroup.fileresolver.impl.I18nFileProcessor">
+    </bean>
+
+    <bean id="flowComponentProcessor" scope="singleton"
+        class="org.tinygroup.flow.fileresolver.FlowComponentProcessor">
+    </bean>
+    <bean id="flowFileProcessor" scope="singleton"
+        class="org.tinygroup.flow.fileresolver.FlowFileProcessor">
+    </bean>
+    <bean id="pageFlowComponentProcessor" scope="singleton"
+        class="org.tinygroup.pageflow.fileresolver.PageFlowComponentProcessor">
+    </bean>
+    <bean id="pageFlowFileProcessor" scope="singleton"
+        class="org.tinygroup.pageflow.fileresolver.PageFlowFileProcessor">
+    </bean>
+     -->
+</beans>

@@ -1,0 +1,38 @@
+<xstream-configuration package-name="testcompany3">
+
+    <xstream-annotation-classes>
+    </xstream-annotation-classes>
+
+    <xstream-class-aliases>
+        <!-- 类Company -->
+        <class-alias alias-name="company" type="org.tinygroup.xstream.test.Company">
+            <!--
+                property-name：类中的属性名
+                alias-name：转换的xml中属性名的别名（xml的节点名）
+                as-attribute(boolean值，默认false)：是否是xml节点的属性，如果为true，则转换结果为<company name="xxx"></company>
+                implicit(boolean值，默认false)：如果该节点是数组，是否需要额外显示一个数组的父节点，如果为true，例如<users><user></user><user></user></users>
+                omit(boolean值，默认false)：是否忽略该节点，如果为true，则在转出的xml中将不会有该节点
+             -->
+            <xstream-class-property-alias property-name="name" alias-name="company-name" as-attribute="false"
+                                          implicit="false" omit="false"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="dontoutput"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="num"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="money"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="departments"
+                                          alias-name="departmentsa"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="roles" alias-name="rolesa"></xstream-class-property-alias>
+        </class-alias>
+
+        <class-alias alias-name="department" type="org.tinygroup.xstream.test.Department">
+            <xstream-class-property-alias property-name="name" alias-name="department-name" as-attribute="false"
+                                          implicit="true" omit="false"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="peoples" alias-name="department-peoples" as-attribute="false"
+                                          implicit="true" omit="false"></xstream-class-property-alias>
+        </class-alias>
+
+        <class-alias alias-name="role" type="org.tinygroup.xstream.test.Role">
+            <xstream-class-property-alias property-name="name" alias-name="role-name" as-attribute="false"
+                                          omit="false"/>
+        </class-alias>
+    </xstream-class-aliases>
+</xstream-configuration>

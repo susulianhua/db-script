@@ -1,0 +1,27 @@
+<flow id="insertNodeFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="xml" type="org.tinygroup.xmlparser.node.XmlNode" scope="in"/>
+    <parameter array="false" required="false" name="nodePath" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="xmlNode" type="java.lang.String" scope="in"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="insertNode_1"/>
+      </next-nodes>
+    </node>
+    <node id="insertNode_1" name="insertNode" title="节点插入">
+      <component name="insertNode" title="节点插入">
+        <description>节点插入</description>
+        <properties>
+          <flow-property name="xml" value="xml" required="true" type="el"/>
+          <flow-property name="nodePath" value="${nodePath}" required="true" type="java.lang.String"/>
+          <flow-property name="xmlNode" value="${xmlNode}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

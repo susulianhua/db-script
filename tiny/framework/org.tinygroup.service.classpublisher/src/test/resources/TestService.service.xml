@@ -1,0 +1,40 @@
+<service-components>
+  <service-component type="org.tinygroup.service.test.classpublisher.service.TestService" bean="">
+    <service-method local-name="listService" service-id="org.tinygroup.service.test.classpublisher.service.TestService.listService" method-name="listService" cacheable="false" category="org.tinygroup.service.test.classpublisher.service">
+      <service-parameters>
+        <service-parameter name="list" type="java.lang.String" collection-type="java.util.List" required="false" is-array="false"/>
+      </service-parameters>
+      <service-result name="result" required="false" is-array="false" collection-type="java.util.List" type="java.lang.String"/>
+    </service-method>
+    <service-method local-name="arrayUserService" service-id="org.tinygroup.service.test.classpublisher.service.TestService.arrayUserService" method-name="arrayUserService" cacheable="false" category="org.tinygroup.service.test.classpublisher.service">
+      <service-parameters>
+        <service-parameter name="users" type="org.tinygroup.service.test.classpublisher.TestUser" required="false" is-array="true"/>
+      </service-parameters>
+      <service-result name="result" required="false" is-array="true" type="org.tinygroup.service.test.classpublisher.TestUser"/>
+    </service-method>
+    <service-method local-name="arrayService" service-id="org.tinygroup.service.test.classpublisher.service.TestService.arrayService" method-name="arrayService" cacheable="false" category="org.tinygroup.service.test.classpublisher.service">
+      <service-parameters>
+        <service-parameter name="strs" type="java.lang.String" required="false" is-array="true"/>
+      </service-parameters>
+      <service-result name="result" required="false" is-array="true" type="java.lang.String"/>
+    </service-method>
+    <service-method local-name="userService" service-id="org.tinygroup.service.test.classpublisher.service.TestService.userService" method-name="userService" cacheable="false" category="org.tinygroup.service.test.classpublisher.service">
+      <service-parameters>
+        <service-parameter name="user" type="org.tinygroup.service.test.classpublisher.TestUser" required="false" is-array="false"/>
+      </service-parameters>
+      <service-result name="result" required="false" is-array="false" type="org.tinygroup.service.test.classpublisher.TestUser"/>
+    </service-method>
+    <service-method local-name="stringService" service-id="org.tinygroup.service.test.classpublisher.service.TestService.stringService" method-name="stringService" cacheable="false" category="org.tinygroup.service.test.classpublisher.service">
+      <service-parameters>
+        <service-parameter name="name" type="java.lang.String" required="false" is-array="false"/>
+      </service-parameters>
+      <service-result name="result" required="false" is-array="false" type="java.lang.String"/>
+    </service-method>
+    <service-method local-name="listUserService" service-id="org.tinygroup.service.test.classpublisher.service.TestService.listUserService" method-name="listUserService" cacheable="false" category="org.tinygroup.service.test.classpublisher.service">
+      <service-parameters>
+        <service-parameter name="userList" type="org.tinygroup.service.test.classpublisher.TestUser" collection-type="java.util.List" required="false" is-array="false"/>
+      </service-parameters>
+      <service-result name="result" required="false" is-array="false" collection-type="java.util.List" type="org.tinygroup.service.test.classpublisher.TestUser"/>
+    </service-method>
+  </service-component>
+</service-components>

@@ -1,0 +1,11 @@
+<jedis-configs>
+    <default-jedis-config host="testdb1" port="63000" pool-config="jedisConfig">
+    </default-jedis-config>
+    <jedis-config id="server01" host="testdb" port="63799" pool-config="jedisConfig">
+    </jedis-config>
+    <jedis-config id="server02" host="testdb" port="63899" pool-config="jedisConfig"
+                  password="D2C7D032959143E81B6BD60A80268220" cipher="true" seed="tiny123">
+    </jedis-config>
+    <jedis-config id="server03" host="testdb" port="63999" pool-config="jedisConfig" password="dog456" cipher="false">
+    </jedis-config>
+</jedis-configs>

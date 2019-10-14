@@ -1,0 +1,17 @@
+<components>
+  <component category="数据处理" name="serialNumberCreate" bean="serialNumberCreateComponent" title="生成流水号" icon="/icon/serianum.png">
+    <short-description>生成流水号</short-description>
+    <long-description>该组件需要指定名为dataSourceHold的DataSourceHold（org.tinygroup.flowcomponent.DataSourceHold）bean。&#xd;
+不允许多个DataSourceHold对象混用，只能指定一个。&#xd;
+但是对应dataSources属性可以配置单个，也可以配置多个。&#xd;
+&#xd;
+serialNumber：生成流水号标识；&#xd;
+resultKey：结果集上下文存放key。&#xd;
+生成流水号，并将结果返回给指定的key。&#xd;
+对于resultKey，指的是context上下文中存放生成的流水号的key。&#xd;
+例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为生成的流水号。&#xd;
+    </long-description>
+    <parameter name="serialNumber" title="生成流水号标识" type="java.lang.String" array="false" required="true"/>
+    <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" array="false" required="true"/>
+  </component>
+</components>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialect-function-mappings>
+
+    <dialect-function name="currentdate">
+        <format><![CDATA[
+		#currentdate()
+		]]></format>
+        <desc><![CDATA[
+		截取字符串函数
+		$1: 被截取的字符串
+		$2: 截取串的起始位置
+		$3: 截取串的长度
+		]]></desc>
+        <dialects>
+            <dialect name="oracle" function-name="sysdate"/>
+            <dialect name="db2" function-name="sysdate"/>
+            <dialect name="derby" function-name="sysdate"/>
+            <dialect name="mysql" function-name="sysdate()"/>
+            <dialect name="h2" function-name="sysdate()"/>
+            <dialect name="sqlserver" function-name="sysdate"/>
+            <dialect name="informix" function-name="sysdate"/>
+            <dialect name="sybase" function-name="sysdate"/>
+        </dialects>
+    </dialect-function>
+</dialect-function-mappings>

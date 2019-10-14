@@ -1,0 +1,36 @@
+<initDatas>
+	<initData-list>
+		<initData table-id="aatable">
+			<records>
+				<record>
+				<value-pairs>
+					<value-pair table-field-id="tableaa" value="1"></value-pair>
+					<value-pair table-field-id="tablebb" value="1"></value-pair>
+				</value-pairs>
+				</record>
+				<record>
+				<value-pairs>
+					<value-pair table-field-id="tableaa" value="1"></value-pair>
+					<value-pair table-field-id="tablebb" value="1"></value-pair>
+				</value-pairs>
+				</record>
+			</records>
+		</initData>
+			<initData table-id="bbtable">
+			<records>
+				<record>
+				<value-pairs>
+					<value-pair table-field-id="tableaa" value="1"></value-pair>
+					<value-pair table-field-id="tablebb" value="1"></value-pair>
+				</value-pairs>
+				</record>
+				<record>
+				<value-pairs>
+					<value-pair table-field-id="tableaa" value="1"></value-pair>
+					<value-pair table-field-id="tablebb" value="1"></value-pair>
+				</value-pairs>
+				</record>
+			</records>
+		</initData>
+	</initData-list>
+</initDatas>

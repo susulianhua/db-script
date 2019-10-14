@@ -1,0 +1,42 @@
+<flow id="dateTurnTestFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="dateTime" type="long" scope="in"/>
+    <parameter array="false" required="false" name="calendarField" type="java.awt.TexturePaintContext$Int" scope="in"/>
+    <parameter array="false" required="false" name="num" type="int" scope="in"/>
+    <parameter array="false" required="false" name="resultKey" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="result" type="long" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="dateCalculate_1"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="info" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="${result}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="dateCalculate_1" name="dateCalculate" title="日期偏移">
+      <component name="dateCalculate" title="日期偏移">
+        <description>日期偏移</description>
+        <properties>
+          <flow-property name="dateTime" value="${dateTime}" required="true" type="long"/>
+          <flow-property name="calendarField" value="${calendarField}" required="true" type="int"/>
+          <flow-property name="num" value="${num}" required="true" type="int"/>
+          <flow-property name="resultKey" value="${resultKey}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="loggerPrint"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

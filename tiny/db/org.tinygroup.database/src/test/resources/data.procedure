@@ -1,0 +1,11 @@
+<procedures>
+	<procedure id="procedure1" name="procedure1">
+		<procedure-parameters>
+			<procedure-parameter standard-field-id="bbstd" parameter-type="IN" default-value="'1'"/>
+		</procedure-parameters>
+		<sqls>
+		    <sql dialectTypeName="default" content="def111"></sql>
+			<sql dialectTypeName="oracle" content="111"></sql>
+		</sqls>
+	</procedure>
+</procedures>

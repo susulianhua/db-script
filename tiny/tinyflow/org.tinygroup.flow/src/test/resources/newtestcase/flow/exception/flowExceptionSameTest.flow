@@ -1,0 +1,71 @@
+<flow id="flowExceptionSameTest" enable="false" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="exceptionNo" type="java.lang.Integer" scope="in"/>
+    <parameter array="false" required="false" name="result" type="java.lang.Integer" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="exceptionSwitchComponent"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionUtilComponent_1" name="exceptionUtilComponent" title="Exception3">
+      <component name="exceptionUtilComponent" title="辅助测试流程异常">
+        <description></description>
+        <properties>
+          <flow-property name="no" value="3" required="false" type="java.lang.Integer"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionSwitchComponent" name="exceptionSwitchComponent" title="异常生成switch">
+      <component name="exceptionSwitchComponent" title="异常生成switch">
+        <description></description>
+        <properties>
+          <flow-property name="exceptionNo" value="exceptionNo" required="false" type="el"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node exception-type="org.tinygroup.flow.test.newtestcase.exception.component.ComponentException3" next-node-id="exceptionUtilComponent_1"/>
+        <next-node exception-type="org.tinygroup.flow.test.newtestcase.exception.component.ComponentException1" next-node-id="exceptionSwitchComponent_1"/>
+        <next-node exception-type="org.tinygroup.flow.test.newtestcase.exception.component.ComponentException2" next-node-id="exceptionSwitchComponent_1"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionUtilComponent_3" name="exceptionUtilComponent" title="Exception1">
+      <component name="exceptionUtilComponent" title="辅助测试流程异常">
+        <description></description>
+        <properties>
+          <flow-property name="no" value="1" required="false" type="int"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionUtilComponent_4" name="exceptionUtilComponent" title="Exception2">
+      <component name="exceptionUtilComponent" title="辅助测试流程异常">
+        <description></description>
+        <properties>
+          <flow-property name="no" value="2" required="false" type="int"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionSwitchComponent_1" name="exceptionSwitchComponent" title="异常1和2">
+      <component name="exceptionSwitchComponent" title="异常生成switch">
+        <description></description>
+        <properties>
+          <flow-property name="exceptionNo" value="exceptionNo" required="false" type="el"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node exception-type="org.tinygroup.flow.test.newtestcase.exception.component.ComponentException1" next-node-id="exceptionUtilComponent_3"/>
+        <next-node exception-type="org.tinygroup.flow.test.newtestcase.exception.component.ComponentException2" next-node-id="exceptionUtilComponent_4"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

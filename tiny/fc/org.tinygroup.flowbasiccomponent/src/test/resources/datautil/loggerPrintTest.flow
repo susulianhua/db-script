@@ -1,0 +1,56 @@
+<flow id="loggerPrintTestFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="logLevel" type="java.lang.String" scope="in"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="loggerPrint">
+          <el>logLevel==&quot;info&quot;</el>
+        </next-node>
+        <next-node next-node-id="loggerPrint_1">
+          <el>logLevel==&quot;error&quot;</el>
+        </next-node>
+        <next-node next-node-id="loggerPrint_2">
+          <el>logLevel==&quot;debug&quot;</el>
+        </next-node>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="${logLevel}" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="info" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint_1" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="${logLevel}" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="error" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint_2" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="${logLevel}" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="debug" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

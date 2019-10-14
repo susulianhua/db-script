@@ -1,0 +1,38 @@
+<components>
+    <component category="数据处理" name="elExcute" bean="elExcutorComponent" title="EL表达式" icon="/icon/el.png">
+        <short-description>EL表达式</short-description>
+        <long-description>el：需要执行的el表达式，多个el表达式之间用“,”隔开。&#xd;
+            可用于处理对象属性赋值，两个字符串比较，字符串拼接，数字转成字符串，判断属性是否为null，数字比较，四则运算等情况。
+        </long-description>
+        <parameter name="el" title="el表达式" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="数据处理" name="characterStringCut" bean="subStrComponent" title="字符串剪切" icon="/icon/substr.png">
+        <short-description>字符串剪切</short-description>
+        <long-description>对字符串执行剪切操作，并将剪切之后的结果返回给指定的key。&#xd;
+            preStr：需要剪切的字符串；&#xd;
+            beginIndex：剪切开始位置；&#xd;
+            endIndex：剪切结束位置；&#xd;
+            resultKey：结果集上下文存放key。&#xd;
+            例如输入字符串abcdef，指定剪切开始位置2，剪切结束位置为4，则剪切出来的结果为cd。&#xd;
+            对于resultKey，指的是context上下文中存放剪切结果的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为剪切结果。&#xd;
+        </long-description>
+        <parameter name="preStr" title="需要剪切的字符串" type="java.lang.String" array="false" required="true"/>
+        <parameter name="beginIndex" title="剪切开始位置" type="int" array="false" required="true"/>
+        <parameter name="endIndex" title="剪切结束位置" type="int" array="false" required="true"/>
+        <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="数据处理" name="assertExcute" bean="assertComponent" title="断言执行" icon="\icon\assert.png">
+        <short-description>断言执行</short-description>
+        <long-description>el：需要执行的el表达式，多个el表达式之间用“,”隔开。&#xd;
+            resultKey：结果集上下文存放key。&#xd;
+            可用于处理判断断言等操作。&#xd;
+            对于resultKey，指的是context上下文中存放断言结果的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为断言结果。
+        </long-description>
+        <parameter name="el" title="el表达式" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+        <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" editType="textarea" scope="in"
+                   array="false" required="true"/>
+    </component>
+</components>

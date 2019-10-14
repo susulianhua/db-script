@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dbData2FileComponent"
+          class="org.tinygroup.flowcomponent.file.component.DBData2FileComponent"
+          scope="prototype" autowire="byType"/>
+    <bean id="file2DBDataComponent"
+          class="org.tinygroup.flowcomponent.file.component.File2DBDataComponent"
+          scope="prototype" autowire="byType"/>
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="fileResolver" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.FileResolverImpl">
+        <property name="fileProcessorList">
+            <list>
+                <ref bean="i18nFileProcessor"/>
+                <ref bean="xStreamFileProcessor"/>
+                <!--<ref bean="xmlSysServiceFileProcessor"/>-->
+                <ref bean="xmlServiceFileProcessor"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="fileResolverProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.applicationprocessor.FileResolverProcessor">
+        <property name="fileResolver" ref="fileResolver"></property>
+    </bean>
+
+    <bean id="localService" scope="singleton"
+          class=" org.tinygroup.eventexecutemonitor.test.service.LocalService"/>
+    <bean id="exceptionService" scope="singleton"
+          class="org.tinygroup.eventexecutemonitor.test.service.ExceptionService"/>
+</beans>

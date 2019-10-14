@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="cepCoreProcessor" scope="singleton"
+          class="org.tinygroup.cepcoreimpl.CepCoreProcessor">
+        <property name="cepcore" ref="cepcore"></property>
+    </bean>
+    <bean id="eventProcessorChangeListener" scope="singleton"
+          class="org.tinygroup.cepcoreimpl.EventProcessorChangeListener">
+        <property name="cepcore" ref="cepcore"></property>
+    </bean>
+
+    <bean id="default_tiny_service_threadpool"
+          class="org.tinygroup.cepcoreimpl.DefaultThreadPoolConfig">
+    </bean>
+
+    <bean id="cep_thread_variable_change_filter"
+          class="org.tinygroup.cepcorebase.filter.ThreadVariableChangeFilter">
+    </bean>
+    <bean id="cep_aop_filter"
+          class="org.tinygroup.cepcorebase.filter.CEPCoreAopFilter">
+        <property name="aopMananger" ref="cepcore_aop_bean"></property>
+    </bean>
+    <bean id="cep_exception_deal_filter"
+          class="org.tinygroup.cepcorebase.filter.ExceptionDealFilter">
+    </bean>
+    <bean id="cep_context_change_filter"
+          class="org.tinygroup.cepcorebase.filter.ContextChangeFilter">
+    </bean>
+
+
+</beans>

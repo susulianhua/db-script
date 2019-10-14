@@ -1,0 +1,5 @@
+${read("/templateassertequalstest/function/read/test.txt")}
+${readContent("/templateassertequalstest/function/read/test.txt")}
+${read("/templateassertequalstest/layout/a.layout")}
+${read("/templateassertequalstest/layout/a.page")}
+${read("/templateassertequalstest/import/macroHello.component")}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byType">
+
+    <bean id="dateCalculateComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.DateCalculateComponent" scope="prototype"/>
+    <bean id="loggerPrintComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.LoggerPrintComponent" scope="prototype"/>
+    <bean id="responseCodeConvertComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.ResponseCodeConvertComponent" scope="prototype"/>
+    <bean id="threadSleepComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.ThreadSleepComponent" scope="prototype"/>
+    <bean id="enumConvertComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.EnumConvertComponent" scope="prototype"/>
+    <bean id="enAndDecryptionComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.EnAndDecryptionComponent" scope="prototype"/>
+    <bean id="iniOperatorComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.IniOperatorComponent" scope="prototype"/>
+    <bean id="monitorPrintComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.MonitorPrintComponent" scope="prototype"/>
+    <bean id="newInstanceComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.NewInstanceComponent" scope="prototype"/>
+    <bean id="enumSimpleConvertComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.EnumSimpleConvertComponent" scope="prototype"/>
+    <bean id="responseCodeSimpleConvertComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.ResponseCodeSimpleConvertComponent" scope="prototype"/>
+    <bean id="initializationPropertiesComponent"
+          class="org.tinygroup.flowbasiccomponent.util.component.InitializationPropertiesComponent" scope="prototype"/>
+</beans>

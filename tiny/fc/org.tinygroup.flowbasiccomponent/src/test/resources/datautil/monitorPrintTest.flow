@@ -1,0 +1,25 @@
+<flow id="monitorPrintTestFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="message" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="filePath" type="java.lang.String" scope="in"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="monitorPrint"/>
+      </next-nodes>
+    </node>
+    <node id="monitorPrint" name="monitorPrint" title="写监控">
+      <component name="monitorPrint" title="写监控">
+        <description>写监控</description>
+        <properties>
+          <flow-property name="message" value="${message}" required="true" type="java.lang.String"/>
+          <flow-property name="filePath" value="${filePath}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

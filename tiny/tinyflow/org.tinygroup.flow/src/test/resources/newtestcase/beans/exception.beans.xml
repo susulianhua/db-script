@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="exceptionSwitchComponent"
+          class="org.tinygroup.flow.test.newtestcase.exception.component.ExceptionSwitchComponent" scope="prototype"/>
+
+    <bean id="exceptionUtilComponent"
+          class="org.tinygroup.flow.test.newtestcase.exception.component.ExceptionUtilComponent" scope="prototype"/>
+
+    <bean id="flowPropertyComponent"
+          class="org.tinygroup.flow.test.newtestcase.exception.component.FlowPropertyComponent" scope="prototype"/>
+</beans>

@@ -1,0 +1,161 @@
+<flow id="exceptionRewriteoffTestFlow" enable="false" private-context="false">
+  <nodes>
+    <node id="begin" position-id="86e8ad0737b846239e9a912ff5f8a86b" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="loggerPrint"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint" position-id="9596b373f09f458c90efd5f96157cfca" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="info" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="${a}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint_1" position-id="97b545e2eb904b4dac1aab664f1f8508" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="info" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="${a}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="exception" position-id="447c631890f843f6b78e98b21e8c70b9" name="throwException" title="异常扭转节点">
+      <component name="throwException" title="异常抛出">
+        <description>异常抛出</description>
+        <properties>
+          <flow-property name="exceptionObject" required="false" type="java.lang.Object"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node title="Exception1" exception-type="org.tinygroup.flowbasiccomponent.test.Exception1" next-node-id="loggerPrint_1"/>
+        <next-node title="Exception2" exception-type="org.tinygroup.flowbasiccomponent.test.Exception2" next-node-id="loggerPrint_2"/>
+        <next-node title="Exception3" exception-type="org.tinygroup.flowbasiccomponent.test.Exception3" next-node-id="loggerPrint_3"/>
+        <next-node exception-type="java.lang.RuntimeException" next-node-id="loggerPrint_4"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint_2" position-id="912b72c3f1f7424f92c180efb5bfa7d7" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="info" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="${a}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint_3" position-id="6cac1d0dc1d94e24aeb4822dc5819eb0" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="info" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="${a}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint_4" position-id="5861f58aaa3241a183038db9194a94ab" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="info" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="${a}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+  <positions>
+    <node-position ref-id="9596b373f09f458c90efd5f96157cfca">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>960</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="97b545e2eb904b4dac1aab664f1f8508">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>40</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="86e8ad0737b846239e9a912ff5f8a86b">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>960</x>
+        <y>40</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="912b72c3f1f7424f92c180efb5bfa7d7">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>270</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="42f600061f5c4187890e8703ea158e64">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>960</x>
+        <y>170</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="447c631890f843f6b78e98b21e8c70b9">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>385</x>
+        <y>170</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="end">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>500</x>
+        <y>430</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="5861f58aaa3241a183038db9194a94ab">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>730</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="6cac1d0dc1d94e24aeb4822dc5819eb0">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>500</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+  </positions>
+  <parameters>
+    <parameter array="false" required="true" name="a" type="java.lang.Integer" scope="in"/>
+    <parameter array="false" required="true" name="serviceId" type="java.lang.String" scope="in"/>
+  </parameters>
+</flow>

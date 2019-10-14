@@ -1,0 +1,94 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName" default-lazy-init="true">
+    <bean id="fileResolver" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.FileResolverImpl">
+        <property name="fileProcessorList">
+            <list>
+                <ref bean="i18nFileProcessor"/>
+                <ref bean="xStreamFileProcessor"/>
+                <ref bean="luceneConfigProcessor"/>
+                <ref bean="luceneDynamicProcessor"/>
+                <ref bean="stopWordFileProcessor"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="fileResolverProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.applicationprocessor.FileResolverProcessor">
+        <property name="fileResolver" ref="fileResolver"></property>
+    </bean>
+
+    <bean id="newSimpleAnalyzer" scope="singleton"
+          class="org.tinygroup.mmseg4j.NewSimpleAnalyzer">
+        <constructor-arg>
+            <value>src/test/resources/data</value>
+        </constructor-arg>
+        <property name="stopWordManager" ref="stopWordManager"></property>
+    </bean>
+
+    <bean id="luceneFullText" scope="singleton"
+          class="org.tinygroup.lucene472.LuceneFullText">
+        <property name="documentListCreators">
+            <list>
+                <ref bean="fileDocumentListCreator"/>
+                <ref bean="fileObjectDocumentListCreator"/>
+            </list>
+        </property>
+        <property name="indexOperator" ref="luceneIndexOperator"></property>
+    </bean>
+
+    <bean id="dynamicFullText" scope="prototype"
+          class="org.tinygroup.lucene472.LuceneFullText">
+        <property name="documentListCreators">
+            <list>
+                <ref bean="fileDocumentListCreator"/>
+                <ref bean="fileObjectDocumentListCreator"/>
+            </list>
+        </property>
+        <property name="indexOperator" ref="luceneUserIndexOperator"></property>
+    </bean>
+
+    <bean id="fileDocumentListCreator" scope="singleton"
+          class="org.tinygroup.fileindexsource.impl.FileDocumentListCreator">
+        <property name="documentCreators">
+            <list>
+                <ref bean="iniDocumentCreator"/>
+                <ref bean="textDocumentCreator"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="fileObjectDocumentListCreator" scope="singleton"
+          class="org.tinygroup.fileindexsource.impl.FileObjectDocumentListCreator">
+        <property name="documentCreators">
+            <list>
+                <ref bean="iniDocumentCreator"/>
+                <ref bean="textDocumentCreator"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="iniDocumentCreator" scope="singleton"
+          class="org.tinygroup.fileindexsource.impl.IniDocumentCreator">
+        <property name="encode" value="utf-8"></property>
+        <property name="templateDocumentCreator" ref="iniTemplate"></property>
+    </bean>
+
+    <bean id="textDocumentCreator" scope="singleton"
+          class="org.tinygroup.fileindexsource.impl.TextDocumentCreator">
+        <property name="encode" value="utf-8"></property>
+    </bean>
+
+    <bean id="iniTemplate" scope="singleton"
+          class="org.tinygroup.templateindex.impl.TemplateDocumentCreator">
+        <property name="idRule" value="/ini_id.fulltextpage"></property>
+        <property name="typeRule" value="/ini_type.fulltextpage"></property>
+        <property name="titleRule" value="/ini_title.fulltextpage"></property>
+        <property name="abstractRule" value="/ini_abstract.fulltextpage"></property>
+        <property name="templateRender" ref="fullTextTemplateRender"></property>
+    </bean>
+
+</beans>

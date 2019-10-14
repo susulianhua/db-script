@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="file2ObjectComponent"
+          class="org.tinygroup.flowbasiccomponent.file.component.File2ObjectComponent"
+          scope="prototype"/>
+    <bean id="fileIsExistComponent"
+          class="org.tinygroup.flowbasiccomponent.file.component.FileIsExistComponent"
+          scope="prototype"/>
+    <bean id="fileMergeComponent"
+          class="org.tinygroup.flowbasiccomponent.file.component.FileMergeComponent"
+          scope="prototype"/>
+    <bean id="object2FileComponent"
+          class="org.tinygroup.flowbasiccomponent.file.component.Object2FileComponent"
+          scope="prototype"/>
+    <bean id="objectAttr2FileComponent"
+          class="org.tinygroup.flowbasiccomponent.file.component.ObjectAttr2FileComponent"
+          scope="prototype"/>
+    <bean id="getFileSizeComponent"
+          class="org.tinygroup.flowbasiccomponent.file.component.GetFileSizeComponent"
+          scope="prototype"/>
+</beans>

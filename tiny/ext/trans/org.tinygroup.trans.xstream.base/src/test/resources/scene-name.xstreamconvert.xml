@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xstream-scenes>
+    <xstream-scene>
+        <scene>10001</scene>
+        <xstreamPackageName>packageName-1</xstreamPackageName>
+    </xstream-scene>
+    <xstream-scene>
+        <scene>10002</scene>
+        <xstreamPackageName>packageName-2</xstreamPackageName>
+    </xstream-scene>
+    <xstream-scene>
+        <scene>10003</scene>
+        <xstreamPackageName>packageName-3</xstreamPackageName>
+    </xstream-scene>
+    <xstream-scene>
+        <scene>10004</scene>
+        <xstreamPackageName>packageName-4</xstreamPackageName>
+    </xstream-scene>
+    <xstream-scene>
+        <scene>10005</scene>
+        <xstreamPackageName>packageName-5</xstreamPackageName>
+    </xstream-scene>
+</xstream-scenes>

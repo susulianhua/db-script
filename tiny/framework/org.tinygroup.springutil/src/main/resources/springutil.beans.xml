@@ -1,0 +1,29 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byType" default-lazy-init="true">
+
+    <bean id="springBeansFileProcessor" scope="singleton"
+          class="org.tinygroup.springutil.fileresolver.SpringBeansFileProcessor">
+    </bean>
+
+    <bean id="applicationPropertyResourceConfigurer" scope="singleton"
+          class="org.tinygroup.springutil.ApplicationPropertyResourceConfigurer">
+        <property name="order" value="1"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+
+    <bean id="compositeParameterNameDiscoverer" scope="singleton"
+          class="org.tinygroup.springutil.CompositeParameterNameDiscoverer">
+    </bean>
+
+    <bean id="localVariableTableParameterNameDiscoverer" scope="singleton"
+          class="org.springframework.core.LocalVariableTableParameterNameDiscoverer">
+    </bean>
+
+    <bean id="annotationParameterNameDiscoverer" scope="singleton"
+          class="org.tinygroup.springutil.AnnotationParameterNameDiscoverer">
+    </bean>
+
+</beans>

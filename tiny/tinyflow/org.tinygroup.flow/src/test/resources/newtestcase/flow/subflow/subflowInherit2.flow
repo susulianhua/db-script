@@ -1,0 +1,13 @@
+<flow id="subflowInherit2" extend-flow-id="subflowExceptionTest" enable="true" private-context="false">
+  <nodes>
+    <node id="exceptionSubflow" name="exceptionSubflow" title="exceptionSubflow">
+      <subflow-id>exceptionSubflow2</subflow-id>
+      <next-nodes/>
+    </node>
+  </nodes>
+  <parameters>
+    <parameter array="false" required="true" name="el" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="true" name="result" type="java.lang.Integer" scope="out"/>
+    <parameter array="false" required="false" name="c" type="java.lang.Integer" scope="out"/>
+  </parameters>
+</flow>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <application-processors>
+        <application-processor bean="fileResolverProcessor"></application-processor>
+        <application-processor bean="serviceApplicationProcessor"></application-processor>
+    </application-processors>
+    <!-- 异步监控统计服务调用情况 -->
+    <event-monitor-config enable="true"/>
+</application>

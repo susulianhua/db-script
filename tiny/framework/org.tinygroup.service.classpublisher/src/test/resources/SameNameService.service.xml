@@ -1,0 +1,14 @@
+<service-components>
+  <service-component type="org.tinygroup.service.test.classpublisher.service.SameNameService" bean="">
+    <service-method local-name="sameName" service-id="org.tinygroup.service.test.classpublisher.service.SameNameService.sameName" method-name="sameName" cacheable="false" category="org.tinygroup.service.test.classpublisher.service">
+      <service-parameters>
+        <service-parameter name="name" type="java.lang.String" required="false" is-array="false"/>
+      </service-parameters>
+      <service-result name="result" required="false" is-array="false" type="void"/>
+    </service-method>
+    <service-method local-name="sameName" service-id="org.tinygroup.service.test.classpublisher.service.SameNameService.sameName_1" method-name="sameName" cacheable="false" category="org.tinygroup.service.test.classpublisher.service">
+      <service-parameters/>
+      <service-result name="result" required="false" is-array="false" type="void"/>
+    </service-method>
+  </service-component>
+</service-components>

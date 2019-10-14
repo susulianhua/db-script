@@ -1,0 +1,5 @@
+<xstream-configuration package-name="org.tinygroup.channel">
+    <xstream-annotation-classes>
+        <xstream-annotation-class class-name="org.tinygroup.channel.protocol.config.ProtocolConfigs"/>
+    </xstream-annotation-classes>
+</xstream-configuration>

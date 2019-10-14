@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="secondImpl"
+        class="org.tinygroup.service.test.service.classpublish.SecondImpl">
+    </bean>
+    <bean id="genericTypeServiceImpl"
+          class="org.tinygroup.service.test.service.classpublish.GenericTypeServiceImpl">
+    </bean>
+    <bean id="classPublishService"
+          class="org.tinygroup.service.test.service.classpublish.ClassPublishService">
+    </bean>
+    <bean id="baseImpl"
+          class="org.tinygroup.service.test.service.classpublish.BaseImpl">
+    </bean>
+    <bean id="sameNameServiceImpl"
+          class="org.tinygroup.service.test.service.classpublish.SameNameServiceImpl">
+    </bean>
+    <bean id="testServiceImpl"
+          class="org.tinygroup.service.test.service.classpublish.TestServiceImpl">
+    </bean>
+</beans>

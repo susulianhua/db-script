@@ -1,0 +1,8 @@
+<default-values>
+    <default-value id="default1" name="defname1" title="deftitle" description="defdes">
+        <dialect-type-list>
+            <dialect-type language="mysql" value="mysqldef"></dialect-type>
+            <dialect-type language="oracle" value="oracledef"></dialect-type>
+        </dialect-type-list>
+    </default-value>
+</default-values>

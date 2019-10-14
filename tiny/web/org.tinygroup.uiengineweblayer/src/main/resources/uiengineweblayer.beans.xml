@@ -1,0 +1,25 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <bean id="uiEngineTinyProcessor" scope="singleton"
+          class="org.tinygroup.uiengineweblayer.tinyprocessor.UiEngineTinyProcessor">
+        <property name="uiComponentManager" ref="uiComponentManager"/>
+        <property name="fullContextFileRepository" ref="fullContextFileRepository"/>
+        <property name="uiCssManager" ref="uiCssManager"/>
+    </bean>
+
+    <bean id="uiCssManager" name="uiCssManager" scope="singleton"
+          class="org.tinygroup.uiengineweblayer.impl.UiCssManagerImpl">
+        <property name="uiComponentManager" ref="uiComponentManager"/>
+        <property name="fullContextFileRepository" ref="fullContextFileRepository"/>
+    </bean>
+
+    <bean id="uiCssManagerProcessor" scope="singleton"
+          class="org.tinygroup.uiengineweblayer.application.UiCssManagerProcessor">
+        <property name="uiCssManager" ref="uiCssManager"/>
+    </bean>
+
+</beans>

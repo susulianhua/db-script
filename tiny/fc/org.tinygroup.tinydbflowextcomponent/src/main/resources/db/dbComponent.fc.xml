@@ -1,0 +1,101 @@
+<components>
+    <component category="数据库" name="queryForMapListComponent" bean="queryForMapListComponent" title="查询返回map list"
+               icon="\icon\db\查询.png">
+        <short-description>查询返回map list</short-description>
+        <long-description>sql：sql查询语句；&#xd;
+            resultKey：结果集上下文存放key。&#xd;
+            执行指定查询sql语句，并将查询结果以map list的方式输出。&#xd;
+            对于resultKey，指的是context上下文中存放查询结果的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为查询结果。&#xd;
+        </long-description>
+        <parameter name="sql" title="sql查询语句" type="java.lang.String" editType="textarea" scope="in" array="false"/>
+        <parameter name="resultKey" title="结果key" type="java.lang.String" editType="textarea" scope="out"
+                   array="false"/>
+    </component>
+    <component category="数据库" name="queryForObjectListComponent" bean="queryForObjectListComponent" title="查询返回对象list"
+               icon="\icon\db\查询.png">
+        <short-description>查询返回对象list</short-description>
+        <long-description>sql：sql查询语句；&#xd;
+            mappedClassName：对应pojo的class；&#xd;
+            resultKey：结果集上下文存放key。&#xd;
+            执行指定查询sql语句，并将查询结果以对象list的方式输出。&#xd;
+            对于resultKey，指的是context上下文中存放查询结果的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为查询结果。&#xd;
+        </long-description>
+        <parameter name="sql" title="sql语句" type="java.lang.String" editType="textarea" scope="in" array="false"/>
+        <parameter name="mappedClassName" title="对应pojo的class" type="java.lang.String" editType="textarea" scope="in"
+                   array="false"/>
+        <parameter name="resultKey" title="结果key" type="java.lang.String" editType="textarea" scope="out"
+                   array="false"/>
+    </component>
+    <component category="数据库" name="queryForNumberComponent" bean="queryForNumberComponent" title="查询返回int"
+               icon="\icon\db\查询.png">
+        <short-description>查询返回int</short-description>
+        <long-description>sql：sql查询语句；&#xd;
+            resultKey：结果集上下文存放key。&#xd;
+            执行指定查询sql语句，查询返回单个number类型,并将查询结果以number的方式输出。&#xd;
+            对于resultKey，指的是context上下文中存放查询结果的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为查询结果。
+        </long-description>
+        <parameter name="sql" title="sql语句" type="java.lang.String" editType="textarea" scope="in" array="false"/>
+        <parameter name="resultKey" title="结果key" type="java.lang.String" editType="textarea" scope="out"
+                   array="false"/>
+    </component>
+    <component category="数据库" name="queryForSqlRowSetComponent" bean="queryForSqlRowSetComponent" title="查询返回sqlRowSet"
+               icon="\icon\db\查询.png">
+        <short-description>查询返回sqlRowSet</short-description>
+        <long-description>sql：sql查询语句；&#xd;
+            resultKey：结果集上下文存放key。&#xd;
+            执行指定查询sql语句，返回spring内置的sqlRowSet对象,由于resultset会被关闭，所以我们使用SqlRowSet来替代。&#xd;
+            对于resultKey，指的是context上下文中存放查询结果的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为查询结果。 &#xd;
+        </long-description>
+        <parameter name="sql" title="sql语句" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+        <parameter name="resultKey" title="结果key" type="java.lang.String" editType="textarea" scope="out" array="false"
+                   required="false"/>
+    </component>
+    <component category="数据库" name="queryForOneObjectComponent" bean="queryForOneObjectComponent" title="查询返回单个对象"
+               icon="\icon\db\查询.png">
+        <short-description>查询返回单个对象</short-description>
+        <long-description>sql：sql查询语句；&#xd;
+            mappedClassName：对应pojo的class；
+        </long-description>
+        <parameter name="sql" title="sql语句" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="false"/>
+        <parameter name="mappedClassName" title="对应pojo的class" type="java.lang.String" editType="textarea" scope="in"
+                   array="false"/>
+        <parameter name="resultKey" title="结果key" type="java.lang.String" editType="textarea" scope="out"
+                   array="false"/>
+    </component>
+    <component category="数据库" name="dbUpdateComponent" bean="dbUpdateComponent" title="数据库更新"
+               icon="\icon\db\数据库更新组件.png">
+        <short-description>数据库更新</short-description>
+        <long-description>sql：sql查询语句；&#xd;
+            resultKey：结果集上下文存放key。 &#xd;
+            根据sql语句执行数据库更新语句，返回影响条数。&#xd;
+            对于resultKey，指的是context上下文中存放查询结果的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为受影响条数。 &#xd;
+        </long-description>
+        <parameter name="sql" title="sql语句" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+        <parameter name="resultKey" title="结果key" type="java.lang.String" editType="textarea" scope="out"
+                   array="false"/>
+    </component>
+    <component category="数据库" name="transactionBeginComponent" bean="transactionBeginComponent" title="开启事务"
+               icon="\icon\db\开启事务组件.png">
+        <short-description>transactionBeginComponent component</short-description>
+        <long-description>开启事务&#xd;
+        </long-description>
+    </component>
+    <component category="数据库" name="transactionCommitComponent" bean="transactionCommitComponent" title="提交事务"
+               icon="\icon\db\提交.png">
+        <short-description>transactionCommitComponent component</short-description>
+        <long-description>提交事务</long-description>
+    </component>
+    <component category="数据库" name="transactionRollbackComponent" bean="transactionRollbackComponent" title="回滚事务"
+               icon="\icon\db\回滚事务组件.png">
+        <short-description>transactionRollbackComponent component</short-description>
+        <long-description>回滚事务</long-description>
+    </component>
+</components>

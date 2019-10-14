@@ -1,0 +1,27 @@
+<flow id="modifyValueFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="xml" type="org.tinygroup.xmlparser.node.XmlNode" scope="in"/>
+    <parameter array="false" required="false" name="nodePath" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="nodeValue" type="java.lang.String" scope="in"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="modifyValue"/>
+      </next-nodes>
+    </node>
+    <node id="modifyValue" name="modifyValue" title="节点值修改">
+      <component name="modifyValue" title="节点值修改">
+        <description>节点值修改</description>
+        <properties>
+          <flow-property name="xml" value="xml" required="true" type="el"/>
+          <flow-property name="nodePath" value="${nodePath}" required="true" type="java.lang.String"/>
+          <flow-property name="nodeValue" value="${nodeValue}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

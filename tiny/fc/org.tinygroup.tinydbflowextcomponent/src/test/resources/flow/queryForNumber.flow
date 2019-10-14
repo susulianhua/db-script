@@ -1,0 +1,21 @@
+<flow id="queryForNumber" enable="true" private-context="false">
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="queryForNumberComponent"/>
+      </next-nodes>
+    </node>
+    <node id="queryForNumberComponent" name="queryForNumberComponent" title="查询返回int">
+      <component name="queryForNumberComponent" title="查询返回int">
+        <description>查询返回单个int类型</description>
+        <properties>
+          <flow-property name="sql" value="${sql}" required="false" type="java.lang.String"/>
+          <flow-property name="resultKey" value="result" required="false" type="java.lang.Object"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

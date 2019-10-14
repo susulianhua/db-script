@@ -1,0 +1,40 @@
+<flow id="encryptAndDecryptFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="message" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="resultKey" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="result" type="java.lang.String" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="EncryptionAndDecryption"/>
+      </next-nodes>
+    </node>
+    <node id="EncryptionAndDecryption" name="EncryptionAndDecryption" title="加密">
+      <component name="EncryptionAndDecryption" title="加解密组件">
+        <description>加解密组件</description>
+        <properties>
+          <flow-property name="message" value="${message}" required="true" type="java.lang.String"/>
+          <flow-property name="type" value="1" required="true" type="java.lang.Integer"/>
+          <flow-property name="resultKey" value="${resultKey}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="EncryptionAndDecryption_1"/>
+      </next-nodes>
+    </node>
+    <node id="EncryptionAndDecryption_1" name="EncryptionAndDecryption" title="解密">
+      <component name="EncryptionAndDecryption" title="加解密组件">
+        <description>加解密组件</description>
+        <properties>
+          <flow-property name="message" value="${result}" required="true" type="java.lang.String"/>
+          <flow-property name="type" value="2" required="true" type="java.lang.Integer"/>
+          <flow-property name="resultKey" value="${resultKey}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

@@ -1,0 +1,9 @@
+<xstream-configuration package-name="flow">
+    <xstream-annotation-classes>
+        <xstream-annotation-class class-name="org.tinygroup.flow.release.config.FlowRelease"/>
+        <xstream-annotation-class class-name="org.tinygroup.flow.release.config.PageFlowRelease"/>
+        <xstream-annotation-class class-name="org.tinygroup.flow.config.Flow"/>
+        <xstream-annotation-class class-name="org.tinygroup.flow.config.SubFlow"/>
+        <xstream-annotation-class class-name="org.tinygroup.flow.config.ComponentDefines"/>
+    </xstream-annotation-classes>
+</xstream-configuration>

@@ -1,0 +1,21 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <bean id="xmlSignatureManager" name="xmlSignatureManager" scope="singleton"
+          class="org.tinygroup.xmlsignature.impl.DefaultXmlSignatureManager">
+    </bean>
+
+    <bean id="xmlSignatureConfigFileProcessor" name="xmlSignatureConfigFileProcessor" scope="singleton"
+          class="org.tinygroup.xmlsignature.fileresolver.XmlSignatureConfigFileProcessor">
+        <property name="xmlSignatureManager" ref="xmlSignatureManager"/>
+    </bean>
+
+    <bean id="envelopedXmlSignatureProcessor" name="envelopedXmlSignatureProcessor" scope="singleton"
+          class="org.tinygroup.xmlsignature.impl.EnvelopedXmlSignatureProcessor">
+        <property name="xmlSignatureManager" ref="xmlSignatureManager"/>
+    </bean>
+
+</beans>

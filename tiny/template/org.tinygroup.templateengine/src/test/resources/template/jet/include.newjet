@@ -1,0 +1,4 @@
+#include("include-sub.newjet")
+#include("./include-sub.newjet")
+#include("/template/jet/include-sub.newjet")
+#include("include-sub.newjet", {"myvar": "hello from parent"})

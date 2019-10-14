@@ -1,0 +1,127 @@
+<flow id="flowExceptionTest" enable="true" private-context="false">
+  <nodes>
+    <node id="begin" position-id="c82ec055917a49e19617c8c78c88b820" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="exceptionSwitchComponent"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionSwitchComponent" position-id="292b7bd294d848ea8b1bd899d3bfb95d" name="exceptionSwitchComponent" title="异常生成switch">
+      <component name="exceptionSwitchComponent" title="异常生成switch">
+        <description></description>
+        <properties>
+          <flow-property name="exceptionNo" value="${exceptionNo}" required="true" type="int"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node exception-type="org.tinygroup.flow.test.newtestcase.exception.component.ComponentException1" next-node-id="exceptionUtilComponent"/>
+        <next-node exception-type="org.tinygroup.flow.test.newtestcase.exception.component.ComponentException2" next-node-id="exceptionUtilComponent_1"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionUtilComponent" position-id="eed5a0c8c5424c7cb959d6a1c3a3ef34" name="exceptionUtilComponent" title="测试流程异常1">
+      <component name="exceptionUtilComponent" title="辅助测试流程异常">
+        <description></description>
+        <properties>
+          <flow-property name="no" value="1" required="false" type="java.lang.Integer"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionUtilComponent_1" position-id="8ce2304d38634d26bb58df65068f3207" name="exceptionUtilComponent" title="测试流程异常2">
+      <component name="exceptionUtilComponent" title="辅助测试流程异常">
+        <description></description>
+        <properties>
+          <flow-property name="no" value="2" required="false" type="java.lang.Integer"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="exception" position-id="72c67ebe22f54eb6b64385302712c65e" name="exceptionSwitchComponent" title="孤立节点">
+      <component name="exceptionSwitchComponent" title="异常生成switch">
+        <description></description>
+        <properties>
+          <flow-property name="exceptionNo" value="${exceptionNo}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node exception-type="org.tinygroup.flow.test.newtestcase.exception.component.ComponentException3" next-node-id="exceptionUtilComponent_2"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionUtilComponent_2" position-id="89a11363aa244bf7bc9bd3bb8f7e65a8" name="exceptionUtilComponent" title="测试流程异常3">
+      <component name="exceptionUtilComponent" title="辅助测试流程异常">
+        <description></description>
+        <properties>
+          <flow-property name="no" value="3" required="false" type="java.lang.Integer"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+  <positions>
+    <node-position ref-id="eed5a0c8c5424c7cb959d6a1c3a3ef34">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>40</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="c82ec055917a49e19617c8c78c88b820">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>155</x>
+        <y>40</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="292b7bd294d848ea8b1bd899d3bfb95d">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>155</x>
+        <y>170</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="72c67ebe22f54eb6b64385302712c65e">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>500</x>
+        <y>170</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="89a11363aa244bf7bc9bd3bb8f7e65a8">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>500</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="end">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>270</x>
+        <y>430</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="8ce2304d38634d26bb58df65068f3207">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>270</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+  </positions>
+  <parameters>
+    <parameter array="false" required="true" name="exceptionNo" type="java.lang.Integer" scope="in"/>
+    <parameter array="false" required="true" name="result" type="java.lang.Integer" scope="out"/>
+  </parameters>
+</flow>

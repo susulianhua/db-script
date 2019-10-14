@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service-class-path>
+    <class-path>org.tinygroup.service.test.classpublisher.service.TestService</class-path>
+    <class-path>org.tinygroup.service.test.classpublisher.service.InheritService</class-path>
+    <class-path>org.tinygroup.service.test.classpublisher.service.SameNameService</class-path>
+</service-class-path>

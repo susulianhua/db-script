@@ -1,0 +1,48 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byType" default-lazy-init="true">
+
+    <bean id="conventionServiceIdentifier" scope="singleton"
+          class="org.tinygroup.custombeandefine.identifier.impl.ConventionServiceIdentifier">
+          <property name="pkgPatterns">
+                 <list>
+                    <value>org.tinygroup.**.service</value>
+                 </list>
+          </property>
+    </bean>
+
+    <bean id="conventionFactoryBeanDefinitionRegistryPostProcessor" scope="singleton"
+          class="org.tinygroup.custombeandefine.convention.ConventionCustomBeanDefinitionRegistryPostProcessor">
+        <property name="beanDefineCreate" ref="proxyFactoryBeanDefineCreate"></property>
+        <property name="beanNameGenerator" ref="proxyFactoryBeanNameGenerator"></property>
+    </bean>
+
+    <bean id="proxyFactoryBeanNameGenerator" scope="singleton"
+          class="org.tinygroup.custombeandefine.namegenerator.ProxyFactoryBeanNameGenerator">
+    </bean>
+
+    <bean id="proxyFactoryBeanDefineCreate" scope="singleton"
+          class="org.tinygroup.custombeandefine.impl.ProxyFactoryBeanDefineCreate">
+        <property name="primary" value="true"></property>
+        <property name="interceptorNames">
+            <list>
+                <value>interceptorSample</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="interceptorSample" scope="singleton"
+          class="org.tinygroup.custombeandefine.interceptor.InterceptorSample">
+    </bean>
+
+    <bean id="mySayHelloService" scope="singleton"
+          class="org.tinygroup.custombeandefine.service.impl.MySayHelloService">
+    </bean>
+
+    <bean id="sayHelloAction" scope="singleton"
+          class="org.tinygroup.custombeandefine.action.SayHelloAction">
+    </bean>
+
+</beans>

@@ -1,0 +1,213 @@
+<components>
+    <component category="XML操作" name="appendValue" bean="appendValueComponent" title="节点值追加" icon="/icon/xmladd.png">
+        <short-description>节点值追加</short-description>
+        <long-description>xml:xml树；&#xd;
+            nodePath：节点路径；&#xd;
+            nodeValue：追加节点值。&#xd;
+            节点值追加，在指定路径下面的节点值最后面追加内容。&#xd;
+            例如节点&lt;users&gt;&lt;name&gt;hundsun&lt;/name&gt;&lt;/users&gt;,追加节点路径为/users/name,追加节点值为2016。&#xd;
+            追加后的节点变为&lt;users&gt;&lt;name&gt;hundsun2016&lt;/name&gt;&lt;/users&gt;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="nodePath" title="节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="nodeValue" title="追加节点值" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="repalceNode" bean="repalceNodeComponent" title="节点替换" icon="/icon/xmladd.png">
+        <short-description>节点替换</short-description>
+        <long-description>xml:xml树；&#xd;
+            nodePath：节点路径；&#xd;
+            xmlNode：追加节点值,该值为xml格式的字符串。&#xd;
+            节点插入，在指定路径下面的最后一个子节点后面插入节点。&#xd;
+            例如节点&lt;users&gt;&lt;name&gt;hundsun&lt;/name&gt;&lt;/users&gt;,追加节点路径为/users,插入节点为&lt;age&gt;21&lt;/age&gt;。&#xd;
+            则插入后的节点变为&lt;users&gt;&lt;name&gt;hundsun2016&lt;/name&gt;&lt;age&gt;21&lt;/age&gt;&lt;/users&gt;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="nodePath" title="节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="xmlNode" title="替换的内容" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="deleteByNodeName" bean="deleteByNodeNameComponent" title="指定节点名删除"
+               icon="/icon/xmldelete.png">
+        <short-description>指定节点名删除</short-description>
+        <long-description>xml:xml树；&#xd;
+            nodePath：节点路径；&#xd;
+            nodeName：删除节点名称；&#xd;
+            resultKey：删除内容存放上下文key。&#xd;
+            在指定文件的相应节点路径下面，删除节点名称为指定节点名称的节点。&#xd;
+            例如节点&lt;users&gt;&lt;name&gt;hundsun&lt;/name&gt;&lt;/users&gt;,节点路径为/users,删除节点名称name。&#xd;
+            删除后的节点变为&lt;users&gt;&lt;/users&gt;&#xd;
+            对于resultKey，指的是context上下文中存放删除的内容的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为删除的内容（此处内容为&lt;name&gt;hundsun&lt;/name&gt;）。&#xd;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="nodePath" title="节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="nodeName" title="删除节点名称" type="java.lang.String" array="false" required="true"/>
+        <parameter name="resultKey" title="删除内容存放上下文key" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="deleteNode" bean="deleteNodeComponent" title="节点删除" icon="/icon/xmldelete.png">
+        <short-description>节点删除</short-description>
+        <long-description>xml:xml树；&#xd;
+            nodePath：节点路径；&#xd;
+            resultKey：删除内容存放上下文key。&#xd;
+            删除该路径对应的节点。该删除操作，删除的内容为节点路径指定的节点（包含节点本身和其子节点）。&#xd;
+            例如节点&lt;users&gt;&lt;name&gt;hundsun&lt;/name&gt;&lt;age&gt;21&lt;/age&gt;&lt;/users&gt;,节点路径为/users/name。&#xd;
+            删除后的节点变为&lt;users&gt;&lt;age&gt;21&lt;/age&gt;&lt;/users&gt;&#xd;
+            对于resultKey，指的是context上下文中存放删除的内容的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为删除的内容（此处内容为&lt;name&gt;hundsun&lt;/name&gt;）。&#xd;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="nodePath" title="节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="resultKey" title="删除内容存放上下文key" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="deleteSubNode" bean="deleteSubNodeComponent" title="子节点删除"
+               icon="/icon/xmldelete.png">
+        <short-description>子节点删除</short-description>
+        <long-description>xml:xml树；&#xd;
+            nodePath：节点路径；&#xd;
+            resultKey：删除内容存放上下文key。&#xd;
+            删除该路径对应节点的子节点。&#xd;
+            例如节点&lt;users&gt;&lt;name&gt;hundsun&lt;/name&gt;&lt;age&gt;21&lt;/age&gt;&lt;/users&gt;,节点路径为/users。&#xd;
+            删除后的节点变为&lt;users&gt;&lt;/users&gt;&#xd;
+            对于resultKey，指的是context上下文中存放删除的内容的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为删除的内容（此处内容为&lt;name&gt;hundsun&lt;/name&gt;&lt;age&gt;21&lt;/age&gt;）。&#xd;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="nodePath" title="节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="resultKey" title="删除内容存放上下文key" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="queryByNodeName" bean="queryByNodeNameComponent" title="指定节点查询"
+               icon="/icon/xmlquery.png">
+        <short-description>指定节点查询</short-description>
+        <long-description>xml:xml树；&#xd;
+            nodePath：节点路径；&#xd;
+            nodeName：指定查询的节点名称&#xd;
+            resultKey：查询结果上下文存放key。&#xd;
+            查询该路径对应的节点下，所有节点名称为指定节点名称的子节点。&#xd;
+            例如节点&lt;users&gt;&lt;name&gt;hundsun&lt;/name&gt;&lt;age&gt;21&lt;/age&gt;&lt;/users&gt;,节点路径为/users，指定查询节点名称为name。&#xd;
+            查询的结果为&lt;name&gt;hundsun&lt;/name&gt;&#xd;
+            对于resultKey，指的是context上下文中存放查询的内容的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为查询的内容（此处内容为&lt;name&gt;hundsun&lt;/name&gt;）。&#xd;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="nodePath" title="节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="nodeName" title="指定查询的节点名称" type="java.lang.String" array="false" required="true"/>
+        <parameter name="resultKey" title="查询结果上下文存放key" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="querySubNode" bean="querySubNodeComponent" title="子节点查询"
+               icon="/icon/xmlquery.png">
+        <short-description>子节点查询</short-description>
+        <long-description>xml:xml树；&#xd;
+            nodePath：节点路径；&#xd;
+            resultKey：查询结果上下文存放key。&#xd;
+            查询该路径对应节点的子节点。&#xd;
+            例如节点&lt;users&gt;&lt;name&gt;hundsun&lt;/name&gt;&lt;age&gt;21&lt;/age&gt;&lt;/users&gt;,节点路径为/users/name。&#xd;
+            查询的结果为hundsun&#xd;
+            对于resultKey，指的是context上下文中存放查询的内容的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为查询的内容（此处内容为hundsun）。&#xd;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="nodePath" title="节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="resultKey" title="查询结果上下文存放key" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="queryNode" bean="queryNodeComponent" title="节点查询" icon="/icon/xmlquery.png">
+        <short-description>节点查询</short-description>
+        <long-description>xml:xml树；&#xd;
+            nodePath：节点路径；&#xd;
+            resultKey：查询结果上下文存放key。&#xd;
+            查询该路径对应的节点。查询内容为该节点及其所有子节点。&#xd;
+            例如节点&lt;users&gt;&lt;name&gt;hundsun&lt;/name&gt;&lt;age&gt;21&lt;/age&gt;&lt;/users&gt;,节点路径为/users/name。&#xd;
+            查询的结果为&lt;name&gt;hundsun&lt;/name&gt;&#xd;
+            对于resultKey，指的是context上下文中存放查询的内容的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为查询的内容（此处内容为&lt;name&gt;hundsun&lt;/name&gt;）。&#xd;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="nodePath" title="节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="resultKey" title="查询结果上下文存放key" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="modifyValue" bean="modifyValueComponent" title="节点值修改" icon="/icon/xmlcover.png">
+        <short-description>节点值修改</short-description>
+        <long-description>xml:xml树；&#xd;
+            nodePath：节点路径；&#xd;
+            nodeValue：覆盖内容。&#xd;
+            修改该路径对应节点的值。&#xd;
+            例如节点&lt;users&gt;&lt;name&gt;hundsun&lt;/name&gt;&lt;/users&gt;,节点路径为/users/name,修改内容为2016。&#xd;
+            则修改后的节点变为：&lt;users&gt;&lt;name&gt;2016&lt;/name&gt;&lt;/users&gt;&#xd;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="nodePath" title="节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="nodeValue" title="修改的值" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="insertNode" bean="insertNodeComponent" title="节点插入" icon="/icon/xmlcover.png">
+        <short-description>节点插入</short-description>
+        <long-description>xml:xml树；&#xd;
+            nodePath：节点路径；&#xd;
+            xmlNode：追加节点值,该值为xml格式的字符串。&#xd;
+            将该路径对应节点的内容替换为传入的内容。&#xd;
+            例如节点&lt;users&gt;&lt;name&gt;hundsun&lt;/name&gt;&lt;/users&gt;,节点路径为/users,替换的内容为&lt;age&gt;21&lt;/age&gt;。&#xd;
+            则替换后的节点变为：&lt;users&gt;&lt;age&gt;21&lt;/age&gt;&lt;/users&gt;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="nodePath" title="节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="xmlNode" title="插入的内容" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="copyNode" bean="copyNodeComponent" title="节点复制" icon="\icon\copy.png">
+        <short-description>节点复制</short-description>
+        <long-description>xml:xml树；&#xd;
+            fromNodePath：复制的内容对应的节点路径；&#xd;
+            toNodePath：复制目的地节点对应的节点路径。&#xd;
+            将节点内容复制到另外一个节点下。
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="fromNodePath" title="复制的内容对应的节点路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="toNodePath" title="复制目的地节点对应的节点路径" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="exportXml" bean="exportXmlComponent" title="节点导出" icon="\icon\export.png">
+        <short-description>节点导出</short-description>
+        <long-description>xml:xml树；&#xd;
+            exportFilePath：导出文件全路径；&#xd;
+            nodePath：需要导出的节点(如果为空则默认导出整个xml文件)。&#xd;
+            encoding：编码格式(如果为空则默认为UTF-8)。&#xd;
+            将节点导出到指定文件，如果nodePath有填写正确路径，则将该路径的对应的内容导出到文件，如果未填写，则将整个xml树导出到文件。导出文件的编码格式如果为填写则默认为UTF-8格式&#xd;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="exportFilePath" title="导出文件全路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="encoding" title="编码格式(如果为空则默认为UTF-8)" type="java.lang.String" array="false" required="false"/>
+        <parameter name="nodePath" title="需要导出的节点(如果为空则默认导出整个xml文件)" type="java.lang.String" array="false"
+                   required="false"/>
+    </component>
+    <component category="XML操作" name="importXml" bean="importXmlComponent" title="文件导入" icon="\icon\import.png">
+        <short-description>文件导入</short-description>
+        <long-description>xml:xml树；&#xd;
+            importFilePath：导入文件路径。&#xd;
+            encoding：数据编码格式，请填写文件本身的编码格式，否则可能会出现中文乱码等情况&#xd;
+            nodePath：导入节点位置(如果为空则默认导入到xml文件的最后一个节点后面)；&#xd;
+            将符合要求格式的文件导入到xml树种。如果指定了导入位置nodePath，则导入到该节点下，如果为指定导入位置，则导入到xml树最后一个节点的后面&#xd;
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="importFilePath" title="导入文件路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="encoding" title="数据编码格式" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+        <parameter name="nodePath" title="导入节点位置(如果为空则默认导入到xml文件的最后一个节点后面)" type="java.lang.String" array="false"
+                   required="false"/>
+    </component>
+    <component category="XML操作" name="moveNode" bean="moveNodeComponent" title="节点转移" icon="\icon\move.png">
+        <short-description>节点转移</short-description>
+        <long-description>xml:xml树；&#xd;
+            fromNodePath：移动的节点对应路径；&#xd;
+            toNodePath：移动目的地节点。&#xd;
+            将某一个节点的内容移动到另外一个节点下面。
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" array="false" required="true"/>
+        <parameter name="fromNodePath" title="移动的节点对应路径" type="java.lang.String" array="false" required="true"/>
+        <parameter name="toNodePath" title="移动目的地节点" type="java.lang.String" array="false" required="true"/>
+    </component>
+    <component category="XML操作" name="printXml" bean="printXmlComponent" title="XML树打印" icon="\icon\xmlprint.png">
+        <short-description>XML树打印</short-description>
+        <long-description>xml：xml树，需要打印的XML树；&#xd;
+            logLevel：打印出来的xml内容日志级别。可以为空，默认为INFO。&#xd;
+            将xml树按十六进制格式打印到日志中。
+        </long-description>
+        <parameter name="xml" title="xml树" type="org.tinygroup.xmlparser.node.XmlNode" editType="textarea" scope="in"
+                   array="false" required="true"/>
+        <parameter name="logLevel" title="日志级别" type="java.lang.String" editType="textarea" scope="in" array="false"/>
+    </component>
+</components>

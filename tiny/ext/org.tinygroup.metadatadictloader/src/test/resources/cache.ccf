@@ -1,0 +1,26 @@
+# DEFAULT CACHE REGION
+jcs.default.cacheattributes=org.apache.commons.jcs.engine.CompositeCacheAttributes
+jcs.default.cacheattributes.MaxObjects=200000
+jcs.default.cacheattributes.MemoryCacheName=org.apache.commons.jcs.engine.memory.lru.LRUMemoryCache
+jcs.default.cacheattributes.UseMemoryShrinker=false
+jcs.default.cacheattributes.MaxMemoryIdleTimeSeconds=3600
+jcs.default.cacheattributes.ShrinkerIntervalSeconds=60
+jcs.default.elementattributes=org.apache.commons.jcs.engine.ElementAttributes
+jcs.default.elementattributes.IsEternal=false
+jcs.default.elementattributes.MaxLifeSeconds=7000
+jcs.default.elementattributes.IdleTime=1800
+jcs.default.elementattributes.IsSpool=true
+jcs.default.elementattributes.IsRemote=true
+jcs.default.elementattributes.IsLateral=true
+
+# PRE-DEFINED CACHE REGIONS
+jcs.region.bizframeCache.cacheattributes=org.apache.commons.jcs.engine.CompositeCacheAttributes
+jcs.region.bizframeCache.cacheattributes.MaxObjects=200002
+jcs.region.bizframeCache.cacheattributes.MemoryCacheName=org.apache.commons.jcs.engine.memory.lru.LRUMemoryCache
+jcs.region.bizframeCache.cacheattributes.UseMemoryShrinker=false
+#jcs.region.bizframeCache.cacheattributes.DiskUsagePatternName=UPDATE
+jcs.region.bizframeCache.cacheattributes.MaxMemoryIdleTimeSeconds=3600
+jcs.region.bizframeCache.cacheattributes.ShrinkerIntervalSeconds=60
+jcs.region.bizframeCache.cacheattributes.MaxSpoolPerRun=500
+jcs.region.bizframeCache.elementattributes=org.apache.commons.jcs.engine.ElementAttributes
+jcs.region.bizframeCache.elementattributes.IsEternal=false

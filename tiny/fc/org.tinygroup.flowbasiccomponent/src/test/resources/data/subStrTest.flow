@@ -1,0 +1,30 @@
+<flow id="subStrTestFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="preStr" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="beginIndex" type="int" scope="in"/>
+    <parameter array="false" required="false" name="endIndex" type="int" scope="in"/>
+    <parameter array="false" required="false" name="resultKey" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="result" type="java.lang.String" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="characterStringCut"/>
+      </next-nodes>
+    </node>
+    <node id="characterStringCut" name="characterStringCut" title="字符串剪切">
+      <component name="characterStringCut" title="字符串剪切">
+        <description>字符串剪切</description>
+        <properties>
+          <flow-property name="preStr" value="${preStr}" required="true" type="java.lang.String"/>
+          <flow-property name="beginIndex" value="${beginIndex}" required="true" type="int"/>
+          <flow-property name="endIndex" value="${endIndex}" required="true" type="int"/>
+          <flow-property name="resultKey" value="${resultKey}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

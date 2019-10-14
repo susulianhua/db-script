@@ -1,0 +1,52 @@
+<flow id="Object2FileTestFlow" enable="true" private-context="false">
+  <nodes>
+    <node id="begin" position-id="b9f6fa78a8b14f2bbb4fcb146170945d" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="object2File"/>
+      </next-nodes>
+    </node>
+    <node id="object2File" position-id="e32696ce865a44f5a899841059493107" name="object2File" title="对象转文件">
+      <component name="object2File" title="对象转文件">
+        <description>对象转文件</description>
+        <properties>
+          <flow-property name="key" value="${key}" required="false" type="java.lang.String"/>
+          <flow-property name="filePath" value="${filePath}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+  <positions>
+    <node-position ref-id="b9f6fa78a8b14f2bbb4fcb146170945d">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>40</x>
+        <y>40</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="e32696ce865a44f5a899841059493107">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>40</x>
+        <y>170</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="end">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>40</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+  </positions>
+  <parameters>
+    <parameter array="false" required="false" name="user" type="org.tinygroup.flowbasiccomponent.test.User" scope="in"/>
+    <parameter array="false" required="false" name="key" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="filePath" type="java.lang.String" scope="in"/>
+  </parameters>
+</flow>

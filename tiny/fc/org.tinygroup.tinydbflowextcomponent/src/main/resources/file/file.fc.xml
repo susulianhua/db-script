@@ -1,0 +1,28 @@
+<components>
+    <component category="文件处理" name="dbData2File" bean="dbData2FileComponent" title="数据库数据导出"
+               icon="/icon/databaseout.png">
+        <short-description>数据库数据导出</short-description>
+        <long-description>sql：sql查询语句；&#xd;
+            filePath：文件路径；&#xd;
+            colSeparator：列分隔符。默认是“,”。&#xd;
+            执行指定sql查询语句，将查询结果到处到指定文件中。
+        </long-description>
+        <parameter name="sql" title="sql查询语句" type="java.lang.String" scope="in" array="false" required="true"/>
+        <parameter name="filePath" title="文件路径" type="java.lang.String" scope="in" array="false" required="true"/>
+        <parameter name="colSeparator" title="列分隔符" type="java.lang.String" editType="textarea" scope="in"
+                   array="false"/>
+    </component>
+    <component category="文件处理" name="file2DBData" bean="file2DBDataComponent" title="文件导入数据库" icon="">
+        <short-description>文件导入数据库</short-description>
+        <long-description>filePath：导入文件的路径&#xd;
+            colSeparator：数据之间的列分隔符&#xd;
+            sql:插入语句
+        </long-description>
+        <parameter name="filePath" title="文件路径" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+        <parameter name="colSeparator" title="列分隔符" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+        <parameter name="sql" title="插入语句" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+    </component>
+</components>

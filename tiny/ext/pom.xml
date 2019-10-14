@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.tinygroup</groupId>
+        <artifactId>tiny</artifactId>
+        <version>3.4.11-SNAPSHOT</version>
+    </parent>
+    <artifactId>ext</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>org.tinygroup.jcscache</module>
+        <module>org.tinygroup.ehcache</module>
+        <module>org.tinygroup.elmvel</module>
+        <module>org.tinygroup.elmvel2</module>
+        <module>org.tinygroup.jedis</module>
+        <module>org.tinygroup.rediscache</module>
+        <module>org.tinygroup.cachefactory</module>
+        <module>org.tinygroup.jcscache2</module>
+        <module>org.tinygroup.multilevelcache</module>
+        <module>org.tinygroup.aopcache</module>
+        <module>org.tinygroup.servicewrapper</module>
+        <module>org.tinygroup.custombeandefine</module>
+        <module>remoteconfig</module>
+        <module>org.tinygroup.httpclient31</module>
+        <module>org.tinygroup.httpclient451</module>
+        <module>org.tinygroup.beancontext</module>
+        <module>org.tinygroup.xmlsignature</module>
+        <module>org.tinygroup.aopcacheinterface</module>
+        <module>trans</module>
+        <module>org.tinygroup.metadatadictloader</module>
+    </modules>
+</project>

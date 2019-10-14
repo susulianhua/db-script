@@ -1,0 +1,55 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+    <!-- logic Flow 逻辑流用到的bean -->
+    <bean id="flowExecutor" name="flowExecutor" scope="singleton"
+          class="org.tinygroup.flow.impl.FlowExecutorImpl">
+    </bean>
+    <bean id="flowFileProcessor" name="flowFileProcessor" scope="singleton"
+          class="org.tinygroup.flow.fileresolver.FlowFileProcessor">
+        <property name="flowExecutor" ref="flowExecutor"></property>
+    </bean>
+    <bean id="subflowFileProcessor" name="subflowFileProcessor" scope="singleton"
+          class="org.tinygroup.flow.fileresolver.SubFlowFileProcessor">
+        <property name="flowExecutor" ref="flowExecutor"></property>
+    </bean>
+    <bean id="flowReleaseProcessor" name="flowReleaseProcessor" scope="singleton"
+          class="org.tinygroup.flow.release.fileresolver.FlowReleaseProcessor">
+    </bean>
+    <bean id="pageFlowReleaseProcessor" name="pageFlowReleaseProcessor" scope="singleton"
+          class="org.tinygroup.flow.release.fileresolver.PageFlowReleaseProcessor">
+    </bean>
+    <bean id="flowComponentProcessor" name="flowComponentProcessor"
+          scope="singleton"
+          class="org.tinygroup.flow.fileresolver.FlowComponentProcessor">
+        <property name="flowExecutor" ref="flowExecutor"></property>
+    </bean>
+
+
+    <!-- page Flow 页面流用到的bean -->
+    <bean id="pageFlowExecutor" name="pageFlowExecutor" scope="singleton"
+          class="org.tinygroup.flow.impl.FlowExecutorImpl">
+    </bean>
+    <bean id="pageFlowFileProcessor" name="pageFlowFileProcessor"
+          scope="singleton"
+          class="org.tinygroup.pageflow.fileresolver.PageFlowFileProcessor">
+        <property name="flowExecutor" ref="pageFlowExecutor"></property>
+    </bean>
+    <bean id="pageFlowComponentProcessor" name="pageFlowComponentProcessor"
+          scope="singleton"
+          class="org.tinygroup.pageflow.fileresolver.PageFlowComponentProcessor">
+        <property name="flowExecutor" ref="pageFlowExecutor"></property>
+    </bean>
+
+    <!-- ComponentAnnotationAction -->
+    <bean id="flowComponentAnnotationAction" name="flowComponentAnnotationAction"
+          scope="singleton"
+          class="org.tinygroup.flow.annotation.FlowComponentAnnotationAction">
+    </bean>
+
+    <bean id="flowUtilConfig" name="flowUtilConfig"
+          scope="singleton" class="org.tinygroup.flow.util.FlowUtilConfig">
+    </bean>
+</beans>

@@ -1,0 +1,18 @@
+<init-datas>
+		<init-data id="aaaaaaa" table-id="test_user">
+			<records>
+				<record>
+				<value-pairs>
+					<value-pair table-field-id="user_name" value="'user1'"></value-pair>
+					<value-pair table-field-id="user_age" value="1"></value-pair>
+				</value-pairs>
+				</record>
+				<record>
+				<value-pairs>
+					<value-pair table-field-id="user_name" value="'user2'"></value-pair>
+                    <value-pair table-field-id="user_age" value="2"></value-pair>
+				</value-pairs>
+				</record>
+			</records>
+		</init-data>
+</init-datas>

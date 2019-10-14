@@ -1,0 +1,35 @@
+<standard-fields package-name="aa.bb">
+  <standard-field id="aastd" name="aa" title="AA" business-type-id="aabusid" not-null="false">
+    <description></description>
+    <nick-names>
+    <nick-name name="aa1" title="AA" id="aa1std"/>
+    </nick-names>
+  </standard-field>
+  <standard-field id="bbstd" name="bb" title="AA" business-type-id="bbbusid" not-null="false">
+    <nick-names>
+    <nick-name name="bb1" title="AA" id="bb1std"/>
+    </nick-names>
+  </standard-field>
+  <standard-field id="cstd" name="c" title="AA" business-type-id="bbbusid" not-null="false">
+    <nick-names>
+    <nick-name name="c1" title="AA" id="c1std"/>
+    </nick-names>
+  </standard-field>
+  <standard-field id="dstd" name="d" title="AA" business-type-id="bbbusid" not-null="false">
+    <nick-names>
+    <nick-name name="d1" title="AA" id="d1std"/>
+    </nick-names>
+  </standard-field>
+  <standard-field id="estd" name="e" title="AA" business-type-id="bbbusid" not-null="false">
+    <nick-names>
+    <nick-name name="e1" title="AA" id="e1std"/>
+    </nick-names>
+  </standard-field>
+  <standard-field id="stdidcompanyid" name="company_id" title="companyid" business-type-id="Int" not-null="false"/>
+  <standard-field id="stdiduserid" name="user_id" title="userid" business-type-id="Int" not-null="false"/>
+  <standard-field id="stdidusername" name="user_name" title="user_name" business-type-id="bbbusid" not-null="false"/>
+  <standard-field id="stdidaddress" name="address" title="address" business-type-id="bbbusid" not-null="false"/>
+  <standard-field id="stdidcompanyname" name="company_name" title="companyname" business-type-id="bbbusid" not-null="false"/>
+  <standard-field id="stdidsex" name="sex" title="sex" business-type-id="bbbusid" not-null="false"/>
+  <standard-field id="stdidcontory" name="contory" title="contory" business-type-id="bbbusid" not-null="false"/>
+</standard-fields>

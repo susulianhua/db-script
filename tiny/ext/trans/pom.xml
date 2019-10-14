@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.tinygroup</groupId>
+        <artifactId>ext</artifactId>
+        <version>3.4.11-SNAPSHOT</version>
+    </parent>
+    <artifactId>trans</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>org.tinygroup.trans.xstream</module>
+        <module>org.tinygroup.trans.xstream.base</module>
+        <module>org.tinygroup.trans.xstream.fileprocessor</module>
+        <module>org.tinygroup.trans.xstream.springtrans</module>
+        <module>org.tinygroup.trans.template</module>
+        <module>org.tinygroup.trans.template.fileprocessor</module>
+        <module>org.tinygroup.trans.template.springtrans</module>
+        <!--<module>org.tinygroup.trans.common</module>-->
+    </modules>
+</project>

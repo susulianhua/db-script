@@ -1,0 +1,26 @@
+<flow id="assertComponentTestFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="el" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="resultKey" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="result" type="java.lang.String" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="assertExcute"/>
+      </next-nodes>
+    </node>
+    <node id="assertExcute" name="assertExcute" title="断言执行">
+      <component name="assertExcute" title="断言执行">
+        <description>断言执行</description>
+        <properties>
+          <flow-property name="el" value="${el}" required="true" type="java.lang.String"/>
+          <flow-property name="resultKey" value="${resultKey}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

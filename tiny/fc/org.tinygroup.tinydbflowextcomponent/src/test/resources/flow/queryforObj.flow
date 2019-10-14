@@ -1,0 +1,22 @@
+<flow id="queryforObj" enable="true" private-context="false">
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="queryForOneObjectComponent"/>
+      </next-nodes>
+    </node>
+    <node id="queryForOneObjectComponent" name="queryForOneObjectComponent" title="查询返回单个对象">
+      <component name="queryForOneObjectComponent" title="查询返回单个对象">
+        <description>查询返回单个对象</description>
+        <properties>
+          <flow-property name="sql" value="${sql}" required="false" type="java.lang.String"/>
+          <flow-property name="mappedClassName" value="${mappedClassName}" required="false" type="java.lang.String"/>
+          <flow-property name="resultKey" value="result" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

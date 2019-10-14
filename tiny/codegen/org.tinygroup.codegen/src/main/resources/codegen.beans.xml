@@ -1,0 +1,23 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byType" default-lazy-init="true">
+
+    <bean id="codeTemplateGenerater" scope="singleton"
+          class="org.tinygroup.template.impl.TemplateEngineDefault">
+    </bean>
+
+    <bean id="codeDocumentGenerater" scope="singleton"
+          class="org.tinygroup.docgen.impl.DocumentGeneraterImpl">
+        <property name="templateGenerater">
+            <ref bean="codeTemplateGenerater"/>
+        </property>
+        <property name="fileResourceManager" ref="fileResourceManager"></property>
+    </bean>
+
+    <bean id="codeGenerator" scope="singleton"
+          class="org.tinygroup.codegen.impl.CodeGeneratorDefault">
+        <property name="generater" ref="codeDocumentGenerater"></property>
+    </bean>
+</beans>

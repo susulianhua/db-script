@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+    <bean id="queryForMapListComponent" scope="prototype"
+          class="org.tinygroup.flowcomponent.db.component.QueryForMapListComponent">
+    </bean>
+    <bean id="queryForObjectListComponent" scope="prototype"
+          class="org.tinygroup.flowcomponent.db.component.QueryForObjectListComponent">
+    </bean>
+    <bean id="queryForNumberComponent" scope="prototype"
+          class="org.tinygroup.flowcomponent.db.component.QueryForNumberComponent">
+    </bean>
+    <bean id="queryForSqlRowSetComponent" scope="prototype"
+          class="org.tinygroup.flowcomponent.db.component.QueryForSqlRowSetComponent">
+    </bean>
+    <bean id="queryForOneObjectComponent" scope="prototype"
+          class="org.tinygroup.flowcomponent.db.component.QueryForOneObjectComponent">
+    </bean>
+    <bean id="dbUpdateComponent" scope="prototype"
+          class="org.tinygroup.flowcomponent.db.component.JdbcTemplateUpdateComponent">
+    </bean>
+    <bean id="transactionBeginComponent" scope="prototype"
+          class="org.tinygroup.flowcomponent.db.component.TransactionBeginComponent">
+    </bean>
+    <bean id="transactionCommitComponent" scope="prototype"
+          class="org.tinygroup.flowcomponent.db.component.TransactionCommitComponent">
+    </bean>
+    <bean id="transactionRollbackComponent" scope="prototype"
+          class="org.tinygroup.flowcomponent.db.component.TransactionRollbackComponent">
+    </bean>
+</beans>

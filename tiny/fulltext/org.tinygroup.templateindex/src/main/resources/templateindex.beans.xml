@@ -1,0 +1,39 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <bean id="fulltextTemplateEngine" scope="singleton"
+          class="org.tinygroup.template.impl.TemplateEngineDefault">
+        <property name="resourceLoaderList">
+            <list>
+                <ref bean="fulltextResourceLoder"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="fulltextFileResourceManager" scope="singleton"
+          class="org.tinygroup.template.loader.FileResourceManager">
+        <property name="fileResolver" ref="fileResolver"></property>
+    </bean>
+
+    <bean id="fulltextResourceLoder" scope="singleton"
+          class="org.tinygroup.template.loader.FileObjectResourceLoader">
+        <property name="templateExtName" value=".fulltextpage"></property>
+        <property name="fileResourceManager" ref="fulltextFileResourceManager"></property>
+    </bean>
+
+    <bean id="fullTextTemplateRender" scope="singleton"
+          class="org.tinygroup.template.impl.TemplateRenderDefault">
+        <property name="templateEngine" ref="fulltextTemplateEngine"></property>
+    </bean>
+
+    <bean id="fullTextTemplateProcessor" scope="singleton"
+          class="org.tinygroup.templateindex.application.FullTextTemplateProcessor">
+        <property name="templateEngine" ref="fulltextTemplateEngine"></property>
+        <property name="fileResolver" ref="fileResolver"></property>
+        <property name="fileResourceManager" ref="fulltextFileResourceManager"></property>
+    </bean>
+
+</beans>

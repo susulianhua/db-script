@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GB2312"?>
+<MSG>
+    <SingleReturn2001>
+        <OriTaxOrgCode>14200000000</OriTaxOrgCode>
+        <OriTraNo>00000016</OriTraNo>
+        <OriEntrustDate>20050827</OriEntrustDate>
+        <TaxVouNo>1</TaxVouNo>
+        <TaxDate>20050824</TaxDate>
+        <Result>90000</Result>
+        <AddWord>成功</AddWord>
+    </SingleReturn2001>
+</MSG>

@@ -1,0 +1,37 @@
+<flow id="ThreadSleepTestFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="sleepTime" type="long" scope="in"/>
+    <parameter array="false" required="false" name="timeUnit" type="java.lang.Integer" scope="both"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="threadSleep"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="info" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="${result}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="threadSleep" name="threadSleep" title="线程休眠">
+      <component name="threadSleep" title="线程休眠">
+        <description>线程休眠</description>
+        <properties>
+          <flow-property name="sleepTime" value="${sleepTime}" required="true" type="java.lang.Long"/>
+          <flow-property name="timeUnit" value="timeUnit" required="false" type="el"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="loggerPrint"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

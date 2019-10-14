@@ -1,0 +1,22 @@
+<flow id="queryforRowSet" enable="true" private-context="false">
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="queryForSqlRowSetComponent"/>
+      </next-nodes>
+    </node>
+    <node id="queryForSqlRowSetComponent" name="queryForSqlRowSetComponent" title="查询返回sqlRowSet">
+      <component name="queryForSqlRowSetComponent" title="查询返回sqlRowSet">
+        <description>返回spring内置的sqlRowSet对象。&#xd;
+由于resultset会被关闭，所以我们使用SqlRowSet来替代</description>
+        <properties>
+          <flow-property name="sql" value="${sql}" required="true" type="java.lang.String"/>
+          <flow-property name="resultKey" value="result" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

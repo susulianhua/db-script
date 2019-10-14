@@ -1,0 +1,97 @@
+<flow id="singleNodeExceptionTestFlow" enable="true" private-context="false">
+  <nodes>
+    <node id="begin" position-id="d93575e57ac9411d93a5cafb35babb8f" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="loggerPrint"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint" position-id="55553ed02f254b32a3d28fe42ffb831d" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="info" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="成功啦" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="loggerPrint_1" position-id="1119e96fa0e54dfe8ab9f9de9d2ab52d" name="loggerPrint" title="日志输出">
+      <component name="loggerPrint" title="日志输出">
+        <description>日志输出</description>
+        <properties>
+          <flow-property name="logLevel" value="info" required="true" type="java.lang.String"/>
+          <flow-property name="message" value="出错啦" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="exception" position-id="393fdeb020354bec9d05da23572ed718" name="throwException" title="异常扭转节点">
+      <component name="throwException" title="异常抛出">
+        <description>异常抛出</description>
+        <properties>
+          <flow-property name="exceptionObject" required="false" type="java.lang.Object"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node exception-type="java.lang.RuntimeException" next-node-id="loggerPrint_1"/>
+      </next-nodes>
+    </node>
+  </nodes>
+  <positions>
+    <node-position ref-id="393fdeb020354bec9d05da23572ed718">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>40</x>
+        <y>170</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="1119e96fa0e54dfe8ab9f9de9d2ab52d">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>40</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="363316ef02504fa8913bd0dec8f74ced">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>270</x>
+        <y>170</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="end">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>155</x>
+        <y>430</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="d93575e57ac9411d93a5cafb35babb8f">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>270</x>
+        <y>40</y>
+      </bounds>
+    </node-position>
+    <node-position ref-id="55553ed02f254b32a3d28fe42ffb831d">
+      <bounds>
+        <height>30</height>
+        <width>150</width>
+        <x>270</x>
+        <y>300</y>
+      </bounds>
+    </node-position>
+  </positions>
+  <parameters>
+    <parameter array="false" required="false" name="serviceId" type="java.lang.String" scope="in"/>
+  </parameters>
+</flow>

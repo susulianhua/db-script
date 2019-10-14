@@ -1,0 +1,23 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byType" default-lazy-init="true">
+
+    <bean id="chineseWordApplicationProcessor" scope="singleton"
+          class="org.tinygroup.chinese.applicationprocessor.ChineseWordApplicationProcessor">
+    </bean>
+    <bean id="chineseDictFileProcessor" scope="singleton"
+          class="org.tinygroup.chinese.fileProcessor.ChineseDictFileProcessor">
+    </bean>
+    <bean id="chineseWordFileProcessor" scope="singleton"
+          class="org.tinygroup.chinese.fileProcessor.ChineseWordFileProcessor">
+    </bean>
+    <bean id="chineseParser" scope="singleton"
+          class="org.tiny.seg.impl.ChineseParserImpl">
+    </bean>
+    <bean id="chineseParserWordProcessor" scope="singleton"
+          class="org.tiny.seg.fileresolver.ChineseParserWordProcessor">
+        <property name="chineseParser" ref="chineseParser"></property>
+    </bean>
+</beans>

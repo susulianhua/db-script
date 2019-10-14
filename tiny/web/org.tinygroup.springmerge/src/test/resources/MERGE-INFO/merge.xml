@@ -1,0 +1,94 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <bean id="stringMerge" class="org.tinygroup.springmerge.MergeObject">
+        <property name="suffix" value="jpg,docx,png"></property>
+    </bean>
+
+    <bean id="refObject2" class="org.tinygroup.springmerge.RefObject">
+        <property name="name" value="2"/>
+    </bean>
+
+    <bean id="mergeObject" class="org.tinygroup.springmerge.MergeObject">
+        <property name="paramsMap">
+            <map merge="true">
+                <entry key="key1" value="value11"></entry>
+                <entry key="key4" value="value4"></entry>
+                <entry key="key5" value="value5"></entry>
+            </map>
+        </property>
+        <property name="paramSet">
+            <set merge="true">
+                <value>svalue1</value>
+                <value>svalue4</value>
+                <value>svalue5</value>
+            </set>
+        </property>
+        <property name="paramList">
+            <list merge="true">
+                <value>lvalue11</value>
+                <value>lvalue4</value>
+                <value>lvalue5</value>
+            </list>
+        </property>
+        <property name="properties">
+            <props merge="true">
+                <prop key="pkey1">pvalue11</prop>
+                <prop key="pkey4">pvalue4</prop>
+                <prop key="pkey5">pvalue5</prop>
+            </props>
+        </property>
+        <property name="refObject" ref="refObject2"/>
+    </bean>
+    <!--测试覆盖-->
+    <bean id="mergeObjectOverride" class="org.tinygroup.springmerge.MergeObject">
+        <property name="paramsMap">
+            <map merge="false">
+                <entry key="key1" value="value11"></entry>
+                <entry key="key4" value="value4"></entry>
+                <entry key="key5" value="value5"></entry>
+            </map>
+        </property>
+        <property name="paramSet">
+            <set merge="false">
+                <value>svalue11</value>
+                <value>svalue4</value>
+                <value>svalue5</value>
+            </set>
+        </property>
+        <property name="paramList">
+            <list>
+                <value>lvalue11</value>
+                <value>lvalue4</value>
+                <value>lvalue5</value>
+            </list>
+        </property>
+        <property name="properties">
+            <props merge="false">
+                <prop key="pkey1">pvalue11</prop>
+                <prop key="pkey4">pvalue4</prop>
+                <prop key="pkey5">pvalue5</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="classMerge"
+          class="org.tinygroup.springmerge.MergeObjectB" scope="prototype">
+        <property name="suffix" value="jpg2,pdf2"></property>
+        <property name="paramsMap">
+            <map>
+                <entry key="key1" value="value11"></entry>
+                <entry key="key4" value="value4"></entry>
+                <entry key="key5" value="value5"></entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="replaceRefObject" class="org.tinygroup.springmerge.RefObject">
+        <replaced-method name="getName" replacer="getNameMethodReplacer"/>
+    </bean>
+
+</beans>

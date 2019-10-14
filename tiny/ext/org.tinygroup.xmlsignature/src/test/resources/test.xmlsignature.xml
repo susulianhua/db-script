@@ -1,0 +1,28 @@
+<!-- 
+    xml-signatures可以包含一个或者多个xml-signature节点，每个xml-signature节点表示一份XML数字签名配置
+    user-id：表示使用者id，也是xml-signature节点的唯一主键，理论上不同的使用者应该使用不同的公私钥。
+    public-store-type：公钥文件的存储类型，选填项，如果不填默认为X.509
+    public-key-path：公钥证书文件的物理路径，必填项
+    private-store-type：私钥文件的存储类型，选填项，如果不填写默认为jks
+    private-key-path：私钥文件的物理路径，必填项
+    alias：公私钥条目别名，必填项
+    password：密码库密码，必填项
+ -->
+<xml-signatures>
+  <xml-signature user-id="GSYH001" >
+     <public-key-path><![CDATA[/opt/public.jks]]></public-key-path>
+     <private-key-path><![CDATA[/opt/private.jks]]></private-key-path>
+  </xml-signature>
+  <xml-signature user-id="HZGF" >
+     <public-key-path><![CDATA[/opt/1.keystore]]></public-key-path>
+     <private-key-path><![CDATA[/opt/2.keystore]]></private-key-path>
+  </xml-signature>
+  <xml-signature user-id="SERVER007" >
+     <public-store-type><![CDATA[X.509]]></public-store-type>
+     <public-key-path><![CDATA[src/test/resources/helloworld.cer]]></public-key-path>
+     <private-store-type><![CDATA[jks]]></private-store-type>
+     <private-key-path><![CDATA[src/test/resources/helloworld.keystore]]></private-key-path>
+     <alias><![CDATA[helloworld]]></alias>
+     <password><![CDATA[hello123]]></password>
+  </xml-signature>
+</xml-signatures>

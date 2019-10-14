@@ -1,0 +1,25 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+    <bean id="fileResolver" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.FileResolverImpl">
+        <property name="fileProcessorList">
+            <list>
+                <ref bean="i18nFileProcessor"/>
+                <ref bean="xStreamFileProcessor"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="fileResolverProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.applicationprocessor.FileResolverProcessor">
+        <property name="fileResolver" ref="fileResolver"></property>
+    </bean>
+
+    <bean id="testApplicationProcessor" class="org.tinygroup.tinystarter.TestApplicationProcessor"></bean>
+
+    <bean id="tinyLifecycle" class="org.tinygroup.tinystarter.TinyLifecycle"></bean>
+
+</beans>

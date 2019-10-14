@@ -1,0 +1,30 @@
+<flow id="xmlQueryByNodeNameFlowTest" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="xml" type="org.tinygroup.xmlparser.node.XmlNode" scope="in"/>
+    <parameter array="false" required="false" name="nodePath" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="nodeName" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="resultKey" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="result" type="java.lang.String" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="queryByNodeName"/>
+      </next-nodes>
+    </node>
+    <node id="queryByNodeName" name="queryByNodeName" title="指定节点查询">
+      <component name="queryByNodeName" title="指定节点查询">
+        <description>指定节点查询</description>
+        <properties>
+          <flow-property name="xml" value="xml" required="true" type="el"/>
+          <flow-property name="nodePath" value="${nodePath}" required="true" type="java.lang.String"/>
+          <flow-property name="nodeName" value="${nodeName}" required="true" type="java.lang.String"/>
+          <flow-property name="resultKey" value="${resultKey}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

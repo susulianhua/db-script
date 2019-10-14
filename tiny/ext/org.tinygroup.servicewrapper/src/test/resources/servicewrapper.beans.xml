@@ -1,0 +1,44 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+    <bean id="generatorService"
+          class="org.tinygroup.servicewrapper.GeneratorService">
+    </bean>
+    <bean id="classPublishService" class="org.tinygroup.servicewrapper.ClassPublishService"></bean>
+    <bean id="busiServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="org.tinygroup.servicewrapper.GeneratorServiceIn"/>
+        <property name="interceptorNames">
+            <list>
+                <value>serviceWrapperInterceptor</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="classPublishServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="targetName" value="classPublishService"/>
+        <property name="interceptorNames">
+            <list>
+                <value>serviceWrapperInterceptor</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--<bean id="serviceWrapperInterceptor1" class="org.tinygroup.servicewrapper.ServiceWrapperInterceptor">-->
+        <!--<property name="core" ref="cepcore"/>-->
+        <!--<property name="serviceIdAnaly" ref="serviceIdAnaly"></property>-->
+        <!--<property name="parameterNameDiscoverer" ref="serviceParameterNameDiscoverer"></property>-->
+    <!--</bean>-->
+
+
+    <!--<bean id="serviceIdGenerateRule" class="org.tinygroup.commons.serviceid.ClassMethodServiceIdGenerateRule"></bean>-->
+
+    <!--<bean id="serviceIdAnaly" scope="singleton"-->
+          <!--class="org.tinygroup.servicewrapper.impl.DefaultServiceIdAnaly">-->
+        <!--<property name="manager" ref="serviceWrapperConfigManager"></property>-->
+        <!--<property name="serviceIdGenerateRule" ref="serviceIdGenerateRule"></property>-->
+    <!--</bean>-->
+
+
+    <bean id="methodValidationPostProcessor"
+          class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
+</beans>  

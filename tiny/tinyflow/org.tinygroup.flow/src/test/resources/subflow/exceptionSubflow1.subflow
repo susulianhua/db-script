@@ -1,0 +1,48 @@
+<subflow id="exceptionSubflow1" title="exceptionSubflow1" start-with="exceptionSwitchComponent" end-with="abcPlusComponent">
+  <nodes>
+    <node id="exceptionUtilComponent_1" name="exceptionUtilComponent" title="测试流程异常2">
+      <component name="exceptionUtilComponent" title="辅助测试流程异常">
+        <description></description>
+        <properties>
+          <flow-property name="no" value="2" required="false" type="java.lang.Integer"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="abcPlusComponent"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionUtilComponent" name="exceptionUtilComponent" title="测试流程异常1">
+      <component name="exceptionUtilComponent" title="辅助测试流程异常">
+        <description></description>
+        <properties>
+          <flow-property name="no" value="1" required="false" type="java.lang.Integer"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="abcPlusComponent"/>
+      </next-nodes>
+    </node>
+    <node id="exceptionSwitchComponent" name="exceptionSwitchComponent" title="异常生成switch">
+      <component name="exceptionSwitchComponent" title="异常生成switch">
+        <description></description>
+        <properties>
+          <flow-property name="exceptionNo" value="${exceptionNo}" required="false" type="int"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node exception-type="org.tinygroup.flow.test.newtestcase.exception.component.ComponentException1" next-node-id="exceptionUtilComponent"/>
+        <next-node exception-type="org.tinygroup.flow.test.newtestcase.exception.component.ComponentException2" next-node-id="exceptionUtilComponent_1"/>
+      </next-nodes>
+    </node>
+    <node id="abcPlusComponent" name="abcPlusComponent" title="c=aa+bb new">
+      <component name="abcPlusComponent" title="c=aa+bb new">
+        <description></description>
+        <properties>
+          <flow-property name="aa" value="${result}" required="false" type="int"/>
+          <flow-property name="bb" value="1" required="false" type="int"/>
+        </properties>
+      </component>
+      <next-nodes/>
+    </node>
+  </nodes>
+</subflow>

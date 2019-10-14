@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <application-properties>
+        <property name="BASE_PACKAGE" value="org.tinygroup"/>
+        <property name="cache_manager" value="jcsCacheManager"/> <!--这里以jcs为例，请根据具体实现修改-->
+    </application-properties>
+    <greetings>
+        **********************************************
+        * 欢迎进入Tiny
+        Server *
+        * *
+        * 如果有任何问题，请联系luo_guo@live.cn *
+        **********************************************
+
+    </greetings>
+    <application-processors>
+        <application-processor bean="fileResolverProcessor"></application-processor>
+        <application-processor bean="dictLoadProcessor"></application-processor>
+    </application-processors>
+
+    <cache-init-config region="bizframeCache"/>
+    <!-- 这里是文件搜索器相关配置，如果配置请参考file-resolver-configuration配置手册 -->
+    <file-resolver-configuration
+            resolve-classpath="true">
+        <include-patterns>
+            <include-pattern pattern="org\.tinygroup\.(.)*\.jar"/>
+        </include-patterns>
+        <exclude-full-content></exclude-full-content>
+    </file-resolver-configuration>
+
+
+    <dict-load-config bean_name="cacheBean"></dict-load-config>
+</application>

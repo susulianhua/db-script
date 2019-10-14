@@ -1,0 +1,55 @@
+<components>
+    <component name="listComponent" bean="listComponent"
+               title="List组件" icon="">
+        <short-description>求a+b的和</short-description>
+        <long-description>求a+b的和，返回值为sum</long-description>
+        <parameter name="list" title="" type="java.lang.String" collection-type="java.util.List"></parameter>
+        <parameter name="str" title="" type="java.lang.String"></parameter>
+        <parameter name="ii" title="" type="int"></parameter>
+    </component>
+    <component name="sumComponent" bean="sumComponent"
+               title="求和组件" icon="">
+        <short-description>求a+b的和</short-description>
+        <long-description>求a+b的和，返回值为sum</long-description>
+        <parameter name="a" title="求和参数a" type="int"></parameter>
+        <parameter name="b" title="求和参数b" type="int"></parameter>
+        <result name="sum" title="求和结果" type="int"></result>
+    </component>
+    <component name="plusComponent" bean="plusComponent"
+               title="加法计算组件new" icon="">
+        <short-description></short-description>
+        <long-description></long-description>
+        <parameter name="ii" title="加法参数" type="int"></parameter>
+    </component>
+    <component name="imsubComponent" bean="imsubComponent"
+               title="减法计算组件new" icon="">
+        <short-description></short-description>
+        <long-description></long-description>
+        <parameter name="jj" title="加法参数" type="int"></parameter>
+    </component>
+    <component name="resetComponent" bean="resetComponent"
+               title="清零new" icon="">
+        <short-description></short-description>
+        <long-description></long-description>
+    </component>
+    <component name="createExceptionComponent" bean="createExceptionComponent"
+               title="异常生成new" icon="">
+        <short-description></short-description>
+        <long-description></long-description>
+        <parameter name="exceptionNo" title="异常号" type="int"></parameter>
+    </component>
+    <component name="abcImsubComponent" bean="abcImsubComponent"
+               title="对c进行减法new" icon="">
+        <short-description></short-description>
+        <long-description></long-description>
+        <parameter name="num" title="减数" type="int"></parameter>
+    </component>
+    <component name="abcPlusComponent" bean="abcPlusComponent"
+               title="c=aa+bb new" icon="">
+        <short-description></short-description>
+        <long-description></long-description>
+        <parameter name="aa" title="aa" type="int"></parameter>
+        <parameter name="bb" title="bb" type="int"></parameter>
+    </component>
+</components>
+

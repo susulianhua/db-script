@@ -1,0 +1,52 @@
+<flow id="flowExceptionElTest" enable="false" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="b" type="java.lang.Integer" scope="in"/>
+    <parameter array="false" required="false" name="a" type="java.lang.Integer" scope="in"/>
+    <parameter array="false" required="false" name="result" type="java.lang.Integer" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="flowParamElComponent"/>
+      </next-nodes>
+    </node>
+    <node id="flowParamElComponent" name="flowParamElComponent" title="el表达式测试组件1">
+      <component name="flowParamElComponent" title="el表达式测试组件">
+        <description>el表达式测试组件</description>
+        <properties>
+          <flow-property name="el" value="&apos;a=10/b&apos;" required="false" type="el"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="flowParamElComponent_2">
+          <el>a&lt;0</el>
+        </next-node>
+        <next-node exception-type="java.lang.RuntimeException" next-node-id="flowParamElComponent_1">
+          <el>a&gt;0</el>
+        </next-node>
+      </next-nodes>
+    </node>
+    <node id="flowParamElComponent_1" name="flowParamElComponent" title="el表达式测试组件2">
+      <component name="flowParamElComponent" title="el表达式测试组件">
+        <description>el表达式测试组件</description>
+        <properties>
+          <flow-property name="el" value="&apos;result=1&apos;" required="false" type="el"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+    <node id="flowParamElComponent_2" name="flowParamElComponent" title="el表达式测试组件3">
+      <component name="flowParamElComponent" title="el表达式测试组件">
+        <description>el表达式测试组件</description>
+        <properties>
+          <flow-property name="el" value="&apos;result=2&apos;" required="false" type="el"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

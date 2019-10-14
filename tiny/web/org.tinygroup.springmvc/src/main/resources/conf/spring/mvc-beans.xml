@@ -1,0 +1,102 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="false">
+
+
+    <bean name="multipartResolver"
+          class="org.tinygroup.springmvc.multipart.TinyMultipartResolver"/>
+
+    <bean name="localeResolver" class="org.tinygroup.springmvc.local.TinyLocaleResolver"/>
+
+    <bean name="themeResolver" class="org.tinygroup.springmvc.theme.TinyThemeResolver"/>
+
+    <bean name="handlerMapping"
+          class="org.tinygroup.springmvc.handlermapping.TinyHandlerMapping"/>
+
+    <bean name="handlerAdapter"
+          class="org.tinygroup.springmvc.handleradapter.TinyHandlerAdapter"/>
+
+    <bean name="handlerExceptionResolver"
+          class="org.tinygroup.springmvc.exceptionresolver.TinyHandlerExceptionResolver"/>
+
+    <bean name="viewNameTranslator"
+          class="org.tinygroup.springmvc.viewtranslator.TinyRequestToViewNameTranslator"/>
+
+    <bean name="viewResolver" class="org.tinygroup.springmvc.view.TinyViewResolver"/>
+
+    <bean name="springMVCAdapter" class="org.tinygroup.springmvc.adapter.SpringMVCAdapter"/>
+
+    <bean id="tinyDelegateMultipartResolver"
+          class="org.tinygroup.springmvc.multipart.TinyDelegateMultipartResolver"></bean>
+
+    <!-- *.shtm mapping -->
+    <bean name="extension.shtm"
+          class="org.tinygroup.springmvc.extension.ExtensionMappingInstance">
+        <property name="extension" value="shtm"/>
+        <property name="mediaTypes" value="text/html"/>
+        <property name="commonLocaleResolver" ref="commonLocaleResolver"/>
+        <property name="commonThemeResolver" ref="commonThemeResolver"/>
+        <property name="commonsMultipartResolver" ref="tinyDelegateMultipartResolver"/>
+        <property name="handlerMappings">
+            <list>
+                <ref bean="tinyHandlerMappingComposite"/>
+            </list>
+        </property>
+        <property name="handlerAdapters">
+            <list>
+                <ref bean="tinyHandlerAdapterComposite"/>
+            </list>
+        </property>
+        <property name="viewResolvers">
+            <list>
+                <ref bean="tinyContentNegotiatingViewResolver"/>
+            </list>
+        </property>
+        <property name="handlerExceptionResolvers">
+            <list>
+                <ref bean="handlerExceptionResolverComposite"/>
+            </list>
+        </property>
+        <property name="viewNameTranslator" ref="restfulConventionRequestToViewNameTranslator"/>
+    </bean>
+
+
+    <bean id="restfulConventionRequestToViewNameTranslator"
+          class="org.tinygroup.springmvc.viewtranslator.RestfulConventionRequestToViewNameTranslator">
+    </bean>
+
+    <bean name="handlerExceptionResolverComposite"
+          class="org.tinygroup.springmvc.exceptionresolver.HandlerExceptionResolverComposite">
+    </bean>
+
+    <bean name="annotationMethodHandlerExceptionResolver"
+          class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver">
+    </bean>
+
+    <bean name="responseStatusExceptionResolver"
+          class="org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver">
+    </bean>
+
+    <bean name="defaultHandlerExceptionResolver"
+          class="org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver">
+    </bean>
+
+    <bean id="tinyHandlerMappingComposite"
+          class="org.tinygroup.springmvc.handlermapping.TinyHandlerMappingComposite"/>
+
+    <bean id="tinyHandlerAdapterComposite"
+          class="org.tinygroup.springmvc.handleradapter.TinyHandlerAdapterComposite"/>
+
+    <bean id="tinyContentNegotiatingViewResolver"
+          class="org.tinygroup.springmvc.view.TinyContentNegotiatingViewResolver">
+        <property name="mediaTypes">
+            <map>
+                <entry key="shtm" value="text/html"></entry>
+                <entry key="page" value="text/html"></entry>
+                <entry key="pagelet" value="text/html"></entry>
+            </map>
+        </property>
+    </bean>
+</beans>

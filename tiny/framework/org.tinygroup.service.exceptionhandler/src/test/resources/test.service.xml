@@ -1,0 +1,5 @@
+<service-components>
+    <service-component bean="testservice"  type="org.tinygroup.service.exceptionhandler.test.Service">
+    </service-component>
+
+</service-components>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byType" default-lazy-init="true">
+
+    <bean id="plusComponent" name="plusComponent" scope="prototype"
+          class="org.tinygroup.flow.test.testcase.component.PlusComponent">
+    </bean>
+    <bean id="listComponent" name="listComponent" scope="prototype"
+          class="org.tinygroup.flow.test.testcase.component.ListComponent">
+    </bean>
+    <bean id="sumComponent" scope="prototype"
+          class="org.tinygroup.flow.test.testcase.component.SumComponent">
+    </bean>
+    <bean id="imsubComponent" name="imsubComponent" scope="prototype"
+          class="org.tinygroup.flow.test.testcase.component.ImsubComponent">
+    </bean>
+    <bean id="resetComponent" name="resetComponent" scope="prototype"
+          class="org.tinygroup.flow.test.testcase.component.ResetComponent">
+    </bean>
+    <bean id="createExceptionComponent" name="createExceptionComponent" scope="prototype"
+          class="org.tinygroup.flow.test.testcase.component.CreateExceptionComponent">
+    </bean>
+    <bean id="abcImsubComponent" name="abcImsubComponent" scope="prototype"
+          class="org.tinygroup.flow.test.testcase.component.AbcImsubComponent">
+    </bean>
+    <bean id="abcPlusComponent" name="abcPlusComponent" scope="prototype"
+          class="org.tinygroup.flow.test.testcase.component.AbcPlusComponent">
+    </bean>
+</beans>

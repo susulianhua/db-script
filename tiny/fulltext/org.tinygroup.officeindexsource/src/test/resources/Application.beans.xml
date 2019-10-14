@@ -1,0 +1,52 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName" default-lazy-init="true">
+    <bean id="fileResolver" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.FileResolverImpl">
+        <property name="fileProcessorList">
+            <list>
+                <ref bean="i18nFileProcessor"/>
+                <ref bean="xStreamFileProcessor"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="fileResolverProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.applicationprocessor.FileResolverProcessor">
+        <property name="fileResolver" ref="fileResolver"></property>
+    </bean>
+
+    <bean id="docDocumentCreator" scope="singleton"
+          class="org.tinygroup.officeindexsource.word.DocDocumentCreator">
+    </bean>
+
+    <bean id="docxDocumentCreator" scope="singleton"
+          class="org.tinygroup.officeindexsource.word.DocxDocumentCreator">
+    </bean>
+
+    <bean id="xlsDocumentListCreator" scope="singleton"
+          class="org.tinygroup.officeindexsource.excel.XlsDocumentListCreator">
+        <property name="fields" value="id,title1,title2,content"></property>
+        <property name="firstRow" value="1"></property>
+        <property name="templateDocumentCreator" ref="excelTemplate"></property>
+    </bean>
+
+    <bean id="xlsxDocumentListCreator" scope="singleton"
+          class="org.tinygroup.officeindexsource.excel.XlsxDocumentListCreator">
+        <property name="fields" value="id,title1,title2,content"></property>
+        <property name="firstRow" value="1"></property>
+        <property name="templateDocumentCreator" ref="excelTemplate"></property>
+    </bean>
+
+    <bean id="excelTemplate" scope="singleton"
+          class="org.tinygroup.templateindex.impl.TemplateDocumentCreator">
+        <property name="idRule" value="/excel/excel_id.fulltextpage"></property>
+        <property name="typeRule" value="/excel/excel_type.fulltextpage"></property>
+        <property name="titleRule" value="/excel/excel_title.fulltextpage"></property>
+        <property name="abstractRule" value="/excel/excel_abstract.fulltextpage"></property>
+        <property name="templateRender" ref="fullTextTemplateRender"></property>
+    </bean>
+
+</beans>

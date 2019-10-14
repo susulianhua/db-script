@@ -1,0 +1,26 @@
+<flow id="FileSizeFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="filePath" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="resultKey" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="result" type="java.lang.String" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="getFileSize"/>
+      </next-nodes>
+    </node>
+    <node id="getFileSize" name="getFileSize" title="文件大小获取">
+      <component name="getFileSize" title="文件大小获取">
+        <description>文件大小获取</description>
+        <properties>
+          <flow-property name="filePath" value="${filePath}" required="true" type="java.lang.String"/>
+          <flow-property name="resultKey" value="${resultKey}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

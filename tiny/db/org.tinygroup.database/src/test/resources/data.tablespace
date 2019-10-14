@@ -1,0 +1,11 @@
+<table-spaces>
+  <table-space id="b20cf29b5ce54701801d815a9f949cac" name="ts1" title="空间1">
+    <description>1</description>
+  </table-space>
+  <table-space id="bcd63471d4f14f83878a993efe97a109" name="ts2" title="空间2">
+    <description>2</description>
+  </table-space>
+  <table-space id="c06f09ddc4834101b77cad2a6a024422" name="ts3" title="空间3">
+    <description>3</description>
+  </table-space>
+</table-spaces>

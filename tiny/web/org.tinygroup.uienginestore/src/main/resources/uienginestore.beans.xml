@@ -1,0 +1,29 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <bean id="fileObjectStore" name="fileObjectStore" scope="singleton"
+          class="org.tinygroup.uienginestore.impl.DefaultFileObjectStore">
+    </bean>
+
+    <bean id="uIOperator" name="uIOperator" scope="singleton"
+          class="org.tinygroup.uienginestore.impl.DefaultUIOperator">
+        <property name="uiComponentManager" ref="uiComponentManager"/>
+        <property name="fullContextFileRepository" ref="fullContextFileRepository"/>
+        <property name="mergeCssManager" ref="mergeCssManager"/>
+    </bean>
+
+    <bean id="mergeCssManager" name="mergeCssManager" scope="singleton"
+          class="org.tinygroup.uienginestore.impl.MergeCssManagerImpl">
+    </bean>
+
+    <bean id="uIEngineStoreProcessor" scope="singleton"
+          class="org.tinygroup.uienginestore.application.UIEngineStoreProcessor">
+        <property name="fileObjectStore" ref="fileObjectStore"/>
+        <property name="uIOperator" ref="uIOperator"/>
+        <property name="fullContextFileRepository" ref="fullContextFileRepository"/>
+    </bean>
+
+</beans>

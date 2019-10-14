@@ -1,0 +1,29 @@
+<flow id="importNodeFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="xml" type="org.tinygroup.xmlparser.node.XmlNode" scope="in"/>
+    <parameter array="false" required="false" name="importFilePath" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="nodePath" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="false" name="encoding" type="java.lang.String" scope="in"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="importXml"/>
+      </next-nodes>
+    </node>
+    <node id="importXml" name="importXml" title="文件导入">
+      <component name="importXml" title="文件导入">
+        <description>文件导入</description>
+        <properties>
+          <flow-property name="xml" value="xml" required="true" type="el"/>
+          <flow-property name="importFilePath" value="${importFilePath}" required="true" type="java.lang.String"/>
+          <flow-property name="encoding" value="${encoding}" required="true" type="java.lang.String"/>
+          <flow-property name="nodePath" value="${nodePath}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

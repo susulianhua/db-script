@@ -1,0 +1,20 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <bean id="httpTemplateFileProcessor" scope="singleton"
+          class="org.tinygroup.httpvisitor.fileresolver.HttpTemplateFileProcessor">
+        <property name="httpTemplateManager" ref="httpTemplateManager"></property>
+    </bean>
+
+    <bean id="httpTemplateManager" scope="singleton"
+          class=" org.tinygroup.httpvisitor.manager.DefaultHttpTemplateManager">
+    </bean>
+
+    <bean id="clientInstanceManager" scope="singleton"
+          class=" org.tinygroup.httpvisitor.client.DefaultClientInstanceManager">
+    </bean>
+
+</beans>

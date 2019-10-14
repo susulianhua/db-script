@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="userProtocol" class="org.tinygroup.channel.protocol.impl.BaseProtocolIn">
+        <property name="listeners">
+            <list>
+                <ref bean="objectProtocolInListener"/>
+                <ref bean="stringProtocolInListener"/>
+                <ref bean="stringProtocolInListener2"/>
+            </list>
+        </property>
+        <property name="protocolTrans" ref="userTrans"></property>
+        <property name="protocolProcess" ref="userProcess"></property>
+    </bean>
+
+    <bean id="stringProtocolInListener2"
+          class="org.tinygroup.channel.test.protocol.simple.StringProtocolInListener2"/>
+    <bean id="stringProtocolInListener"
+          class="org.tinygroup.channel.test.protocol.simple.StringProtocolInListener"/>
+    <bean id="userProcess"
+          class="org.tinygroup.channel.test.protocol.user.UserProcess"/>
+    <bean id="userTrans"
+          class="org.tinygroup.channel.test.protocol.user.UserTrans"/>
+</beans>

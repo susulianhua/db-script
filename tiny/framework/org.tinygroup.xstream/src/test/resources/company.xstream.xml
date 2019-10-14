@@ -1,0 +1,59 @@
+<xstream-configuration package-name="testcompany">
+    <!-- 这个节点用于配置注解描述xml格式方式的类 -->
+    <xstream-annotation-classes>
+    </xstream-annotation-classes>
+    <!-- 这个节点用于配置xml描述xml方式的类 -->
+    <xstream-class-aliases>
+        <!-- type类名，alias-name以及类在xml中的根节点名 -->
+        <class-alias alias-name="company" type="org.tinygroup.xstream.test.Company">
+            <xstream-class-property-alias property-name="name" alias-name="company-name" as-attribute="true"
+                                          implicit="false" omit="false"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="dontoutput"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="num"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="money"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="departments" implicit="true"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="roles" implicit="true"></xstream-class-property-alias>
+            <!-- <proper-aliases>
+                attribute-name类的属性名，alias-name以及属性在xml中的名字
+                <xstream-property-alias attribute-name="name" alias-name="company-name"></xstream-property-alias>
+            </proper-aliases>
+            <property-implicits>
+                对于List类型的子属性
+                attribute-name类的属性名
+
+                    如果属性配置在这里，则表明不需要生成该子属性为单独节点。
+                    比如departments配置在这里
+                    <company>
+                        <department/>
+                        <department/>
+                        <department/>
+                    <company>
+                    若不配置在这里
+                    <company>
+                        <departments>
+                            <department/>
+                            <department/>
+                            <department/>
+                        </departments>
+                    <company>
+
+                 <xstream-property-implicit attribute-name="departments"></xstream-property-implicit>
+                 <xstream-property-implicit attribute-name="roles"></xstream-property-implicit>
+            </property-implicits>
+            <property-omits>
+                 <xstream-property-omit attribute-name=""></xstream-property-omit>
+            </property-omits> -->
+        </class-alias>
+        <class-alias alias-name="department" type="org.tinygroup.xstream.test.Department">
+            <xstream-class-property-alias property-name="name" alias-name="department-name" as-attribute="false"
+                                          implicit="true" omit="false"></xstream-class-property-alias>
+            <xstream-class-property-alias property-name="peoples" alias-name="department-peoples" as-attribute="false"
+                                          implicit="true" omit="false"></xstream-class-property-alias>
+        </class-alias>
+
+        <class-alias alias-name="role" type="org.tinygroup.xstream.test.Role">
+            <xstream-class-property-alias property-name="name" alias-name="role-name" as-attribute="false"
+                                          omit="false"/>
+        </class-alias>
+    </xstream-class-aliases>
+</xstream-configuration>

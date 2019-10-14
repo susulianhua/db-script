@@ -1,0 +1,10 @@
+<service-components>
+  <service-component type="org.tinygroup.service.test.classpublisher.service.ParaentService" bean="">
+    <service-method local-name="paraent" service-id="org.tinygroup.service.test.classpublisher.service.ParaentService.paraent" method-name="paraent" cacheable="false" category="org.tinygroup.service.test.classpublisher.service">
+      <service-parameters>
+        <service-parameter name="name" type="java.lang.String" required="false" is-array="false"/>
+      </service-parameters>
+      <service-result name="result" required="false" is-array="false" type="java.lang.String"/>
+    </service-method>
+  </service-component>
+</service-components>

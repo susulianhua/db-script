@@ -1,0 +1,7 @@
+<processors language="informix">
+    <processor name="table" bean="informixSqlProcessor"></processor>
+    <processor name="initData" bean="informixInitDataSqlProcessor"></processor>
+    <processor name="view" bean="informixViewSqlProcessor"></processor>
+    <processor name="procedure" bean="informixProcedureSqlProcessor"></processor>
+    <processor name="sequence" bean="sequenceProcessor"></processor>
+</processors>

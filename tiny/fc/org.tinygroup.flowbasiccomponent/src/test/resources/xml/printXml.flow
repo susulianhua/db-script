@@ -1,0 +1,25 @@
+<flow id="printXmlTestFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="false" name="xml" type="org.tinygroup.xmlparser.node.XmlNode" scope="in"/>
+    <parameter array="false" required="false" name="logLevel" type="java.lang.String" scope="in"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="printXml"/>
+      </next-nodes>
+    </node>
+    <node id="printXml" name="printXml" title="XML树打印">
+      <component name="printXml" title="XML树打印">
+        <description>XML树打印</description>
+        <properties>
+          <flow-property name="xml" value="xml" required="true" type="el"/>
+          <flow-property name="logLevel" value="${logLevel}" required="false" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

@@ -1,0 +1,28 @@
+<flow id="RespConvOutTestFlow" enable="true" private-context="false">
+  <parameters>
+    <parameter array="false" required="true" name="type" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="true" name="input" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="true" name="resultKey" type="java.lang.String" scope="in"/>
+    <parameter array="false" required="true" name="result" type="java.lang.String" scope="out"/>
+  </parameters>
+  <nodes>
+    <node id="begin" name="begin" title="开始">
+      <next-nodes>
+        <next-node next-node-id="responseCodeConvert"/>
+      </next-nodes>
+    </node>
+    <node id="responseCodeConvert" name="responseCodeConvert" title="响应码转换">
+      <component name="responseCodeConvert" title="响应码转换">
+        <description>响应码转换</description>
+        <properties>
+          <flow-property name="type" value="${type}" required="true" type="java.lang.String"/>
+          <flow-property name="input" value="${input}" required="true" type="java.lang.String"/>
+          <flow-property name="resultKey" value="${resultKey}" required="true" type="java.lang.String"/>
+        </properties>
+      </component>
+      <next-nodes>
+        <next-node next-node-id="end"/>
+      </next-nodes>
+    </node>
+  </nodes>
+</flow>

@@ -1,0 +1,15 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+    <bean id="validateAddress" name="validateAddress" scope="prototype"
+          class="org.tinygroup.service.test.validate.ValidateAddress">
+    </bean>
+    <bean id="validateUser" name="validateUser" scope="prototype"
+          class="org.tinygroup.service.test.validate.ValidateUser">
+    </bean>
+    <bean id="validateService" name="validateService" scope="prototype"
+          class="org.tinygroup.service.test.validate.ValidateService">
+    </bean>
+</beans>

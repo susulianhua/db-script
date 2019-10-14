@@ -1,0 +1,46 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byType" default-lazy-init="true">
+
+    <bean id="fullContextFileRepository" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.FullContextFileRepositoryImpl">
+        <property name="excludeContextFileFinder">
+            <ref bean="excludeContextFileFinder"/>
+        </property>
+    </bean>
+
+    <bean id="excludeContextFileFinder" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.ExcludeContextFileFinder">
+    </bean>
+
+    <bean id="fullContextFileFinder" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.FullContextFileFinder">
+        <property name="fullContextFileRepository">
+            <ref bean="fullContextFileRepository"/>
+        </property>
+        <property name="excludeContextFileFinder">
+            <ref bean="excludeContextFileFinder"/>
+        </property>
+    </bean>
+
+    <bean id="i18nFileProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.I18nFileProcessor">
+    </bean>
+    <bean id="xStreamFileProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.XStreamFileProcessor">
+    </bean>
+    <bean id="orderFileProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.OrderFileProcessor">
+        <property name="orderProcessor" ref="orderProcessor"></property>
+    </bean>
+    <bean id="configurationFileProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.impl.ConfigurationFileProcessor">
+    </bean>
+
+    <bean id="fileMonitorProcessor" scope="singleton"
+          class="org.tinygroup.fileresolver.applicationprocessor.FileMonitorProcessor">
+    </bean>
+
+</beans>

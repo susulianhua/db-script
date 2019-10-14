@@ -1,0 +1,94 @@
+<components>
+    <component category="文件处理" name="dbData2File" bean="dbData2FileComponent" title="数据库数据导出"
+               icon="/icon/databaseout.png">
+        <short-description>数据库数据导出</short-description>
+        <long-description>sql：sql查询语句；&#xd;
+            filePath：文件路径；&#xd;
+            colSeparator：列分隔符。默认是“,”。&#xd;
+            执行指定sql查询语句，将查询结果到处到指定文件中。
+        </long-description>
+        <parameter name="sql" title="sql查询语句" type="java.lang.String" scope="in" array="false" required="true"/>
+        <parameter name="filePath" title="文件路径" type="java.lang.String" scope="in" array="false" required="true"/>
+        <parameter name="colSeparator" title="列分隔符" type="java.lang.String" editType="textarea" scope="in"
+                   array="false"/>
+    </component>
+    <component category="文件处理" name="file2Object" bean="file2ObjectComponent" title="文件转对象" icon="/icon/file2o.png">
+        <short-description>文件转对象</short-description>
+        <long-description>filePath：文件全路径；&#xd;
+            classPath：类路径；&#xd;
+            resultKey：结果集上下文存放key。&#xd;
+            将文件内容转换成指定对象，并将结果放入指定key。&#xd;
+            默认的处理方式中，文件必须是xml格式。&#xd;
+            对于resultKey，指的是context上下文中存放转换结果的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value转换出来的对象。&#xd;
+        </long-description>
+        <parameter name="filePath" title="文件路径" type="java.lang.String" array="false"/>
+        <parameter name="classPath" title="类路径" type="java.lang.String" array="false"/>
+        <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" array="false"/>
+    </component>
+    <component category="文件处理" name="fileIsExist" bean="fileIsExistComponent" title="文件存在判断" icon="/icon/exist.png">
+        <short-description>文件存在判断</short-description>
+        <long-description>filePath：文件全路径；&#xd;
+            resultKey：结果集上下文存放key。&#xd;
+            判断指定文件是否存在，将判断结果返回给指定key。&#xd;
+            对于resultKey，指的是context上下文中存放判断结果的key。&#xd;
+            例如resultKey值为result，则在上下文map中，有一条数据其key为result，value为判断结果。&#xd;
+        </long-description>
+        <parameter name="filePath" title="文件路径" type="java.lang.String" array="false"/>
+        <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" array="false"/>
+    </component>
+    <component category="文件处理" name="fileMerge" bean="fileMergeComponent" title="文件合并" icon="/icon/filemerge.png">
+        <short-description>文件合并</short-description>
+        <long-description>filePath1：文件1路径，需要合并的文件之一；&#xd;
+            filePath2：文件2路径，需要合并的文件之一；&#xd;
+            filePath3：文件3路径，合并结果所存放的文件。&#xd;
+            将文件1和文件2合并到文件3中，如果文件3路径为空，则将文件2合并到文件1。
+        </long-description>
+        <parameter name="filePath1" title="文件1路径" type="java.lang.String" array="false"/>
+        <parameter name="filePath2" title="文件2路径" type="java.lang.String" array="false"/>
+        <parameter name="filePath3" title="文件3路径" type="java.lang.String" array="false"/>
+    </component>
+    <component category="文件处理" name="object2File" bean="object2FileComponent" title="对象转文件" icon="/icon/o2file.png">
+        <short-description>对象转文件</short-description>
+        <long-description>key：对象在上下文中存放key；&#xd;
+            filePath：文件全路径&#xd;
+            将对象转换成xml格式的字符串，并将该字符串存放到指定的文件中。
+        </long-description>
+        <parameter name="key" title="对象在上下文中存放key" type="java.lang.String" array="false"/>
+        <parameter name="filePath" title="文件路径" type="java.lang.String" array="false"/>
+    </component>
+    <component category="文件处理" name="objectAttr2File" bean="objectAttr2FileComponent" title="对象属性转文件"
+               icon="/icon/filea2o.png">
+        <short-description>对象属性转文件</short-description>
+        <long-description>el：属性取值表达式；&#xd;
+            filePath：文件全路径。&#xd;
+            通过执行el表达式获取对象的属性值，并直接将该值存放到指定的文件中。
+        </long-description>
+        <parameter name="el" title="属性取值表达式" type="java.lang.String" array="false"/>
+        <parameter name="filePath" title="文件路径" type="java.lang.String" array="false"/>
+    </component>
+    <component category="文件处理" name="getFileSize" bean="getFileSizeComponent" title="文件大小获取" icon="\icon\filesize.png">
+        <short-description>文件大小获取</short-description>
+        <long-description>filePath:文件路径；&#xd;
+            resultKey：获取的文件大小值在上下文中存放的key。&#xd;
+            获取文件大小，返回long值
+        </long-description>
+        <parameter name="filePath" title="文件路径" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+        <parameter name="resultKey" title="结果集上下文存放key" type="java.lang.String" editType="textarea" scope="in"
+                   array="false" required="true"/>
+    </component>
+    <component category="文件处理" name="file2DBData" bean="file2DBDataComponent" title="文件导入数据库" icon="">
+        <short-description>文件导入数据库</short-description>
+        <long-description>filePath：导入文件的路径&#xd;
+            colSeparator：数据之间的列分隔符&#xd;
+            sql:插入语句
+        </long-description>
+        <parameter name="filePath" title="文件路径" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+        <parameter name="colSeparator" title="列分隔符" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+        <parameter name="sql" title="插入语句" type="java.lang.String" editType="textarea" scope="in" array="false"
+                   required="true"/>
+    </component>
+</components>

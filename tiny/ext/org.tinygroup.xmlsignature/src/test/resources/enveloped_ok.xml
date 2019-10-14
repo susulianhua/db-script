@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><SalesData>
+	<PaymentInfo xmlns="http://example.com/payment">
+		<CustomerName>Simon</CustomerName>
+		<Amount>25000</Amount>
+		<CreditCardInfo>
+			<ID>4392 5649 8178 2315</ID>
+			<Issuer>CMB</Issuer>
+			<Expiration>06/2010</Expiration>
+			<Currency>USD</Currency>
+		</CreditCardInfo>
+	</PaymentInfo>
+	<PaymentInfo xmlns="http://example.com/payment" id="PeterPayment">
+		<CustomerName>Peter</CustomerName>
+		<Amount>10000</Amount>
+		<CreditCardInfo>
+			<ID>4392 5649 8178 2318</ID>
+			<Issuer>CMB</Issuer>
+			<Expiration>09/2015</Expiration>
+			<Currency>USD</Currency>
+		</CreditCardInfo>
+	</PaymentInfo>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>6L6fHxIe3X6fhlBMLVGreVv5Fpk=</DigestValue></Reference></SignedInfo><SignatureValue>YwPTopKuEkPEhnzE0jNoBD1ZmWT8XvP7sVrjyVO1ADl1nWDL2H2ha9OI9A5fsLaK+St/agaLJqbg
+ZcQbNvm9AjLjKRotfnYxAOolh/f8neMe0Wp1iUAWcs8Ds/cQSUuKuxPUznSgJ8kfPhXb8ZvWhXDf
++LhxmHSjmXBpEH7fmQHA42U4CK1dfkq/9ZC5FpQm7AfaAP6AO1+iuMRAJneOZo8N/yga4JnJuf5F
+XGoKO1+dKqSU3nvFkPErSWwlQ0oC3h+UWUQPapUL2iYRDTWskE5mLdiNgjcfCp8vCZNThX1xSzRS
+VwMSIErWDYpZ6Hpg6gajB8AhRP1xhHrFvi8AHA==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>kG1FndWwxmMPDFA0hOoDx9Xpnps6L/nI6R69AH+by6aa3nlP/ugv8Xm/gouph1dQ9DhKwMZuKeWW
+3LzcDrBAp33Kb2emdBDt4mQlR0c863j/IgliOOLWn89aWerahzHM2OWYgW6/g/LZrezs6xywB31P
+o97oYMFOHzMs3y+XhjKjts7h2mIHiNUQUAD8eujf2E8U8edPDxgUOkb30G1C43sx5U8fCqvi10jM
+WkUI6jTKcabCPx/cNIYxe1hYSVkmdkd6QNU8T1+abQgtWYh1H3ek3SACvA+uy6yGqN+COms2MISi
+LELEuYxr0MfDcAoIhq/mo8nYNWFAvlck6audFw==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue></KeyInfo></Signature></SalesData>

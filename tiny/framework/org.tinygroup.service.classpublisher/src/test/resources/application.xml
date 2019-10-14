@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <application-processors>
+        <application-processor bean="fileResolverProcessor"></application-processor>
+        <application-processor bean="serviceApplicationProcessor"/>
+    </application-processors>
+
+    <service-class-path>
+        <classPath>org.tinygroup.service.test.classpublisher.service.TestService</classPath>
+        <classPath>org.tinygroup.service.test.classpublisher.service.InheritService</classPath>
+        <classPath>org.tinygroup.service.test.classpublisher.service.SameNameService</classPath>
+    </service-class-path>
+</application>

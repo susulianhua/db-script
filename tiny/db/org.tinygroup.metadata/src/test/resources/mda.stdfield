@@ -1,0 +1,12 @@
+<standard-fields package-name="aa.bb">
+	<standard-field id="aaid" name="aa" title="AA" business-type-id="aaid">
+	<nick-names>
+		<nick-name id="aa1id"  name="aa1" title="AA" />
+	</nick-names>
+	</standard-field>
+	<standard-field id="bbid" name="bb" title="AA" business-type-id="bbid">
+       <nick-names>
+		<nick-name id="bb1id" name="bb1" title="AA" />
+	   </nick-names>
+	</standard-field>
+</standard-fields>

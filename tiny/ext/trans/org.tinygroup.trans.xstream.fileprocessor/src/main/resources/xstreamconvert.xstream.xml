@@ -1,0 +1,6 @@
+<xstream-configuration package-name="xstream-convert">
+    <xstream-annotation-classes>
+        <xstream-annotation-class
+                class-name="org.tinygroup.trans.xstream.base.XStreamSceneMappings"/>
+    </xstream-annotation-classes>
+</xstream-configuration>

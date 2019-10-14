@@ -1,0 +1,27 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <bean id="seedDecryptPropertyPlaceholderConfigurer" scope="singleton"
+          class="org.tinygroup.springutil.DecryptPropertyPlaceholderConfigurer">
+        <property name="order" value="1"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:/seed.properties</value>
+            </list>
+        </property>
+        <property name="decryptPropertyNames" value="seed.password"></property>
+        <property name="seed" value="tiny"></property>
+    </bean>
+
+    <bean id="seedJdbcPojo" scope="singleton"
+          class="org.tinygroup.springutil.JdbcPojo">
+        <property name="url" value="${seed.url}"/>
+        <property name="driverClassName" value="${seed.driverClassName}"/>
+        <property name="username" value="${seed.username}"></property>
+        <property name="password" value="${seed.password}"></property>
+    </bean>
+</beans>
