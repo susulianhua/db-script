@@ -28,6 +28,7 @@ import org.springframework.stereotype.Component;
 @Component("dynamicDataSource")
 public final class DataSourceInfo {
 
+
     public static final String DATASOURCE_NAME = "dynamicDataSource";
 
     private static ThreadLocal<String> local = new ThreadLocal<String>();

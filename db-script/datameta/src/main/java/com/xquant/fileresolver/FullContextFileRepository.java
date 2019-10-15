@@ -15,7 +15,7 @@
  */
 package com.xquant.fileresolver;
 
-import com.xquant.file.FileObject;
+import com.xquant.vfs.FileObject;
 
 import java.util.Map;
 

@@ -1,0 +1,26 @@
+<default-values>
+    <default-value id="int_default" name="i_def">
+        <dialect-type-list>
+            <dialect-type language="mysql" value="1"></dialect-type>
+            <dialect-type language="oracle" value="1"></dialect-type>
+            <dialect-type language="h2" value="1"></dialect-type>
+            <dialect-type language="db2" value="1"></dialect-type>
+        </dialect-type-list>
+    </default-value>
+    <default-value id="usertype_default" name="ut_def">
+        <dialect-type-list>
+            <dialect-type language="mysql" value="&apos;1&apos;"></dialect-type>
+            <dialect-type language="oracle" value="&apos;1&apos;"></dialect-type>
+            <dialect-type language="h2" value="&apos;1&apos;"></dialect-type>
+            <dialect-type language="db2" value="&apos;1&apos;"></dialect-type>
+        </dialect-type-list>
+    </default-value>
+    <default-value id="negative_default" name="ng_def">
+        <dialect-type-list>
+            <dialect-type language="mysql" value="-0"></dialect-type>
+            <dialect-type language="oracle" value="-0"></dialect-type>
+            <dialect-type language="h2" value="-0"></dialect-type>
+            <dialect-type language="db2" value="-0"></dialect-type>
+        </dialect-type-list>
+    </default-value>
+</default-values>

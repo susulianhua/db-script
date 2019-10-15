@@ -631,8 +631,6 @@ public abstract class SqlProcessorImpl implements TableSqlProcessor {
             String remarks = getDbColumnRemarks(attribute);
             String columnDef = getDbColumnColumnDef(attribute);
             String standardComment = getComment(standardField);
-            String standardDefault = getDefaultValue(field, standardField);
-            standardDefault = StringUtils.defaultIfEmpty(standardDefault, null);
             columnDef = StringUtils.defaultIfEmpty(columnDef, null);
             boolean dbNullAble = Integer.parseInt(attribute.get(NULLABLE)) == DatabaseMetaData.columnNullable ? true : false;
             boolean fieldNotNull = field.getNotNull();
@@ -645,7 +643,6 @@ public abstract class SqlProcessorImpl implements TableSqlProcessor {
             columnContext.setStandardComment(standardComment);
             columnContext.setStandardFieldName(standardFieldName);
             columnContext.setTableDataType(tableDataType);
-            columnContext.setStandardDefault(standardDefault);
             columnContext.setDbColumnDef(columnDef);
             columnContext.setTableNameWithSchema(getTableName(table));
             columnContext.setTableName(table.getName());
@@ -678,10 +675,6 @@ public abstract class SqlProcessorImpl implements TableSqlProcessor {
                     columnContext.getStandardFieldName(), columnContext.getTableDataType()));
 
             // 非自增的字段设置字段默认值
-            if (!field.isAutoIncrease()) {
-                String fieldDefaultValue = getDefaultValue(field, standardField);
-                dealDefaultValueUpdate(alterTypeBuffer, fieldDefaultValue, columnContext.getDbColumnDef());
-            }
             dealNotNullSql(alterTypeBuffer, field, columnContext.isDbNullAble());
 
             //注释
@@ -893,7 +886,6 @@ public abstract class SqlProcessorImpl implements TableSqlProcessor {
         String stdFieldTp = getDataTpOfStdFiled(standardField);
         ddlBuffer.append(stdFieldTp);
 
-        appendTypeAndDefault(ddlBuffer, field, standardField);
         dealComment(ddlBuffer, standardField, list);
     }
 
@@ -934,23 +926,6 @@ public abstract class SqlProcessorImpl implements TableSqlProcessor {
                 businessType.getPlaceholderValueList().get(0);
         placeholderValue.setExpendSize(expendSize);
         businessTypeList.add(businessType.getId());
-    }
-
-    protected void appendTypeAndDefault(StringBuffer ddlBuffer, TableField field, StandardField standardField) {
-        // 非自增的字段设置字段默认值
-        if (!field.isAutoIncrease()) {
-            String fieldDefaultValue = getDefaultValue(field, standardField);
-            appendDefaultValue(fieldDefaultValue, ddlBuffer);
-        }
-        Boolean notNull = field.getNotNull();
-        if (notNull != null && notNull.booleanValue()) {
-            ddlBuffer.append(" NOT NULL");
-        }
-
-        // 处理自增
-        if (field.isAutoIncrease() && field.getPrimary()) {// 如果是自增而且是主键
-            ddlBuffer.append(appendIncrease());
-        }
     }
 
 
@@ -1309,20 +1284,6 @@ public abstract class SqlProcessorImpl implements TableSqlProcessor {
      * @param standardField
      * @return
      */
-    protected String getDefaultValue(TableField field, StandardField standardField) {
-        String defaultId = getDefaultId(field, standardField);
-        if (!StringUtils.isEmpty(defaultId)) {
-            String defaultConfigValue = MetadataUtil.getDefaultValue(defaultId, getDatabaseType(), this.getClass().getClassLoader());
-            return DataBaseUtil.formatByColumnType(defaultConfigValue, standardField,
-                    getDatabaseType(), new SqlValueProcessor() {
-                        @Override
-                        public String handleDateType(String value) {
-                            return dealDateType(value);
-                        }
-                    }, getClass().getClassLoader());
-        }
-        return null;
-    }
 
     /**
      * 处理日期类型

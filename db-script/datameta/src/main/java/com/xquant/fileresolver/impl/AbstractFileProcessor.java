@@ -16,9 +16,10 @@
 package com.xquant.fileresolver.impl;
 
 import com.thoughtworks.xstream.XStream;
-import com.xquant.file.FileObject;
+import com.xquant.vfs.FileObject;
 import com.xquant.fileresolver.FileProcessor;
 import com.xquant.fileresolver.FileResolver;
+import com.xquant.xmlparser.node.XmlNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,6 +42,10 @@ public abstract class AbstractFileProcessor implements FileProcessor {
     protected List<FileObject> changeList = new ArrayList<FileObject>();
     protected List<FileObject> deleteList = new ArrayList<FileObject>();
     protected FileResolver fileResolver;
+
+    protected XmlNode applicationConfig;
+
+    protected XmlNode componentConfig;
 
     protected Map<String, Object> caches = new HashMap<String, Object>();
 
@@ -88,6 +93,31 @@ public abstract class AbstractFileProcessor implements FileProcessor {
 
     public boolean supportRefresh() {
         return true;
+    }
+
+    public String getApplicationNodePath() {
+        return null;
+    }
+
+    public String getComponentConfigPath() {
+        return null;
+    }
+
+    public void config(XmlNode applicationConfig, XmlNode componentConfig) {
+        this.applicationConfig = applicationConfig;
+        this.componentConfig = componentConfig;
+    }
+
+    public XmlNode getComponentConfig() {
+        return componentConfig;
+    }
+
+    public XmlNode getApplicationConfig() {
+        return applicationConfig;
+    }
+
+    public int getOrder() {
+        return DEFAULT_PRECEDENCE;
     }
 
     /**

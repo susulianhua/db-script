@@ -16,7 +16,7 @@
 package com.xquant.metadata.fileresolver;
 
 import com.thoughtworks.xstream.XStream;
-import com.xquant.file.FileObject;
+import com.xquant.vfs.FileObject;
 import com.xquant.fileresolver.impl.AbstractFileProcessor;
 import com.xquant.metadata.config.stdfield.StandardFields;
 import com.xquant.metadata.stdfield.StandardFieldProcessor;

@@ -16,7 +16,6 @@
 package com.xquant.database.util;
 
 
-import com.xquant.database.config.dialectfunction.DialectFunction;
 import com.xquant.database.config.table.Table;
 import com.xquant.database.config.table.TableField;
 import com.xquant.database.config.tablespace.TableSpace;

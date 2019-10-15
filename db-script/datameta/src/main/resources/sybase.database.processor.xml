@@ -1,0 +1,7 @@
+<processors language="sybase">
+    <processor name="table" bean="sybaseSqlProcessor"></processor>
+    <processor name="initData" bean="sybaseInitDataSqlProcessor"></processor>
+    <processor name="view" bean="sybaseViewSqlProcessor"></processor>
+    <processor name="procedure" bean="sybaseSqlProcessor"></processor>
+    <processor name="sequence" bean="sequenceProcessor"></processor>
+</processors>

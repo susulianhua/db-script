@@ -1,0 +1,29 @@
+<custom-sqls>
+  <custom-sql name="1" title="2" type="before" description="qwqsa">
+    <sql dialect-type-name="sybase" content="2"/>
+    <sql dialect-type-name="informix2" content="asdasd"/>
+    <sql dialect-type-name="sqlserver" content="zzxc"/>
+    <sql dialect-type-name="db2" content="zx"/>
+    <sql dialect-type-name="oracle" content="asd"/>
+    <sql dialect-type-name="derby" content="asdasd"/>
+    <sql dialect-type-name="mysql" content="asdasd"/>
+  </custom-sql>
+  <custom-sql name="12" title="222" type="after" description="">
+    <sql dialect-type-name="sybase" content="adazzz"/>
+    <sql dialect-type-name="informix2" content="sss"/>
+    <sql dialect-type-name="sqlserver"/>
+    <sql dialect-type-name="db2"/>
+    <sql dialect-type-name="oracle"/>
+    <sql dialect-type-name="derby"/>
+    <sql dialect-type-name="mysql"/>
+  </custom-sql>
+  <custom-sql name="" title="" type="before" description="">
+    <sql dialect-type-name="sybase"/>
+    <sql dialect-type-name="informix2"/>
+    <sql dialect-type-name="sqlserver"/>
+    <sql dialect-type-name="db2"/>
+    <sql dialect-type-name="oracle"/>
+    <sql dialect-type-name="derby"/>
+    <sql dialect-type-name="mysql"/>
+  </custom-sql>
+</custom-sqls>

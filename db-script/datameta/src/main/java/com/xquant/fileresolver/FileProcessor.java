@@ -16,14 +16,16 @@
 package com.xquant.fileresolver;
 
 
-import com.xquant.file.FileObject;
+import com.xquant.vfs.FileObject;
+import org.springframework.core.Ordered;
 
 /**
  * 文件处理器
  *
  * @author luoguo
  */
-public interface FileProcessor  {
+public interface FileProcessor extends Ordered {
+    int DEFAULT_PRECEDENCE = 0;
     /**
      * 该文件处理器是否可以处理该文件对象
      *

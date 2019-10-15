@@ -23,8 +23,6 @@ import com.xquant.metadata.config.bizdatatype.BusinessType;
 import com.xquant.metadata.config.stddatatype.DialectType;
 import com.xquant.metadata.config.stddatatype.StandardType;
 import com.xquant.metadata.config.stdfield.StandardField;
-import com.xquant.metadata.defaultvalue.DefaultValueProcessor;
-import com.xquant.metadata.defaultvalue.impl.DefaultValueProcessorImpl;
 import com.xquant.metadata.exception.MetadataRuntimeException;
 import com.xquant.metadata.stddatatype.StandardTypeProcessor;
 import com.xquant.metadata.stddatatype.impl.StandardTypeProcessorImpl;
@@ -44,7 +42,7 @@ public final class MetadataUtil {
     public static final String STANDARDTYPEPROCESSOR_BEAN = "standardTypeProcessor";
     public static final String BUSINESSTYPEPROCESSOR_BEAN = "businessTypeProcessor";
     public static final String CONSTANTPROCESSOR_BEAN = "constantProcessor";
-    public static final String ERRORMESSAGEPROCESSOR_BEAN = "errorMessageProcessor";
+    public static final String ERRORPROCESSOR_BEAN = "errorProcessor";
     public static final String DEFAULTVALUEPROCESSOR_BEAN = "defaultValueProcessor";
 
     private MetadataUtil() {
@@ -161,18 +159,6 @@ public final class MetadataUtil {
 
     }
 
-    public static DefaultValueProcessor getDefaultValueProcessor(
-            ClassLoader loader) {
-
-        return DefaultValueProcessorImpl.getDefaultValueProcessor();
-
-    }
-
-    public static String getDefaultValue(String defaultId, String type,
-                                         ClassLoader loader) {
-        DefaultValueProcessor defaultValueProcessor = getDefaultValueProcessor(loader);
-        return defaultValueProcessor.getValue(defaultId, type);
-    }
 
     public static BusinessType getBusinessType(String fieldId,
                                                ClassLoader loader) {

@@ -19,7 +19,7 @@ import com.thoughtworks.xstream.XStream;
 import com.xquant.database.config.view.Views;
 import com.xquant.database.util.DataBaseUtil;
 import com.xquant.database.view.ViewProcessor;
-import com.xquant.file.FileObject;
+import com.xquant.vfs.FileObject;
 import com.xquant.fileresolver.impl.AbstractFileProcessor;
 import com.xquant.xml.XStreamFactory;
 
@@ -52,7 +52,7 @@ public class ViewFileResolver extends AbstractFileProcessor {
                     fileObject.getAbsolutePath());
         }
         for (FileObject fileObject : changeList) {
-            LOGGER.info( "正在加载view文件[{0}]",
+            LOGGER.info("正在加载view文件[{0}]",
                     fileObject.getAbsolutePath());
             Views oldViews = (Views) caches.get(fileObject.getAbsolutePath());
             if (oldViews != null) {
@@ -74,3 +74,4 @@ public class ViewFileResolver extends AbstractFileProcessor {
     }
 
 }
+

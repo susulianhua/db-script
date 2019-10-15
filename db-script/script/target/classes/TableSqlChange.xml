@@ -1,0 +1,22 @@
+org.tinygroup.database.exception.DatabaseRuntimeException: java.lang.RuntimeException: 不存在, 标准类型ID:[type_int],语言:[oracle]对应的标准数据类型
+	at org.tinygroup.databasebuinstaller.DatabaseInstallerProcessor.getSqls(DatabaseInstallerProcessor.java:156)
+	at org.tinygroup.databasebuinstaller.DatabaseInstallerProcessor.getChangeSqls(DatabaseInstallerProcessor.java:99)
+	at org.tinygroup.databasechange.DatabaseInstallerStart.getChangeSqls(DatabaseInstallerStart.java:311)
+	at org.tinygroup.databasechange.TableSqlChangeUtil.main(TableSqlChangeUtil.java:50)
+Caused by: java.lang.RuntimeException: 不存在, 标准类型ID:[type_int],语言:[oracle]对应的标准数据类型
+	at org.tinygroup.metadata.stddatatype.impl.StandardTypeProcessorImpl.getType(StandardTypeProcessorImpl.java:49)
+	at org.tinygroup.metadata.bizdatatype.impl.BusinessTypeProcessorImpl.getType(BusinessTypeProcessorImpl.java:60)
+	at org.tinygroup.metadata.util.MetadataUtil.getBaseStandardType(MetadataUtil.java:86)
+	at org.tinygroup.metadata.util.MetadataUtil.getStandardFieldType(MetadataUtil.java:91)
+	at org.tinygroup.database.table.impl.SqlProcessorImpl.getDataTpOfStdFiled(SqlProcessorImpl.java:908)
+	at org.tinygroup.database.table.impl.SqlProcessorImpl.appendField(SqlProcessorImpl.java:894)
+	at org.tinygroup.database.table.impl.SqlProcessorImpl.appendBody(SqlProcessorImpl.java:880)
+	at org.tinygroup.database.table.impl.SqlProcessorImpl.getTableCreateSql(SqlProcessorImpl.java:167)
+	at org.tinygroup.database.table.impl.SqlProcessorImpl.getCreateSql(SqlProcessorImpl.java:64)
+	at org.tinygroup.database.table.impl.TableProcessorImpl.getCreateSql(TableProcessorImpl.java:158)
+	at org.tinygroup.database.table.impl.TableProcessorImpl.getCreateSql(TableProcessorImpl.java:153)
+	at org.tinygroup.databasebuinstaller.impl.TableInstallProcessor.installTable(TableInstallProcessor.java:66)
+	at org.tinygroup.databasebuinstaller.impl.TableInstallProcessor.deal(TableInstallProcessor.java:48)
+	at org.tinygroup.databasebuinstaller.impl.TableInstallProcessor.getProcessSqls(TableInstallProcessor.java:121)
+	at org.tinygroup.databasebuinstaller.DatabaseInstallerProcessor.getSqls(DatabaseInstallerProcessor.java:147)
+	... 3 more

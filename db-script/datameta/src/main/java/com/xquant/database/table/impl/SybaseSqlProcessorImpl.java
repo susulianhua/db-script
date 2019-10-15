@@ -104,11 +104,8 @@ public class SybaseSqlProcessorImpl extends SqlProcessorImpl {
      * @param standardField
      */
     protected void appendTypeAndDefault(StringBuffer ddlBuffer, TableField field, StandardField standardField) {
-        String fieldDefaultValue = getDefaultValue(field, standardField);
-        // 非自增的字段设置字段默认值
-        if (!field.isAutoIncrease()) {
-            appendDefaultValue(fieldDefaultValue, ddlBuffer);
-        }
+
+
 
         // 处理自增
         if (field.isAutoIncrease() && field.getPrimary()) {// 如果是自增而且是主键
@@ -148,9 +145,8 @@ public class SybaseSqlProcessorImpl extends SqlProcessorImpl {
         if (!checkDefSame(columnContext.getStandardDefault(), columnContext.getDbColumnDef())) {
             // 非自增的字段设置字段默认值
             if (!field.isAutoIncrease()) {
-                String fieldDefaultValue = getDefaultValue(field, standardField);
+
                 StringBuffer alterDefaultBuffer = new StringBuffer();
-                dealDefaultValueUpdate(alterDefaultBuffer, fieldDefaultValue, columnContext.getDbColumnDef());
                 if (alterDefaultBuffer.length() > 0) {
                     existUpdateList.add(String.format("ALTER TABLE %s REPLACE %s %s",
                             columnContext.getTableName(), delimiter(columnContext.getStandardFieldName()),

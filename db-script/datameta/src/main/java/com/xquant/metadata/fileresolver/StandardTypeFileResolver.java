@@ -16,7 +16,7 @@
 package com.xquant.metadata.fileresolver;
 
 import com.thoughtworks.xstream.XStream;
-import com.xquant.file.FileObject;
+import com.xquant.vfs.FileObject;
 import com.xquant.fileresolver.impl.AbstractFileProcessor;
 import com.xquant.metadata.config.stddatatype.StandardTypes;
 import com.xquant.metadata.stddatatype.StandardTypeProcessor;
@@ -58,6 +58,7 @@ public class StandardTypeFileResolver extends AbstractFileProcessor {
             if (oldStandardTypes != null) {
                 standardDataTypeProcessor.removeStandardTypes(oldStandardTypes);
             }
+            System.out.println("Xstream加载器：" + stream.getClassLoader());
             StandardTypes standardTypes = convertFromXml(stream, fileObject);
             standardDataTypeProcessor.addStandardTypes(standardTypes);
             caches.put(fileObject.getAbsolutePath(), standardTypes);

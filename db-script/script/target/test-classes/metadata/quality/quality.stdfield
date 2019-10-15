@@ -1,0 +1,94 @@
+<standard-fields>
+  <standard-field id="6c98afc28df84e42bc25ff10b754c588" name="bug_id" title="Bug编号" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="">
+    <description></description>
+  </standard-field>
+  <standard-field id="b1ed6c1d89a04621898ecee935bb4f0b" name="to_task_id" title="转任务" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="zero_default"/>
+  <standard-field id="90f1257cbd30488d833abf7f494c4204" name="to_story_id" title="转需求" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="zero_default"/>
+  <standard-field id="928545e432b74102a25fef4b0f2cb318" name="bug_title" title="Bug标题" business-type-id="27ebfcdc558c477da425a46e566d4637" default-value-id=""/>
+  <standard-field id="6e96a1ee41fa4b5a9959d2a9b14a9c92" name="bug_keywords" title="关键词" business-type-id="27ebfcdc558c477da425a46e566d4637" default-value-id=""/>
+  <standard-field id="482d5444f0e546138886b874bc66af91" name="bug_severity" title="严重程度" business-type-id="ccd3e83b1cae428987599fb95985fa70" default-value-id="zero_default"/>
+  <standard-field id="aa9be6c1c2094e47af40df0b6f017417" name="priority" title="优先级" business-type-id="ccd3e83b1cae428987599fb95985fa70" default-value-id="zero_default"/>
+  <standard-field id="ee6041d355a84c4193888496f4e68255" name="bug_type" title="Bug类型" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="48e28176366141138355eeb1642581fd" name="operating_system" title="操作系统" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="0518f764743d411f992aa48a280e1f13" name="browser" title="浏览器" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="8cc0dde5fd4f4a40a4debac2b49a2c51" name="hardware" title="硬件平台" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="5ed975161c464a38866ec755ba0dbaab" name="bug_found" title="如何发现" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="0524ff50b9d040b0b898a72a284b75c1" name="bug_steps" title="重现步骤" business-type-id="cc9ed20b13f943f3a967f9d1c5368132" default-value-id=""/>
+  <standard-field id="1559a890cb0b438faaffc896d04df2fd" name="bug_status" title="Bug状态" business-type-id="b6a9bc04774b40859a7dd8c6fd52a629" default-value-id="zero_default"/>
+  <standard-field id="9adb7e740c0f4a9cbf6f8933ab9b0870" name="bug_confirmed" title="是否确认" business-type-id="ccd3e83b1cae428987599fb95985fa70" default-value-id="zero_default"/>
+  <standard-field id="c01f7442880e4ea689a9cb773dbd4233" name="bug_activated_count" title="激活次数" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id=""/>
+  <standard-field id="746e0308bc354585a196dad1e30b3aa5" name="bug_mailto" title="抄送给" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="e556843a31c04e6e8dd1b0529d819be2" name="bug_opened_by" title="由谁创建" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="d9ea02040dbc4194a4baa5b57fa950f2" name="bug_opened_date" title="创建日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="7bb5fd99170c4df89df6cd61850954af" name="bug_opened_build" title="影响版本" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="eb02f2d321ee4ead83adc8c5ee218ec9" name="bug_assigned_to" title="指派给" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="b54fce73322640ec8af2d309d5e3a401" name="bug_assigned_date" title="指派日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff" default-value-id=""/>
+  <standard-field id="f80fb8982e2f494c92589bcfa279c9b3" name="bug_resolved_by" title="解决者" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="cf3ddd2cb6e04826a78ba49ed696a3cf" name="bug_resolution" title="解决方案" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="e2b1bca5f22e448f8139df3312e12fc2" name="bug_resolved_build" title="解决版本" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="a2ca37fa20da4b7899f7a4690b9912d5" name="bug_resolved_date" title="解决日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="e76b7d1e37384ca78aa89b4e347c6a3b" name="bug_closed_by" title="由谁关闭" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="705fa32115694a59ab20cd71dcec1468" name="bug_closed_date" title="关闭日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="4767cd124dd242db8255881253df9656" name="bug_duplicate_bug" title="重复Bug的ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="67a8dcb26ba64ac1b586b28a9e93737e" name="link_bug" title="相关Bug" business-type-id="27ebfcdc558c477da425a46e566d4637" default-value-id=""/>
+  <standard-field id="f3bad42da78e4bd98033bf38287be7d7" name="case_id" title="用例编号" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="">
+    <nick-names><nick-name name="link_case" title="相关用例" id="24ac4d6214c04529b4df86d1b7a2e53d"/></nick-names>
+  </standard-field>
+  <standard-field id="e426ffcf06bd4cc2be2bf6c6b5aef436" name="case_version" title="关联用例版本" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="zero_default"/>
+  <standard-field id="39620b293f4f4c7580ab9a2adcd09baa" name="bug_result" title="BUG_RESULT" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id=""/>
+  <standard-field id="0b825f5b94964c9bb897b6d7e46bc521" name="bug_repo" title="BUG_REPO" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="6b9f288452bf434b800682d537a0fe46" name="bug_entry" title="BUG_ENTRY" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="f52e09114a0a47a2ae47b517f11e5ac8" name="bug_from_case" title="来源用例" business-type-id="ccd3e83b1cae428987599fb95985fa70"/>
+  <standard-field id="83e5fcc53b104488918293c7d077635c" name="bug_lines" title="BUG_LINES" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="5eaade48b6504899be41bb710c6a96a9" name="bug_v1" title="BUG_V1" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="94b9073805c646418fe2e5f7e1291b35" name="bug_repo_type" title="BUG_REPOTYPE" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="5fe0035446904292a5ae9844f5d75249" name="testtask" title="测试任务编号" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id=""/>
+  <standard-field id="f6a7e4ea3f6e48de8db3d22ffc1ef267" name="bug_last_edited_by" title="最后修改者" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="48706c454e294123bb6eeba92516c9bb" name="bug_last_edited_date" title="最后修改日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff" default-value-id=""/>
+  <standard-field id="355ee3636b224f6d9979e38fb58c87a1" name="case_path" title="CASE_PATH" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id=""/>
+  <standard-field id="1840bfb38b5e474f84b0e4bdc81207af" name="case_title" title="用例标题" business-type-id="27ebfcdc558c477da425a46e566d4637" default-value-id=""/>
+  <standard-field id="e7971c08ed7f475d93efb3ba70b6cfad" name="case_precondition" title="前置条件" business-type-id="cc9ed20b13f943f3a967f9d1c5368132" default-value-id=""/>
+  <standard-field id="513f18f952134e90b0169f185d12cb8c" name="case_keywords" title="关键词" business-type-id="27ebfcdc558c477da425a46e566d4637" default-value-id=""/>
+  <standard-field id="e7699993410b4655b73ce0295c76e72b" name="case_type" title="用例类型" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id="usertype_default"/>
+  <standard-field id="efcbc3136d414189b034e5c90edd8585" name="case_stage" title="适用阶段" business-type-id="27ebfcdc558c477da425a46e566d4637" default-value-id=""/>
+  <standard-field id="6b50c99857824d8eba929155e647e154" name="case_runway" title="执行方式" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="a0df855060bc427ab2c3bd67b66f42f0" name="case_scripted_by" title="由谁编写" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="3f7c5172d79e4d3c9f06d234276c9074" name="case_scripted_date" title="编写日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="306f7286b0ad487ebf2de0a813134410" name="script_status" title="SCRIPTSTATUS" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="6c7952142648466e8d39d205f9fd569e" name="script_location" title="SCRIPTLOCATION" business-type-id="27ebfcdc558c477da425a46e566d4637" default-value-id=""/>
+  <standard-field id="09384f9c0bb94db8be96a2b043c66635" name="case_status" title="用例状态" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id="int_default"/>
+  <standard-field id="271a3c1aff034dfe8ed797cf322dce14" name="case_frequency" title="执行频率" business-type-id="b6a9bc04774b40859a7dd8c6fd52a629" default-value-id="zero_default"/>
+  <standard-field id="28e1551ca0924247b556cedd17cfe8ba" name="case_order" title="排序" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="zero_default"/>
+  <standard-field id="3f79880ec0f84a248846e50546659bf9" name="case_opened_by" title="由谁创建" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="1d866a9f11af45a8ba7b9cbbf7fc7658" name="case_opened_date" title="创建日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="89b17210f4a642e79b2ebceae973bd9a" name="case_last_edited_by" title="最后修改者" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="4ab1d9f4464046b39720bb354d53d6be" name="case_last_edited_date" title="最后修改日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff" default-value-id=""/>
+  <standard-field id="7f7bcc3e0d55445d8c75fedcd6721ce5" name="case_from_bug" title="来源Bug" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="3f6944b54ca7450da5ba8efea406903f" name="case_last_runner" title="最后执行人" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="0013a178503c4488b063d0d4ad1ddf44" name="case_last_run_date" title="最后执行时间" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="f2f3b185f1f441d486d2cfadf2d033f5" name="case_last_run_result" title="用例执行结果" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="9fa084dd34924126a1d0bb8db870bc2a" name="case_step_id" title="用例步骤编号" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="f188b6f154c548fd80abbeb903d4dcb7" name="case_step_desc" title="描述" business-type-id="cc9ed20b13f943f3a967f9d1c5368132" default-value-id=""/>
+  <standard-field id="92cd0085df034b15928f9d31fef31c57" name="case_step_expect" title="用例预期" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="5c4ed17618134ece8c869756c3aa5292" name="bug_v2" title="BUG_V2" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="682cae09812d41c6b726a3d7c7a2e770" name="test_result_id" title="测试结果" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="c076c31364c64d809887f04dcc9c0318" name="testresult_run" title="TESTRESULT_RUN" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id=""/>
+  <standard-field id="5a140e9f3c3e4fd88ba6d8895606344d" name="case_result" title="测试结果" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id="negative_default"/>
+  <standard-field id="142d02cd9d80455f8863beef028354e5" name="case_stepresults" title="用例步骤结果" business-type-id="cc9ed20b13f943f3a967f9d1c5368132" default-value-id=""/>
+  <standard-field id="8555ec8d0f9842848790d0b62faf31d8" name="test_result_last_runner" title="最后执行人" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="79038eaa3ce942da87919d70b4af6a66" name="test_result_date" title="最后执行日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff" default-value-id=""/>
+  <standard-field id="ea2c2898819a460e8a1394fb2fef5096" name="test_run_id" title="执行编号" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="bb1d1f8ede934aef9d04ea14cae8104f" name="test_run_assigned_to" title="指派给" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="1f006b59daec4a47b62cf7bbd94f4015" name="test_run_last_runner" title="最后执行人" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="0deaf731dafe4215b1e88551977502e6" name="test_run_last_run_date" title="最后执行日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="39c7b8234eeb4dc5b892b3e257559e54" name="test_run_last_run_result" title="最后执行结果" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="410897240d3e4595b3a7ada47cb9437f" name="test_run_status" title="测试执行状态" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="56604bfad9b54abeaa55e26ebf0a3377" name="testversion_id" title="测试版本编号" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id=""/>
+  <standard-field id="465ab9fec2cc4da68d5df486a68a8163" name="testtask_title" title="任务名称" business-type-id="a30696c1e44441ecad77a832afd3731d" default-value-id=""/>
+  <standard-field id="0ad33bb0bf3642a39058cc94ff151acf" name="testtask_owner" title="负责人" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="c7f037e584304db5a920ca364368f77d" name="testtask_begin" title="开始日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="54ce79105b4c4bb79d65f508ed5a29bc" name="testtask_end" title="结束日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="755c8ea1bc3d4a779ada93dfa1ece61c" name="testtask_desc" title="描述" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="d986aee39bcf4047933ce1db87380b4b" name="testtask_report" title="测试总结" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="4256034e4ff14101a50181a8acbfd33d" name="testtask_status" title="当前状态" business-type-id="b6a9bc04774b40859a7dd8c6fd52a629"/>
+</standard-fields>

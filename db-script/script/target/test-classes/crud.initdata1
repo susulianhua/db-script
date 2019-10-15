@@ -1,0 +1,18 @@
+<init-datas>
+  <init-data id="c53c98233dad4a669b2ee4c9617d6ca3" table-id="t_org">
+    <description></description>
+    <records>
+      <record>
+        <value-pairs>
+          <value-pair table-field-id="id" value=""/>
+        </value-pairs>
+      </record>
+      <record>
+        <value-pairs>
+          <value-pair table-field-id="id" value=""/>
+          <value-pair table-field-id="name" value="'用户2'"/>
+        </value-pairs>
+      </record>
+    </records>
+  </init-data>
+</init-datas>

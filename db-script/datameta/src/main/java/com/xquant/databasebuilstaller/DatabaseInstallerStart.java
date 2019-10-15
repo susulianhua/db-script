@@ -15,7 +15,8 @@
  */
 package com.xquant.databasebuilstaller;
 
-import com.sun.deploy.xml.XMLNode;
+import com.xquant.common.BeanWrapperHolder;
+import com.xquant.common.StreamUtil;
 import com.xquant.database.ProcessorManager;
 import com.xquant.database.customesql.CustomSqlProcessor;
 import com.xquant.database.customesql.impl.CustomSqlProcessorImpl;
@@ -37,16 +38,14 @@ import com.xquant.database.view.impl.ViewProcessorImpl;
 import com.xquant.databasebuilstaller.impl.*;
 import com.xquant.fileresolver.FileResolver;
 import com.xquant.fileresolver.FileResolverFactory;
+import com.xquant.fileresolver.util.FileResolverUtil;
 import com.xquant.metadata.bizdatatype.impl.BusinessTypeProcessorImpl;
 import com.xquant.metadata.constants.impl.ConstantsProcessorImpl;
-import com.xquant.metadata.defaultvalue.impl.DefaultValueProcessorImpl;
-import com.xquant.metadata.errormessage.impl.ErrorMessageProcessorImpl;
 import com.xquant.metadata.fileresolver.*;
 import com.xquant.metadata.stddatatype.impl.StandardTypeProcessorImpl;
 import com.xquant.metadata.stdfield.impl.StandardFieldProcessorImpl;
 import com.xquant.metadata.util.ConfigUtil;
 import com.xquant.parser.filter.PathFilter;
-import com.xquant.xml.StreamUtils;
 import com.xquant.xmlparser.node.XmlNode;
 import com.xquant.xmlparser.parser.XmlStringParser;
 import org.apache.commons.collections.CollectionUtils;
@@ -125,22 +124,7 @@ public class DatabaseInstallerStart {
             ConfigUtil.setTableNamePrefix(databaseConfig.get(TABLE_NAME_PREFIX));
         }
 
-        BeanContainerFactory.initBeanContainer(SpringBeanContainer.class.getName());
         initFileResolver();
-    }
-
-    public static void setProperties(Object object,
-                                     Map<String, String> properties) {
-        BeanWrapper wrapperImpl = BeanWrapperHolder.getInstance()
-                .getBeanWrapper(object);
-        for (String attribute : properties.keySet()) {
-            try {
-                String value = properties.get(attribute);
-                wrapperImpl.setPropertyValue(attribute, value);
-            } catch (Exception e) {
-                throw new RuntimeException("设置对象属性出现异常", e);
-            }
-        }
     }
 
     /**
@@ -323,7 +307,6 @@ public class DatabaseInstallerStart {
         addXstreamFileProcessor(fileResolver);
         addConstantFileProcessor(fileResolver);
         addStandardTypeFileProcessor(fileResolver);//标准数据类型
-        addErrorMessageFileProcessor(fileResolver);
         addBusinessTypeFileResolver(fileResolver);  //业务数据类型
         addStandardFieldFileResolver(fileResolver);  //业务字段
         addTableSpaceFileResolver(fileResolver);
@@ -332,16 +315,10 @@ public class DatabaseInstallerStart {
         addCustomSqlFileResolver(fileResolver);
         addViewFileResolver(fileResolver);
         addProcedureFileResolver(fileResolver);
-        addDefaultValueResolver(fileResolver);
         startFileResolver(fileResolver);
     }
 
 
-    private void addDefaultValueResolver(FileResolver fileResolver) {
-        DefaultValueFileResolver defaultValueFileResolver = new DefaultValueFileResolver();
-        defaultValueFileResolver.setDefaultValueProcessor(DefaultValueProcessorImpl.getDefaultValueProcessor());
-        fileResolver.addFileProcessor(defaultValueFileResolver);
-    }
 
     private void databaseInstaller() {
         installer.process();
@@ -406,13 +383,6 @@ public class DatabaseInstallerStart {
         fileResolver.addFileProcessor(businessTypeFileResolver);
     }
 
-    private void addErrorMessageFileProcessor(FileResolver fileResolver) {
-        ErrorMessageFileResolver errorMessageFileResolver = new ErrorMessageFileResolver();
-        errorMessageFileResolver
-                .setErrorMessageProcessor(ErrorMessageProcessorImpl
-                        .getErrorMessageProcessor());
-        fileResolver.addFileProcessor(errorMessageFileResolver);
-    }
 
     private void addStandardTypeFileProcessor(FileResolver fileResolver) {
         StandardTypeFileResolver standardTypeFileResolver = new StandardTypeFileResolver();
@@ -438,7 +408,6 @@ public class DatabaseInstallerStart {
         FileResolverUtil.addClassPathPattern(fileResolver);
         fileResolver
                 .addResolvePath(FileResolverUtil.getClassPath(fileResolver));
-        fileResolver.addResolvePath(FileResolverUtil.getWebClasses());
         try {
             fileResolver.addResolvePath(FileResolverUtil
                     .getWebLibJars(fileResolver));
@@ -446,7 +415,6 @@ public class DatabaseInstallerStart {
             LOGGER.error("为文件扫描器添加webLibJars时出现异常", e);
         }
         fileResolver.addIncludePathPattern(TINY_JAR_PATTERN);
-        loadFileResolverConfig(fileResolver);
         return fileResolver;
     }
 
@@ -460,7 +428,7 @@ public class DatabaseInstallerStart {
         String applicationConfig = null;
 
         try {
-            applicationConfig = StreamUtils.readText(inputStream, "UTF-8", true);
+            applicationConfig = StreamUtil.readText(inputStream, "UTF-8", true);
         } catch (IOException e1) {
             LOGGER.error("读取application.xml文件出错", e1);
             throw new RuntimeException(e1);

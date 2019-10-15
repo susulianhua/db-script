@@ -15,7 +15,7 @@
  */
 package com.xquant.fileresolver;
 
-import com.xquant.file.FileObject;
+import com.xquant.vfs.FileObject;
 /**
  * 文件处理的回调处理接口
  *

@@ -1,0 +1,23 @@
+<standard-fields package-name="org.tinygroup.common">
+    <standard-field title="整型主键字段" business-type-id="Int" name="id" id="id">
+        <description>整型id</description>
+    </standard-field>
+    <standard-field title="v_id" business-type-id="Varchar50" name="v_id" id="v_id">
+        <description>v_id</description>
+    </standard-field>
+    <standard-field title="名称" business-type-id="Varchar50" name="name" id="name" default-value-id="name_default">
+        <description>人名</description>
+    </standard-field>
+    <standard-field title="教师" business-type-id="Varchar50" name="teacher" id="teacher" default-value-id="name_default">
+        <description>人名</description>
+    </standard-field>
+    <standard-field title="年龄" business-type-id="Int" name="age" id="age"
+                    default-value-id="age_default"></standard-field>
+    <standard-field title="机构id" business-type-id="Int" name="o_id" id="o_id"></standard-field>
+    <standard-field title="主键序列字段" business-type-id="Int" name="sequence_id" id="sequence_id"></standard-field>
+    <standard-field title="dummy" business-type-id="Char1" name="dummy" id="dummy"></standard-field>
+    <standard-field title="上级id" business-type-id="Varchar50" name="parent_id" id="parent_id"></standard-field>
+    <standard-field title="int类型上级id" business-type-id="Int" name="p_id" id="p_id"></standard-field>
+    <standard-field title="排序号" business-type-id="Int" name="sort" id="sort"
+                    default-value-id="age_default"></standard-field>
+</standard-fields>

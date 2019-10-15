@@ -1,0 +1,28 @@
+<standard-fields>
+  <standard-field id="89226af97f6344429fab94e5ed1f958b" name="用户代码" title="用户代码" business-type-id="Integer">
+    <description></description>
+    <nick-names/>
+  </standard-field>
+  <standard-field id="a8b2581a61714258b5a7ef569341a3b1" name="用户名称" title="用户名称" business-type-id="Varchar50">
+    <nick-names/>
+  </standard-field>
+  <standard-field id="090bbf61bf2e46f8a54dba99509ad2bf" name="用户分类" title="用户分类" business-type-id="7905d7efd42a48218c42ed2fd35cce62">
+    <nick-names/>
+  </standard-field>
+  </standard-field>
+  <standard-field id="dbbed5f9635b4d99a96496fee853e4ba" name="用户状态" title="用户状态" business-type-id="7905d7efd42a48218c42ed2fd35cce62">
+    <nick-names/>
+  </standard-field>
+  <standard-field id="3281a34a2b744ed28a1be7deed06cc83" name="create_date" title="创建时间" business-type-id="f974cf2343f9455e961ac7939611ea13">
+    <description></description>
+    <nick-names/>
+  </standard-field>
+  <standard-field id="8ec5c53b1c714ecda7eb875cdd890ca2" name="modify_date" title="最后修改时间" business-type-id="f974cf2343f9455e961ac7939611ea13">
+    <description></description>
+    <nick-names/>
+  </standard-field>
+  <standard-field id="c5e378eaa58f46ae8d2cee8c207aa95c" name="pass_modify_date" title="密码修改时间" business-type-id="f974cf2343f9455e961ac7939611ea13">
+    <description></description>
+    <nick-names/>
+  </standard-field>
+</standard-fields>

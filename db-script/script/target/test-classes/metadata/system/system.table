@@ -1,0 +1,7 @@
+<tables id="8b05439ef4c84a2b974399388b2db1b1" package-name="">
+  <table id="ea3fc4f06dad4310845bbd7f10a12b85" name="system_mailqueue" title="邮件队列">
+    <table-field standard-field-id="75b6caf97b5c469f996c84f25ddca2fc" primary="true" unique="true" not-null="true" id="mailqueue_id" auto-increase="true"/>
+    <table-field standard-field-id="db85c0720ead44c0b14e82b3eafe2d10" primary="false" unique="false" not-null="true" id="mailqueue_status" auto-increase="false"/>
+     <table-field standard-field-id="20a7f050dd5f4726828fd67445d1378f" primary="false" unique="false" not-null="false" id="search_id" auto-increase="false"/>
+  </table>
+</tables>

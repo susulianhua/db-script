@@ -19,7 +19,7 @@ import com.thoughtworks.xstream.XStream;
 import com.xquant.database.config.tablespace.TableSpaces;
 import com.xquant.database.tablespace.TableSpaceProcessor;
 import com.xquant.database.util.DataBaseUtil;
-import com.xquant.file.FileObject;
+import com.xquant.vfs.FileObject;
 import com.xquant.fileresolver.impl.AbstractFileProcessor;
 import com.xquant.xml.XStreamFactory;
 

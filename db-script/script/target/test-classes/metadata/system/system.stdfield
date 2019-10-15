@@ -1,0 +1,93 @@
+<standard-fields>
+  <standard-field id="d0ae32e1f34c4573b8298bdcad89c49f" name="config_owner" title="配置创建人" business-type-id="095e594e1550424b9643c7e2279e85be" default-value-id="">
+    <description></description>
+  </standard-field>
+  <standard-field id="3bdd271084f240c7a4c8a7a323e24f44" name="config_section" title="配置部分" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="08616f2108aa4d339c7cb43f44c961fd" name="config_module" title="配置模块" business-type-id="095e594e1550424b9643c7e2279e85be" default-value-id=""/>
+  <standard-field id="82d6405620c54f89975ea4b12a4688ba" name="config_key" title="配置的关键词" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="04f73ab7d089441daa66c55dbcf19b7a" name="config_value" title="配置的值" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="20a7f050dd5f4726828fd67445d1378f" name="search_id" title="搜索ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id=""/>
+  <standard-field id="c512358f477c406ca15dc07ef5c1c4a8" name="search_object_type" title="搜索对象类型" business-type-id="095e594e1550424b9643c7e2279e85be" default-value-id=""/>
+  <standard-field id="5c5229c53bad4cf3afbbeccaf348bb0a" name="search_object_id" title="搜索对象ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="22819ace1ac644a19e15bf14034a3b06" name="search_title" title="搜索名称&#x9;" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="9ea372d0291e48ad92b0ccc832485b65" name="search_content" title="搜索内容" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="42c7e8f67f1c4dfd9471a62f6158cef0" name="search_added_date" title="搜索添加日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="048d96b083e74cc1a334e0f33f2c0020" name="search_edited_date" title="搜索编辑日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="db6bd96455a544c8b827b17b531f7cbc" name="dict_id" title="字典项ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id=""/>
+  <standard-field id="45e660e7d07b46aca87f8e2c74d5decd" name="dict_key" title="字典key值" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="e8aa6f77988e4346bbafa0cfcb177836" name="dict_value" title="字典value值" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="f5c70ee6582347dea45bd6401b4f89b2" name="dict_sort" title="字典项序号" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="02058421c0be48dcab02f68cf7490361" name="effort_id" title="日志编号" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="">
+    <description></description>
+  </standard-field>
+  <standard-field id="41c2d4fa69994d27b18ce0512040b599" name="effort_object_type" title="日志对象" business-type-id="095e594e1550424b9643c7e2279e85be" default-value-id=""/>
+  <standard-field id="4f1e941334234d2c99bde0ff28a3d757" name="effort_object_id" title="对象ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="20e466bed2f746bdbaa7cfb3c98d6c78" name="effort_product" title="所属产品" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="c757c19c5c7e42e4bb25eb49244f2067" name="effort_project" title="所属项目" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="646f793a61ea4c8e95d7cf89815a6c13" name="effort_account" title="登记人" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="bc99a8114d0149beb77beb94afd34209" name="effort_work" title="工作内容" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="488614bbfcc5404aa5b4ddda4cef56d8" name="effort_date" title="日期" business-type-id="af7b470e7d404b4882e7ec5a1513165f"/>
+  <standard-field id="75dacdf666084a95b5a5faf4cf6a2527" name="effort_left" title="剩余" business-type-id="8068bb7c6e5a4302b60e801f63ca7b35"/>
+  <standard-field id="494874a140a54ab9a00d92382c8c67be" name="effort_consumed" title="耗时" business-type-id="8068bb7c6e5a4302b60e801f63ca7b35"/>
+  <standard-field id="a6dbb44cffaa49519898a71944b5c78f" name="effort_begin" title="开始" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="b5034e7b78254e7b82b4e3e01ede383a" name="effort_end" title="已关闭" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="8f7f46caee354c88a4068200c4045973" name="file_id" title="附件ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="11dc002e23a649e48888fabb340fae2e" name="file_pathname" title="附件地址" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="d730aee459ec4b5db375eb24063ae7cc" name="file_title" title="附件名" business-type-id="a30696c1e44441ecad77a832afd3731d"/>
+  <standard-field id="7953e1315d72467ea0d3a6fb5cce07c6" name="file_extension" title="附件扩展名" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="6f1762dbb20842088ba9937040172363" name="file_size" title="附件大小" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="name_default"/>
+  <standard-field id="f9bbeaa3639e436e9c44f51a7ae07841" name="file_object_type" title="附件文件类型" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="1ff783ff38614285b46eee52e8db309d" name="file_object_id" title="附件对象ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="188c4e45cb244c1188d491a80870f265" name="file_added_by" title="由谁添加" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="54931073c3dd432b9d20c1fa3aa50b0d" name="file_added_date" title="附件添加日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="94269caa7a0948339ef8bf1f42168870" name="file_downloads" title="下载次数" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="name_default"/>
+  <standard-field id="93eb49b6ef0a434d9b2b9f177b2bc2cb" name="file_extra" title="file_extra" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="5f1be0d44c924da399aa86ef369ecc35" name="file_deleted" title="是否删除" business-type-id="b6a9bc04774b40859a7dd8c6fd52a629" default-value-id="name_default"/>
+  <standard-field id="75b6caf97b5c469f996c84f25ddca2fc" name="mailqueue_id" title="邮件队列ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="d029b66c221b4df9ac4684c66d2f4831" name="mailqueue_toList" title="发送给" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="fc310f2fcd094cd0920299ac266b29d4" name="mailqueue_ccList" title="抄送给" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="26ca1516c85c4ec28028c40c875f55f1" name="mailqueue_subject" title="邮箱队列主题" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="8b586f7cff54490fbd88d2a1b8104a4a" name="mailqueue_body" title="队列主体" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="13306fa40c5e48c1932ca64d407d7241" name="mailqueue_added_by" title="邮箱队列由谁添加" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="fcf68c7a8cbf4c0fb3ff847a7e72352a" name="mailqueue_added_date" title="添加日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="c3e57399dd7a44658eda9c71df05f655" name="mailqueue_sendTime" title="传送时间" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="db85c0720ead44c0b14e82b3eafe2d10" name="mailqueue_status" title="队列状态" business-type-id="286a6bca92b34779bcb6fc8809f0a666" default-value-id="status_default"/>
+  <standard-field id="d73b76d0dbeb413097168d488ac4d433" name="mailqueue_fail_reason" title="传送失败理由" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="a8b7ed7bee72419997a08ab782097fc0" name="module_root" title="模块根节点" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="name_default"/>
+  <standard-field id="130ca8fdee194bfc9f97ff107e561595" name="module_name" title="模块名称" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37" default-value-id=""/>
+  <standard-field id="80805605c5b54d3c9d6894d1d6086b65" name="module_parent" title="模块父节点" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="name_default"/>
+  <standard-field id="fee93cf9df864ba4a711d096598cd343" name="module_grade" title="模块等级" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="name_default"/>
+  <standard-field id="a5526dab212f42e6b680bafef91b87d5" name="module_order" title="模块次序" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="name_default"/>
+  <standard-field id="5d794a1e323844e991dcfcb834dfd0aa" name="module_type" title="模块类型" business-type-id="095e594e1550424b9643c7e2279e85be" default-value-id=""/>
+  <standard-field id="9164a45fb4cc4abc98dacebd2bfcde85" name="module_owner" title="模块归属" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="1518400fe07c4cc3a78bd5c6023f9edb" name="module_path" title="模块地址" business-type-id="27ebfcdc558c477da425a46e566d4637" default-value-id=""/>
+  <standard-field id="51b35d0098cc46e4ae14e922f78269f6" name="action_id" title="系统日志ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="19f5ad5730c0424fa5ebe12f141aba90" name="action_object_type" title="对象类型" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="d5e3e1f45ae34d569cf8ecd010ec4437" name="action_object_id" title="对象ID" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="f74f8eb053ef448a8903f8ab823d7950" name="action_product" title="所属产品" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="6185f7b6c38f499e8870b6247a464bb0" name="action_project" title="所属项目" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="f5aed712657140c283a09dc15231d9b5" name="action_actor" title="操作者" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="81872ca2ef8c4eb186888e9900f7e04c" name="action_action" title="动作" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="d9338ae7af0b4dac83c28cc3b825dab7" name="action_date" title="系统日志日期" business-type-id="a9e498b3bfc54c338f3a97012efdf5ff"/>
+  <standard-field id="1a56bb3151834ce688e6ec25a50c0369" name="action_comment" title="注释" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="aa3abd25422e48fd92ace02365b2ec4b" name="action_extra" title="EXTRA" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="ed0fdaa8df4b424999ddc2a33aeb1154" name="action_read" title="是否已读" business-type-id="b6a9bc04774b40859a7dd8c6fd52a629"/>
+  <standard-field id="db74df04c6164a6db9a0f5af85dd58f9" name="action_efforted" title="ACTION_efforted" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="a3c0dbee7bda4ec990d8bcfcbee2ee1f" name="history_id" title="操作历史ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="0d35680ef7484ef9a3ecbca782281d37" name="history_action" title="操作ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="name_default"/>
+  <standard-field id="61032af00ff64c3e8d84a497ba8eff38" name="history_field" title="所属领域" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="13a94f229214469bb423e60c807c85ae" name="history_old" title="上一条历史" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="8fbba64711854fa2b578e316737b475c" name="history_new" title="当前历史" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="8e46079f520c494f94c3d3c70e42d9fb" name="history_diff" title="对比" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="958e740f99614e509772e09a3889cfb5" name="module_title" title="中文名" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="706740c7a21f47a5b2c68fe1d68efa9d" name="holiday_id" title="假期ID" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd"/>
+  <standard-field id="ca40b596b0b6409e8127fdbd2ee47209" name="holiday_name" title="假期名" business-type-id="095e594e1550424b9643c7e2279e85be"/>
+  <standard-field id="13ef62dd19e14454ba6c9f1ff98dd8b9" name="holiday_date" title="假期日期" business-type-id="27ebfcdc558c477da425a46e566d4637">
+    <description></description>
+  </standard-field>
+  <standard-field id="83df7b72ac664c56be7ebd85717afcdd" name="holiday_account" title="假期创建人" business-type-id="27ebfcdc558c477da425a46e566d4637"/>
+  <standard-field id="9402fee0aa7e45b78bbcffc0c9be543e" name="holiday_type" title="假期类型" business-type-id="a2c7afa4de724b0cb8f2f46fd8389a37"/>
+  <standard-field id="941258c83a8c49a490d5afa2ec35ccfa" name="holiday_deleted" title="删除标志位" business-type-id="7ea3c248890d4b23a5f7d34732ed82cd" default-value-id="name_default"/>
+  <standard-field id="9a509de6efec40ac818dd415b28afa03" name="holiday_detail" title="假期描述" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+  <standard-field id="0c492fe9411e4c70b1f1cfa5d48b6b2e" name="hoiliday_remark" title="假期备注" business-type-id="cc9ed20b13f943f3a967f9d1c5368132"/>
+</standard-fields>

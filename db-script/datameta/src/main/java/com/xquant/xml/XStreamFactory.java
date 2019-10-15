@@ -16,8 +16,13 @@
 package com.xquant.xml;
 
 import com.thoughtworks.xstream.XStream;
+import com.xquant.common.ClassFiledUtil;
+import org.apache.commons.lang.StringUtils;
 
+import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -69,10 +74,120 @@ public final class XStreamFactory {
         }
         xstream.autodetectAnnotations(true);
         xstream.setMode(XStream.NO_REFERENCES);
+        xstream.processAnnotations(XStreamConfiguration.class);
         return xstream;
     }
 
     public static void clear() {
         xstreamMap.clear();
     }
+
+    public static void parse(XStreamConfiguration xstreamConfiguration)
+            throws ClassNotFoundException, InstantiationException,
+            IllegalAccessException {
+        XStream xStream = getXStream(xstreamConfiguration.getPackageName());
+        loadAnnotationClass(xStream, xstreamConfiguration);
+        if (xstreamConfiguration.getxStreamClassAliases() != null) {
+            processClassAliases(xStream,
+                    xstreamConfiguration.getxStreamClassAliases());
+        }
+    }
+
+    private static void loadAnnotationClass(XStream xStream,
+                                            XStreamConfiguration xstreamConfiguration)
+            throws ClassNotFoundException {
+        if (xstreamConfiguration.getxStreamAnnotationClasses() != null) {
+            for (XStreamAnnotationClass annotationClass : xstreamConfiguration
+                    .getxStreamAnnotationClasses()) {
+                xStream.processAnnotations(Class.forName(annotationClass
+                        .getClassName()));
+            }
+        }
+    }
+
+    private static void processClassAliases(XStream xStream,
+                                            XStreamClassAliases classAliases) throws ClassNotFoundException,
+            InstantiationException, IllegalAccessException {
+        if (classAliases.getClassAliases() != null) {
+            for (XStreamClassAlias classAlias : classAliases.getClassAliases()) {
+                Class<?> clazz = Class.forName(classAlias.getType());
+                xStream.alias(classAlias.getAliasName(), clazz);
+                processClassAlias(xStream, classAlias, clazz);
+            }
+        }
+    }
+
+    private static void processClassAlias(XStream xStream,
+                                          XStreamClassAlias classAlias, Class<?> clazz)
+            throws InstantiationException, IllegalAccessException {
+        List<XStreamClassPropertyAlias> list = classAlias.getList();
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+        for (XStreamClassPropertyAlias propertyAlias : list) {
+            processClassProperty(xStream, propertyAlias, clazz);
+        }
+    }
+
+    private static void processClassProperty(XStream xStream, XStreamClassPropertyAlias propertyAlias, Class<?> clazz) {
+        String propertyName = propertyAlias.getPropertyName();
+        Field field = ClassFiledUtil.getDeclaredFieldWithParent(clazz, propertyName);
+        String aliasName = propertyAlias.getAliasName();
+        boolean asTttribute = propertyAlias.isAsTttribute();
+        boolean implicit = propertyAlias.isImplicit();
+        boolean omit = propertyAlias.isOmit();
+        if (omit) {
+            xStream.omitField(clazz, propertyName);
+        }
+        if (implicit && field != null) {
+            if (field.getType().isArray()) {
+                xStream.addImplicitArray(clazz, propertyName);
+            } else if (ClassFiledUtil.implmentInterface(field.getType(),
+                    Collection.class)) {
+                xStream.addImplicitCollection(clazz, propertyName);
+            }
+        }
+        if (!StringUtils.isBlank(aliasName)) {
+            if (!asTttribute) {
+                xStream.aliasField(aliasName, clazz, propertyName);
+            } else {
+                xStream.aliasAttribute(clazz, propertyName, aliasName);
+            }
+
+        }
+
+    }
+//
+//	private static void processPropertyOmit(XStream xStream,
+//			XStreamClassAlias classAlias, Class<?> clazz) {
+//		for (XStreamPropertyOmit propertyOmit : classAlias.getPropertyOmits()) {
+//			xStream.omitField(clazz, propertyOmit.getAttributeName());
+//		}
+//	}
+//	private static void processPropertyImplicit(XStream xStream,
+//			XStreamClassAlias classAlias, Class<?> clazz)
+//			throws InstantiationException, IllegalAccessException {
+//		
+//		for (XStreamPropertyImplicit propertyImplicit : classAlias
+//				.getPropertyImplicits()) {
+//			String name = propertyImplicit.getAttributeName();
+//			Field field = ClassFiledUtil.getDeclaredFieldWithParent(clazz, name);
+//			if(field == null){
+//				continue;
+//			}
+//			if(field.getType().isArray()){
+//				xStream.addImplicitArray(clazz, name);
+//			}else if(ClassFiledUtil.implmentInterface(field.getType(),
+//                    Collection.class)){
+//				xStream.addImplicitCollection(clazz, name);
+//			}
+//		}
+//	}
+//	private static void processPropertyAlias(XStream xStream,
+//			XStreamClassAlias classAlias, Class<?> clazz) {
+//		for (XStreamPropertyAlias propertyAlias : classAlias.getProperAliases()) {
+//			xStream.aliasAttribute(clazz, propertyAlias.getAttributeName(),
+//					propertyAlias.getAliasName());
+//		}
+//	}
 }

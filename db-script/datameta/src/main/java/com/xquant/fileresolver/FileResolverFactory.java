@@ -15,6 +15,8 @@
  */
 package com.xquant.fileresolver;
 
+import com.xquant.fileresolver.impl.FileResolverImpl;
+
 public final class FileResolverFactory {
     private static FileResolver fileResolver;
 
