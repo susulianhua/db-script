@@ -1,0 +1,24 @@
+<xstream-configuration package-name="database">
+    <xstream-annotation-classes>
+        <xstream-annotation-class
+                class-name="com.xquant.database.config.tablespace.TableSpaces"/>
+        <xstream-annotation-class
+                class-name="com.xquant.database.config.table.Tables"/>
+        <xstream-annotation-class
+                class-name="com.xquant.database.config.customsql.CustomSqls"/>
+        <xstream-annotation-class
+                class-name="com.xquant.database.config.procedure.Procedures"/>
+        <xstream-annotation-class
+                class-name="com.xquant.database.config.dialectfunction.DialectFunctions">
+        </xstream-annotation-class>
+        <xstream-annotation-class
+                class-name="com.xquant.database.config.trigger.Triggers">
+        </xstream-annotation-class>
+        <xstream-annotation-class
+                class-name="com.xquant.database.config.sequence.Sequences">
+        </xstream-annotation-class>
+        <xstream-annotation-class
+            class-name="com.xquant.database.config.view.Views"/>
+    </xstream-annotation-classes>
+</xstream-configuration>
+

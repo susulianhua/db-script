@@ -11,6 +11,12 @@ public class TableBase {
     public TableBase() {
     }
 
+    public TableBase(String fileName, String package_name, String table_id){
+        this.fileName = fileName;
+        this.package_name = package_name;
+        this.table_id = table_id;
+    }
+
     public TableBase(String fileName, String package_name, String table_id, String table_name,
                      String table_title, String table_description){
         this.fileName = fileName;

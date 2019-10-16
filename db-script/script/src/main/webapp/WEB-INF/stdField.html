@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <link href="css/table.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/ext-theme-classic-all.css"/>
+
+    <!-- GC -->
+    <script type="text/javascript" src="js/ext-all.js"></script>
+
+    <!-- page specific -->
+    <script type="text/javascript" src="js/stdField.js.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="stdField">
+</div>
+</body>
+</html>
+<script>
+    function getRecordByName() {
+        $.ajax({
+            url:'http://localhost:8080/BookManager//record/select',
+            type:'post',
+            data:$('#records').serialize(),
+            datatype:"json",
+            error:function(data){
+                alert("查询失败");
+            },
+            success:function (data) {
+                var str1="";
+                $('#test').html("");
+                for(var i = 0; i < data.length; i++){
+                    str1 = "<tr>" +
+                        "<td>" + data[i].id + "</td>" +
+                        "<td>" + data[i].book_id + "</td>" +
+                        "<td>" + data[i].book_name + "</td>" +
+                        "<td>" + data[i].record_date + "</td>" +
+                        "<td>" + data[i].back_date + "</td>" +
+                        "<td>" + data[i].sno +"</td>" +
+                        "<td>" + data[i].state + "</td>";
+                    $("#test").append(str1);
+                }
+            }
+        })
+
+    }
+</script>
+<script>
+    function getAllRecords() {
+        $.ajax({
+            url:'http://localhost:8080/BookManager//record/getAll',
+            type:'post',
+            error:function(data){
+                alert("查询失败");
+            },
+            success:function (data) {
+                var str1="";
+                $('#test').html("");
+                for(var i = 0; i < data.length; i++){
+                    str1 = "<tr>" +
+                        "<td>" + data[i].id + "</td>" +
+                        "<td>" + data[i].book_id + "</td>" +
+                        "<td>" + data[i].book_name + "</td>" +
+                        "<td>" + data[i].record_date + "</td>" +
+                        "<td>" + data[i].back_date + "</td>" +
+                        "<td>" + data[i].sno +"</td>" +
+                        "<td>" + data[i].state + "</td>";
+                    $("#test").append(str1);
+                }
+            }
+        })
+
+    }
+</script>

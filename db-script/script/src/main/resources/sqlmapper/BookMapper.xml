@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xquant.script.dao.BookMapper">
+    <!--  查询当前页面书籍  -->
+    <select id="getAllBooks" resultType="com.xquant.script.pojo.Book">
+        select * from
+                      ( select r.*,rownum as d from
+                                      (select * from tb_books order by book_id)r
+                         where rownum &lt;= #{limit})
+        where d&gt;#{start}
+    </select>
+    <select id="getBookCount" resultType="Integer">
+        select count(*) from tb_books
+    </select>
+    <!--  根据书籍名称查询对应书籍  -->
+    <select id="getBookByName" resultType="com.xquant.script.pojo.Book">
+        select * from tb_books where book_name=#{book_name}
+    </select>
+    <!--  根据书籍id查找对应书籍  -->
+    <select id="getBookById" resultType="com.xquant.script.pojo.Book">
+        select * from tb_books where book_id=#{book_id}
+    </select>
+    <!--  增加书籍  -->
+    <insert id="addBook" parameterType="com.xquant.script.pojo.Book">
+        insert into tb_Books(book_id, state, book_name, description, author, price, publish_time)
+        values (#{book_id},#{state},#{book_name},#{description},#{author},#{price},#{publish_time})
+    </insert>
+    <!--  删除书籍  -->
+    <delete id="deleteBook" parameterType="Integer">
+        delete from tb_Books where book_id=#{book_id}
+    </delete>
+    <!--  更新  -->
+    <update id="updateBook" parameterType="com.xquant.script.pojo.Book">
+        update tb_Books set book_name=#{book_name},description=#{description},author=#{author},
+                           price=#{price},publish_time=#{publish_time},state=#{state}
+       where book_id=#{book_id}
+    </update>
+
+</mapper>
+

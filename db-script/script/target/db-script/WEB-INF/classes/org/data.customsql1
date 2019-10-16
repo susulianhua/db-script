@@ -1,0 +1,9 @@
+<custom-sqls>
+	<custom-sql type="before">
+		<sql dialect-type-name="oracle" content="create xxxx"></sql>
+		<sql dialect-type-name="mysql" content="create yyyyy"></sql>
+	</custom-sql>
+	<custom-sql type="after">
+		<sql dialect-type-name="oracle" content="after1"></sql>
+	</custom-sql>
+</custom-sqls>

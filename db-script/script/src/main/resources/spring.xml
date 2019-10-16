@@ -14,7 +14,7 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
     <!--1 容器自动扫描IOC组件  -->
-    <context:component-scan base-package="com.xquant.*"></context:component-scan>
+    <context:component-scan base-package="com.xquant.script.*"></context:component-scan>
     <aop:aspectj-autoproxy/>
 
 
@@ -31,12 +31,17 @@
         <property name="username" value="${jdbc.username}" />
         <property name="password" value="${jdbc.password}" />
     </bean>
+    <!--   4.会话工厂bean  sqlsessionFactory   -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath*:sqlmapper/" />
+    </bean>
 
     <!--   5.配置mapper扫描包，动态实现dao接口，注入到spring容器中  -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--   注入sqlSessionFactory   -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <property name="basePackage" value="org.xquant.dao"/>
+        <property name="basePackage" value="com.xquant.script.dao"/>
     </bean>
 
     <!--   6.声明事务管理   -->

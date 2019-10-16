@@ -1,0 +1,64 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" default-lazy-init="true">
+    <bean id="constantProcessor" scope="singleton"
+          class="org.tinygroup.metadata.constants.impl.ConstantsProcessorImpl">
+    </bean>
+    <bean id="errorMessageProcessor" scope="singleton"
+          class="org.tinygroup.metadata.errormessage.impl.ErrorMessageProcessorImpl">
+    </bean>
+    <bean id="standardTypeProcessor" scope="singleton"
+          class="org.tinygroup.metadata.stddatatype.impl.StandardTypeProcessorImpl">
+    </bean>
+    <bean id="businessTypeProcessor" scope="singleton"
+          class="org.tinygroup.metadata.bizdatatype.impl.BusinessTypeProcessorImpl">
+        <property name="standardTypeProcessor">
+            <ref bean="standardTypeProcessor"/>
+        </property>
+    </bean>
+    <bean id="defaultValueProcessor" class="org.tinygroup.metadata.defaultvalue.impl.DefaultValueProcessorImpl">
+    </bean>
+    <bean id="standardFieldProcessor" scope="singleton"
+          class="org.tinygroup.metadata.stdfield.impl.StandardFieldProcessorImpl">
+        <property name="businessTypeProcessor">
+            <ref bean="businessTypeProcessor"/>
+        </property>
+    </bean>
+    <bean id="constantFileResolver" scope="singleton"
+          class="org.tinygroup.metadata.fileresolver.ConstantFileResolver">
+        <property name="constantProcessor" ref="constantProcessor"></property>
+    </bean>
+    <bean id="businessTypeFileResolver" scope="singleton"
+          class="org.tinygroup.metadata.fileresolver.BusinessTypeFileResolver">
+        <property name="businessTypeProcessor" ref="businessTypeProcessor"></property>
+    </bean>
+    <bean id="standardFieldFileResolver" scope="singleton"
+          class="org.tinygroup.metadata.fileresolver.StandardFieldFileResolver">
+        <property name="standardFieldProcessor" ref="standardFieldProcessor"></property>
+    </bean>
+    <bean id="errorMessageFileResolver" scope="singleton"
+          class="org.tinygroup.metadata.fileresolver.ErrorMessageFileResolver">
+        <property name="errorMessageProcessor" ref="errorMessageProcessor"></property>
+    </bean>
+    <bean id="standardTypeFileResolver" scope="singleton"
+          class="org.tinygroup.metadata.fileresolver.StandardTypeFileResolver">
+        <property name="standardDataTypeProcessor" ref="standardTypeProcessor"></property>
+    </bean>
+    <bean id="defaultValueFileResolver" class="org.tinygroup.metadata.fileresolver.DefaultValueFileResolver">
+        <property name="defaultValueProcessor" ref="defaultValueProcessor"></property>
+    </bean>
+    <!--
+        <bean id="languageTypeFileResolver" class="org.tinygroup.metadata.fileresolver.LanguageTypeFileResolver">
+            <property name="languageTypeProcessor" ref="languageTypeProcessor"/>
+        </bean>
+        <bean id="languageTypeProcessor" class="org.tinygroup.metadata.languagetype.impl.LanguageTypeProcessorImpl">
+        </bean>
+    -->
+    <bean id="dictMetaDataFileProcessor" class="org.tinygroup.metadata.fileresolver.DictFileProcessor">
+        <property name="dictProcessor" ref="dictProcessor"/>
+    </bean>
+    <bean id="dictProcessor" class="org.tinygroup.metadata.dict.impl.DictProcessorImpl">
+    </bean>
+</beans>

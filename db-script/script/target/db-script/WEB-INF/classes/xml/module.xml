@@ -1,0 +1,10 @@
+<module>
+    <name id ="crud">
+        <table>t_user</table>
+        <table>t_org</table>
+        <table>t_customer</table>
+        <table>t_incrementer</table>
+    </name>
+    <name id="cddd">
+    </name>
+</module>
