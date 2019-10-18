@@ -138,6 +138,9 @@ Ext.onReady(function () {
             { 'direction' : 'desc', 'name': 'desc'}
         ]
     });
+    var obj = JSON.parse(localStorage.getItem('obj'));
+    var tableName = obj.tableName;
+    var FileName = obj.FileName + '.table.xml';
     var standardFieldIdStore = Ext.create('Ext.data.Store',{
         fields:[ 'standardFieldId','name' ],
         proxy: {
@@ -151,7 +154,7 @@ Ext.onReady(function () {
         },
         data: [],
     });
-    standardFieldIdStore.load();
+    standardFieldIdStore.load({params:{FileName: FileName}});
 
     var panel = Ext.create('Ext.panel.Panel',{
         renderTo: 'bookTable',
@@ -187,8 +190,7 @@ Ext.onReady(function () {
                         frame: true,
                         items: [
                             { fieldLabel: '文件名', name: 'fileName', xtype: 'textfield', readOnly: true},
-                            { fieldLabel: 'id', name: 'table_id', xtype: 'textfield', regex: /^\w+$/,
-                                allowBlank: false},
+                            { fieldLabel: 'id', name: 'table_id', xtype: 'textfield', readOnly: true},
                             { fieldLabel: 'title', name: 'table_title', xtype: 'textfield', allowBlank: false}
                         ]
                     },
@@ -417,8 +419,6 @@ Ext.onReady(function () {
         ]
 
     });
-    var tableName = 't_user';
-    var FileName = 'crud.table.xml';
     Ext.Ajax.request({
         url: 'http://localhost:8080/dbscript//table/tableBase',
         method: 'post',
@@ -439,10 +439,10 @@ Ext.onReady(function () {
         failure:function () {
         }
     });
-    fieldStore.load();
-    indexStore.load();
-    foreignStore.load();
-    indexFieldStore.load();
+    fieldStore.load({params:{FileName: FileName, tableName: tableName}});
+    indexStore.load({params:{FileName: FileName, tableName: tableName}});
+    foreignStore.load({params:{FileName: FileName, tableName: tableName}});
+    indexFieldStore.load({params:{FileName: FileName, tableName: tableName}});
 
     /**
      * 字段grid中编辑修改图标的实现

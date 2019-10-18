@@ -1,10 +1,17 @@
-<module>
-    <name id ="crud">
-        <table>t_user</table>
-        <table>t_org</table>
-        <table>t_customer</table>
-        <table>t_incrementer</table>
-    </name>
-    <name id="cddd">
-    </name>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+    <module id="crud">
+        <tablename name="t_user"/>
+        <tablename name="t_org"/>
+        <tablename name="t_customer"/>
+        <tablename name="t_increment"/>
+        <standardfield>crud</standardfield>
+        <procedure>crud</procedure>
+        <view>crud</view>
+        <trigger>crud</trigger>
+<tablename name="dasda"/>
 </module>
+    <module id="cddd">
+    <tablename name="fadad"/>
+</module>
+</modules>
