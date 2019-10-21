@@ -2,107 +2,79 @@ package com.xquant.script.controller;
 
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.thoughtworks.xstream.XStream;
+import com.xquant.database.config.table.Tables;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
 import com.xquant.script.pojo.module.*;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+import com.xquant.script.service.FileFromXmlUtils;
+import com.xquant.script.service.UpdateXmlUtils;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.awt.*;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/tree")
 public class TreeController {
-
-    @RequestMapping("/module")
+    /**生成树Store，拼接json*/
+    @RequestMapping("/getModule")
     @ResponseBody
-    public  NormalResponse modul(HttpServletRequest request){
-        int id = 1;
+    public NormalResponse getModule(){
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        filePath = filePath.substring(1,filePath.length() - 51);
-        filePath = filePath + "/db-script/script/src/main/resources/xml/module.xml";
-        File file = new File(filePath);
+        File file = FileFromXmlUtils.getModuleFile(filePath);
         XStream xstream = new XStream();
         xstream.processAnnotations(Modules.class);
         Modules modules = (Modules) xstream.fromXML(file);
-        JSONObject jsontotal = new JSONObject();
-        JSONArray jsonArraytotal = new JSONArray();
-        for(Module module: modules.getModuleList()){
-            JSONArray jsonArraytable = new JSONArray();
-            JSONArray jsonArraymodule = new JSONArray();
-            JSONObject jsonObject = new JSONObject();
-            if(module.getTablelist()!= null){
-                for(TableName tableName: module.getTablelist()){
-                    JSONObject json = new JSONObject();
-                    json.put("text",tableName.getName());
-                    json.put("leaf", true);
-                    json.put("id", id++);
-                    jsonArraytable.add(json);
-                }
-                JSONObject jsontable = new JSONObject();
-                jsontable.put("text","表");
-                jsontable.put("children",jsonArraytable);
-                jsontable.put("id", id++);
-                jsonArraymodule.add(jsontable);
-            }else{
-                JSONObject jsontable = new JSONObject();
-                jsontable.put("text", "表");
-                jsontable.put("leaf", false);
-                jsontable.put("id", id++);
-                jsonArraymodule.add(jsontable);
-            }
-            if(module.getStandardfield() != null) {
-                JSONObject jsonstdfield = new JSONObject();
-                jsonstdfield.put("text", "标准字段");
-                jsonstdfield.put("leaf", true);
-                jsonstdfield.put("id", id++);
-                jsonArraymodule.add(jsonstdfield);
-            }
-            if(module.getView() != null){
-                JSONObject jsonview = new JSONObject();
-                jsonview.put("text", "视图");
-                jsonview.put("leaf", true);
-                jsonview.put("id", id++);
-                jsonArraymodule.add(jsonview);
-            }
-            if(module.getTrigger() != null){
-                JSONObject jsontrigger = new JSONObject();
-                jsontrigger.put("text", "触发器");
-                jsontrigger.put("leaf", true);
-                jsontrigger.put("id", id++);
-                jsonArraymodule.add(jsontrigger);
-            }
-            jsonObject.put("text","模块(" + module.getId() + ")");
-            jsonObject.put("id", id++);
-            jsonObject.put("children", jsonArraymodule);
-            jsonArraytotal.add(jsonObject);
-        }
-        jsontotal.put("data",jsonArraytotal);
-        return new NormalResponse(jsonArraytotal, (long) jsonArraytotal.size());
-
+        JSONArray jsonArrayTotal = new JSONArray();
+        UpdateXmlUtils.createJson(jsonArrayTotal, modules);
+        return new NormalResponse(jsonArrayTotal, (long) jsonArrayTotal.size());
     }
 
+    @RequestMapping("/addModule")
+    @ResponseBody
+    public NormalResponse addModule(HttpServletRequest request){
+        String newModuleName = request.getParameter("moduleName");
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getModuleFile(filePath);
+        File moduleDirFile = FileFromXmlUtils.getModuleDirFile(filePath, newModuleName);
+        moduleDirFile.mkdirs();
+        File tableFile = FileFromXmlUtils.getTableFile(newModuleName, filePath);
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Tables.class);
+        Tables tables = new Tables();
+        String xml = xStream.toXML(tables);
+        UpdateXmlUtils.modulesToFile(xml, tableFile);
+        UpdateXmlUtils.addModule(file, newModuleName);
+        return new NormalResponse();
+    }
+
+    @RequestMapping("/deleteModule")
+    @ResponseBody
+    public NormalResponse deleteModule(HttpServletRequest request){
+        String moduleDeplayName = request.getParameter("moduleName");
+        String moduleName = moduleDeplayName.substring(3, moduleDeplayName.length() - 1);
+        System.out.println("moduleName" + moduleName);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getModuleFile(filePath);
+        String folder = filePath.substring(1,filePath.length() - 51) +
+                "/db-script/script/src/main/resources/xml/" + moduleName;
+        System.out.println("folder:" + folder);
+        File dirFile= new File(folder);
+        try{
+            FileUtils.deleteDirectory(dirFile);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        UpdateXmlUtils.deleteModule(file, moduleName);
+
+        return new NormalResponse();
+    }
+
+    /** 在module.xml及对应table.xml中生成添加对应表格信息*/
     @RequestMapping("/addtable")
     @ResponseBody
     public NormalResponse addtable(HttpServletRequest request) throws Exception{
@@ -110,80 +82,58 @@ public class TreeController {
         String module = request.getParameter("moduleName");
         String moduleName = module.substring(3,module.length()- 1);
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        filePath = filePath.substring(1,filePath.length() - 51);
-        filePath = filePath + "/db-script/script/src/main/resources/xml/module.xml";
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = factory.newDocumentBuilder();
-        File file = new File(filePath);
-        Document document = db.parse(file);
-        Element root = document.getDocumentElement();
-        NodeList nodeList = root.getElementsByTagName("module");
-        for(int i = 0; i < nodeList.getLength(); i++){
-            if(nodeList.item(i).getAttributes().getNamedItem("id").getNodeValue().equals(moduleName)){
-                Element element = document.createElement("tablename");
-                element.setAttribute("name",tableName);
-
-                root.getElementsByTagName("module").item(i).appendChild(element);
-                TransformerFactory tff = TransformerFactory.newInstance();
-                Transformer tf = tff.newTransformer();
-                tf.setOutputProperty(OutputKeys.INDENT, "yes");
-                tf.transform(new DOMSource(document), new StreamResult(file));
-            }
-        }
+        File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
+        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
+        UpdateXmlUtils.addTableInModule(moduleFile, tableName, moduleName);
+        UpdateXmlUtils.addTableInTable(file, tableName);
         return new NormalResponse();
     }
 
+    /** 在module.xml及对应table.xml中生成删除对应表格信息*/
     @RequestMapping("/deleteTable")
     @ResponseBody
     public NormalResponse deleteTable(HttpServletRequest request) throws Exception{
         String tableName = request.getParameter("tableName");
         String FileName = request.getParameter("FileName");
-        DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        filePath = filePath.substring(1,filePath.length() - 51);
-        String tableFilePath = filePath + "/db-script/script/src/main/resources/xml/" + FileName + "/" + FileName + ".table.xml";
-        File file = new File(tableFilePath);
-        TransformerFactory tff = TransformerFactory.newInstance();
-        Transformer tf = tff.newTransformer();
-        tf.setOutputProperty(OutputKeys.INDENT, "yes");
-
+        File file = FileFromXmlUtils.getTableFile(FileName, filePath);
         //删除table.xml中对应表格
-        Document document = db.parse(file);
-        Element root = document.getDocumentElement();
-        NodeList nodeList = root.getElementsByTagName("table");
-        for(int i = 0; i < nodeList.getLength(); i++){
-            if(nodeList.item(i).getAttributes().getNamedItem("id").getNodeValue().equals(tableName)){
-                root.removeChild(nodeList.item(i));
-                tf.transform(new DOMSource(document), new StreamResult(file));
-                break;
-            }
-        }
+        UpdateXmlUtils.deleteTableInTable(file, tableName);
 
         //删除module.xml中对应表格
-        String modulePath = filePath + "/db-script/script/src/main/resources/xml/" + "module.xml";
-        File moduleFile = new File(modulePath);
-        DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document moduleDocument = documentBuilder.parse(moduleFile);
-        Element moduleRoot = moduleDocument.getDocumentElement();
-        NodeList moduleNodeList = moduleRoot.getElementsByTagName("module");
-        System.out.println("filename:" + FileName);
-        for(int i = 0; i <  moduleNodeList.getLength(); i++){
-            if(moduleNodeList.item(i).getAttributes().getNamedItem("id").equals(FileName)){
-                Element cruModule = (Element) moduleNodeList.item(i);
-                System.out.println("1111111111");
-                NodeList tableNodeList = cruModule.getElementsByTagName("tablename");
-                for(int j = 0; j < tableNodeList.getLength(); j++){
-                    if(tableNodeList.item(j).getAttributes().getNamedItem("name").getNodeValue().equals(tableName)){
-                        moduleNodeList.item(i).removeChild(tableNodeList.item(j));
-                        System.out.println("22222222");
-                    }
-                }
-                tf.transform(new DOMSource(moduleDocument), new StreamResult(moduleFile));
-                break;
-            }
-        }
+        File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
+        UpdateXmlUtils.deleteTableInModule(moduleFile, tableName, FileName);
         return new NormalResponse();
 
     }
 
+    /**在module.xml生成对应信息，并生成对应视图、触发器等xml文件*/
+    @RequestMapping("/addOther")
+    @ResponseBody
+    public NormalResponse addOther(HttpServletRequest request){
+        String moduleAll = request.getParameter("moduleName");
+        String curText = request.getParameter("otherName");
+        String moduleName = moduleAll.substring(3,moduleAll.length()- 1);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getModuleFile(filePath);
+        curText = UpdateXmlUtils.addOtherInModule(file, curText, moduleName);
+        System.out.println("filePath:" + filePath);
+        UpdateXmlUtils.addOtherInDetail(moduleName, curText, filePath);
+        return new NormalResponse();
+
+    }
+
+    /**在module.xml删除对应信息，并删除对应视图、触发器等xml文件*/
+    @RequestMapping("/deleteOther")
+    @ResponseBody
+    public NormalResponse deleteOther(HttpServletRequest request){
+        String fileName = request.getParameter("FileName");
+        String curText = request.getParameter("curText");
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getModuleFile(filePath);
+        curText = UpdateXmlUtils.deleteOtherInModule(file, curText, fileName);
+        System.out.println("curTextdelete" + curText);
+        UpdateXmlUtils.deleteOtherInDetail(fileName, curText, filePath);
+        return new NormalResponse();
+    }
 }

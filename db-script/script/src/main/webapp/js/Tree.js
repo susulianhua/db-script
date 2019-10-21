@@ -1,13 +1,13 @@
 Ext.onReady(function () {
 
     Ext.Ajax.request({
-        url: 'http://localhost:8080/dbscript//tree/module',
+        url: 'http://localhost:8080/dbscript//tree/getModule',
         params: {
             id: 1
         },
         success: function(response){
-            var text = response.responseText;
-            var data =  JSON.parse(text);
+            var responseText = response.responseText;
+            var data =  JSON.parse(responseText);
             var treeStore = Ext.create('Ext.data.TreeStore',{
                 id: 'treeStore',
                 root:{
@@ -24,7 +24,7 @@ Ext.onReady(function () {
                 renderTo: 'tree-panel',
                 rootVisible : false,
                 listeners : {
-                    'itemcontextmenu': function ( view, record , item, index, e) {
+                    'itemcontextmenu': function ( view, record ,item, index, e) {
                         e.preventDefault();  //屏蔽默认右键菜单
                         var leafMenu = new Ext.menu.Menu({
                             items: [{
@@ -47,13 +47,40 @@ Ext.onReady(function () {
                                             params:{
                                                 tableName: record.data.text,
                                                 FileName: fileName
+                                            },
+                                            success: function () {
+                                                var pnode = record.parentNode;
+                                                pnode.removeChild(record);
+                                                pnode.expand();
+                                                Ext.Msg.alert("成功", "成功删除" + record.data.text)
+                                            },
+                                            failure: function () {
+                                                Ext.Msg.alert("失败", "删除失败");
                                             }
                                         })
                                     }
                                     else{
-                                        console.log('这不是表')
+                                        var fileName = record.parentNode.data.text;
+                                        var curText = record.data.text;
+                                        console.log('curText',curText);
+                                        fileName = fileName.substring(3, fileName.length - 1);
+                                        Ext.Ajax.request({
+                                            url: 'http://localhost:8080/dbscript//tree/deleteOther',
+                                            params:{
+                                                curText: curText,
+                                                FileName: fileName
+                                            },
+                                            success: function () {
+                                                var pNode = record.parentNode;
+                                                pNode.removeChild(record);
+                                                pNode.expand();
+                                                Ext.Msg.alert("成功", "成功删除" + curText);
+                                            },
+                                            failure: function () {
+                                                Ext.Msg.alert("失败", "删除失败");
+                                            }
+                                        })
                                     }
-                                    Ext.Msg.alert('成功刪除','成功刪除' + record.data.text);
                                 },this,record)
                             }]
                         });
@@ -70,10 +97,10 @@ Ext.onReady(function () {
                                                     moduleName: record.parentNode.data.text,
                                                 },
                                                 success: function () {
-                                                    var pnode = treeStore.getNodeById(record.data.id)
-                                                    var newnode = [{text: text,leaf: true}];
-                                                    pnode.appendChild(newnode);
-                                                    pnode.expand();
+                                                    var pNode = treeStore.getNodeById(record.data.id)
+                                                    var newNode = [{text: text,leaf: true}];
+                                                    pNode.appendChild(newNode);
+                                                    pNode.expand();
                                                 },
                                                 failure: function () {
                                                     Ext.Msg.alert("添加失败")
@@ -90,50 +117,36 @@ Ext.onReady(function () {
                                 },this, record)
                             }]
                         });
-                        var moduleRightMenu = new Ext.menu.Menu({
-                            items: [{
-                                text: '表',
-                                handler: Ext.bind(function () {
-
-                                },this)
-                            },{
-                                text: '标准字段',
-                                handler: Ext.bind(function () {
-
-                                },this)
-                            },{
-                                text: '视图',
-                                handler: Ext.bind(function () {
-
-                                },this)
-                            },{
-                                text: '触发器',
-                                handler: Ext.bind(function () {
-
-                                },this)
-                            },{
-                                text: '序列',
-                                handler: Ext.bind(function () {
-
-                                },this)
-                            },{
-                                text: '存储过程',
-                                handler: Ext.bind(function () {
-
-                                },this)
-                            }]
-                        });
                         var moduleMenu = new Ext.menu.Menu({
+                            allowOtherMenus: true,
                             items: [{
                                 text: '新增',
-                                handler: Ext.bind(function(){
-                                    moduleRightMenu.showAt(e.getX()+ 100,e.getY())
-                                },this)
+                                menu: {
+                                    items: [
+                                        {
+                                            text: "标准字段",
+                                            handler: Ext.Function.bind(onMenuItem,null,[record],true)
+                                        },
+                                        {
+                                            text: '视图',
+                                            handler: Ext.Function.bind(onMenuItem,null,[record],true)
+                                        },
+                                        {
+                                            text: '触发器',
+                                            handler: Ext.Function.bind(onMenuItem,null,[record],true)
+                                        },
+                                        {
+                                            text: '序列',
+                                            handler: Ext.Function.bind(onMenuItem,null,[record],true)
+                                        },
+                                        {
+                                            text: '存储过程',
+                                            handler: Ext.Function.bind(onMenuItem,null,[record],true)
+                                        }]
+                                }
                             }, {
                                 text: '删除',
-                                handler: Ext.bind(function(){
-                                    Ext.Msg.alert('成功刪除','成功刪除' + record.data.text)
-                                },this)
+                                handler: Ext.bind( deleteModule,this, [record])
                             }]
                         });
                         if(record.data.parentId == "root") moduleMenu.showAt(e.getXY());
@@ -147,8 +160,39 @@ Ext.onReady(function () {
         }
     });
 
-
-
-
-
+    function onMenuItem(item,event, record) {
+        console.log("record:", record)
+        Ext.Ajax.request({
+            url: 'http://localhost:8080/dbscript/tree/addOther',
+            params:{
+                otherName: item.text,
+                moduleName: record.data.text
+            },
+            success: function () {
+                var newNode = [{text: item.text,leaf: true}];
+                record.appendChild(newNode);
+                record.expand();
+            },
+            failure: function () {
+                Ext.Msg.alert('失败', '新增失败')
+            }
+        })
+    }
+    function deleteModule(record) {
+        Ext.Ajax.request({
+            url: 'http://localhost:8080/dbscript/tree/deleteModule',
+            params:{
+                moduleName: record.data.text
+            },
+            success: function () {
+                var pNode = record.parentNode;
+                pNode.removeChild(record);
+                pNode.expand();
+                Ext.Msg.alert('成功', '成功删除' + record.data.text)
+            },
+            failure: function () {
+                Ext.Msg.alert('失败', "删除失败")
+            }
+        })
+    }
 })

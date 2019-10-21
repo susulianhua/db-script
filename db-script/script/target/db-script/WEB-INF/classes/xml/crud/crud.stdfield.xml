@@ -1,4 +1,4 @@
-<standard-fields package-name="crud">
+<standard-fields package-name="org.tinygroup.common">
     <standard-field title="整型主键字段" business-type-id="Int" name="id" id="id">
         <description>整型id</description>
     </standard-field>

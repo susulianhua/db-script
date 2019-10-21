@@ -12,6 +12,16 @@
         </table-field>
         <table-field id="sort_no" not-null="false" primary="false" standard-field-id="sort" unique="true">
         </table-field>
+        <foreign-reference foreign-field="parent_id" main-table="t_user" name="fk_user_parent" reference-field="id"/>
+        <foreign-reference foreign-field="org_id" main-table="t_org" name="fk_user_org" reference-field="id"/>
+    </table>
+    <table id="t_org" name="t_org" title="机构表">
+        <description>机构表</description>
+        <table-field auto-increase="true" id="id" not-null="true" primary="true" standard-field-id="o_id" unique="true"/>
+        <table-field id="name" not-null="true" primary="false" standard-field-id="name" unique="false"/>
+        <table-field id="parent_id" not-null="false" primary="false" standard-field-id="p_id" unique="false">
+        </table-field>
+        <foreign-reference foreign-field="parent_id" main-table="t_org" name="fk_org_parent" reference-field="id"/>
         <index name="a" unique="true">
             <description>aaaaa</description>
             <index-field direction="asc" field="id"/>
@@ -23,10 +33,7 @@
             <index-field direction="asc" field="id"/>
             <index-field direction="asc" field="name"/>
         </index>
-        <foreign-reference foreign-field="parent_id" main-table="t_user" name="fk_user_parent" reference-field="id"/>
-        <foreign-reference foreign-field="org_id" main-table="t_org" name="fk_user_org" reference-field="id"/>
     </table>
-    
     <table id="t_custom" name="t_custom" title="客户表">
         <description>客户表</description>
         <table-field auto-increase="true" id="id" not-null="true" primary="true" standard-field-id="id" unique="true"/>
@@ -36,6 +43,6 @@
         <table-field auto-increase="true" id="sequence_id" not-null="true" primary="true" standard-field-id="sequence_id" unique="true"/>
         <table-field id="dummy" primary="false" standard-field-id="dummy"/>
     </table>
-    
-    
+
+<table id="dada"/>
 </tables>

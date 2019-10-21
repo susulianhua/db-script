@@ -1,17 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <modules>
-    <module id="crud">
-        <tablename name="t_user"/>
-        <tablename name="t_org"/>
-        <tablename name="t_customer"/>
-        <tablename name="t_increment"/>
-        <standardfield>crud</standardfield>
-        <procedure>crud</procedure>
-        <view>crud</view>
-        <trigger>crud</trigger>
-<tablename name="dasda"/>
-</module>
-    <module id="cddd">
-    <tablename name="fadad"/>
-</module>
+  <module id="crud">
+    <tablename name="t_user"/>
+    <tablename name="t_org"/>
+    <tablename name="t_customer"/>
+    <tablename name="t_increment"/>
+    <tablename name="dada"/>
+    <standardfield>crud</standardfield>
+    <procedure>crud</procedure>
+    <trigger>crud</trigger>
+  </module>
+  <module id="dada"/>
 </modules>

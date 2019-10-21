@@ -1,33 +1,34 @@
 <!Doctype html>
 <html>
 <head>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>图书管理系统</title>
+    <title>数据库脚本</title>
     <script type="text/javascript" src="js/ext-all.js" ></script>
     <link type="text/css"  rel="stylesheet" href="css/ext-theme-classic-all.css"/>
     <script type="text/javascript" src="js/Tree.js"></script>
 
 </head>
 <body>
-<form onsubmit="return false" id="addModel" method="post">
-    <input type="text" name="modelName" placeholder="模块名">
-    <button onclick="addModel()">新增模块名</button>
+<form onsubmit="return false" id="addmodule" onclick="addModule">
+    <input type="text" name="moduleName" placeholder="模块名">
+    <button  id ="add" onclick="addModule()">新增模块名</button>
 </form>
 <div id="tree-panel"></div>
 </body>
 </html>
 <script>
-    function  addModel() {
-        $ajax({
-            url:'http://localhost:8080/dbscript//tree/addModel',
+    function  addModule() {
+        $.ajax({
+            url: 'http://localhost:8080/dbscript/tree/addModule',
             type: 'post',
-            data: $('#records').serialize(),
-            data: 'json',
-            error:function (data) {
-                alter('已有该模块，请勿重复添加')
+            data: $('#addmodule').serialize(),
+            datatype: 'json',
+            error:function () {
+                alert('已有该模块，请勿重复添加')
             },
-            success:function (data) {
-                alter('添加成功')
+            success:function () {
+                alert('添加成功')
             }
         })
     }

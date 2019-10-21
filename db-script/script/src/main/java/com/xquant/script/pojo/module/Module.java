@@ -21,6 +21,8 @@ public class Module {
     private String procedure;
     @XStreamAlias("trigger")
     private String trigger;
+    @XStreamAlias("sequence")
+    private String sequence;
 
 
     public String getView() {
@@ -69,5 +71,13 @@ public class Module {
 
     public void setTablelist(List<TableName> tablelist) {
         this.tablelist = tablelist;
+    }
+
+    public String getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(String sequence) {
+        this.sequence = sequence;
     }
 }
