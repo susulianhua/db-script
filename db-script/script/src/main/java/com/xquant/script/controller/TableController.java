@@ -102,6 +102,7 @@ public class TableController {
     @ResponseBody
     public NormalResponse stdid(HttpServletRequest request){
         String fileName = request.getParameter("FileName");
+        System.out.println("fileName: " + fileName);
         String packageName = fileName.substring(0,fileName.length() - 10);
         String filePath = this.getClass().getClassLoader().getResource("/xml/" + packageName +"/").getPath() + packageName + ".stdfield.xml";
         File file = new File(filePath);

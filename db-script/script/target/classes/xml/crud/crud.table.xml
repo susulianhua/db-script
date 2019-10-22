@@ -14,6 +14,17 @@
         </table-field>
         <foreign-reference foreign-field="parent_id" main-table="t_user" name="fk_user_parent" reference-field="id"/>
         <foreign-reference foreign-field="org_id" main-table="t_org" name="fk_user_org" reference-field="id"/>
+        <index name="a" unique="true">
+            <description>aaaaa</description>
+            <index-field direction="asc" field="id"/>
+            <index-field direction="asc" field="name"/>
+            <index-field direction="asc" field="parent_id"/>
+        </index>
+        <index name="b" unique="true">
+            <description>aaaaa</description>
+            <index-field direction="asc" field="id"/>
+            <index-field direction="asc" field="name"/>
+        </index>
     </table>
     <table id="t_org" name="t_org" title="机构表">
         <description>机构表</description>
