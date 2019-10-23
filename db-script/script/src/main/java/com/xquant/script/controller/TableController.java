@@ -6,7 +6,10 @@ import com.xquant.metadata.config.stdfield.StandardField;
 import com.xquant.metadata.config.stdfield.StandardFields;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
 import com.xquant.script.pojo.tablereturn.*;
+import com.xquant.script.service.FileFromXmlUtils;
+import com.xquant.script.service.UpdateXmlUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,23 +26,22 @@ public class TableController {
     @RequestMapping("/tableBase")
     @ResponseBody
     public NormalResponse tableBase(HttpServletRequest request) {
-        String filename = request.getParameter("FileName");
-        String tablename = request.getParameter("tableName");
-        String package_name = filename.substring(0, filename.length() - 10);
-        String filepath = this.getClass().getClassLoader().
-                getResource("/xml/" + package_name +"/").getPath() + filename;
-        File file = new File(filepath);
+        String fileName = request.getParameter("FileName");
+        String tableName = request.getParameter("tableName");
+        String ModuleName = fileName.substring(0, fileName.length() - 10);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getTableFile(ModuleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
         Table table = new Table();
         for(Table table1: tables.getTableList()){
-            if(table1.getName().equals(tablename)){
+            if(table1.getName().equals(tableName)){
                 table = table1;
                 break;
             }
         }
-        TableBase tableBase = new TableBase(filename, tables.getPackageName(),tablename,
+        TableBase tableBase = new TableBase(fileName, tables.getPackageName(),tableName,
                 table.getName(), table.getTitle(), table.getDescription());
         List<TableBase> tableBaseList = new ArrayList<TableBase>();
         tableBaseList.add(tableBase);
@@ -51,10 +53,9 @@ public class TableController {
     public NormalResponse field(HttpServletRequest request){
         String FileName = request.getParameter("FileName");
         String tableName = request.getParameter("tableName");
-        String packageName = FileName.substring(0, FileName.length() - 10);
-        String filePath = this.getClass().getClassLoader().
-                getResource("/xml/" + packageName + "/").getPath() + FileName;
-        File file = new File(filePath);
+        String moduleName = FileName.substring(0, FileName.length() - 10);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
@@ -77,10 +78,9 @@ public class TableController {
     public NormalResponse foreign(HttpServletRequest request){
         String FileName = request.getParameter("FileName");
         String tableName = request.getParameter("tableName");
-        String packageName = FileName.substring(0, FileName.length() - 10);
-        String filePath = this.getClass().getClassLoader().
-                getResource("/xml/" + packageName + "/").getPath() + FileName;
-        File file = new File(filePath);
+        String moduleName = FileName.substring(0, FileName.length() - 10);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
@@ -101,18 +101,19 @@ public class TableController {
     @RequestMapping("/stdid")
     @ResponseBody
     public NormalResponse stdid(HttpServletRequest request){
-        String fileName = request.getParameter("FileName");
-        System.out.println("fileName: " + fileName);
-        String packageName = fileName.substring(0,fileName.length() - 10);
-        String filePath = this.getClass().getClassLoader().getResource("/xml/" + packageName +"/").getPath() + packageName + ".stdfield.xml";
-        File file = new File(filePath);
+        String FileName = request.getParameter("FileName");
+        String moduleName = FileName.substring(0, FileName.length() - 10);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getStandardFieldFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(StandardFields.class);
         StandardFields standardFields = (StandardFields) xStream.fromXML(file);
         List<Stdid> stdids = new ArrayList<Stdid>();
         for(StandardField standardField: standardFields.getStandardFieldList()){
             String id = standardField.getId();
-            stdids.add(new Stdid(id,id));
+            String title = standardField.getTitle();
+            String idAndTitle = id +  "(" +title + ")";
+            stdids.add(new Stdid(id,idAndTitle));
         }
         return new NormalResponse(stdids, (long) stdids.size());
     }
@@ -120,12 +121,11 @@ public class TableController {
     @RequestMapping("/index")
     @ResponseBody
     public NormalResponse index(HttpServletRequest request){
-        String fileName = request.getParameter("FileName");
+        String FileName = request.getParameter("FileName");
         String tableName = request.getParameter("tableName");
-        String packageName = fileName.substring(0, fileName.length() - 10);
-        String filePath = this.getClass().getClassLoader().
-                getResource("/xml/" + packageName + "/").getPath() + fileName;
-        File file = new File(filePath);
+        String moduleName = FileName.substring(0, FileName.length() - 10);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
@@ -145,12 +145,11 @@ public class TableController {
     @RequestMapping("/indexField")
     @ResponseBody
     public NormalResponse indexField(HttpServletRequest request){
-        String fileName = request.getParameter("FileName");
+        String FileName = request.getParameter("FileName");
         String tableName = request.getParameter("tableName");
-        String packageName = fileName.substring(0, fileName.length() - 10);
-        String filePath = this.getClass().getClassLoader().
-                getResource("/xml/" + packageName + "/").getPath() + fileName;
-        File file = new File(filePath);
+        String moduleName = FileName.substring(0, FileName.length() - 10);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
@@ -167,6 +166,28 @@ public class TableController {
             }
         }
         return new NormalResponse(indexFieldReturns, (long) indexFieldReturns.size());
+    }
+
+    @RequestMapping("/tableSave")
+    @ResponseBody
+    public NormalResponse tableSave(@RequestBody Table table){
+        String moduleName = table.getPackageName();
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
+
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Tables.class);
+        Tables tables = (Tables) xStream.fromXML(file);
+        for(Table tableInTables: tables.getTableList()){
+            if(tableInTables.getId().equals(table.getId())){
+                table.setPackageName(null);
+                tableInTables = table;
+                break;
+            }
+        }
+        String xml = xStream.toXML(tables);
+        UpdateXmlUtils.modulesToFile(xml, file);
+        return new NormalResponse();
     }
 
 }

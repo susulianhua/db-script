@@ -1,4 +1,4 @@
-Ext.define('Ext.table.grid.IndexGrid',{
+Ext.define('Ext.table.component.IndexGrid',{
     extend: 'Ext.grid.Panel',
     title: '索引',
     height: 250,
@@ -67,6 +67,7 @@ Ext.define('Ext.table.grid.IndexGrid',{
         ]
     },
     createDockedItems: function(){
+        var me = this;
       return  [
           {
               xtype:'toolbar',
@@ -76,6 +77,9 @@ Ext.define('Ext.table.grid.IndexGrid',{
                   {
                       xtype:'button',
                       id: 'btn_indexAdd',
+                      handler: function(){
+                        me.indexAdd()
+                      },
                       border: '1px',
                       width: 60,
                       text:'新增'
@@ -83,6 +87,63 @@ Ext.define('Ext.table.grid.IndexGrid',{
               ]
           }
       ]
+    },
+    indexAdd: function(){
+        var me = this;
+        var booleanStore = Ext.create('Ext.table.store.BooleanStore');
+        var indexForm = new Ext.FormPanel({
+            //labelAlign: 'top',
+            bodyStyle: 'padding:5px 5px 0',
+            layout: 'column',
+            title: '索引新增',
+            items: [
+                {
+                    layout: 'form',
+                    columnWidth: 0.5,
+                    frame: true,
+                    items: [
+                        { fieldLabel: 'name', name: 'index_name', xtype: 'textfield'},
+                        { fieldLabel: 'description', name: 'index_description', xtype: 'textfield'}
+                    ]
+                },
+                {
+                    layout: 'form',
+                    columnWidth: 0.5,
+                    frame: true,
+                    border: false,
+                    items: [
+                        { fieldLabel: 'unique', name: 'index_unique', xtype: 'combobox',
+                            displayField: 'name', store: booleanStore, editable: false}
+                    ]
+                }
+            ],
+            buttonAlign: 'center',
+            buttons: [
+                {
+                    text: '保存',
+                    handler: function () {
+                        var record = this.up('form').getForm().getValues();
+                        me.store.insert(0,record);
+                        win.close(this);
+                    }
+                }, {
+                    text: '关闭',
+                    handler: function () {
+                        win.close(this);
+                    }
+                }
+            ]
+        });
+        var win = Ext.create("Ext.window.Window", {
+            draggable: true,
+            height: 300,                          //高度
+            width: 500,                           //宽度
+            layout: "fit",                        //窗口布局类型
+            modal: true, //是否模态窗口，默认为false
+            resizable: false,
+            items: [indexForm]
+        });
+        win.show();
     },
     editIndex: function(indexGrid, rowIndex) {
         var record = indexGrid.getStore().getAt(rowIndex).data;
@@ -150,7 +211,7 @@ Ext.define('Ext.table.grid.IndexGrid',{
         console.log('indexName:' , indexName);
         var indexFieldStore = this.indexFieldStore;
         console.log('indexFieldStore:', indexFieldStore);
-        var indexFieldGrid = Ext.create('Ext.table.grid.IndexFieldGrid',{
+        var indexFieldGrid = Ext.create('Ext.table.component.IndexFieldGrid',{
             store: indexFieldStore,
             indexName: indexName,
             title: 'index:' + indexName
@@ -195,7 +256,7 @@ Ext.define('Ext.table.grid.IndexGrid',{
                 for(var i in recordArray){
                     var char = recordArray[i].get('index_name');
                     if(char == indexName){
-                        indexFieldStore.remove(recordArray[i]);
+                        me.getStore().remove(recordArray[i]);
                     };
                 };
                 indexGrid.store.remove(record);

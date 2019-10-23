@@ -1,4 +1,4 @@
-Ext.define('Ext.table.grid.FieldGrid',{
+Ext.define('Ext.table.component.FieldGrid',{
     extend: 'Ext.grid.Panel',
     height: 250,
     title: '字段',
@@ -49,6 +49,7 @@ Ext.define('Ext.table.grid.FieldGrid',{
         ]
     },
     createDockedItems: function(){
+        var me = this;
         return [
             {
                 xtype:'toolbar',
@@ -58,6 +59,9 @@ Ext.define('Ext.table.grid.FieldGrid',{
                     {
                         xtype:'button',
                         id: 'btn_tableFieldAdd',
+                        handler: function(){
+                            me.tableFieldAdd()
+                        },
                         border: '1px',
                         width: 60,
                         text:'新增'
@@ -67,7 +71,8 @@ Ext.define('Ext.table.grid.FieldGrid',{
         ]
     },
 
-   deleteTableField:function(tableFieldGrid, rowIndex){
+    //删除grid中所选行field信息
+    deleteTableField:function(tableFieldGrid, rowIndex){
     Ext.MessageBox.confirm('提示','是否确认删除该字段',function (btn) {
         if(btn == 'yes'){
             var record = tableFieldGrid.getStore().getAt(rowIndex);
@@ -75,6 +80,94 @@ Ext.define('Ext.table.grid.FieldGrid',{
             Ext.Msg.alert('成功','删除成功');
         };
     });
+    },
+
+    //新增表格filed信息，弹出form
+    tableFieldAdd: function(){
+        var me = this;
+        var booleanStore = Ext.create('Ext.table.store.BooleanStore');
+        var tableFieldForm = new Ext.FormPanel({
+            //labelAlign: 'top',
+            bodyStyle: 'padding:5px 5px 0',
+            layout: 'column',
+            title: '字段新增',
+            items: [
+                {
+                    layout: 'form',
+                    columnWidth: 0.5,
+                    frame: true,
+                    items: [
+                        { fieldLabel: 'standard-field-id', name: 'standardFieldId', xtype: 'combobox',
+                            allowBlank: false, store: me.standardFieldIdStore, valueField: 'standardFieldId',
+                            displayField: 'name', mode: 'remote', typeAhead: true,
+                            listeners : {
+                                'beforequery':function(e){
+
+                                    var combo = e.combo;
+                                    if(!e.forceAll){
+                                        var input = e.query;
+                                        // 检索的正则
+                                        var regExp = new RegExp(".*" + input + ".*");
+                                        // 执行检索
+                                        combo.store.filterBy(function(record,id){
+                                            // 得到每个record的项目名称值
+                                            var text = record.get(combo.displayField);
+                                            return regExp.test(text);
+                                        });
+                                        combo.expand();
+                                        return false;
+                                    }
+                                }
+                            }
+                        },
+                        { fieldLabel: 'unique', name: 'unique', xtype: 'combobox', store: booleanStore,
+                            allowBlank: false, displayField: 'name', editable: false},
+                        { fieldLabel: 'primary', name: 'primary', xtype: 'combobox', store: booleanStore,
+                            allowBlank: false, displayField: 'name', editable: false}
+                    ]
+                },
+                {
+                    layout: 'form',
+                    columnWidth: 0.5,
+                    frame: true,
+                    border: false,
+                    items: [
+                        { fieldLabel: 'id', name: 'id', xtype: 'textfield'},
+                        { fieldLabel: 'not-null', name: 'notNull', xtype: 'combobox',
+                            store: booleanStore, displayField: 'name' ,editable: false},
+                        { fieldLabel: 'auto-increase', name: 'autoIncrease', xtype: 'combobox',
+                            displayField: 'name', store: booleanStore, editable: false}
+                    ]
+                }
+            ],
+            buttonAlign: 'center',
+            buttons: [
+                {
+                    text: '保存',
+                    handler: function () {
+                        var record = this.up('form').getForm().getValues();
+                        me.store.insert(0,record);
+                        win.close(this);
+                    }
+                }, {
+                    text: '关闭',
+                    handler: function () {
+                        win.close(this);
+                    }
+                }
+            ]
+        });
+        var win = Ext.create("Ext.window.Window", {
+
+            draggable: true,
+            height: 300,                          //高度
+            width: 500,                           //宽度
+            layout: "fit",                        //窗口布局类型
+            modal: true, //是否模态窗口，默认为false
+            resizable: false,
+            items: [tableFieldForm]
+        });
+        win.show();
     },
 
     editTableField: function(tableFieldGrid, rowIndex) {

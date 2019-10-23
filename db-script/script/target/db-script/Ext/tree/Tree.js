@@ -1,5 +1,9 @@
-Ext.onReady(function () {
+Ext.Loader.setConfig({ enabled: true,});
+Ext.Loader.setPath({
+    'Ext':'Ext'
+});
 
+Ext.onReady(function () {
     Ext.Ajax.request({
         url: 'http://localhost:8080/dbscript//tree/getModule',
         params: {
@@ -31,10 +35,24 @@ Ext.onReady(function () {
                                 text: '编辑',
                                 handler: Ext.bind(function(){
                                     var fileName = record.parentNode.parentNode.data.text;
-                                    fileName = fileName.substring(3,fileName.length - 1);
+                                    fileName = fileName.substring(3,fileName.length - 1) + '.table.xml';
                                     localStorage.setItem('obj',
                                         JSON.stringify(({'tableName': record.data.text, 'FileName': fileName})));
-                                    document.location.href="table.html"
+                                    console.log("fileName", fileName);
+                                    var tablePanel = Ext.create('Ext.table.component.TablePanel', {
+                                        FileName: fileName,
+                                        tableName: record.data.text
+                                    });
+                                    var win = Ext.create("Ext.window.Window", {
+                                        draggable: true,
+                                        height: 480,                          //高度
+                                        width: 650,                           //宽度
+                                        layout: "fit",                        //窗口布局类型
+                                        modal: true, //是否模态窗口，默认为false
+                                        resizable: false,
+                                        items: [tablePanel]
+                                    });
+                                    win.show();
                                 },this)
                             }, {
                                 text: '删除',

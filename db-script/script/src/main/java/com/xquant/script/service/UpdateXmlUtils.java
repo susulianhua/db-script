@@ -18,9 +18,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class UpdateXmlUtils {
     public static UpdateXmlUtils updateXmlUtils = new UpdateXmlUtils();
@@ -230,7 +228,6 @@ public class UpdateXmlUtils {
         filePath = filePath.substring(1,filePath.length() - 51);
         String otherFilePath = filePath + "/db-script/script/src/main/resources/xml/"
                 + fileName + "/" + fileName + "." + curText + ".xml";
-        System.out.println("otherFilePath:" + otherFilePath);
         File file = new File(otherFilePath);
         if(file.exists()){
             file.delete();
@@ -272,9 +269,10 @@ public class UpdateXmlUtils {
     }
 
     public static void modulesToFile(String xml, File file){
-        FileWriter writer;
         try {
-            writer = new FileWriter(file);
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            OutputStreamWriter osw = new OutputStreamWriter(fileOutputStream, "utf-8");
+            BufferedWriter writer = new BufferedWriter(osw);
             writer.write("");
             writer.write(xml);
             writer.flush();

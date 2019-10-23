@@ -1,14 +1,20 @@
-Ext.define('Ext.table.grid.IndexFieldGrid',{
+Ext.define('Ext.table.component.IndexFieldGrid',{
     extend: 'Ext.grid.Panel',
     loadMask: true,
     selType: 'rowmodel',
     autoScroll: true,
+    config:{
+        indexFieldStore: null,
+        indexName: null
+    },
+
     initComponent: function(){
       this.columns = this.createColumns();
       this.dockedItems = this.createDockedItems();
       this.callParent(arguments);
     },
     createColumns: function(){
+        var me = this;
         return [
             { dataIndex: 'field', text: 'field', align: 'center' },
             { dataIndex: 'direction', text: 'direction', align: 'center'},
@@ -59,8 +65,8 @@ Ext.define('Ext.table.grid.IndexFieldGrid',{
                         border: '1px',
                         width: 60,
                         text:'新增',
-                        handler: function (indexFieldGrid) {
-                            me.indexFieldAdd(indexFieldGrid);
+                        handler: function () {
+                            me.indexFieldAdd();
                         }
                     }
                 ]
@@ -134,15 +140,17 @@ Ext.define('Ext.table.grid.IndexFieldGrid',{
         win.show();
     },
     deleteIndexField: function(indexFieldGrid ,rowIndex) {
+        var me = this;
         Ext.MessageBox.confirm('提示', '是否确认删除该索引字段', function (btn) {
             if(btn == 'yes'){
                 var record = indexFieldGrid.getStore().getAt(rowIndex);
-                indexFieldGrid.store.remove(record);
+                console.log('record:', record);
+                me.store.remove(record);
                 Ext.Msg.alert('成功','删除成功');
             };
         });
     },
-    indexFieldAdd: function(indexFieldGrid) {
+    indexFieldAdd: function() {
         var me = this;
         var indexFieldAddForm = new Ext.FormPanel({
             //labelAlign: 'top',
@@ -163,16 +171,12 @@ Ext.define('Ext.table.grid.IndexFieldGrid',{
                     text: '保存',
                     handler: function () {
                         var record = this.up('form').getForm().getValues();
-                        var indexField_model = Ext.create('Ext.table.model.IndexFieldModel');
-                        console.log('record:', record )
-                        console.log('indexField_model:' , indexField_model);
-                        console.log('field:', record.field);
-                        indexField_model.data.field = record.field;
-                        indexField_model.data.direction = record.direction;
-                        indexField_model.data.index_name = me.indexName;
-                        console.log('indexField_model:' , indexField_model);
-                        me.indexFieldStore.insert(0,indexField_model.data);
-                        win.close(this);
+                        var indexFieldModel = Ext.create('Ext.table.model.IndexFieldModel');
+                        indexFieldModel.set('field', record.field);
+                        indexFieldModel.set('direction', record.direction);
+                        indexFieldModel.set('index_name', me.getIndexName());
+                        me.store.insert(0,[indexFieldModel]);
+                        win.close();
                     }
                 }, {
                     text: '关闭',

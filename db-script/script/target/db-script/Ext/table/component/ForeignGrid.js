@@ -1,4 +1,4 @@
-Ext.define('Ext.table.grid.ForeignGrid',{
+Ext.define('Ext.table.component.ForeignGrid',{
     extend: 'Ext.grid.Panel',
     title: '外键',
     height: 250,
@@ -44,24 +44,84 @@ Ext.define('Ext.table.grid.ForeignGrid',{
         ]
     },
     createDockedItems: function(){
-      return  [
-          {
-              xtype:'toolbar',
-              dock: 'top',
-              items: [
-                  { xtype: 'tbfill' },
-                  {
-                      xtype:'button',
-                      id: 'btn_foreignAdd',
-                      border: '1px',
-                      width: 60,
-                      text:'新增'
-                  }
-              ]
-          }
-      ]
+        var me = this;
+        return  [
+            {
+                xtype:'toolbar',
+                dock: 'top',
+                items: [
+                    { xtype: 'tbfill' },
+                    {
+                        xtype:'button',
+                        id: 'btn_foreignAdd',
+                        handler: function(){
+                            me.foreignAdd()
+                        },
+                        border: '1px',
+                        width: 60,
+                        text:'新增'
+                    }
+                    ]
+            }
+            ]
     },
 
+    foreignAdd: function(){
+        var me = this;
+        var foreignForm = new Ext.FormPanel({
+            //labelAlign: 'top',
+            bodyStyle: 'padding:5px 5px 0',
+            layout: 'column',
+            title: '外键新增',
+            items: [
+                {
+                    layout: 'form',
+                    columnWidth: 0.5,
+                    frame: true,
+                    items: [
+                        { fieldLabel: 'name', name: 'key_name', xtype: 'textfield'},
+                        { fieldLabel: 'foreign-field', name: 'foreign_field', xtype: 'textfield'}
+                    ]
+                },
+                {
+                    layout: 'form',
+                    columnWidth: 0.5,
+                    frame: true,
+                    border: false,
+                    items: [
+                        { fieldLabel: 'main-table', name: 'main_table', xtype: 'textfield'},
+                        { fieldLabel: 'reference-field', name: 'reference_field', xtype: 'textfield'}
+                    ]
+                }
+            ],
+            buttonAlign: 'center',
+            buttons: [
+                {
+                    text: '保存',
+                    handler: function () {
+                        var record = this.up('form').getForm().getValues();
+                        me.store.insert(0,record);
+                        win.close();
+                    }
+                }, {
+                    text: '关闭',
+                    handler: function () {
+                        win.close();
+                    }
+                }
+            ]
+        });
+        var win = Ext.create("Ext.window.Window", {
+            draggable: true,
+            height: 300,                          //高度
+            width: 500,                           //宽度
+            layout: "fit",                        //窗口布局类型
+            modal: true, //是否模态窗口，默认为false
+            resizable: false,
+            items: [foreignForm]
+        });
+        win.show();
+    },
     editForeign: function(foreignGrid, rowIndex){
         var record = foreignGrid.getStore().getAt(rowIndex).data;
         var foreignForm = new Ext.FormPanel({

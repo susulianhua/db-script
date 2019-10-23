@@ -8,9 +8,18 @@ public  class FileFromXmlUtils {
         return fileFromXmlUtils;
     }
 
-    public static File getTableFile(String FileName, String filePath){
+    public static File getTableFile(String moduleName, String filePath){
         filePath = filePath.substring(1,filePath.length() - 51);
-        String tableFilePath = filePath + "/db-script/script/src/main/resources/xml/" + FileName + "/" + FileName + ".table.xml";
+        String tableFilePath = filePath + "/db-script/script/src/main/resources/xml/"
+                + moduleName + "/" + moduleName + ".table.xml";
+        File file = new File(tableFilePath);
+        return file;
+    }
+
+    public static File getStandardFieldFile(String moduleName, String filePath){
+        filePath = filePath.substring(1,filePath.length() - 51);
+        String tableFilePath = filePath + "/db-script/script/src/main/resources/xml/"
+                + moduleName + "/" + moduleName + ".stdfield.xml";
         File file = new File(tableFilePath);
         return file;
     }

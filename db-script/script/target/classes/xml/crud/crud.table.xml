@@ -1,59 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<tables package-name="sample">
-    <table id="t_user" name="t_user" table_space="c06f09ddc4834101b77cad2a6a024422" title="用户表">
-        <description>用户表</description>
-        <table-field auto-increase="false" default="userid_default" id="id" not-null="true" primary="true" standard-field-id="v_id" unique="true"/>
-        <table-field id="name" not-null="false" primary="false" standard-field-id="name" unique="true"/>
-        <table-field id="teacher" not-null="true" primary="false" standard-field-id="teacher" unique="false"/>
-        <table-field default="age_default2" id="age" not-null="false" primary="false" standard-field-id="age" unique="true"/>
-        <table-field id="parent_id" not-null="false" primary="false" standard-field-id="parent_id" unique="false">
-        </table-field>
-        <table-field id="org_id" not-null="false" primary="false" standard-field-id="o_id" unique="false">
-        </table-field>
-        <table-field id="sort_no" not-null="false" primary="false" standard-field-id="sort" unique="true">
-        </table-field>
-        <foreign-reference foreign-field="parent_id" main-table="t_user" name="fk_user_parent" reference-field="id"/>
-        <foreign-reference foreign-field="org_id" main-table="t_org" name="fk_user_org" reference-field="id"/>
-        <index name="a" unique="true">
-            <description>aaaaa</description>
-            <index-field direction="asc" field="id"/>
-            <index-field direction="asc" field="name"/>
-            <index-field direction="asc" field="parent_id"/>
-        </index>
-        <index name="b" unique="true">
-            <description>aaaaa</description>
-            <index-field direction="asc" field="id"/>
-            <index-field direction="asc" field="name"/>
-        </index>
-    </table>
-    <table id="t_org" name="t_org" title="机构表">
-        <description>机构表</description>
-        <table-field auto-increase="true" id="id" not-null="true" primary="true" standard-field-id="o_id" unique="true"/>
-        <table-field id="name" not-null="true" primary="false" standard-field-id="name" unique="false"/>
-        <table-field id="parent_id" not-null="false" primary="false" standard-field-id="p_id" unique="false">
-        </table-field>
-        <foreign-reference foreign-field="parent_id" main-table="t_org" name="fk_org_parent" reference-field="id"/>
-        <index name="a" unique="true">
-            <description>aaaaa</description>
-            <index-field direction="asc" field="id"/>
-            <index-field direction="asc" field="name"/>
-            <index-field direction="asc" field="parent_id"/>
-        </index>
-        <index name="b" unique="true">
-            <description>aaaaa</description>
-            <index-field direction="asc" field="id"/>
-            <index-field direction="asc" field="name"/>
-        </index>
-    </table>
-    <table id="t_custom" name="t_custom" title="客户表">
-        <description>客户表</description>
-        <table-field auto-increase="true" id="id" not-null="true" primary="true" standard-field-id="id" unique="true"/>
-        <table-field id="name" not-null="true" primary="false" standard-field-id="name" unique="false"/>
-    </table>
-    <table id="incrementer" name="incrementer" title="主键自增长表">
-        <table-field auto-increase="true" id="sequence_id" not-null="true" primary="true" standard-field-id="sequence_id" unique="true"/>
-        <table-field id="dummy" primary="false" standard-field-id="dummy"/>
-    </table>
-
-<table id="dada"/>
+<tables package-name="crud">
+  <table id="t_user" name="t_user" title="用户表" description="用户表" package-name="crud">
+    <table-field standard-field-id="v_id" primary="true" unique="true" not-null="true" id="id" auto-increase="false" default="userid_default"/>
+    <table-field standard-field-id="name" primary="false" unique="true" not-null="false" id="name" auto-increase="false"/>
+    <table-field standard-field-id="teacher" primary="false" unique="false" not-null="true" id="teacher" auto-increase="false"/>
+    <table-field standard-field-id="age" primary="false" unique="true" not-null="false" id="age" auto-increase="false" default="age_default2"/>
+    <table-field standard-field-id="parent_id" primary="false" unique="false" not-null="false" id="parent_id" auto-increase="false"/>
+    <table-field standard-field-id="o_id" primary="false" unique="false" not-null="false" id="org_id" auto-increase="false"/>
+    <table-field standard-field-id="sort" primary="false" unique="true" not-null="false" id="sort_no" auto-increase="false"/>
+    <foreign-reference name="fk_user_parent" main-table="t_user" reference-field="id" foreign-field="parent_id"/>
+    <foreign-reference name="fk_user_org" main-table="t_org" reference-field="id" foreign-field="org_id"/>
+  </table>
+  <table id="t_org" name="t_org" title="机构表" description="机构表" package-name="crud">
+    <table-field standard-field-id="o_id" primary="true" unique="true" not-null="true" id="id" auto-increase="true"/>
+    <table-field standard-field-id="name" primary="false" unique="false" not-null="true" id="name" auto-increase="false"/>
+    <table-field standard-field-id="p_id" primary="false" unique="false" not-null="false" id="parent_id" auto-increase="false"/>
+    <index name="a" description="aaaaa" unique="true">
+      <index-field field="id" direction="asc"/>
+      <index-field field="name" direction="asc"/>
+      <index-field field="parent_id" direction="asc"/>
+    </index>
+    <index name="b" description="aaaaa" unique="true">
+      <index-field field="id" direction="asc"/>
+      <index-field field="name" direction="asc"/>
+    </index>
+    <foreign-reference name="fk_org_parent" main-table="t_org" reference-field="id" foreign-field="parent_id"/>
+  </table>
+  <table id="t_custom" name="t_custom" title="客户表" description="客户表" package-name="crud">
+    <table-field standard-field-id="id" primary="true" unique="true" not-null="true" id="id" auto-increase="true"/>
+    <table-field standard-field-id="name" primary="false" unique="false" not-null="true" id="name" auto-increase="false"/>
+  </table>
+  <table id="incrementer" name="incrementer" title="主键自增长表" package-name="crud">
+    <table-field standard-field-id="sequence_id" primary="true" unique="true" not-null="true" id="sequence_id" auto-increase="true"/>
+    <table-field standard-field-id="dummy" primary="false" unique="false" not-null="false" id="dummy" auto-increase="false"/>
+  </table>
 </tables>
