@@ -17,6 +17,8 @@ public class Module {
     private String view;
     @XStreamAlias("standardfield")
     private String standardfield;
+    @XStreamAlias("businessType")
+    private String businessType;
     @XStreamAlias("procedure")
     private String procedure;
     @XStreamAlias("trigger")
@@ -79,5 +81,13 @@ public class Module {
 
     public void setSequence(String sequence) {
         this.sequence = sequence;
+    }
+
+    public String getBusinessType() {
+        return businessType;
+    }
+
+    public void setBusinessType(String businessType) {
+        this.businessType = businessType;
     }
 }

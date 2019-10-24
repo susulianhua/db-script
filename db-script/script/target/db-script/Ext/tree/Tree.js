@@ -34,23 +34,53 @@ Ext.onReady(function () {
                             items: [{
                                 text: '编辑',
                                 handler: Ext.bind(function(){
-                                    var fileName = record.parentNode.parentNode.data.text;
-                                    fileName = fileName.substring(3,fileName.length - 1) + '.table.xml';
-                                    localStorage.setItem('obj',
-                                        JSON.stringify(({'tableName': record.data.text, 'FileName': fileName})));
-                                    console.log("fileName", fileName);
-                                    var tablePanel = Ext.create('Ext.table.component.TablePanel', {
-                                        FileName: fileName,
-                                        tableName: record.data.text
-                                    });
+                                    var fileName;
+                                    if(record.parentNode.data.text == '表') {
+                                        fileName = record.parentNode.parentNode.data.text;
+                                        fileName = fileName.substring(3, fileName.length - 1) + '.table.xml';
+                                        var panel = Ext.create('Ext.table.component.TablePanel', {
+                                            FileName: fileName,
+                                            tableName: record.data.text
+                                        });
+                                    }
+                                    else if(record.data.text == '标准字段'){
+                                        fileName = record.parentNode.data.text;
+                                        var moduleName = fileName.substring(3, fileName.length - 1);
+                                        var panel = Ext.create('Ext.standardField.component.StandardFieldPanel',{
+                                            moduleName: moduleName
+                                        })
+                                    }
+                                    else if(record.data.text == '业务类型'){
+                                        fileName = record.parentNode.data.text;
+                                        var moduleName = fileName.substring(3, fileName.length - 1);
+                                        var panel = Ext.create('Ext.businessType.component.BusinessTypePanel',{
+                                            moduleName: moduleName
+                                        })
+                                    }
                                     var win = Ext.create("Ext.window.Window", {
                                         draggable: true,
-                                        height: 480,                          //高度
+                                        height: 500,                          //高度
                                         width: 650,                           //宽度
                                         layout: "fit",                        //窗口布局类型
                                         modal: true, //是否模态窗口，默认为false
                                         resizable: false,
-                                        items: [tablePanel]
+                                        constrainsTo: Ext.getDoc(),
+                                        items: [panel],
+                                        buttonAlign: 'center',
+                                        buttons: [
+                                            {
+                                              text: '保存',
+                                              handler: function () {
+                                                  panel.panelSave()
+                                              }
+                                            },
+                                            {
+                                                text: '关闭',
+                                                handler: function () {
+                                                    win.close();
+                                                }
+                                            }
+                                        ]
                                     });
                                     win.show();
                                 },this)

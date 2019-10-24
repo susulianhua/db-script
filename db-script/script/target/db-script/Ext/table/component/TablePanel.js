@@ -39,27 +39,11 @@ Ext.define('Ext.table.component.TablePanel', {
             {
                 xtype: 'tabpanel',
                 frame: true,
-                heigth: 350,
+                heigth: 370,
                 items:[
                     fieldGrid,
                     foreignGrid,
                     indexGrid,
-                ]
-            },{
-                xtype: 'toolbar',
-                items: [
-                    {
-                        xtype: 'tbfill'
-                    },
-                    {
-                        xtype: 'button',
-                        id: 'btn_save',
-                        handler: function(){
-                          me.tablePanelSave();
-                        },
-                        text: '保存',
-                        width: 60
-                    }
                 ]
             }
         ];
@@ -90,7 +74,7 @@ Ext.define('Ext.table.component.TablePanel', {
         return items;
     },
 
-    tablePanelSave: function () {
+    panelSave: function () {
         var me = this;
         var table = {};
         var formValues = me.tableBaseForm.getForm().getValues();
@@ -172,6 +156,12 @@ Ext.define('Ext.table.component.TablePanel', {
             dataType: 'json',
             params: JSON.stringify(table),
             method: 'Post',
+            success: function () {
+                Ext.Msg.alert('成功', '添加成功');
+            },
+            failure: function () {
+                Ext.Msg.alert('失败', '添加失败，请重试');
+            }
         });
     }
 })

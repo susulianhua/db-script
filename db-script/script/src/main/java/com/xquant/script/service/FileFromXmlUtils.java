@@ -1,6 +1,7 @@
 package com.xquant.script.service;
 
 import java.io.File;
+import java.io.FileOutputStream;
 
 public  class FileFromXmlUtils {
     private static FileFromXmlUtils fileFromXmlUtils = new FileFromXmlUtils();
@@ -16,11 +17,21 @@ public  class FileFromXmlUtils {
         return file;
     }
 
+
+
     public static File getStandardFieldFile(String moduleName, String filePath){
         filePath = filePath.substring(1,filePath.length() - 51);
-        String tableFilePath = filePath + "/db-script/script/src/main/resources/xml/"
+        String standardFieldFilePath = filePath + "/db-script/script/src/main/resources/xml/"
                 + moduleName + "/" + moduleName + ".stdfield.xml";
-        File file = new File(tableFilePath);
+        File file = new File(standardFieldFilePath);
+        return file;
+    }
+
+    public static File getBusinessTypeFile(String moduleName, String filePath){
+        filePath = filePath.substring(1, filePath.length() - 51);
+        String bussinessTypeFilePath = filePath + "/db-script/script/src/main/resources/xml/"
+                + moduleName + "/" + moduleName + ".bizdatatype.xml";
+        File file = new File(bussinessTypeFilePath);
         return file;
     }
 

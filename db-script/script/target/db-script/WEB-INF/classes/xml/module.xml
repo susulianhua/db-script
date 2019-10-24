@@ -9,5 +9,8 @@
     <procedure>crud</procedure>
     <trigger>crud</trigger>
   </module>
-  <module id="dada"/>
+  <module id="dada">
+    <standardfield>dada</standardfield>
+    <trigger>dada</trigger>
+  </module>
 </modules>

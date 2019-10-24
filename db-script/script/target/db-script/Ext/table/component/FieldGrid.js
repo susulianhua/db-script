@@ -1,8 +1,7 @@
 Ext.define('Ext.table.component.FieldGrid',{
     extend: 'Ext.grid.Panel',
-    height: 250,
+    height: 270,
     title: '字段',
-    itemId: 'tableFieldGrid',
     disableSelection: false,
     loadMask: true,
     selType: 'rowmodel',
@@ -69,17 +68,6 @@ Ext.define('Ext.table.component.FieldGrid',{
                 ]
             }
         ]
-    },
-
-    //删除grid中所选行field信息
-    deleteTableField:function(tableFieldGrid, rowIndex){
-    Ext.MessageBox.confirm('提示','是否确认删除该字段',function (btn) {
-        if(btn == 'yes'){
-            var record = tableFieldGrid.getStore().getAt(rowIndex);
-            tableFieldGrid.store.remove(record);
-            Ext.Msg.alert('成功','删除成功');
-        };
-    });
     },
 
     //新增表格filed信息，弹出form
@@ -168,6 +156,17 @@ Ext.define('Ext.table.component.FieldGrid',{
             items: [tableFieldForm]
         });
         win.show();
+    },
+
+    //删除grid中所选行field信息
+    deleteTableField:function(tableFieldGrid, rowIndex){
+    Ext.MessageBox.confirm('提示','是否确认删除该字段',function (btn) {
+        if(btn == 'yes'){
+            var record = tableFieldGrid.getStore().getAt(rowIndex);
+            tableFieldGrid.store.remove(record);
+            Ext.Msg.alert('成功','删除成功');
+        };
+    });
     },
 
     editTableField: function(tableFieldGrid, rowIndex) {

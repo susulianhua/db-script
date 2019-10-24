@@ -1,7 +1,7 @@
 Ext.define('Ext.table.component.ForeignGrid',{
     extend: 'Ext.grid.Panel',
     title: '外键',
-    height: 250,
+    height: 270,
     bodyStyle: 'padding: 0px',
     disableSelection: false,
     loadMask: true,

@@ -1,23 +1,13 @@
-<standard-fields package-name="org.tinygroup.common">
-    <standard-field title="整型主键字段" business-type-id="Int" name="id" id="id">
-        <description>整型id</description>
-    </standard-field>
-    <standard-field title="v_id" business-type-id="Varchar50" name="v_id" id="v_id">
-        <description>v_id</description>
-    </standard-field>
-    <standard-field title="名称" business-type-id="Varchar50" name="name" id="name" default-value-id="name_default">
-        <description>人名</description>
-    </standard-field>
-    <standard-field title="教师" business-type-id="Varchar50" name="teacher" id="teacher" default-value-id="name_default">
-        <description>人名</description>
-    </standard-field>
-    <standard-field title="年龄" business-type-id="Int" name="age" id="age"
-                    default-value-id="age_default"></standard-field>
-    <standard-field title="机构id" business-type-id="Int" name="o_id" id="o_id"></standard-field>
-    <standard-field title="主键序列字段" business-type-id="Int" name="sequence_id" id="sequence_id"></standard-field>
-    <standard-field title="dummy" business-type-id="Char1" name="dummy" id="dummy"></standard-field>
-    <standard-field title="上级id" business-type-id="Varchar50" name="parent_id" id="parent_id"></standard-field>
-    <standard-field title="int类型上级id" business-type-id="Int" name="p_id" id="p_id"></standard-field>
-    <standard-field title="排序号" business-type-id="Int" name="sort" id="sort"
-                    default-value-id="age_default"></standard-field>
+<standard-fields package-name="crud">
+  <standard-field id="id" name="id" title="整型主键字段" description="整型id" business-type-id="Int"/>
+  <standard-field id="v_id" name="v_id" title="v_id" description="v_id" business-type-id="Varchar50"/>
+  <standard-field id="name" name="name" title="名称" description="人名" business-type-id="Varchar50"/>
+  <standard-field id="teacher" name="teacher" title="教师" description="人名" business-type-id="Varchar50"/>
+  <standard-field id="age" name="age" title="年龄" description="年龄" business-type-id="Int"/>
+  <standard-field id="o_id" name="o_id" title="机构id"  business-type-id="Int"/>
+  <standard-field id="sequence_id" name="sequence_id" title="主键序列字段" description="" business-type-id="Int"/>
+  <standard-field id="dummy" name="dummy" title="dummy" description="" business-type-id="Char1"/>
+  <standard-field id="parent_id" name="parent_id" title="上级id" description="" business-type-id="Varchar50"/>
+  <standard-field id="p_id" name="p_id" title="int类型上级id" description="" business-type-id="Int"/>
+  <standard-field id="sort" name="sort" title="排序号" description="" business-type-id="Int"/>
 </standard-fields>

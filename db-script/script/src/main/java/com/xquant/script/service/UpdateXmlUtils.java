@@ -32,7 +32,7 @@ public class UpdateXmlUtils {
         modules.getModuleList().add(module);
         file.delete();
         String xml = xStream.toXML(modules);
-        updateXmlUtils.modulesToFile(xml, file);
+        updateXmlUtils.classToFile(xml, file);
     }
 
     public static void deleteModule(File file, String moduleName){
@@ -47,7 +47,7 @@ public class UpdateXmlUtils {
         }
         file.delete();
         String xml = xStream.toXML(modules);
-        updateXmlUtils.modulesToFile(xml, file);
+        updateXmlUtils.classToFile(xml, file);
     }
 
     public static void addTableInTable(File file, String tableName) throws  Exception{
@@ -143,6 +143,13 @@ public class UpdateXmlUtils {
             jsonTable.put("children",jsonArrayTable);
             jsonTable.put("id", id++);
             jsonArrayModule.add(jsonTable);
+            if(StringUtils.isEmpty(module.getBusinessType())){
+                JSONObject jsonBusinessType = new JSONObject();
+                jsonBusinessType.put("text", "业务类型");
+                jsonBusinessType.put("leaf", true);
+                jsonBusinessType.put("id", id++);
+                jsonArrayModule.add(jsonBusinessType);
+            }
             if(module.getStandardfield() != null) {
                 JSONObject jsonStdfield = new JSONObject();
                 jsonStdfield.put("text", "标准字段");
@@ -220,7 +227,7 @@ public class UpdateXmlUtils {
             }
         }
         String xml = xStream.toXML(modules);
-        updateXmlUtils.modulesToFile(xml, file);
+        updateXmlUtils.classToFile(xml, file);
         return curText;
     }
 
@@ -264,11 +271,11 @@ public class UpdateXmlUtils {
             }
         }
         String xml = xStream.toXML(modules);
-        updateXmlUtils.modulesToFile(xml, file);
+        updateXmlUtils.classToFile(xml, file);
         return curText;
     }
 
-    public static void modulesToFile(String xml, File file){
+    public static void classToFile(String xml, File file){
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             OutputStreamWriter osw = new OutputStreamWriter(fileOutputStream, "utf-8");

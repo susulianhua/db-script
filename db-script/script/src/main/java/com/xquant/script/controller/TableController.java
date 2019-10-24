@@ -62,7 +62,6 @@ public class TableController {
         List<TableFieldReturn> fields = new ArrayList<TableFieldReturn>();
         for(Table table: tables.getTableList()){
             if(table.getName().equals(tableName)){
-                System.out.println(table.getName());
                 for(TableField tableField: table.getFieldList()){
                     fields.add(new TableFieldReturn(tableField.getStandardFieldId(),tableField.getPrimary(), tableField.getUnique()
                             , tableField.getId(), tableField.getNotNull(), tableField.isAutoIncrease()));
@@ -178,15 +177,15 @@ public class TableController {
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
-        for(Table tableInTables: tables.getTableList()){
-            if(tableInTables.getId().equals(table.getId())){
+        for(int i = 0; i < tables.getTableList().size(); i++){
+            if(tables.getTableList().get(i).getId().equals(table.getId())){
                 table.setPackageName(null);
-                tableInTables = table;
+                tables.getTableList().set(i,table);
                 break;
             }
         }
         String xml = xStream.toXML(tables);
-        UpdateXmlUtils.modulesToFile(xml, file);
+        UpdateXmlUtils.classToFile(xml, file);
         return new NormalResponse();
     }
 

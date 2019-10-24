@@ -47,7 +47,7 @@ public class TreeController {
         xStream.processAnnotations(Tables.class);
         Tables tables = new Tables();
         String xml = xStream.toXML(tables);
-        UpdateXmlUtils.modulesToFile(xml, tableFile);
+        UpdateXmlUtils.classToFile(xml, tableFile);
         UpdateXmlUtils.addModule(file, newModuleName);
         return new NormalResponse();
     }
@@ -117,7 +117,6 @@ public class TreeController {
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File file = FileFromXmlUtils.getModuleFile(filePath);
         curText = UpdateXmlUtils.addOtherInModule(file, curText, moduleName);
-        System.out.println("filePath:" + filePath);
         UpdateXmlUtils.addOtherInDetail(moduleName, curText, filePath);
         return new NormalResponse();
 

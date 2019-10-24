@@ -1,5 +1,5 @@
 Ext.define( 'Ext.table.store.FieldStore', {
-    extend: Ext.data.Store,
+    extend: 'Ext.data.Store',
     model: 'Ext.table.model.FieldModel',
     autoLoad: false,
     disableSelection: false,

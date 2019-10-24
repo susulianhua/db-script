@@ -1,7 +1,7 @@
 Ext.define('Ext.table.component.IndexGrid',{
     extend: 'Ext.grid.Panel',
     title: '索引',
-    height: 250,
+    height: 270,
     disableSelection: false,
     loadMask: true,
     selType: 'rowmodel',
@@ -66,6 +66,7 @@ Ext.define('Ext.table.component.IndexGrid',{
             }
         ]
     },
+
     createDockedItems: function(){
         var me = this;
       return  [
@@ -88,6 +89,7 @@ Ext.define('Ext.table.component.IndexGrid',{
           }
       ]
     },
+
     indexAdd: function(){
         var me = this;
         var booleanStore = Ext.create('Ext.table.store.BooleanStore');
@@ -145,6 +147,7 @@ Ext.define('Ext.table.component.IndexGrid',{
         });
         win.show();
     },
+
     editIndex: function(indexGrid, rowIndex) {
         var record = indexGrid.getStore().getAt(rowIndex).data;
         var indexForm = new Ext.FormPanel({
@@ -206,11 +209,10 @@ Ext.define('Ext.table.component.IndexGrid',{
         });
         win.show();
         },
+
     indexFieldEdit: function(record) {
         var indexName = record.data.index_name;
-        console.log('indexName:' , indexName);
         var indexFieldStore = this.indexFieldStore;
-        console.log('indexFieldStore:', indexFieldStore);
         var indexFieldGrid = Ext.create('Ext.table.component.IndexFieldGrid',{
             store: indexFieldStore,
             indexName: indexName,
@@ -246,6 +248,7 @@ Ext.define('Ext.table.component.IndexGrid',{
         });
         win.show();
         },
+
     deleteIndex: function(indexGrid, rowIndex){
         var me = this;
         Ext.MessageBox.confirm('提示','是否确认删除该索引及其相关索引字段', function (btn) {
@@ -263,5 +266,5 @@ Ext.define('Ext.table.component.IndexGrid',{
                 Ext.Msg.alter('提示','删除成功');
             }
         })
-    },
+    }
 })

@@ -40,106 +40,117 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/TableController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1030">
+              <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#8011#8040#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/TreeController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1968">
+              <caret line="108" selection-start-line="108" selection-end-line="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/datameta/src/main/java/com/xquant/database/config/table/Table.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/component/BusinessTypeGrid.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="443">
+              <caret line="229" column="40" selection-start-line="229" selection-start-column="40" selection-end-line="229" selection-end-column="40" />
+              <folding>
+                <element signature="e#2598#3187#0" />
+                <element signature="e#3223#5167#0" />
+                <element signature="e#5230#7486#0" />
+                <element signature="e#7549#8281#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/FieldModel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/component/PlaceHolderGrid.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="144" column="75" selection-start-line="144" selection-start-column="75" selection-end-line="144" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/IndexFieldGrid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3344">
-              <caret line="152" column="30" lean-forward="true" selection-start-line="152" selection-start-column="30" selection-end-line="152" selection-end-column="30" />
+            <state relative-caret-position="217">
+              <caret line="173" column="67" lean-forward="true" selection-start-line="173" selection-start-column="67" selection-end-line="173" selection-end-column="67" />
+              <folding>
+                <element signature="e#252#387#0" />
+                <element signature="e#418#1629#0" />
+                <element signature="e#1664#2253#0" />
+                <element signature="e#2310#4937#0" />
+                <element signature="e#2610#2932#0" />
+                <element signature="e#3462#4475#0" />
+                <element signature="e#3555#4284#0" />
+                <element signature="e#4996#5357#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/TableController.java">
+        <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/store/PlaceHolderStore.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9">
-              <caret line="108" column="57" lean-forward="true" selection-start-line="108" selection-start-column="57" selection-end-line="108" selection-end-column="57" />
+            <state relative-caret-position="110">
+              <caret line="5" column="12" lean-forward="true" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/model/PlaceHolderModel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="1" column="29" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/BusinessTypeController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2180#2204#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/service/FileFromXmlUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/service/UpdateXmlUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="274" column="60" selection-start-line="274" selection-start-column="60" selection-end-line="274" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#addModule#0;class#UpdateXmlUtils#0" />
-                <element signature="method#deleteModule#0;class#UpdateXmlUtils#0" />
-                <element signature="method#addTableInTable#0;class#UpdateXmlUtils#0" />
-                <element signature="method#addTableInModule#0;class#UpdateXmlUtils#0" />
-                <element signature="method#deleteTableInTable#0;class#UpdateXmlUtils#0" />
-                <element signature="method#deleteTableInModule#0;class#UpdateXmlUtils#0" />
-                <element signature="method#createJson#0;class#UpdateXmlUtils#0" />
-                <element signature="method#addOtherInDetail#0;class#UpdateXmlUtils#0" />
-                <element signature="method#addOtherInModule#0;class#UpdateXmlUtils#0" />
-                <element signature="method#deleteOtherInDetail#0;class#UpdateXmlUtils#0" />
-                <element signature="method#deleteOtherInModule#0;class#UpdateXmlUtils#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.table.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="73" lean-forward="true" selection-start-line="1" selection-start-column="73" selection-end-line="1" selection-end-column="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/ForeignGrid.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/TablePanel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="100" column="52" selection-start-line="100" selection-start-column="52" selection-end-line="100" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/TableBaseForm.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/src/main/resources/application.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.trigger.xml">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -148,17 +159,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="mybatis-cfg.xml" />
+        <option value="Class" />
         <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>找到文件</find>
-      <find>xstream-configuration</find>
-      <find>XStreamConfiguration</find>
       <find>xstream.xml</find>
       <find>找到XStream配置文件</find>
       <find>org.tinygroup.metadata.config</find>
@@ -186,6 +194,9 @@
       <find>IndexFieldModel</find>
       <find>IndexFieldAdd</find>
       <find>grid</find>
+      <find>bizdatatype.xml</find>
+      <find>stdidStore</find>
+      <find>isEmpty</find>
     </findStrings>
     <replaceStrings>
       <replace>IllegalArgumentException</replace>
@@ -207,38 +218,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/script/src/main/resources/xml/module.xml" />
-        <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/TreeController.java" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/js/Tree.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/js/table/model/Field.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/js/table/model/TableField.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/TableField.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/TableForeign.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/TableIndexField.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/TableIndex.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/Field.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/Foreign.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/IndexField.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/Field.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/ForeignModel.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/IndexFieldModel.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/FieldModel.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/Foreign.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/FieldStore.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/ForeignStore.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/IndexFieldStore.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/js/Table.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/index.html" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/table.html" />
-        <option value="$PROJECT_DIR$/script/src/main/resources/springMVC.xml" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/StandardFIeldIdStore.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/grid/Field.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/IndexModel.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/IndexStore.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/BooleanStore.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/DirectionStore.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/ForeignKeyModel.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/ForeignKeyStore.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/grid/FieldGrid.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/grid/ForeignGrid.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/js/TablePanel.js" />
@@ -246,18 +231,44 @@
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/grid/IndexGrid.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/TableBaseForm.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/IndexFieldGrid.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/ForeignGrid.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/IndexGrid.js" />
         <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/Table.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/tree/Tree.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/StandardFieldIdStore.js" />
         <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/tablereturn/Stdid.java" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/FieldGrid.js" />
-        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/TablePanel.js" />
+        <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/TableSqlChangeUtil.java" />
+        <option value="$PROJECT_DIR$/datameta/src/main/java/com/xquant/databasebuilstaller/DatabaseInstallerStart.java" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/component/standardFieldForm.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/model/StandardFieldBase.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/model/StandardFieldModel.js" />
+        <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/module/Module.java" />
         <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/service/UpdateXmlUtils.java" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/component/StandardFieldPanel.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/StandardFieldIdStore.js" />
+        <option value="$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.stdfield.xml" />
         <option value="$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.table.xml" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/TablePanel.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/ForeignGrid.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/FieldGrid.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/component/StandardFieldGrid.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/model/BusinessTypeModel.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/store/StandardFieldStore.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/IndexGrid.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/component/BusinessTypeForm.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/tree/Tree.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/store/PlaceHolderStore.js" />
         <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/service/FileFromXmlUtils.java" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/ForeignKeyStore.js" />
+        <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/StandardFieldController.java" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/FieldStore.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/store/BusinessTypeStore.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/component/StandardFieldForm.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/component/BusinessTypePanel.js" />
+        <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/module/PlaceHolderValueReturn.java" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/component/BusinessTypeGrid.js" />
         <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/TableController.java" />
+        <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/TreeController.java" />
+        <option value="$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/BusinessTypeController.java" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/model/PlaceHolderModel.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/component/PlaceHolderGrid.js" />
+        <option value="$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/store/PlaceHolderStore.js" />
       </list>
     </option>
   </component>
@@ -306,17 +317,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
               <item name="db-script" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
-              <item name="db-script" type="462c0819:PsiDirectoryNode" />
-              <item name="datameta" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
@@ -382,7 +389,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="script" type="462c0819:PsiDirectoryNode" />
               <item name="pojo" type="462c0819:PsiDirectoryNode" />
-              <item name="tablereturn" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
@@ -427,6 +434,16 @@
               <item name="script" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="xml" type="462c0819:PsiDirectoryNode" />
+              <item name="dada" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -437,6 +454,92 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="Ext" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="Ext" type="462c0819:PsiDirectoryNode" />
+              <item name="businessType" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="Ext" type="462c0819:PsiDirectoryNode" />
+              <item name="businessType" type="462c0819:PsiDirectoryNode" />
+              <item name="component" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="Ext" type="462c0819:PsiDirectoryNode" />
+              <item name="businessType" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="Ext" type="462c0819:PsiDirectoryNode" />
+              <item name="businessType" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="Ext" type="462c0819:PsiDirectoryNode" />
+              <item name="standardField" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="Ext" type="462c0819:PsiDirectoryNode" />
+              <item name="standardField" type="462c0819:PsiDirectoryNode" />
+              <item name="component" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="Ext" type="462c0819:PsiDirectoryNode" />
+              <item name="standardField" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="Ext" type="462c0819:PsiDirectoryNode" />
+              <item name="standardField" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
@@ -467,6 +570,17 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="Ext" type="462c0819:PsiDirectoryNode" />
+              <item name="table" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="Ext" type="462c0819:PsiDirectoryNode" />
               <item name="tree" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -482,6 +596,28 @@
             <path>
               <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
               <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db-script" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db-script" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -489,13 +625,12 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571823035290" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571920014661" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/script/src/main/webapp/js" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -505,26 +640,26 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\db-script\script\src\main\resources\xml\crud" />
-      <recent name="F:\db-script\script\src\main\webapp" />
-      <recent name="F:\db-script\script\src\main\resources" />
-      <recent name="F:\db-script\script\src\main\resources\xml" />
-      <recent name="F:\db-script" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.xquant.common" />
-      <recent name="com.xquant.xml" />
-      <recent name="com.xquant.script.controller" />
-      <recent name="com.xquant.database.fileresolver" />
-      <recent name="com.xquant.fileresolver.util" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\db-script\script\src\main\webapp\Ext\businessType\store" />
+      <recent name="F:\db-script\script\target\classes" />
       <recent name="F:\db-script\script\src\main\webapp\Ext" />
       <recent name="F:\db-script\script\src\main\webapp\Ext\tree" />
       <recent name="F:\db-script\script\src\main\webapp\Ext\table" />
-      <recent name="F:\db-script\script\src\main\resources\xml" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xquant.script.controller" />
+      <recent name="com.xquant.common" />
+      <recent name="com.xquant.xml" />
+      <recent name="com.xquant.database.fileresolver" />
+      <recent name="com.xquant.fileresolver.util" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\db-script\script\src\main\resources\xml\crud" />
+      <recent name="F:\db-script\script\target\classes" />
+      <recent name="F:\db-script\script\target\classes\xml" />
+      <recent name="F:\db-script\script\src\main\webapp" />
+      <recent name="F:\db-script\script\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -663,11 +798,13 @@
       <workItem from="1571707308666" duration="30210000" />
       <workItem from="1571746948414" duration="552000" />
       <workItem from="1571793286725" duration="25767000" />
+      <workItem from="1571877140851" duration="1719000" />
+      <workItem from="1571880114859" duration="31589000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="277854000" />
+    <option name="totallyTimeSpent" value="311162000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -682,7 +819,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25642964" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26399395" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -691,8 +828,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.25432527" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2810903" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.1294719" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.42248723" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.43598616" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -702,7 +839,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4992224" weight="0.32871974" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007776" side_tool="true" weight="0.21972318" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.16865417" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.14821124" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" sideWeight="0.4992224" weight="0.32871974" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
       <window_info anchor="bottom" id="Version Control" order="15" />
@@ -782,409 +919,382 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/module/TableName.java">
+    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/dada/dada.table.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/dada/dada.trigger.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.procedure.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.trigger.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/ReturnClass/Response.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#293#294#0" expanded="true" />
-            <element signature="e#320#321#0" expanded="true" />
-            <element signature="e#360#361#0" expanded="true" />
-            <element signature="e#392#393#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="88">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/module/Modules.java">
+    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/ReturnClass/ResponseCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="44">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.bizdatatype.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/ReturnClass/NormalResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/target/classes/crud.stdfield.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/TableBaseForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/module/Module.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+        <state relative-caret-position="22">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1651#1652#0" expanded="true" />
-            <element signature="e#1682#1683#0" expanded="true" />
-            <element signature="e#1730#1731#0" expanded="true" />
-            <element signature="e#1770#1771#0" expanded="true" />
+            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#1911#1912#0" expanded="true" />
+            <element signature="e#1967#1968#0" expanded="true" />
+            <element signature="e#2015#2016#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.触发器.xml" />
-    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/dada/dada.table.xml">
+    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/service/UpdateXmlUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="22">
+          <caret line="125" column="23" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/tablereturn/TableBase.java">
+    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.stdfield.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="132">
+          <caret line="6" column="53" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/js/Model.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/js/SearchField.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/resources/spring.xml">
+    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.table.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="37" column="14" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
+        <state relative-caret-position="132">
+          <caret line="6" column="58" lean-forward="true" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/resources/springMVC.xml">
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/ForeignGrid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/FieldModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="39" />
+        <state relative-caret-position="66">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/IndexModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/IndexFieldStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/ForeignKeyStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/IndexStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/ForeignKeyModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="38" selection-start-column="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/DirectionStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="29" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/IndexFieldModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/js/TablePanel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="1055" column="74" lean-forward="true" selection-start-line="1055" selection-start-column="74" selection-end-line="1055" selection-end-column="74" />
-          <folding>
-            <element signature="e#31590#34997#0" />
-            <element signature="e#31920#33327#0" />
-            <element signature="e#33358#34050#0" />
-            <element signature="e#34117#34274#0" />
-            <element signature="e#35109#35429#0" />
-            <element signature="e#35485#35804#0" />
-            <element signature="e#35866#36195#0" />
-            <element signature="e#36246#37005#0" />
-            <element signature="e#36324#36994#0" />
-            <element signature="e#37117#40039#0" />
-            <element signature="e#40103#42280#0" />
-            <element signature="e#42342#44498#0" />
-            <element signature="e#46576#49890#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/IndexGrid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="115" column="53" selection-start-line="115" selection-start-column="53" selection-end-line="115" selection-end-column="53" />
-          <folding>
-            <element signature="e#2986#5248#0" />
-            <element signature="e#5287#6583#0" />
-            <element signature="e#5942#6551#0" />
-            <element signature="e#6631#7355#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/FieldStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/Table.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="46" />
-          <folding>
-            <element signature="e#872#962#0" />
-            <element signature="e#1115#1248#0" />
-            <element signature="e#1485#2155#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/record.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="54" lean-forward="true" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/IndexStore.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/student.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132" />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/DirectionStore.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/BooleanStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="42" selection-start-column="42" selection-end-column="42" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/IndexFieldModel.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/StandardFieldIdStore.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        <state relative-caret-position="132">
+          <caret line="6" column="57" selection-start-line="6" selection-start-column="57" selection-end-line="6" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/tablereturn/Stdid.java">
+    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/service/FileFromXmlUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+        <state relative-caret-position="102">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
           <folding>
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/TablePanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/FieldGrid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="100" column="36" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
-          <folding>
-            <element signature="e#527#1931#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.procedure.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/js/stdField.js">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
-          <caret line="917" column="3" selection-start-line="917" selection-start-column="3" selection-end-line="917" selection-end-column="3" />
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
           <folding>
-            <element signature="e#66#34865#0" />
+            <element signature="e#497#1901#0" />
+            <element signature="e#1936#2527#0" />
+            <element signature="e#6831#9661#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/TreeController.java">
+    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/StandardFieldController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="85" column="72" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="72" />
+        <state relative-caret-position="-170">
+          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#deleteTable#0;class#TreeController#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/model/BusinessTypeModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/IndexFieldStore.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/ForeignKeyStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="11" lean-forward="true" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/store/FieldStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/store/StandardFieldStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/tree/Tree.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="35" column="61" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+        <state relative-caret-position="273">
+          <caret line="56" column="54" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.8.RELEASE/spring-web-5.0.8.RELEASE.jar!/org/springframework/web/bind/annotation/RequestBody.class">
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/component/StandardFieldPanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="29" />
+        <state relative-caret-position="528">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.8.RELEASE/spring-web-5.0.8.RELEASE.jar!/org/springframework/web/bind/annotation/RequestParam.class">
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/component/StandardFieldForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        <state relative-caret-position="-220">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/datameta/src/main/java/com/xquant/database/config/table/Tables.java">
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/component/BusinessTypeForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+        <state>
+          <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/component/BusinessTypePanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/store/BusinessTypeStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datameta/src/main/java/com/xquant/metadata/config/Placeholder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/datameta/src/main/java/com/xquant/database/config/table/Table.java">
+    <entry file="file://$PROJECT_DIR$/datameta/src/main/java/com/xquant/metadata/config/PlaceholderValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datameta/src/main/java/com/xquant/metadata/config/bizdatatype/BusinessType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/pojo/module/PlaceHolderValueReturn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
-          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/datameta/src/main/java/com/xquant/metadata/config/BaseObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.stdfield.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="56" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/module.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/resources/application.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.trigger.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/service/UpdateXmlUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="274" column="60" selection-start-line="274" selection-start-column="60" selection-end-line="274" selection-end-column="60" />
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#addModule#0;class#UpdateXmlUtils#0" />
-            <element signature="method#deleteModule#0;class#UpdateXmlUtils#0" />
-            <element signature="method#addTableInTable#0;class#UpdateXmlUtils#0" />
-            <element signature="method#addTableInModule#0;class#UpdateXmlUtils#0" />
-            <element signature="method#deleteTableInTable#0;class#UpdateXmlUtils#0" />
-            <element signature="method#deleteTableInModule#0;class#UpdateXmlUtils#0" />
-            <element signature="method#createJson#0;class#UpdateXmlUtils#0" />
-            <element signature="method#addOtherInDetail#0;class#UpdateXmlUtils#0" />
-            <element signature="method#addOtherInModule#0;class#UpdateXmlUtils#0" />
-            <element signature="method#deleteOtherInDetail#0;class#UpdateXmlUtils#0" />
-            <element signature="method#deleteOtherInModule#0;class#UpdateXmlUtils#0" />
+            <element signature="e#167#168#0" expanded="true" />
+            <element signature="e#196#197#0" expanded="true" />
+            <element signature="e#240#241#0" expanded="true" />
+            <element signature="e#276#277#0" expanded="true" />
+            <element signature="e#308#309#0" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#378#379#0" expanded="true" />
+            <element signature="e#412#413#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/resources/xml/crud/crud.table.xml">
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/standardField/component/StandardFieldGrid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="73" lean-forward="true" selection-start-line="1" selection-start-column="73" selection-end-line="1" selection-end-column="73" />
+        <state relative-caret-position="-858">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding>
+            <element signature="e#1974#2519#0" />
+            <element signature="e#2554#4626#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/IndexFieldGrid.js">
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/IndexGrid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3344">
-          <caret line="152" column="30" lean-forward="true" selection-start-line="152" selection-start-column="30" selection-end-line="152" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/ForeignGrid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/TableBaseForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/TablePanel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="100" column="52" selection-start-line="100" selection-start-column="52" selection-end-line="100" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/service/FileFromXmlUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
+        <state relative-caret-position="220">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+          <folding>
+            <element signature="e#1689#2475#0" />
+            <element signature="e#3096#5129#0" />
+            <element signature="e#5177#7439#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/TableController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
-          <caret line="108" column="57" lean-forward="true" selection-start-line="108" selection-start-column="57" selection-end-line="108" selection-end-column="57" />
+        <state relative-caret-position="1030">
+          <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#8011#8040#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datameta/src/main/java/com/xquant/database/config/table/Table.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/TreeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1968">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/java/com/xquant/script/controller/BusinessTypeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2180#2204#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/component/IndexFieldGrid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="173" column="67" lean-forward="true" selection-start-line="173" selection-start-column="67" selection-end-line="173" selection-end-column="67" />
+          <folding>
+            <element signature="e#252#387#0" />
+            <element signature="e#418#1629#0" />
+            <element signature="e#1664#2253#0" />
+            <element signature="e#2310#4937#0" />
+            <element signature="e#2610#2932#0" />
+            <element signature="e#3462#4475#0" />
+            <element signature="e#3555#4284#0" />
+            <element signature="e#4996#5357#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/table/model/FieldModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="13" lean-forward="true" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/component/BusinessTypeGrid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="229" column="40" selection-start-line="229" selection-start-column="40" selection-end-line="229" selection-end-column="40" />
+          <folding>
+            <element signature="e#2598#3187#0" />
+            <element signature="e#3223#5167#0" />
+            <element signature="e#5230#7486#0" />
+            <element signature="e#7549#8281#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/component/PlaceHolderGrid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="144" column="75" selection-start-line="144" selection-start-column="75" selection-end-line="144" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/model/PlaceHolderModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="29" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/src/main/webapp/Ext/businessType/store/PlaceHolderStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="12" lean-forward="true" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
         </state>
       </provider>
     </entry>
