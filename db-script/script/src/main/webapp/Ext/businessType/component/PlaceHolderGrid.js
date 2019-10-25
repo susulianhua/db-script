@@ -3,7 +3,7 @@ Ext.define('Ext.businessType.component.PlaceHolderGrid', {
     loadMask: true,
     selType: 'rowmodel',
     autoScroll: true,
-    typeId: null,
+    businessId: null,
 
     initComponent: function(){
         this.columns = this.createColumns();
@@ -13,6 +13,7 @@ Ext.define('Ext.businessType.component.PlaceHolderGrid', {
     createColumns: function(){
         var me = this;
         return [
+            { dataIndex: 'name', text: 'name', align: 'center'},
             { dataIndex: 'value', text: 'value', align: 'center'},
             {
                 text: '操作1',
@@ -73,12 +74,13 @@ Ext.define('Ext.businessType.component.PlaceHolderGrid', {
     editPlaceHolderValue: function(placeHolderValueGrid, rowIndex){
         var me = this;
         var record = placeHolderValueGrid.getStore().getAt(rowIndex).data;
-        var placeHolderVlaueForm = new Ext.FormPanel({
+        var placeHolderValueForm = new Ext.FormPanel({
             //labelAlign: 'top',
             bodyStyle: 'padding:5px 5px 0',
             layout: 'column',
             title: 'index-field修改',
             items: [
+                { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
                 { fieldLabel: 'value', name: 'value', xtype: 'textfield',
                     allowBlank: false, regex: /^\w+$/, frame: true,}
                     ],
@@ -88,12 +90,12 @@ Ext.define('Ext.businessType.component.PlaceHolderGrid', {
                     text: '保存',
                     handler: function () {
                         var del = placeHolderValueGrid.getStore().getAt(rowIndex);
-                        var typeId = me.typeId;
                         var record = this.up('form').getForm().getValues();
                         placeHolderValueGrid.store.remove(del);
                         var placeHolderModel = Ext.create('Ext.businessType.model.PlaceHolderModel');
-                        placeHolderModel.data.value = record.value;
-                        placeHolderModel.data.typeId = typeId;
+                        placeHolderModel.set('value', record.value);
+                        placeHolderModel.set('name', record.name);
+                        placeHolderModel.set('businessId', me.businessId);
                         placeHolderValueGrid.store.insert(rowIndex,placeHolderModel.data);
                         win.close();
                     }
@@ -105,7 +107,7 @@ Ext.define('Ext.businessType.component.PlaceHolderGrid', {
                 }
             ]
         });
-        placeHolderVlaueForm.getForm().setValues(record);
+        placeHolderValueForm.getForm().setValues(record);
         var win = Ext.create("Ext.window.Window", {
 
             draggable: true,
@@ -114,7 +116,7 @@ Ext.define('Ext.businessType.component.PlaceHolderGrid', {
             layout: "fit",                        //窗口布局类型
             modal: true, //是否模态窗口，默认为false
             resizable: false,
-            items: [placeHolderVlaueForm]
+            items: [placeHolderValueForm]
         });
         win.show();
     },
@@ -135,7 +137,10 @@ Ext.define('Ext.businessType.component.PlaceHolderGrid', {
             bodyStyle: 'padding:5px 5px 0',
             frame: true,
             title: 'placeHolder新增',
-            items: { fieldLabel: 'value', name: 'value', xtype: 'textfield'},
+            items: [
+                { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
+                { fieldLabel: 'value', name: 'value', xtype: 'textfield'}
+            ],
             buttonAlign: 'center',
             buttons: [
                 {
@@ -144,7 +149,8 @@ Ext.define('Ext.businessType.component.PlaceHolderGrid', {
                         var record = this.up('form').getForm().getValues();
                         var placeHolderModel = Ext.create('Ext.businessType.model.PlaceHolderModel');
                         placeHolderModel.set('value', record.value);
-                        placeHolderModel.set('typeId', me.typeId);
+                        placeHolderModel.set('name', record.name);
+                        placeHolderModel.set('businessId', me.businessId);
                         me.store.insert(0,[placeHolderModel]);
                         win.close();
                     }

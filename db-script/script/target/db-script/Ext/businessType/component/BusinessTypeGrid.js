@@ -227,12 +227,12 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
     },
 
     setPlaceHolderValue: function(record) {
-        var typeId = record.data.typeId;
+        var businessId = record.data.id;
         var placeHolderStore = this.placeHolderStore;
         var placeHolderGrid = Ext.create('Ext.businessType.component.PlaceHolderGrid',{
             store: placeHolderStore,
-            typeId: typeId,
-            title: typeId +': placeholderValue'
+            businessId: businessId,
+            title: businessId +': placeholderValue'
         });
 
         /**
@@ -243,13 +243,14 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
         /**
          * 过滤store显示对应数据
          * */
-        placeHolderStore.filter('typeId', typeId);
+        placeHolderStore.filter('businessId', businessId);
+        console.log('filterPlaceHolder:', placeHolderStore)
         var win = Ext.create("Ext.window.Window", {
             draggable: true,
             height: 300,                          //高度
             width: 400,                           //宽度
             layout: "fit",                        //窗口布局类型
-            modal: true, //是否模态窗口，默认为false
+            modal: true,                          //是否模态窗口，默认为false
             resizable: false,
             items: [placeHolderGrid],
             buttonAlign: 'center',

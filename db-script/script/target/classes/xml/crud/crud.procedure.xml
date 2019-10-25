@@ -1,7 +1,7 @@
 <procedures>
 	<procedure name="procedure1">
 		<procedure-parameters>
-			<procedure-parameter standard-field-id="name" parameter-type="IN" default-value="'1'"/>
+			<procedure-parameter standard-field-id="name" parameter-type="IN" />
 		</procedure-parameters>
 		<sqls>
 		    <sql dialect-type-name="default" content=""></sql>

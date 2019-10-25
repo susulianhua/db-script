@@ -133,7 +133,6 @@ Ext.define('Ext.table.component.TablePanel', {
                     indexFieldRecordsByindex.push(indexFieldRecords[i]);
                 }
             }
-            console.log('IndexFieldRecordsByIndex', indexFieldRecordsByindex);
             for( var i in indexFieldRecordsByindex){
                 indexFieldList.push({
                     'field': indexFieldRecordsByindex[i].get('field'),
@@ -146,7 +145,6 @@ Ext.define('Ext.table.component.TablePanel', {
         };
         table.indexList = indexList;
 
-        console.log('tableReturn:', table);
         Ext.Ajax.request({
             url: 'http://localhost:8080/dbscript//table/tableSave',
             headers: {'ContentType': 'application/json;charset=UTF-8',

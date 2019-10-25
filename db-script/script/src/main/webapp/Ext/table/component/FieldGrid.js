@@ -173,7 +173,6 @@ Ext.define('Ext.table.component.FieldGrid',{
         var me = this;
         var record = tableFieldGrid.getStore().getAt(rowIndex).data;
         var booleanStore = Ext.create('Ext.table.store.BooleanStore');
-        var standardFieldIdStore = Ext.create('Ext.table.store.StandardFieldIdStore');
         var tableFieldForm = new Ext.FormPanel({
             bodyStyle: 'padding:5px 5px 0',
             layout: 'column',

@@ -6,30 +6,10 @@
     <title>数据库脚本</title>
     <script type="text/javascript" src="Ext/js/ext-all.js" ></script>
     <link type="text/css"  rel="stylesheet" href="css/ext-theme-classic-all.css"/>
-    <script type="text/javascript" src="Ext/tree/Tree.js"></script>
+    <script type="text/javascript" src="Ext/js/index.js"></script>
 
 </head>
 <body>
-<form onsubmit="return false" id="addmodule" onclick="addModule">
-    <input type="text" name="moduleName" placeholder="模块名">
-    <button  id ="add" onclick="addModule()">新增模块名</button>
-</form>
 <div id="tree-panel"></div>
 </body>
 </html>
-<script>
-    function  addModule() {
-        $.ajax({
-            url: 'http://localhost:8080/dbscript/tree/addModule',
-            type: 'post',
-            data: $('#addmodule').serialize(),
-            datatype: 'json',
-            error:function () {
-                alert('已有该模块，请勿重复添加')
-            },
-            success:function () {
-                alert('添加成功')
-            }
-        })
-    }
-</script>

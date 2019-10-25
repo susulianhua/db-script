@@ -17,8 +17,6 @@ public  class FileFromXmlUtils {
         return file;
     }
 
-
-
     public static File getStandardFieldFile(String moduleName, String filePath){
         filePath = filePath.substring(1,filePath.length() - 51);
         String standardFieldFilePath = filePath + "/db-script/script/src/main/resources/xml/"
@@ -29,9 +27,17 @@ public  class FileFromXmlUtils {
 
     public static File getBusinessTypeFile(String moduleName, String filePath){
         filePath = filePath.substring(1, filePath.length() - 51);
-        String bussinessTypeFilePath = filePath + "/db-script/script/src/main/resources/xml/"
+        String businessTypeFilePath = filePath + "/db-script/script/src/main/resources/xml/"
                 + moduleName + "/" + moduleName + ".bizdatatype.xml";
-        File file = new File(bussinessTypeFilePath);
+        File file = new File(businessTypeFilePath);
+        return file;
+    }
+
+    public static File getProcedureFile(String moduleName, String filePath){
+        filePath = filePath.substring(1, filePath.length() - 51);
+        String procedureFilePath = filePath + "/db-script/script/src/main/resourcces/xml"
+                + moduleName + "/" + moduleName + ".procedure.xml";
+        File file = new File(procedureFilePath);
         return file;
     }
 
