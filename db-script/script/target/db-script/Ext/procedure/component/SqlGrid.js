@@ -1,11 +1,12 @@
 Ext.define('Ext.procedure.component.SqlGrid',{
-    extend: 'Ext.gird.Panel',
+    extend: 'Ext.grid.Panel',
     moduleName: null,
     disableSelection: false,
     loadMask: true,
+    height: 350,
+    width: 312,
     selType: 'rowmodel',
     autoScroll:true,
-    sqlStore: null,
 
     initComponent: function(){
         this.columns = this.createColumns();
@@ -16,13 +17,13 @@ Ext.define('Ext.procedure.component.SqlGrid',{
     createColumns: function () {
         var me = this;
         return [
-            { dataIndex: 'dialectTypeName', text: 'dialectTypeName', width: 60, align: 'center'},
-            { dataIndex: 'content', text: 'content' , width: 140, align: 'center'},
+            { dataIndex: 'dialectTypeName', text: 'dialectTypeName', width: 105, align: 'center'},
+            { dataIndex: 'content', text: 'content' , width: 130, align: 'center'},
             {
                 text: '操作',
                 xtype: 'actioncolumn',
                 align:"center",
-                width: 90,
+                width: 70,
                 items: [
                     {
                         tooltip: '编辑',
@@ -75,16 +76,17 @@ Ext.define('Ext.procedure.component.SqlGrid',{
             items: [
                 {
                     layout: 'form',
-                    columnWidth: 0.5,
+                    columnWidth: 0.4,
                     frame: true,
-                    items: { fieldLabel: 'dialectTypeName', name: 'dialectTypeName', xtype: 'textfiled'}
+                    items: { fieldLabel: 'dialectTypeName', name: 'dialectTypeName', xtype: 'textfield',
+                    height: 20}
                 },
                 {
                     layout: 'form',
-                    columnWidth: 0.5,
+                    columnWidth: 0.6,
                     frame: true,
                     border: false,
-                    items: { fieldLabel: 'Content', name: 'content', xtype: 'textarea'}
+                    items: { fieldLabel: 'Content', name: 'content', xtype: 'textarea', labelWidth: 50}
                 }
             ],
             buttonAlign: 'center',
@@ -92,14 +94,22 @@ Ext.define('Ext.procedure.component.SqlGrid',{
                 {
                     text: '保存',
                     handler: function () {
-                        var record = this.up('form').getForm().getValues();
-                        me.store.insert(0,record);
-                        win.close(this);
+                        if( Ext.getCmp('procedureName').getValue() == null){
+                            Ext.Msg.alert('失败','请先选择procedureName');
+                        }
+                        else{
+                            var record = this.up('form').getForm().getValues();
+                            var sqlModel = Ext.create('Ext.procedure.model.SqlModel');
+                            sqlModel.set('dialectTypeName', record.dialectTypeName);
+                            sqlModel.set('content', record.content);
+                            me.store.insert(0,record);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]
@@ -118,10 +128,12 @@ Ext.define('Ext.procedure.component.SqlGrid',{
     },
 
     deleteSqlBody:function(sqlBodyGrid, rowIndex){
+        var me = this;
         Ext.MessageBox.confirm('提示','是否确认删除该sql',function (btn) {
             if(btn == 'yes'){
                 var record = sqlBodyGrid.getStore().getAt(rowIndex);
-                sqlBodyGridGrid.store.remove(record);
+                sqlBodyGrid.store.remove(record);
+                me.sqlStore.insert(rowIndex,record);
                 Ext.Msg.alert('成功','删除成功');
             };
         });
@@ -137,17 +149,17 @@ Ext.define('Ext.procedure.component.SqlGrid',{
             items: [
                 {
                     layout: 'form',
-                    columnWidth: 0.5,
+                    columnWidth: 0.4,
                     frame: true,
                     items: { fieldLabel: 'dialectTypeName', name: 'dialectTypeName', xtype: 'textfield'},
                 },
                 {
                     layout: 'form',
-                    columnWidth: 0.5,
+                    columnWidth: 0.6,
                     frame: true,
                     border: false,
                     items:
-                        { fieldLabel: 'content', name: 'content', xtype: 'textarea'},
+                        { fieldLabel: 'content', name: 'content', xtype: 'textarea', labelWidth: 50},
                 }
             ],
             buttonAlign: 'center',
@@ -155,11 +167,19 @@ Ext.define('Ext.procedure.component.SqlGrid',{
                 {
                     text: '保存',
                     handler: function () {
-                        var del = sqlBodyGrid.getStore().getAt(rowIndex);
-                        var record = this.up('form').getForm().getValues();
-                        sqlBodyGrid.store.remove(del);
-                        sqlBodyGrid.store.insert(rowIndex,record);
-                        win.close(this);
+                        if( Ext.getCmp('procedureName').getValue() == null){
+                            Ext.Msg.alert('失败','请先选择procedureName');
+                        }
+                        else{
+                            var del = sqlBodyGrid.getStore().getAt(rowIndex);
+                            var record = this.up('form').getForm().getValues();
+                            sqlBodyGrid.store.remove(del);
+                            var sqlModel = Ext.create('Ext.procedure.model.SqlModel');
+                            sqlModel.set('dialectTypeName', record.dialectTypeName);
+                            sqlModel.set('content', record.content);
+                            me.store.insert(rowIndex,record);
+                            win.close();
+                        }
                     }
                 },
                 {
@@ -182,6 +202,7 @@ Ext.define('Ext.procedure.component.SqlGrid',{
             items: [sqlBodyForm]
         });
         win.show();
-    }
+    },
+
 
 })

@@ -161,5 +161,6 @@ Ext.define('Ext.table.component.TablePanel', {
                 Ext.Msg.alert('失败', '添加失败，请重试');
             }
         });
-    }
+    },
+
 })

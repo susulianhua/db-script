@@ -5,7 +5,10 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
     loadMask: true,
     selType: 'rowmodel',
     autoScroll:true,
+    height: 350,
+    width: 312,
     parameterStore: null,
+
 
     initComponent: function(){
         this.columns = this.createColumns();
@@ -16,8 +19,8 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
     createColumns: function () {
         var me = this;
         return [
-            { dataIndex: 'standardFieldId', text: 'standardFieldId', width: 60, align: 'center'},
-            { dataIndex: 'parameterType', text: 'parameterType' , width: 140, align: 'center'},
+            { dataIndex: 'standardFieldId', text: 'standardFieldId', width: 100, align: 'center'},
+            { dataIndex: 'parameterType', text: 'parameterType' , width: 80, align: 'center'},
             {
                 text: '操作',
                 xtype: 'actioncolumn',
@@ -77,7 +80,7 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
                     layout: 'form',
                     columnWidth: 0.5,
                     frame: true,
-                    items: { fieldLabel: 'standardFieldId', name: 'standardFieldId', xtype: 'textfiled'}
+                    items: { fieldLabel: 'standardFieldId', name: 'standardFieldId', xtype: 'textfield'}
                 },
                 {
                     layout: 'form',

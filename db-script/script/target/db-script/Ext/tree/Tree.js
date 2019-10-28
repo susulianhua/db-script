@@ -37,6 +37,14 @@ Ext.define('Ext.tree.Tree', {
                                 moduleName: moduleName
                             })
                         }
+                        else if(record.parentNode.data.text == '存储过程'){
+                            fileName = record.parentNode.parentNode.data.text;
+                            moduleName = fileName.substring(3, fileName.length - 1);
+                            var panel = Ext.create('Ext.procedure.component.ProcedurePanel', {
+                                moduleName: moduleName,
+                                procedureName: record.data.text
+                            });
+                        }
                         var win = Ext.create("Ext.window.Window", {
                             draggable: true,
                             height: 500,                          //高度
@@ -77,9 +85,29 @@ Ext.define('Ext.tree.Tree', {
                                     FileName: fileName
                                 },
                                 success: function () {
-                                    var pnode = record.parentNode;
-                                    pnode.removeChild(record);
-                                    pnode.expand();
+                                    var pNode = record.parentNode;
+                                    pNode.removeChild(record);
+                                    pNode.expand();
+                                    Ext.Msg.alert("成功", "成功删除" + record.data.text)
+                                },
+                                failure: function () {
+                                    Ext.Msg.alert("失败", "删除失败");
+                                }
+                            })
+                        }
+                        else if(record.parentNode.data.text == '存储过程'){
+                            var fileName = record.parentNode.parentNode.data.text;
+                            moduleName = fileName.substring(3,fileName.length - 1);
+                            Ext.Ajax.request({
+                                url: 'http://localhost:8080/dbscript/tree/deleteProcedure',
+                                params:{
+                                    procedureName: record.data.text,
+                                    moduleName: moduleName
+                                },
+                                success: function () {
+                                    var pNode = record.parentNode;
+                                    pNode.removeChild(record);
+                                    pNode.expand();
                                     Ext.Msg.alert("成功", "成功删除" + record.data.text)
                                 },
                                 failure: function () {
@@ -90,7 +118,6 @@ Ext.define('Ext.tree.Tree', {
                         else{
                             var fileName = record.parentNode.data.text;
                             var curText = record.data.text;
-                            console.log('curText',curText);
                             fileName = fileName.substring(3, fileName.length - 1);
                             Ext.Ajax.request({
                                 url: 'http://localhost:8080/dbscript//tree/deleteOther',
@@ -125,7 +152,40 @@ Ext.define('Ext.tree.Tree', {
                                         moduleName: record.parentNode.data.text,
                                     },
                                     success: function () {
-                                        var pNode = treeStore.getNodeById(record.data.id)
+                                        var pNode = record;
+                                        var newNode = [{text: text,leaf: true}];
+                                        pNode.appendChild(newNode);
+                                        pNode.expand();
+                                    },
+                                    failure: function () {
+                                        Ext.Msg.alert("添加失败")
+                                    }
+
+                                })
+                            }
+                        })
+                    },this, record)
+                }, {
+                    text: '删除',
+                    handler: Ext.bind(function(){
+                        Ext.Msg.alert('失败',record.data.text + '无法刪除')
+                    },this, record)
+                }]
+            });
+            var procedureMenu = new Ext.menu.Menu({
+                items: [{
+                    text: '新增',
+                    handler: Ext.bind(function(){
+                        Ext.MessageBox.prompt("请输入存储过程名称","",function (e,text) {
+                            if(e == "ok"){
+                                Ext.Ajax.request({
+                                    url: "http://localhost:8080/dbscript/tree/addProcedure",
+                                    params: {
+                                        procedureName: text,
+                                        moduleName: record.parentNode.data.text,
+                                    },
+                                    success: function () {
+                                        var pNode = record;
                                         var newNode = [{text: text,leaf: true}];
                                         pNode.appendChild(newNode);
                                         pNode.expand();
@@ -170,11 +230,8 @@ Ext.define('Ext.tree.Tree', {
                             {
                                 text: '序列',
                                 handler: Ext.Function.bind(me.onMenuItem,null,[record],true)
-                            },
-                            {
-                                text: '存储过程',
-                                handler: Ext.Function.bind(me.onMenuItem,null,[record],true)
-                            }]
+                            }
+                            ]
                     }
                 }, {
                     text: '删除',
@@ -183,6 +240,7 @@ Ext.define('Ext.tree.Tree', {
             });
             if(record.data.parentId == "root") moduleMenu.showAt(e.getXY());
             if(record.data.text == "表") tableMenu.showAt(e.getXY());
+            if(record.data.text == "存储过程") procedureMenu.showAt(e.getXY());
             if(record.get('leaf') == true) leafMenu.showAt(e.getXY());
 
         }
@@ -216,7 +274,6 @@ Ext.define('Ext.tree.Tree', {
     },
 
     onMenuItem: function(item,event, record) {
-    console.log("record:", record)
     Ext.Ajax.request({
         url: 'http://localhost:8080/dbscript/tree/addOther',
         params:{

@@ -107,6 +107,36 @@ public class TreeController {
 
     }
 
+    @RequestMapping("/addProcedure")
+    @ResponseBody
+    public NormalResponse addProcedure(HttpServletRequest request) throws Exception{
+        String procedureName = request.getParameter("procedureName");
+        String module = request.getParameter("moduleName");
+        String moduleName = module.substring(3,module.length()- 1);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
+        File file = FileFromXmlUtils.getProcedureFile(moduleName, filePath);
+        UpdateXmlUtils.addProcedureInModule(moduleFile, procedureName, moduleName);
+        UpdateXmlUtils.addProcedureInProcedure(file, procedureName);
+        return new NormalResponse();
+    }
+
+    @RequestMapping("/deleteProcedure")
+    @ResponseBody
+    public NormalResponse deleteProcedure(HttpServletRequest request){
+        String procedureName = request.getParameter("procedureName");
+        String moduleName = request.getParameter("moduleName");
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getProcedureFile(moduleName, filePath);
+        //删除table.xml中对应表格
+        UpdateXmlUtils.deleteProcedureInProcedure(file, procedureName);
+
+        //删除module.xml中对应表格
+        File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
+        UpdateXmlUtils.deleteProcedureInModule(moduleFile, procedureName, moduleName);
+        return new NormalResponse();
+    }
+
     /**在module.xml生成对应信息，并生成对应视图、触发器等xml文件*/
     @RequestMapping("/addOther")
     @ResponseBody

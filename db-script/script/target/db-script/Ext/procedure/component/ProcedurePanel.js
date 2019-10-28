@@ -5,87 +5,59 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
     title: 'Table',
     titleAlign: 'center',
     layout: 'form',
-    tableName: null,
-    FileName: null,
+    moduleName: null,
 
     initComponent: function(){
-        this.parameterStore = Ext.create('Ext.procedure.store.ParameterStore');
         this.sqlStore = Ext.create('Ext.procedure.store.SqlStore');
+        this.parameterStore = Ext.create('Ext.procedure.store.ParameterStore');
         this.items = this.getItems();
         this.callParent(arguments);
     },
 
     getItems: function () {
         var me = this;
-
-        this.standardFieldIdStore.load({params:{FileName: me.FileName}});
-        var sqlGrid = Ext.create('Ext.procedure.component.SqlGrid', {
-            sqlStore: me.sqlStore,
+        var sqlGrid = Ext.create('Ext.procedure.component.SqlGrid',{
+            store: this.sqlStore
         });
-        var parameterGrid = Ext.create('Ext.procedure.component.ParameterGrid', { store: me.parameterStore});
-
+        var parameterGrid = Ext.create('Ext.procedure.component.ParameterGrid', {
+            store: this.parameterStore
+        });
         items = [
             {
-                xtype: 'tabpanel',
+                xtype:'form',
+                layout: 'column',
+                height: 30,
+                items: [
+                    { xtype: 'textfield', fieldLabel: 'procedureName', name: 'procedureName',
+                        value: me.procedureName,  readOnly: true, id: 'procedureName'
+                    }
+                ]
+            },
+            {
+                xtype: 'panel',
+                layout: 'column',
                 frame: true,
-                heigth: 370,
+                height: 370,
                 items:[
-                    fieldGrid,
-                    foreignGrid,
-                    indexGrid,
+                    sqlGrid,
+                    parameterGrid
                 ]
             }
         ];
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/dbscript//table/tableBase',
-            method: 'post',
-            reader:{
-                type: 'json',
-                root: 'data',
-                totalProperty: 'total'
-            },
+        this.sqlStore.load({
+            params:{
+                moduleName: me.moduleName,
+                procedureName: me.procedureName
+            }});
+        this.parameterStore.load({
             params: {
-                tableName: me.tableName,
-                FileName: me.FileName
-            },
-            success: function (response) {
-                var result = Ext.JSON.decode(response.responseText).data;
-                var record = result[0];
-                me.tableBaseForm.getForm().setValues(record);
-            },
-            failure:function () {
+                moduleName: me.moduleName,
+                procedureName: me.procedureName
             }
-        });
-        me.fieldStore.load({params:{FileName: me.FileName, tableName: me.tableName}});
-        me.foreignKeyStore.load({params:{FileName: me.FileName, tableName: me.tableName}});
-        me.indexStore.load({params:{FileName: me.FileName, tableName: me.tableName}});
-        me.indexFieldStore.load({params:{FileName: me.FileName, tableName: me.tableName}});
+        })
         return items;
     },
 
-    createDockedItems: function(){
-        var me = this;
-        return [
-            {
-                xtype:'toolbar',
-                dock: 'top',
-                items: [
-                    {
-                      xtype: 'form',
-                    },
-                    {
-                        xtype:'button',
-                        handler: function(){
-                            me.addParameter()
-                        },
-                        border: '1px',
-                        width: 60,
-                        text:'新增'
-                    }
-                ]
-            }
-        ]
-    },
 
     panelSave: function () {
         var me = this;
@@ -174,5 +146,14 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
                 Ext.Msg.alert('失败', '添加失败，请重试');
             }
         });
-    }
+    },
+
+    /*updateTwoGridData: function () {
+        var me = this;
+        var name = Ext.getCmp('procedureName').getValue();
+        me.sqlStore.clearFilter();
+        me.parameterStore.clearFilter();
+        me.sqlStore.filter('name', name);
+        me.parameterStore.filter('name', name);
+    }*/
 })

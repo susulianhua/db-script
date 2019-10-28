@@ -1,7 +1,6 @@
 package com.xquant.script.service;
 
 import java.io.File;
-import java.io.FileOutputStream;
 
 public  class FileFromXmlUtils {
     private static FileFromXmlUtils fileFromXmlUtils = new FileFromXmlUtils();
@@ -35,7 +34,7 @@ public  class FileFromXmlUtils {
 
     public static File getProcedureFile(String moduleName, String filePath){
         filePath = filePath.substring(1, filePath.length() - 51);
-        String procedureFilePath = filePath + "/db-script/script/src/main/resourcces/xml"
+        String procedureFilePath = filePath + "/db-script/script/src/main/resources/xml/"
                 + moduleName + "/" + moduleName + ".procedure.xml";
         File file = new File(procedureFilePath);
         return file;

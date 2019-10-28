@@ -19,8 +19,10 @@ public class Module {
     private String standardfield;
     @XStreamAlias("businessType")
     private String businessType;
-    @XStreamAlias("procedure")
-    private String procedure;
+
+    @XStreamImplicit
+    private List<ProcedureNameInModule> procedureNameInModuleList;
+
     @XStreamAlias("trigger")
     private String trigger;
     @XStreamAlias("sequence")
@@ -41,14 +43,6 @@ public class Module {
 
     public void setStandardfield(String standardfield) {
         this.standardfield = standardfield;
-    }
-
-    public String getProcedure() {
-        return procedure;
-    }
-
-    public void setProcedure(String procedure) {
-        this.procedure = procedure;
     }
 
     public String getTrigger() {
@@ -89,5 +83,13 @@ public class Module {
 
     public void setBusinessType(String businessType) {
         this.businessType = businessType;
+    }
+
+    public List<ProcedureNameInModule> getProcedureNameInModuleList() {
+        return procedureNameInModuleList;
+    }
+
+    public void setProcedureNameInModuleList(List<ProcedureNameInModule> procedureNameInModuleList) {
+        this.procedureNameInModuleList = procedureNameInModuleList;
     }
 }

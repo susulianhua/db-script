@@ -3,9 +3,13 @@ package com.xquant.script.service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.thoughtworks.xstream.XStream;
+import com.xquant.database.config.procedure.Procedure;
+import com.xquant.database.config.procedure.Procedures;
 import com.xquant.script.pojo.module.Module;
 import com.xquant.script.pojo.module.Modules;
+import com.xquant.script.pojo.module.ProcedureNameInModule;
 import com.xquant.script.pojo.module.TableName;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,6 +23,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.util.ArrayList;
 
 public class UpdateXmlUtils {
     public static UpdateXmlUtils updateXmlUtils = new UpdateXmlUtils();
@@ -82,6 +87,47 @@ public class UpdateXmlUtils {
         }
     }
 
+    public static void addProcedureInProcedure(File file, String procedureName){
+       XStream xStream = new XStream();
+       xStream.processAnnotations(Procedures.class);
+       Procedures procedures = (Procedures) xStream.fromXML(file);
+       Procedure procedure = new Procedure();
+       procedure.setName(procedureName);
+       procedures.getProcedureList().add(procedure);
+       String xml = xStream.toXML(procedures);
+       classToFile(xml, file);
+    }
+
+    public static void addProcedureInModule(File file, String procedureName, String moduleName){
+        ProcedureNameInModule procedureNameInModule = new ProcedureNameInModule();
+        procedureNameInModule.setName(procedureName);
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Modules.class);
+        Modules modules = (Modules) xStream.fromXML(file);
+        for(Module module: modules.getModuleList()){
+            if(module.getId().equals(moduleName)){
+                module.getProcedureNameInModuleList().add(procedureNameInModule);
+                break;
+            };
+        }
+        String xml = xStream.toXML(modules);
+        classToFile(xml, file);
+    }
+
+    public static void deleteProcedureInProcedure(File file, String procedureName){
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Procedures.class);
+        Procedures procedures = (Procedures) xStream.fromXML(file);
+        for(Procedure procedure: procedures.getProcedureList()){
+            if(procedure.getName().equals(procedureName)){
+                procedures.getProcedureList().remove(procedure);
+                break;
+            }
+        }
+        String xml = xStream.toXML(procedures);
+        classToFile(xml, file);
+    }
+
     public static void deleteTableInTable(File file, String tableName) throws  Exception{
         DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         Transformer tf = TransformerFactory.newInstance().newTransformer();
@@ -123,10 +169,29 @@ public class UpdateXmlUtils {
         }
     }
 
+    public static void deleteProcedureInModule(File file, String procedureName, String moduleName){
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Modules.class);
+        Modules modules = (Modules) xStream.fromXML(file);
+        for(Module module: modules.getModuleList()){
+            if(module.getId().equals(moduleName)){
+                for(ProcedureNameInModule procedureNameInModule: module.getProcedureNameInModuleList()){
+                    if(procedureNameInModule.getName().equals(procedureName)){
+                        module.getProcedureNameInModuleList().remove(procedureNameInModule);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        String xml = xStream.toXML(modules);
+        classToFile(xml, file);
+    }
+
     public static void createJson(JSONArray jsonArrayTotal, Modules modules){
-        int id = 1;
         for(Module module: modules.getModuleList()){
             JSONArray jsonArrayTable = new JSONArray();
+            JSONArray jsonArrayProcedure = new JSONArray();
             JSONArray jsonArrayModule = new JSONArray();
             JSONObject jsonObject = new JSONObject();
             if(module.getTablelist()!= null){
@@ -134,52 +199,50 @@ public class UpdateXmlUtils {
                     JSONObject json = new JSONObject();
                     json.put("text",tableName.getName());
                     json.put("leaf", true);
-                    json.put("id", id++);
                     jsonArrayTable.add(json);
                 }
             }
             JSONObject jsonTable = new JSONObject();
             jsonTable.put("text","表");
             jsonTable.put("children",jsonArrayTable);
-            jsonTable.put("id", id++);
             jsonArrayModule.add(jsonTable);
+            if(!CollectionUtils.isEmpty(module.getProcedureNameInModuleList())){
+                for(ProcedureNameInModule procedureNameInModule: module.getProcedureNameInModuleList()){
+                    JSONObject json = new JSONObject();
+                    json.put("text", procedureNameInModule.getName());
+                    json.put("leaf", true);
+                    jsonArrayProcedure.add(json);
+                }
+            }
+            JSONObject jsonProcedure = new JSONObject();
+            jsonProcedure.put("text", "存储过程");
+            jsonProcedure.put("children", jsonArrayProcedure);
+            jsonArrayModule.add(jsonProcedure);
             if(StringUtils.isEmpty(module.getBusinessType())){
                 JSONObject jsonBusinessType = new JSONObject();
                 jsonBusinessType.put("text", "业务类型");
                 jsonBusinessType.put("leaf", true);
-                jsonBusinessType.put("id", id++);
                 jsonArrayModule.add(jsonBusinessType);
             }
             if(module.getStandardfield() != null) {
                 JSONObject jsonStdfield = new JSONObject();
                 jsonStdfield.put("text", "标准字段");
                 jsonStdfield.put("leaf", true);
-                jsonStdfield.put("id", id++);
                 jsonArrayModule.add(jsonStdfield);
             }
             if(module.getView() != null){
                 JSONObject jsonView = new JSONObject();
                 jsonView.put("text", "视图");
                 jsonView.put("leaf", true);
-                jsonView.put("id", id++);
                 jsonArrayModule.add(jsonView);
             }
             if(module.getTrigger() != null){
                 JSONObject jsonTrigger = new JSONObject();
                 jsonTrigger.put("text", "触发器");
                 jsonTrigger.put("leaf", true);
-                jsonTrigger.put("id", id++);
                 jsonArrayModule.add(jsonTrigger);
             }
-            if(module.getProcedure() != null){
-                JSONObject jsonProcedure = new JSONObject();
-                jsonProcedure.put("text", "存储过程");
-                jsonProcedure.put("leaf", true);
-                jsonProcedure.put("id", id++);
-                jsonArrayModule.add(jsonProcedure);
-            }
             jsonObject.put("text","模块(" + module.getId() + ")");
-            jsonObject.put("id", id++);
             jsonObject.put("children", jsonArrayModule);
             jsonArrayTotal.add(jsonObject);
         }
@@ -189,7 +252,6 @@ public class UpdateXmlUtils {
         filePath = filePath.substring(1, filePath.length() - 51);
         String otherFilePath = filePath + "/db-script/script/src/main/resources/xml/"
                 + moduleName + "/" + moduleName + "." + curText + ".xml";
-        System.out.println("otherFilePath: " + otherFilePath);
         File file = new File(otherFilePath);
         try {
             if(!file.exists()) file.createNewFile();
@@ -217,16 +279,13 @@ public class UpdateXmlUtils {
                     curText = "trigger";
                 }
                 else if(curText.equals("序列") && StringUtils.isEmpty(module.getSequence())){
-                    module.setTrigger(moduleName);
-                    curText = "sequence";
-                }
-                else if(curText.equals("存储过程") && StringUtils.isEmpty(module.getProcedure())){
                     module.setSequence(moduleName);
-                    curText = "procedure";
+                    curText = "sequence";
                 }
             }
         }
         String xml = xStream.toXML(modules);
+        System.out.println("xml:" + xml);
         updateXmlUtils.classToFile(xml, file);
         return curText;
     }
@@ -255,10 +314,6 @@ public class UpdateXmlUtils {
                 else if(curText.equals("视图")) {
                     module.setView(null);
                     curText = "view";
-                }
-                else if(curText.equals("存储过程")) {
-                    module.setProcedure(null);
-                    curText = "procedure";
                 }
                 else if(curText.equals("触发器")) {
                     module.setTrigger(null);

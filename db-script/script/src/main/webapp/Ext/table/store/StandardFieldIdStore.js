@@ -11,5 +11,5 @@ Ext.define('Ext.table.store.StandardFieldIdStore',{
             totalProperty: 'total'
         }
     },
-    data: [],
+    data: []
 });

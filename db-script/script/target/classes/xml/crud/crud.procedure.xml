@@ -1,14 +1,12 @@
 <procedures>
-	<procedure name="procedure1">
-		<procedure-parameters>
-			<procedure-parameter standard-field-id="name" parameter-type="IN" />
-		</procedure-parameters>
-		<sqls>
-		    <sql dialect-type-name="default" content=""></sql>
-		    <sql dialect-type-name="h2" content=""></sql>
-			<sql dialect-type-name="oracle" content="CREATE OR REPLACE PROCEDURE y_p_test AS   BEGIN
-                                                   select user from dual;
-                                                   END;"></sql>
-		</sqls>
-	</procedure>
+  <procedure name="procedure1">
+    <procedure-parameters>
+      <procedure-parameter standard-field-id="name" parameter-type="IN"/>
+    </procedure-parameters>
+    <sqls>
+      <sql dialect-type-name="default" content=""/>
+      <sql dialect-type-name="h2" content=""/>
+      <sql dialect-type-name="oracle" content="CREATE OR REPLACE PROCEDURE y_p_test AS   BEGIN                                                    select user from dual;                                                    END;"/>
+    </sqls>
+  </procedure>
 </procedures>
