@@ -7,7 +7,7 @@ import com.xquant.metadata.config.stdfield.StandardFields;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
 import com.xquant.script.pojo.tablereturn.*;
 import com.xquant.script.service.FileFromXmlUtils;
-import com.xquant.script.service.UpdateXmlUtils;
+import com.xquant.script.service.UpdateMetaDataUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +28,9 @@ public class TableController {
     public NormalResponse tableBase(HttpServletRequest request) {
         String fileName = request.getParameter("FileName");
         String tableName = request.getParameter("tableName");
-        String ModuleName = fileName.substring(0, fileName.length() - 10);
+        String moduleName = fileName.substring(0, fileName.length() - 10);
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getTableFile(ModuleName, filePath);
+        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
@@ -185,7 +185,7 @@ public class TableController {
             }
         }
         String xml = xStream.toXML(tables);
-        UpdateXmlUtils.classToFile(xml, file);
+        UpdateMetaDataUtils.classToFile(xml, file);
         return new NormalResponse();
     }
 

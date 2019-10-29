@@ -7,7 +7,8 @@ import com.xquant.database.config.table.Tables;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
 import com.xquant.script.pojo.module.*;
 import com.xquant.script.service.FileFromXmlUtils;
-import com.xquant.script.service.UpdateXmlUtils;
+import com.xquant.script.service.UpdateModuleUtils;
+import com.xquant.script.service.UpdateMetaDataUtils;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ public class TreeController {
         xstream.processAnnotations(Modules.class);
         Modules modules = (Modules) xstream.fromXML(file);
         JSONArray jsonArrayTotal = new JSONArray();
-        UpdateXmlUtils.createJson(jsonArrayTotal, modules);
+        UpdateMetaDataUtils.createJson(jsonArrayTotal, modules);
         return new NormalResponse(jsonArrayTotal, (long) jsonArrayTotal.size());
     }
 
@@ -47,8 +48,8 @@ public class TreeController {
         xStream.processAnnotations(Tables.class);
         Tables tables = new Tables();
         String xml = xStream.toXML(tables);
-        UpdateXmlUtils.classToFile(xml, tableFile);
-        UpdateXmlUtils.addModule(file, newModuleName);
+        UpdateMetaDataUtils.classToFile(xml, tableFile);
+        UpdateModuleUtils.addModule(file, newModuleName);
         return new NormalResponse();
     }
 
@@ -69,7 +70,7 @@ public class TreeController {
         }catch (IOException e){
             e.printStackTrace();
         }
-        UpdateXmlUtils.deleteModule(file, moduleName);
+        UpdateModuleUtils.deleteModule(file, moduleName);
 
         return new NormalResponse();
     }
@@ -84,8 +85,8 @@ public class TreeController {
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
         File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
-        UpdateXmlUtils.addTableInModule(moduleFile, tableName, moduleName);
-        UpdateXmlUtils.addTableInTable(file, tableName);
+        UpdateModuleUtils.addTableInModule(moduleFile, tableName, moduleName);
+        UpdateMetaDataUtils.addTableInTable(file, tableName);
         return new NormalResponse();
     }
 
@@ -98,11 +99,11 @@ public class TreeController {
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File file = FileFromXmlUtils.getTableFile(FileName, filePath);
         //删除table.xml中对应表格
-        UpdateXmlUtils.deleteTableInTable(file, tableName);
+        UpdateMetaDataUtils.deleteTableInTable(file, tableName);
 
         //删除module.xml中对应表格
         File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
-        UpdateXmlUtils.deleteTableInModule(moduleFile, tableName, FileName);
+        UpdateModuleUtils.deleteTableInModule(moduleFile, tableName, FileName);
         return new NormalResponse();
 
     }
@@ -116,8 +117,8 @@ public class TreeController {
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
         File file = FileFromXmlUtils.getProcedureFile(moduleName, filePath);
-        UpdateXmlUtils.addProcedureInModule(moduleFile, procedureName, moduleName);
-        UpdateXmlUtils.addProcedureInProcedure(file, procedureName);
+        UpdateModuleUtils.addProcedureInModule(moduleFile, procedureName, moduleName);
+        UpdateMetaDataUtils.addProcedureInProcedure(file, procedureName);
         return new NormalResponse();
     }
 
@@ -129,11 +130,37 @@ public class TreeController {
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File file = FileFromXmlUtils.getProcedureFile(moduleName, filePath);
         //删除table.xml中对应表格
-        UpdateXmlUtils.deleteProcedureInProcedure(file, procedureName);
-
+        UpdateMetaDataUtils.deleteProcedureInProcedure(file, procedureName);
         //删除module.xml中对应表格
         File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
-        UpdateXmlUtils.deleteProcedureInModule(moduleFile, procedureName, moduleName);
+        UpdateModuleUtils.deleteProcedureInModule(moduleFile, procedureName, moduleName);
+        return new NormalResponse();
+    }
+
+    @RequestMapping("/addView")
+    @ResponseBody
+    public NormalResponse addView(HttpServletRequest request){
+        String viewName = request.getParameter("viewName");
+        String module = request.getParameter("moduleName");
+        String moduleName = module.substring(3,module.length()- 1);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
+        File file = FileFromXmlUtils.getViewFile(moduleName, filePath);
+        UpdateModuleUtils.addViewInModule(moduleFile, viewName, moduleName);
+        UpdateMetaDataUtils.addViewInView(file, viewName);
+        return  new NormalResponse();
+    }
+
+    @RequestMapping("/deleteView")
+    @ResponseBody
+    public NormalResponse deleteView(HttpServletRequest request){
+        String viewName = request.getParameter("viewName");
+        String moduleName = request.getParameter("moduleName");
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getViewFile(moduleName, filePath);
+        File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
+        UpdateMetaDataUtils.deleteViewInView(file, viewName);
+        UpdateModuleUtils.deleteViewInModule(moduleFile, viewName, moduleName);
         return new NormalResponse();
     }
 
@@ -146,8 +173,8 @@ public class TreeController {
         String moduleName = moduleAll.substring(3,moduleAll.length()- 1);
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File file = FileFromXmlUtils.getModuleFile(filePath);
-        curText = UpdateXmlUtils.addOtherInModule(file, curText, moduleName);
-        UpdateXmlUtils.addOtherInDetail(moduleName, curText, filePath);
+        curText = UpdateModuleUtils.addOtherInModule(file, curText, moduleName);
+        UpdateMetaDataUtils.addOtherInDetail(moduleName, curText, filePath);
         return new NormalResponse();
 
     }
@@ -160,9 +187,39 @@ public class TreeController {
         String curText = request.getParameter("curText");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File file = FileFromXmlUtils.getModuleFile(filePath);
-        curText = UpdateXmlUtils.deleteOtherInModule(file, curText, fileName);
+        curText = UpdateModuleUtils.deleteOtherInModule(file, curText, fileName);
         System.out.println("curTextdelete" + curText);
-        UpdateXmlUtils.deleteOtherInDetail(fileName, curText, filePath);
+        UpdateMetaDataUtils.deleteOtherInDetail(fileName, curText, filePath);
         return new NormalResponse();
     }
+
+    @RequestMapping("/addTrigger")
+    @ResponseBody
+    public NormalResponse addTrigger(HttpServletRequest request){
+        String triggerName = request.getParameter("triggerName");
+        String module = request.getParameter("moduleName");
+        String moduleName = module.substring(3,module.length()- 1);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
+        File file = FileFromXmlUtils.getTriggerFile(moduleName, filePath);
+        UpdateModuleUtils.addTriggerInModule(moduleFile, triggerName, moduleName);
+        UpdateMetaDataUtils.addTriggerInTrigger(file, triggerName);
+        return  new NormalResponse();
+    }
+
+    @RequestMapping("/deleteTrigger")
+    @ResponseBody
+    public NormalResponse deleteTrigger(HttpServletRequest request){
+        String moduleName = request.getParameter("moduleName");
+        String triggerName = request.getParameter("triggerName");
+        System.out.println("moduleName: " + moduleName);
+        System.out.println("triggerName: " + triggerName);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File triggerFile = FileFromXmlUtils.getTriggerFile(moduleName, filePath);
+        File moduleFile = FileFromXmlUtils.getModuleFile(filePath);
+        UpdateMetaDataUtils.deleteTriggerInTrigger(triggerFile, triggerName);
+        UpdateModuleUtils.deleteTriggerInModule(moduleFile, triggerName, moduleName);
+        return new NormalResponse();
+    }
+
 }

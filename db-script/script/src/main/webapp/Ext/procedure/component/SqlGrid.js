@@ -4,7 +4,6 @@ Ext.define('Ext.procedure.component.SqlGrid',{
     disableSelection: false,
     loadMask: true,
     height: 350,
-    width: 312,
     selType: 'rowmodel',
     autoScroll:true,
 
@@ -18,7 +17,7 @@ Ext.define('Ext.procedure.component.SqlGrid',{
         var me = this;
         return [
             { dataIndex: 'dialectTypeName', text: 'dialectTypeName', width: 105, align: 'center'},
-            { dataIndex: 'content', text: 'content' , width: 130, align: 'center'},
+            { dataIndex: 'content', text: 'content' , width: me.contentLength, align: 'center'},
             {
                 text: '操作',
                 xtype: 'actioncolumn',
@@ -94,17 +93,12 @@ Ext.define('Ext.procedure.component.SqlGrid',{
                 {
                     text: '保存',
                     handler: function () {
-                        if( Ext.getCmp('procedureName').getValue() == null){
-                            Ext.Msg.alert('失败','请先选择procedureName');
-                        }
-                        else{
                             var record = this.up('form').getForm().getValues();
                             var sqlModel = Ext.create('Ext.procedure.model.SqlModel');
                             sqlModel.set('dialectTypeName', record.dialectTypeName);
                             sqlModel.set('content', record.content);
                             me.store.insert(0,record);
                             win.close();
-                        }
                     }
                 }, {
                     text: '关闭',
@@ -128,12 +122,10 @@ Ext.define('Ext.procedure.component.SqlGrid',{
     },
 
     deleteSqlBody:function(sqlBodyGrid, rowIndex){
-        var me = this;
         Ext.MessageBox.confirm('提示','是否确认删除该sql',function (btn) {
             if(btn == 'yes'){
                 var record = sqlBodyGrid.getStore().getAt(rowIndex);
                 sqlBodyGrid.store.remove(record);
-                me.sqlStore.insert(rowIndex,record);
                 Ext.Msg.alert('成功','删除成功');
             };
         });
@@ -167,10 +159,6 @@ Ext.define('Ext.procedure.component.SqlGrid',{
                 {
                     text: '保存',
                     handler: function () {
-                        if( Ext.getCmp('procedureName').getValue() == null){
-                            Ext.Msg.alert('失败','请先选择procedureName');
-                        }
-                        else{
                             var del = sqlBodyGrid.getStore().getAt(rowIndex);
                             var record = this.up('form').getForm().getValues();
                             sqlBodyGrid.store.remove(del);
@@ -179,7 +167,6 @@ Ext.define('Ext.procedure.component.SqlGrid',{
                             sqlModel.set('content', record.content);
                             me.store.insert(rowIndex,record);
                             win.close();
-                        }
                     }
                 },
                 {

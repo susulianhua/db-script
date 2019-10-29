@@ -2,7 +2,7 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
     extend: 'Ext.panel.Panel',
     width: 600,
     height: 600,
-    title: 'Table',
+    title: 'Procedure',
     titleAlign: 'center',
     layout: 'form',
     moduleName: null,
@@ -17,7 +17,9 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
     getItems: function () {
         var me = this;
         var sqlGrid = Ext.create('Ext.procedure.component.SqlGrid',{
-            store: this.sqlStore
+            store: this.sqlStore,
+            width: 312,
+            contentLength:130
         });
         var parameterGrid = Ext.create('Ext.procedure.component.ParameterGrid', {
             store: this.parameterStore
@@ -61,99 +63,45 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
 
     panelSave: function () {
         var me = this;
-        var table = {};
-        var formValues = me.tableBaseForm.getForm().getValues();
-        table.id = formValues.table_id;
-        table.title = formValues.table_title;
-        table.name = formValues.table_name;
-        table.description = formValues.table_description;
-        table.packageName = formValues.package_name;
-        /**
-         * 获取字段信息转化为Json数组
-         */
-        var tableFieldRecords = me.fieldStore.getRange();
-        var fieldList = [];
-        for( var i in tableFieldRecords){
-            fieldList.push({
-                'standardFieldId': tableFieldRecords[i].get('standardFieldId'),
-                'id': tableFieldRecords[i].get('id'),
-                'primary': tableFieldRecords[i].get('primary'),
-                'notNull': tableFieldRecords[i].get('notNull'),
-                'unique': tableFieldRecords[i].get('unique'),
-                'autoIncrease': tableFieldRecords[i].get('autoIncrease')
+        var procedureWidthModuleName = {};
+        procedureWidthModuleName.moduleName = me.moduleName;
+        var sqlGridRecords = me.sqlStore.getRange();
+        var sqlBodyList = [];
+        for( var i in sqlGridRecords){
+            sqlBodyList.push({
+                'dialectTypeName': sqlGridRecords[i].get('dialectTypeName'),
+                'content': sqlGridRecords[i].get('content'),
             });
         };
-        table.fieldList = fieldList;
-
-        /**
-         * 获取外键信息转化为Json数组
-         */
-        var foreignRecords = me.foreignKeyStore.getRange();
-        var foreignList = [];
-        for( var i in foreignRecords){
-            foreignList.push({
-                'name': foreignRecords[i].get('key_name'),
-                'foreignField': foreignRecords[i].get('foreign_field'),
-                'mainTable': foreignRecords[i].get('main_table'),
-                'referenceField': foreignRecords[i].get('reference_field')
-            });
-        };
-        table.foreignReferences = foreignList;
-        /**
-         * 获取index信息转化为Json数组
-         */
-        var indexFieldRecords = me.indexFieldStore.getRange();
-        console.log('indexFieldRecords:', indexFieldRecords);
-        var indexRecords = me.indexStore.getRange();
-        var indexList = [];
-        for( var i in indexRecords){
-            var index = {};
-            index.name = indexRecords[i].get('index_name');
-            index.unique = indexRecords[i].get('index_unique');
-            index.description = indexRecords[i].get('index_description');
-            var indexFieldList = [];
-            var indexFieldRecordsByindex = [];
-            for(var i in indexFieldRecords){
-                if(indexFieldRecords[i].data.index_name == index.name){
-                    indexFieldRecordsByindex.push(indexFieldRecords[i]);
-                }
-            }
-            for( var i in indexFieldRecordsByindex){
-                indexFieldList.push({
-                    'field': indexFieldRecordsByindex[i].get('field'),
-                    'direction': indexFieldRecordsByindex[i].get('direction')
-                });
-            };
-            index.fields = indexFieldList;
-            indexList.push(index);
-
-        };
-        table.indexList = indexList;
+        var procedure = {};
+        procedure.procedureBodyList = sqlBodyList;
+        var parameterGridRecords = me.parameterStore.getRange();
+        var parameterList = [];
+        for( var i in parameterGridRecords){
+            parameterList.push({
+                'standardFieldId': parameterGridRecords[i].get('standardFieldId'),
+                'parameterType': parameterGridRecords[i].get('parameterType')
+            })
+        }
+        procedure.name = me.procedureName;
+        procedure.parameterList = parameterList;
+        procedureWidthModuleName.procedure = procedure;
 
         Ext.Ajax.request({
-            url: 'http://localhost:8080/dbscript//table/tableSave',
+            url: 'http://localhost:8080/dbscript//procedure/saveProcedure',
             headers: {'ContentType': 'application/json;charset=UTF-8',
                 'Content-Type': 'application/json'
             },
             ContentType : 'application/json;charset=UTF-8',
             dataType: 'json',
-            params: JSON.stringify(table),
+            params: JSON.stringify(procedureWidthModuleName),
             method: 'Post',
             success: function () {
-                Ext.Msg.alert('成功', '添加成功');
+                Ext.Msg.alert('成功', '保存成功');
             },
             failure: function () {
                 Ext.Msg.alert('失败', '添加失败，请重试');
             }
         });
-    },
-
-    /*updateTwoGridData: function () {
-        var me = this;
-        var name = Ext.getCmp('procedureName').getValue();
-        me.sqlStore.clearFilter();
-        me.parameterStore.clearFilter();
-        me.sqlStore.filter('name', name);
-        me.parameterStore.filter('name', name);
-    }*/
+    }
 })

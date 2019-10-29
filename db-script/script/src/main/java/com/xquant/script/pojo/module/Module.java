@@ -9,33 +9,22 @@ import java.util.List;
 @XStreamAlias("module")
 public class Module {
 
-    @XStreamImplicit
+    @XStreamAlias("tables")
     private List<TableName> tablelist;
     @XStreamAsAttribute
     private String id;
-    @XStreamAlias("view")
-    private String view;
+    @XStreamAlias("views")
+    private List<ViewName> viewNameList;
+    @XStreamAlias("triggers")
+    private List<TriggerName> triggerNameList;
     @XStreamAlias("standardfield")
     private String standardfield;
     @XStreamAlias("businessType")
     private String businessType;
-
-    @XStreamImplicit
+    @XStreamAlias("procedures")
     private List<ProcedureNameInModule> procedureNameInModuleList;
-
-    @XStreamAlias("trigger")
-    private String trigger;
     @XStreamAlias("sequence")
     private String sequence;
-
-
-    public String getView() {
-        return view;
-    }
-
-    public void setView(String view) {
-        this.view = view;
-    }
 
     public String getStandardfield() {
         return standardfield;
@@ -43,14 +32,6 @@ public class Module {
 
     public void setStandardfield(String standardfield) {
         this.standardfield = standardfield;
-    }
-
-    public String getTrigger() {
-        return trigger;
-    }
-
-    public void setTrigger(String trigger) {
-        this.trigger = trigger;
     }
 
     public String getId() {
@@ -91,5 +72,21 @@ public class Module {
 
     public void setProcedureNameInModuleList(List<ProcedureNameInModule> procedureNameInModuleList) {
         this.procedureNameInModuleList = procedureNameInModuleList;
+    }
+
+    public List<ViewName> getViewNameList() {
+        return viewNameList;
+    }
+
+    public void setViewNameList(List<ViewName> viewNameList) {
+        this.viewNameList = viewNameList;
+    }
+
+    public List<TriggerName> getTriggerNameList() {
+        return triggerNameList;
+    }
+
+    public void setTriggerNameList(List<TriggerName> triggerNameList) {
+        this.triggerNameList = triggerNameList;
     }
 }

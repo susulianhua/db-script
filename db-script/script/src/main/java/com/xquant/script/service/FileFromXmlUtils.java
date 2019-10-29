@@ -40,6 +40,22 @@ public  class FileFromXmlUtils {
         return file;
     }
 
+    public static File getViewFile(String moduleName, String filePath){
+        filePath = filePath.substring(1, filePath.length() - 51);
+        String viewFilePath = filePath + "/db-script/script/src/main/resources/xml/"
+                + moduleName + "/" + moduleName + ".view.xml";
+        File file = new File(viewFilePath);
+        return file;
+    }
+
+    public static File getTriggerFile(String moduleName, String filePath){
+        filePath = filePath.substring(1, filePath.length() - 51);
+        String viewFilePath = filePath + "/db-script/script/src/main/resources/xml/"
+                + moduleName + "/" + moduleName + ".trigger.xml";
+        File file = new File(viewFilePath);
+        return file;
+    }
+
     public static File getModuleFile(String filePath){
         filePath = filePath.substring(1,filePath.length() - 51);
         filePath = filePath + "/db-script/script/src/main/resources/xml/module.xml";

@@ -5,7 +5,7 @@ import com.xquant.metadata.config.stdfield.StandardField;
 import com.xquant.metadata.config.stdfield.StandardFields;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
 import com.xquant.script.service.FileFromXmlUtils;
-import com.xquant.script.service.UpdateXmlUtils;
+import com.xquant.script.service.UpdateMetaDataUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +41,7 @@ public class StandardFieldController {
         XStream xStream = new XStream();
         xStream.processAnnotations(StandardFields.class);
         String xml = xStream.toXML(standardFields);
-        UpdateXmlUtils.classToFile(xml, file);
+        UpdateMetaDataUtils.classToFile(xml, file);
         return new NormalResponse();
     }
 }

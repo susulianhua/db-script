@@ -118,7 +118,6 @@ Ext.define('Ext.table.component.TablePanel', {
          * 获取index信息转化为Json数组
          */
         var indexFieldRecords = me.indexFieldStore.getRange();
-        console.log('indexFieldRecords:', indexFieldRecords);
         var indexRecords = me.indexStore.getRange();
         var indexList = [];
         for( var i in indexRecords){

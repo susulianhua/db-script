@@ -70,6 +70,7 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
 
     addParameter: function(){
         var me = this;
+        var parameterTypeStore = Ext.create('Ext.procedure.store.ParameterTypeStore');
         var parameterForm = new Ext.FormPanel({
             //labelAlign: 'top',
             bodyStyle: 'padding:5px 5px 0',
@@ -87,7 +88,10 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
                     columnWidth: 0.5,
                     frame: true,
                     border: false,
-                    items: { fieldLabel: 'parameterType', name: 'parameterType', xtype: 'combobox'}
+                    items: {
+                        fieldLabel: 'parameterType', name: 'parameterType', xtype: 'combobox',
+                        store: parameterTypeStore, displayField: 'name'
+                    }
                 }
             ],
             buttonAlign: 'center',
@@ -132,6 +136,7 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
 
     editParameter: function(parameterGrid, rowIndex) {
         var me = this;
+        var parameterTypeStore = Ext.create('Ext.procedure.store.ParameterTypeStore');
         var record = parameterGrid.getStore().getAt(rowIndex).data;
         var parameterForm = new Ext.FormPanel({
             bodyStyle: 'padding:5px 5px 0',
@@ -150,7 +155,10 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
                     frame: true,
                     border: false,
                     items:
-                        { fieldLabel: 'parameterType', name: 'parameterType', xtype: 'combobox'},
+                        {
+                            fieldLabel: 'parameterType', name: 'parameterType', xtype: 'combobox',
+                            store: parameterTypeStore, displayField: 'name'
+                        },
                 }
             ],
             buttonAlign: 'center',

@@ -1,0 +1,10 @@
+<triggers>
+  <trigger id="trigger1" name="trigger1" title="tirg" description="dadad">
+    <sqls>
+      <sql dialect-type-name="oracle" content="CREATE OR REPLACE VIEW user_view AS SELECT * FROM t_user"/>
+      <sql dialect-type-name="mysql" content="CREATE OR REPLACE VIEW user_view AS SELECT * FROM t_user"/>
+      <sql dialect-type-name="h2" content="CREATE OR REPLACE VIEW user_view AS SELECT * FROM t_user"/>
+    </sqls>
+  </trigger>
+  <trigger name="JJLJL"/>
+</triggers>

@@ -4,9 +4,12 @@ import com.thoughtworks.xstream.XStream;
 import com.xquant.database.config.procedure.Procedure;
 import com.xquant.database.config.procedure.Procedures;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
+import com.xquant.script.pojo.module.ProcedureWithModuleName;
 import com.xquant.script.service.FileFromXmlUtils;
+import com.xquant.script.service.UpdateMetaDataUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -42,8 +45,6 @@ public class ProcedureController {
     public NormalResponse getParameterStore(HttpServletRequest request){
         String moduleName = request.getParameter("moduleName");
         String procedureName = request.getParameter("procedureName");
-        System.out.println("moduleName:" + moduleName);
-        System.out.println("procedureName:" + procedureName);
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File file = FileFromXmlUtils.getProcedureFile(moduleName, filePath);
         XStream xStream = new XStream();
@@ -56,6 +57,29 @@ public class ProcedureController {
                         (long) procedure.getParameterList().size());
             }
         }
+        return new NormalResponse();
+    }
+
+    @RequestMapping("/saveProcedure")
+    @ResponseBody
+    public NormalResponse saveProcedure(@RequestBody ProcedureWithModuleName procedureWithModuleName){
+        Procedure procedure = procedureWithModuleName.getProcedure();
+        String moduleName = procedureWithModuleName.getModuleName();
+        String procedureName = procedure.getName();
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = FileFromXmlUtils.getProcedureFile(moduleName, filePath);
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Procedures.class);
+        Procedures procedures = (Procedures) xStream.fromXML(file);
+        for(Procedure procedure1: procedures.getProcedureList()){
+            if(procedure1.getName().equals(procedureName)){
+                procedures.getProcedureList().remove(procedure1);
+                procedures.getProcedureList().add(procedure);
+                break;
+            }
+        }
+        String xml = xStream.toXML(procedures);
+        UpdateMetaDataUtils.classToFile(xml, file);
         return new NormalResponse();
     }
 

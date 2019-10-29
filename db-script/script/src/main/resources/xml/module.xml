@@ -1,16 +1,27 @@
 <modules>
   <module id="crud">
-    <tablename name="t_user"/>
-    <tablename name="t_org"/>
-    <tablename name="t_customer"/>
-    <tablename name="t_increment"/>
+    <tables>
+      <tablename name="t_user"/>
+      <tablename name="t_org"/>
+      <tablename name="t_customer"/>
+      <tablename name="t_increment"/>
+    </tables>
+    <views>
+      <viewName name="org_user_view_id"/>
+      <viewName name="user_view_id"/>
+      <viewName name="org_view_id"/>
+    </views>
+    <triggers>
+      <trigger name="trigger1"/>
+      <trigger name="JJLJL"/>
+    </triggers>
     <standardfield>crud</standardfield>
-    <procedureName name="procedure1"/>
-    <trigger>crud</trigger>
+    <procedures>
+      <procedureName name="procedure1"/>
+    </procedures>
   </module>
   <module id="dada">
     <standardfield>dada</standardfield>
-    <trigger>dada</trigger>
   </module>
   <module id="hhh"/>
 </modules>
