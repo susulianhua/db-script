@@ -15,6 +15,7 @@
  */
 package com.xquant.database.view.impl;
 
+
 import com.xquant.database.ProcessorManager;
 import com.xquant.database.config.view.RefViewIds;
 import com.xquant.database.config.view.View;
@@ -23,7 +24,6 @@ import com.xquant.database.exception.DatabaseRuntimeException;
 import com.xquant.database.view.ViewProcessor;
 import com.xquant.database.view.ViewSqlProcessor;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -31,7 +31,7 @@ import java.util.*;
 
 import static com.xquant.database.exception.DatabaseErrorCode.VIEW__ADD_ALREADY_ERROR;
 
-@Component("viewProcessor")
+
 public class ViewProcessorImpl implements ViewProcessor {
     private static ViewProcessor viewProcessor = new ViewProcessorImpl();
     private Map<String, View> viewMap = new HashMap<String, View>();

@@ -18,6 +18,7 @@ package com.xquant.databasebuilstaller;
 import com.xquant.common.BeanWrapperHolder;
 import com.xquant.common.StreamUtil;
 import com.xquant.database.ProcessorManager;
+import com.xquant.dialectfunction.impl.DialectFunctionProcessorImpl;
 import com.xquant.database.customesql.CustomSqlProcessor;
 import com.xquant.database.customesql.impl.CustomSqlProcessorImpl;
 import com.xquant.database.fileresolver.*;
@@ -307,6 +308,7 @@ public class DatabaseInstallerStart {
         addXstreamFileProcessor(fileResolver);
         addConstantFileProcessor(fileResolver);
         addStandardTypeFileProcessor(fileResolver);//标准数据类型
+        addDialectFunctionFileProcessor(fileResolver);
         addBusinessTypeFileResolver(fileResolver);  //业务数据类型
         addStandardFieldFileResolver(fileResolver);  //业务字段
         addTableSpaceFileResolver(fileResolver);
@@ -318,7 +320,11 @@ public class DatabaseInstallerStart {
         startFileResolver(fileResolver);
     }
 
-
+    private void addDialectFunctionFileProcessor(FileResolver fileResolver) {
+        DialectFunctionlFileResolver dialectFunctionlFileResolver = new DialectFunctionlFileResolver();
+        dialectFunctionlFileResolver.setFunctionProcessor(DialectFunctionProcessorImpl.getDialectFunctionProcessor());
+        fileResolver.addFileProcessor(dialectFunctionlFileResolver);
+    }
 
     private void databaseInstaller() {
         installer.process();
@@ -415,6 +421,7 @@ public class DatabaseInstallerStart {
             LOGGER.error("为文件扫描器添加webLibJars时出现异常", e);
         }
         fileResolver.addIncludePathPattern(TINY_JAR_PATTERN);
+        loadFileResolverConfig(fileResolver);
         return fileResolver;
     }
 
@@ -498,6 +505,24 @@ public class DatabaseInstallerStart {
     }
 
 
+    private void loadFileResolverConfig(FileResolver fileResolver) {
+        if (applicationNode == null) {
+            return;
+        }
+        PathFilter<XmlNode> filter = new PathFilter<XmlNode>(applicationNode);
+        List<XmlNode> classPathList = filter
+                .findNodeList("/application/file-resolver-configuration/class-paths/class-path");
+        for (XmlNode classPath : classPathList) {
+            fileResolver.addResolvePath(classPath.getAttribute("path"));
+        }
+        List<XmlNode> includePatternList = filter
+                .findNodeList("/application/file-resolver-configuration/include-patterns/include-pattern");
+        for (XmlNode includePatternNode : includePatternList) {
+            fileResolver.addIncludePathPattern(includePatternNode
+                    .getAttribute("pattern"));
+        }
+
+    }
 
     private CustomSqlProcessor createCustomSqlProcessor() {
         CustomSqlProcessor customSqlProcessor = CustomSqlProcessorImpl

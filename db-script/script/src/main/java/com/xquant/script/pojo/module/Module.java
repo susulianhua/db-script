@@ -2,30 +2,31 @@ package com.xquant.script.pojo.module;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @XStreamAlias("module")
 public class Module {
 
-    @XStreamAlias("tables")
-    private List<TableName> tablelist;
     @XStreamAsAttribute
     private String id;
+
+    @XStreamAlias("tables")
+    private List<TableName> tablelist;
     @XStreamAlias("views")
     private List<ViewName> viewNameList;
     @XStreamAlias("triggers")
     private List<TriggerName> triggerNameList;
+    @XStreamAlias("procedures")
+    private List<ProcedureName> procedureNameList;
+    @XStreamAlias("sequences")
+    private List<SequenceName> sequenceNameList;
+
     @XStreamAlias("standardfield")
     private String standardfield;
     @XStreamAlias("businessType")
     private String businessType;
-    @XStreamAlias("procedures")
-    private List<ProcedureNameInModule> procedureNameInModuleList;
-    @XStreamAlias("sequence")
-    private String sequence;
-
     public String getStandardfield() {
         return standardfield;
     }
@@ -50,13 +51,6 @@ public class Module {
         this.tablelist = tablelist;
     }
 
-    public String getSequence() {
-        return sequence;
-    }
-
-    public void setSequence(String sequence) {
-        this.sequence = sequence;
-    }
 
     public String getBusinessType() {
         return businessType;
@@ -66,12 +60,12 @@ public class Module {
         this.businessType = businessType;
     }
 
-    public List<ProcedureNameInModule> getProcedureNameInModuleList() {
-        return procedureNameInModuleList;
+    public List<ProcedureName> getProcedureNameList() {
+        return procedureNameList;
     }
 
-    public void setProcedureNameInModuleList(List<ProcedureNameInModule> procedureNameInModuleList) {
-        this.procedureNameInModuleList = procedureNameInModuleList;
+    public void setProcedureNameList(List<ProcedureName> procedureNameList) {
+        this.procedureNameList = procedureNameList;
     }
 
     public List<ViewName> getViewNameList() {
@@ -89,4 +83,21 @@ public class Module {
     public void setTriggerNameList(List<TriggerName> triggerNameList) {
         this.triggerNameList = triggerNameList;
     }
+
+    public List<SequenceName> getSequenceNameList() {
+        return sequenceNameList;
+    }
+
+    public void setSequenceNameList(List<SequenceName> sequenceNameList) {
+        this.sequenceNameList = sequenceNameList;
+    }
+
+    public void setList(String fileName){
+        if(fileName.equals("table")) this.setTablelist(new ArrayList<TableName>());
+        else if(fileName.equals("trigger")) this.setTriggerNameList(new ArrayList<TriggerName>());
+        else if(fileName.equals("view")) this.setViewNameList(new ArrayList<ViewName>());
+        else if(fileName.equals("procedure")) this.setProcedureNameList(new ArrayList<ProcedureName>());
+        else this.setSequenceNameList(new ArrayList<SequenceName>());
+    }
+
 }

@@ -4,10 +4,10 @@ import com.thoughtworks.xstream.XStream;
 import com.xquant.database.config.view.View;
 import com.xquant.database.config.view.Views;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
-import com.xquant.script.pojo.module.ViewWithModuleName;
+import com.xquant.script.pojo.saveWithModuleName.ViewWithModuleName;
 import com.xquant.script.pojo.otherReturn.RefViewIdReturn;
 import com.xquant.script.pojo.otherReturn.ViewReturn;
-import com.xquant.script.service.FileFromXmlUtils;
+import com.xquant.script.service.GetCorrespondFileUtils;
 import com.xquant.script.service.UpdateMetaDataUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class ViewController {
         String moduleName = request.getParameter("moduleName");
         String viewName = request.getParameter("viewName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getViewFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getViewFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Views.class);
         Views views = (Views) xStream.fromXML(file);
@@ -50,7 +50,7 @@ public class ViewController {
         String moduleName = request.getParameter("moduleName");
         String viewName = request.getParameter("viewName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getViewFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getViewFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Views.class);
         Views views = (Views) xStream.fromXML(file);
@@ -76,7 +76,7 @@ public class ViewController {
         String moduleName = request.getParameter("moduleName");
         String viewName = request.getParameter("viewName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getViewFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getViewFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Views.class);
         Views views = (Views) xStream.fromXML(file);
@@ -103,7 +103,7 @@ public class ViewController {
         View view = viewWithModuleName.getView();
         String viewName = view.getId();
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getViewFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getViewFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Views.class);
         Views views = (Views) xStream.fromXML(file);
@@ -115,7 +115,7 @@ public class ViewController {
             }
         }
         String xml = xStream.toXML(views);
-        UpdateMetaDataUtils.classToFile(xml, file);
+        UpdateMetaDataUtils.objectToFile(xml, file);
         return new NormalResponse();
     }
 }

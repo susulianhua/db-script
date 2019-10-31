@@ -21,7 +21,7 @@ Ext.define('Ext.standardField.component.StandardFieldForm',{
         var items = [
             {
                 layout: 'form',
-                columnWidth: 0.45,
+                columnWidth: 0.5,
                 frame: true,
                 items: [
                     { fieldLabel: '文件名', name: 'fileName', xtype: 'textfield', readOnly: true}
@@ -29,7 +29,7 @@ Ext.define('Ext.standardField.component.StandardFieldForm',{
             },
             {
                 layout: 'form',
-                columnWidth: 0.45,
+                columnWidth: 0.5,
                 frame: true,
                 border: false,
                 items: [

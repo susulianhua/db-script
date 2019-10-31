@@ -1,15 +1,16 @@
 package com.xquant.script.controller;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.xquant.database.config.table.Table;
 import com.xquant.database.config.trigger.Trigger;
 import com.xquant.database.config.trigger.Triggers;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
 import com.xquant.script.pojo.otherReturn.TriggerReturn;
-import com.xquant.script.service.FileFromXmlUtils;
+import com.xquant.script.pojo.saveWithModuleName.TriggerWithModuleName;
+import com.xquant.script.service.GetCorrespondFileUtils;
+import com.xquant.script.service.UpdateMetaDataUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,7 +29,7 @@ public class TriggerController {
         String triggerName = request.getParameter("triggerName");
         String moduleName = request.getParameter("moduleName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getTriggerFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getTriggerFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Triggers.class);
         Triggers triggers = (Triggers) xStream.fromXML(file);
@@ -53,7 +54,7 @@ public class TriggerController {
         String moduleName = request.getParameter("moduleName");
         String triggerName = request.getParameter("triggerName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getTriggerFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getTriggerFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Triggers.class);
         Triggers triggers = (Triggers) xStream.fromXML(file);
@@ -65,5 +66,27 @@ public class TriggerController {
             }
         }
         return  new NormalResponse();
+    }
+
+    @RequestMapping("/saveTrigger")
+    @ResponseBody
+    public NormalResponse saveTrigger(@RequestBody TriggerWithModuleName triggerWithModuleName){
+        String moduleName = triggerWithModuleName.getModuleName();
+        Trigger trigger = triggerWithModuleName.getTrigger();
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = GetCorrespondFileUtils.getTriggerFile(moduleName, filePath);
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Triggers.class);
+        Triggers triggers = (Triggers) xStream.fromXML(file);
+        for(Trigger trigger1: triggers.getTriggers()){
+            if(trigger1.getName().equals(trigger.getName())){
+                triggers.getTriggers().remove(trigger1);
+                triggers.getTriggers().add(trigger);
+                break;
+            }
+        }
+        String xml = xStream.toXML(triggers);
+        UpdateMetaDataUtils.objectToFile(xml, file);
+        return new NormalResponse();
     }
 }

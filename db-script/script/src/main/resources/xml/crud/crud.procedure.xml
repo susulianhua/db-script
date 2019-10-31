@@ -10,4 +10,5 @@
       <sql dialect-type-name="oracle" content="CREATE OR REPLACE PROCEDURE y_p_test AS   BEGIN                                                    select user from dual;                                                    END;"/>
     </sqls>
   </procedure>
+  <procedure name="ddd"/>
 </procedures>

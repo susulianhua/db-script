@@ -24,8 +24,8 @@ Ext.define('Ext.view.component.ViewPanel', {
             moduleName: me.moduelName,
             viewName: me.viewName,
             store: me.sqlBodyStore,
-            width: 312,
-            contentLength: 130
+            width: 298,
+            contentLength: 125
         });
         var refViewIdGrid = Ext.create('Ext.view.component.RefViewIdGrid', {
             moduleName: me.moduleName,

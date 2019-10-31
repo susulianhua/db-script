@@ -57,7 +57,6 @@ Ext.define('Ext.table.component.FieldGrid',{
                     { xtype: 'tbfill' },
                     {
                         xtype:'button',
-                        id: 'btn_tableFieldAdd',
                         handler: function(){
                             me.tableFieldAdd()
                         },

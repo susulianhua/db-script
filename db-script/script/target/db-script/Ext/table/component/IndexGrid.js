@@ -77,7 +77,6 @@ Ext.define('Ext.table.component.IndexGrid',{
                   { xtype: 'tbfill' },
                   {
                       xtype:'button',
-                      id: 'btn_indexAdd',
                       handler: function(){
                         me.indexAdd()
                       },

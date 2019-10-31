@@ -4,7 +4,7 @@ Ext.define('Ext.view.component.RefViewIdGrid', {
     disableSelection: false,
     loadMask: true,
     height: 350,
-    width: 312,
+    width: 278,
     selType: 'rowmodel',
     autoScroll:true,
 

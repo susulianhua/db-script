@@ -6,7 +6,7 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
     selType: 'rowmodel',
     autoScroll:true,
     height: 350,
-    width: 312,
+    width: 278,
     parameterStore: null,
 
 

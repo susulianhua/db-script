@@ -1,6 +1,6 @@
 Ext.define('Ext.procedure.component.ProcedurePanel', {
     extend: 'Ext.panel.Panel',
-    width: 600,
+    width: 590,
     height: 600,
     title: 'Procedure',
     titleAlign: 'center',
@@ -18,8 +18,8 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
         var me = this;
         var sqlGrid = Ext.create('Ext.procedure.component.SqlGrid',{
             store: this.sqlStore,
-            width: 312,
-            contentLength:130
+            width: 298,
+            contentLength:120
         });
         var parameterGrid = Ext.create('Ext.procedure.component.ParameterGrid', {
             store: this.parameterStore

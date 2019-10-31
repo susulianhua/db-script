@@ -3,7 +3,7 @@ package com.xquant.script.pojo.module;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
-@XStreamAlias("tablename")
+@XStreamAlias("table")
 public class TableName {
     @XStreamAsAttribute
     private String name;

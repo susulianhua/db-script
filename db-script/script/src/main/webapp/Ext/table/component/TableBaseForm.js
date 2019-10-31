@@ -1,5 +1,5 @@
 Ext.define('Ext.table.component.TableBaseForm',{
-    extend : 'Ext.form.FormPanel',
+    extend: 'Ext.form.Panel',
     frame: true,
     labelWidth: 30,
     layout: 'column',
@@ -23,7 +23,7 @@ Ext.define('Ext.table.component.TableBaseForm',{
         var items = [
             {
                 layout: 'form',
-                columnWidth: 0.45,
+                columnWidth: 0.5,
                 frame: true,
                 items: [
                     { fieldLabel: '文件名', name: 'fileName', xtype: 'textfield', readOnly: true},
@@ -33,7 +33,7 @@ Ext.define('Ext.table.component.TableBaseForm',{
             },
             {
                 layout: 'form',
-                columnWidth: 0.45,
+                columnWidth: 0.5,
                 frame: true,
                 border: false,
                 items: [

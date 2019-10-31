@@ -22,7 +22,7 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
             { dataIndex: 'title', text : 'title', width: 80, align: 'center'},
             {   text: 'placeholder',
                 xtype: 'gridcolumn',
-                width: 150,
+                width: 110,
                 align: 'center',
                 renderer: function (value, metaData, record) {
                     var id = metaData.record.id;

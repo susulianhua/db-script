@@ -19,7 +19,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.xquant.database.config.SqlBody;
 import com.xquant.metadata.config.BaseObject;
-
 import java.util.List;
 
 /**

@@ -53,7 +53,6 @@ Ext.define('Ext.table.component.ForeignGrid',{
                     { xtype: 'tbfill' },
                     {
                         xtype:'button',
-                        id: 'btn_foreignAdd',
                         handler: function(){
                             me.foreignAdd()
                         },

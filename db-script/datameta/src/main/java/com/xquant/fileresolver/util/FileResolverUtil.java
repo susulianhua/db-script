@@ -18,6 +18,7 @@ package com.xquant.fileresolver.util;
 import com.xquant.vfs.FileObject;
 import com.xquant.fileresolver.FileResolver;
 import com.xquant.vfs.VFS;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -176,4 +177,5 @@ public class FileResolverUtil {
         LOGGER.info("扫描到jar文件<{}>。", path);
         classPaths.add(path);
     }
+
 }

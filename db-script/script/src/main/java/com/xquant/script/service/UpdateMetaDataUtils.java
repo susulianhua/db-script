@@ -5,39 +5,35 @@ import com.alibaba.fastjson.JSONObject;
 import com.thoughtworks.xstream.XStream;
 import com.xquant.database.config.procedure.Procedure;
 import com.xquant.database.config.procedure.Procedures;
+import com.xquant.database.config.sequence.Sequence;
+import com.xquant.database.config.sequence.Sequences;
+import com.xquant.database.config.table.Table;
+import com.xquant.database.config.table.Tables;
 import com.xquant.database.config.trigger.Trigger;
 import com.xquant.database.config.trigger.Triggers;
 import com.xquant.database.config.view.View;
 import com.xquant.database.config.view.Views;
+import com.xquant.dialectfunction.DialectFunctions;
+import com.xquant.metadata.config.bizdatatype.BusinessTypes;
+import com.xquant.metadata.config.stdfield.StandardFields;
 import com.xquant.script.pojo.module.*;
-import org.apache.commons.collections.CollectionUtils;
+import com.xquant.script.pojo.module.ProcedureName;
+import com.xquant.script.pojo.module.TableName;
+import com.xquant.script.pojo.module.TriggerName;
+import com.xquant.script.pojo.module.ViewName;
 import org.apache.commons.lang.StringUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 
 public class UpdateMetaDataUtils {
-    public static void addTableInTable(File file, String tableName) throws  Exception{
-        DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document document = db.parse(file);
-        Transformer tf = TransformerFactory.newInstance().newTransformer();
-        tf.setOutputProperty(OutputKeys.INDENT, "yes");
-        Element root = document.getDocumentElement();
-        NodeList nodeList = root.getElementsByTagName("table");
-
-        Element element = document.createElement("table");
-        element.setAttribute("id", tableName);
-        root.appendChild(element);
-        tf.transform(new DOMSource(document), new StreamResult(file));
+    public static void addTableInTable(File file, String tableName){
+        XStream xStream= new XStream();
+        xStream.processAnnotations(Tables.class);
+        Tables tables = (Tables) xStream.fromXML(file);
+        Table table = new Table();
+        table.setId(tableName);
+        tables.getTableList().add(table);
+        String xml = xStream.toXML(tables);
+        objectToFile(xml, file);
     }
 
     public static void addProcedureInProcedure(File file, String procedureName){
@@ -48,7 +44,7 @@ public class UpdateMetaDataUtils {
        procedure.setName(procedureName);
        procedures.getProcedureList().add(procedure);
        String xml = xStream.toXML(procedures);
-       classToFile(xml, file);
+       objectToFile(xml, file);
     }
 
     public static void addViewInView(File file, String viewName){
@@ -59,7 +55,7 @@ public class UpdateMetaDataUtils {
         view.setId(viewName);
         views.getViewTableList().add(view);
         String xml = xStream.toXML(views);
-        classToFile(xml, file);
+        objectToFile(xml, file);
     }
 
     public static void addTriggerInTrigger(File file, String triggerName){
@@ -70,7 +66,18 @@ public class UpdateMetaDataUtils {
         trigger.setName(triggerName);
         triggers.getTriggers().add(trigger);
         String xml = xStream.toXML(triggers);
-        classToFile(xml, file);
+        objectToFile(xml, file);
+    }
+
+    public static void addSequenceInSequence(File file, String sequenceName){
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Sequences.class);
+        Sequences sequences = (Sequences) xStream.fromXML(file);
+        Sequence sequence = new Sequence();
+        sequence.setName(sequenceName);
+        sequences.getSequences().add(sequence);
+        String xml = xStream.toXML(sequences);
+        objectToFile(xml, file);
     }
 
     public static void deleteViewInView(File file, String viewName){
@@ -84,7 +91,7 @@ public class UpdateMetaDataUtils {
             }
         }
         String xml = xStream.toXML(views);
-        classToFile(xml, file);
+        objectToFile(xml, file);
     }
 
     public static void deleteTriggerInTrigger(File triggerFile, String triggerName){
@@ -98,13 +105,14 @@ public class UpdateMetaDataUtils {
             }
         }
         String xml = xStream.toXML(triggers);
-        classToFile(xml, triggerFile);
+        objectToFile(xml, triggerFile);
     }
 
     public static void deleteProcedureInProcedure(File file, String procedureName){
         XStream xStream = new XStream();
         xStream.processAnnotations(Procedures.class);
         Procedures procedures = (Procedures) xStream.fromXML(file);
+        System.out.println(procedures.getProcedureList().size());
         for(Procedure procedure: procedures.getProcedureList()){
             if(procedure.getName().equals(procedureName)){
                 procedures.getProcedureList().remove(procedure);
@@ -112,25 +120,21 @@ public class UpdateMetaDataUtils {
             }
         }
         String xml = xStream.toXML(procedures);
-        classToFile(xml, file);
+        objectToFile(xml, file);
     }
 
     public static void deleteTableInTable(File file, String tableName) throws  Exception{
-        DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Transformer tf = TransformerFactory.newInstance().newTransformer();
-        tf.setOutputProperty(OutputKeys.INDENT, "yes");
-
-        //删除table.xml中对应表格
-        Document document = db.parse(file);
-        Element root = document.getDocumentElement();
-        NodeList nodeList = root.getElementsByTagName("table");
-        for(int i = 0; i < nodeList.getLength(); i++){
-            if(nodeList.item(i).getAttributes().getNamedItem("id").getNodeValue().equals(tableName)){
-                root.removeChild(nodeList.item(i));
-                tf.transform(new DOMSource(document), new StreamResult(file));
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Tables.class);
+        Tables tables = (Tables) xStream.fromXML(file);
+        for(Table table: tables.getTableList()){
+            if(table.getId().equals(tableName)){
+                tables.getTableList().remove(table);
                 break;
             }
         }
+        String xml = xStream.toXML(tables);
+        objectToFile(xml, file);
     }
 
     public static void createJson(JSONArray jsonArrayTotal, Modules modules){
@@ -140,6 +144,7 @@ public class UpdateMetaDataUtils {
             JSONArray jsonArrayModule = new JSONArray();
             JSONArray jsonArrayTrigger = new JSONArray();
             JSONArray jsonArrayView = new JSONArray();
+            JSONArray jsonArraySequence = new JSONArray();
             JSONObject jsonObject = new JSONObject();
 
             if(module.getTablelist()!= null){
@@ -149,58 +154,73 @@ public class UpdateMetaDataUtils {
                     json.put("leaf", true);
                     jsonArrayTable.add(json);
                 }
+                JSONObject jsonTable = new JSONObject();
+                jsonTable.put("text","表");
+                jsonTable.put("children",jsonArrayTable);
+                jsonArrayModule.add(jsonTable);
             }
-            JSONObject jsonTable = new JSONObject();
-            jsonTable.put("text","表");
-            jsonTable.put("children",jsonArrayTable);
-            jsonArrayModule.add(jsonTable);
 
-            if(!CollectionUtils.isEmpty(module.getProcedureNameInModuleList())){
-                for(ProcedureNameInModule procedureNameInModule: module.getProcedureNameInModuleList()){
+            if(module.getProcedureNameList() != null){
+                for(ProcedureName procedureName : module.getProcedureNameList()){
                     JSONObject json = new JSONObject();
-                    json.put("text", procedureNameInModule.getName());
+                    json.put("text", procedureName.getName());
                     json.put("leaf", true);
                     jsonArrayProcedure.add(json);
                 }
-            }
-            JSONObject jsonProcedure = new JSONObject();
-            jsonProcedure.put("text", "存储过程");
-            jsonProcedure.put("children", jsonArrayProcedure);
-            jsonArrayModule.add(jsonProcedure);
+                JSONObject jsonProcedure = new JSONObject();
+                jsonProcedure.put("text", "存储过程");
+                jsonProcedure.put("children", jsonArrayProcedure);
+                jsonArrayModule.add(jsonProcedure);
 
-            if(!CollectionUtils.isEmpty(module.getViewNameList())){
+            }
+
+            if(module.getViewNameList() != null){
                 for(ViewName viewName: module.getViewNameList()){
                     JSONObject json = new JSONObject();
                     json.put("text", viewName.getName());
                     json.put("leaf", true);
                     jsonArrayView.add(json);
                 }
+                JSONObject jsonView = new JSONObject();
+                jsonView.put("text", "视图");
+                jsonView.put("children", jsonArrayView);
+                jsonArrayModule.add(jsonView);
             }
-            JSONObject jsonView = new JSONObject();
-            jsonView.put("text", "视图");
-            jsonView.put("children", jsonArrayView);
-            jsonArrayModule.add(jsonView);
 
-            if(!CollectionUtils.isEmpty(module.getTriggerNameList())){
+            if(module.getTriggerNameList() != null){
                 for(TriggerName triggerName: module.getTriggerNameList()){
                     JSONObject json = new JSONObject();
                     json.put("text", triggerName.getName());
                     json.put("leaf", true);
                     jsonArrayTrigger.add(json);
                 }
+                JSONObject jsonTrigger = new JSONObject();
+                jsonTrigger.put("text", "触发器");
+                jsonTrigger.put("children", jsonArrayTrigger);
+                jsonArrayModule.add(jsonTrigger);
             }
-            JSONObject jsonTrigger = new JSONObject();
-            jsonTrigger.put("text", "触发器");
-            jsonTrigger.put("children", jsonArrayTrigger);
-            jsonArrayModule.add(jsonTrigger);
 
-            if(StringUtils.isEmpty(module.getBusinessType())){
+            if(module.getSequenceNameList() != null){
+                System.out.println("length:" + module.getSequenceNameList().size());
+                for(SequenceName sequenceName: module.getSequenceNameList()) {
+                    JSONObject json = new JSONObject();
+                    json.put("text", sequenceName.getName());
+                    json.put("leaf", true);
+                    jsonArraySequence.add(json);
+                }
+                JSONObject jsonSequence = new JSONObject();
+                jsonSequence.put("text", "序列");
+                jsonSequence.put("children", jsonArraySequence);
+                jsonArrayModule.add(jsonSequence);
+            }
+
+            if(!StringUtils.isEmpty(module.getBusinessType())){
                 JSONObject jsonBusinessType = new JSONObject();
                 jsonBusinessType.put("text", "业务类型");
                 jsonBusinessType.put("leaf", true);
                 jsonArrayModule.add(jsonBusinessType);
             }
-            if(module.getStandardfield() != null) {
+            if(!StringUtils.isEmpty(module.getStandardfield())) {
                 JSONObject jsonStdfield = new JSONObject();
                 jsonStdfield.put("text", "标准字段");
                 jsonStdfield.put("leaf", true);
@@ -222,6 +242,43 @@ public class UpdateMetaDataUtils {
         }catch (IOException e){
             e.printStackTrace();
         }
+        XStream xStream = new XStream();
+        if(curText.equals("stdfield")){
+            xStream.processAnnotations(StandardFields.class);
+            StandardFields standardFields = new StandardFields();
+            standardFields.setPackageName(moduleName);
+            String xml = xStream.toXML(standardFields);
+            UpdateMetaDataUtils.objectToFile(xml, file);
+        }
+        else if(curText.equals("bizdatatype")){
+            xStream.processAnnotations(BusinessTypes.class);
+            BusinessTypes businessTypes = new BusinessTypes();
+            businessTypes.setPackageName(moduleName);
+            String xml = xStream.toXML(businessTypes);
+            UpdateMetaDataUtils.objectToFile(xml, file);
+        }
+    }
+
+    public static void createMetaDataXmlFile(String moduleName, String fileName, String filePath){
+        addOtherInDetail(moduleName,fileName,filePath);
+        filePath = filePath.substring(1, filePath.length() - 51);
+        String otherFilePath = filePath + "/db-script/script/src/main/resources/xml/"
+                + moduleName + "/" + moduleName + "." + fileName + ".xml";
+        File file = new File(otherFilePath);
+        Object object = getObjectTypeByFileName(fileName);
+        XStream xStream = new XStream();
+        xStream.processAnnotations(object.getClass());
+        String xml = xStream.toXML(object);
+        objectToFile(xml, file);
+    }
+
+    public static Object getObjectTypeByFileName(String fileName){
+        if(fileName.equals("table")) return new Tables();
+        else if(fileName.equals("view")) return new Views();
+        else if(fileName.equals("procedure")) return new Procedures();
+        else if(fileName.equals("sequence")) return new Sequences();
+        else if(fileName.equals("trigger")) return new Triggers();
+        else return new DialectFunctions();
     }
 
     public static void deleteOtherInDetail(String fileName, String curText, String filePath){
@@ -234,7 +291,7 @@ public class UpdateMetaDataUtils {
         }
     }
 
-    public static void classToFile(String xml, File file){
+    public static void objectToFile(String xml, File file){
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             OutputStreamWriter osw = new OutputStreamWriter(fileOutputStream, "utf-8");

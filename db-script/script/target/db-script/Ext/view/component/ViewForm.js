@@ -25,7 +25,7 @@ Ext.define('Ext.view.component.ViewForm', {
         var items = [
             {
                 layout: 'form',
-                columnWidth: 0.45,
+                columnWidth: 0.5,
                 frame: true,
                 items: [
                     { fieldLabel: '模块名', name: 'moduleName', xtype: 'textfield', readOnly: true},
@@ -35,7 +35,7 @@ Ext.define('Ext.view.component.ViewForm', {
             },
             {
                 layout: 'form',
-                columnWidth: 0.45,
+                columnWidth: 0.5,
                 frame: true,
                 items: [
                     { fieldLabel: 'id', name: 'id', xtype: 'textfield'},

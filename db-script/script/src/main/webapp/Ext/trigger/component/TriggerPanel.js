@@ -1,6 +1,6 @@
 Ext.define('Ext.trigger.component.TriggerPanel', {
     extend: 'Ext.panel.Panel',
-    width: 600,
+    width: 580,
     height: 600,
     title: 'Trigger',
     titleAlign: 'center',
@@ -22,7 +22,7 @@ Ext.define('Ext.trigger.component.TriggerPanel', {
             moduleName: me.moduelName,
             store: me.sqlBodyStore,
             width: 580,
-            contentLength:200
+            contentLength:390
         });
         items = [
             me.triggerForm,
@@ -61,44 +61,33 @@ Ext.define('Ext.trigger.component.TriggerPanel', {
 
     panelSave: function () {
         var me = this;
-        var viewWidthModuleName = {};
-        var view = {};
-        viewWidthModuleName.moduleName = me.moduleName;
-        var formValues = this.viewForm.getForm().getValues();
-        view.id = formValues.id;
-        view.title = formValues.title;
-        view.description = formValues.description;
-        view.name = formValues.name;
-        view.schema = formValues.schema;
+        var triggerWithModuleName = {};
+        var trigger = {};
+        triggerWithModuleName.moduleName = me.moduleName;
+        var formValues = this.triggerForm.getForm().getValues();
+        trigger.title = formValues.title;
+        trigger.description = formValues.description;
+        trigger.name = formValues.name;
 
         var sqlGridRecords = me.sqlBodyStore.getRange();
-        var sqlBodyList = [];
+        var triggerSqls = [];
         for( var i in sqlGridRecords){
-            sqlBodyList.push({
+            triggerSqls.push({
                 'dialectTypeName': sqlGridRecords[i].get('dialectTypeName'),
                 'content': sqlGridRecords[i].get('content'),
             });
         };
-        view.sqlBodyList = sqlBodyList;
-
-        var refViewIdGridRecords = me.refViewIdStore.getRange();
-        var refViewIdList = [];
-        for( var i in refViewIdGridRecords){
-            refViewIdList.push(refViewIdGridRecords[i].get('refViewId'));
-        };
-        var refViewIds = {};
-        refViewIds.refViewIdList = refViewIdList;
-        view.refViewIds = refViewIds
-        viewWidthModuleName.view = view;
+        trigger.triggerSqls = triggerSqls;
+        triggerWithModuleName.trigger = trigger;
 
         Ext.Ajax.request({
-            url: 'http://localhost:8080/dbscript//view/saveView',
+            url: 'http://localhost:8080/dbscript//trigger/saveTrigger',
             headers: {'ContentType': 'application/json;charset=UTF-8',
                 'Content-Type': 'application/json'
             },
             ContentType : 'application/json;charset=UTF-8',
             dataType: 'json',
-            params: JSON.stringify(viewWidthModuleName),
+            params: JSON.stringify(triggerWithModuleName),
             method: 'Post',
             success: function () {
                 Ext.Msg.alert('成功', '保存成功');

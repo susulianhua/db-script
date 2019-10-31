@@ -16,11 +16,12 @@
 package com.xquant.database.fileresolver;
 
 import com.thoughtworks.xstream.XStream;
-import com.xquant.vfs.FileObject;
 import com.xquant.fileresolver.FileResolver;
 import com.xquant.fileresolver.impl.AbstractFileProcessor;
+import com.xquant.vfs.FileObject;
 import com.xquant.xml.XStreamConfiguration;
 import com.xquant.xml.XStreamFactory;
+
 import java.io.InputStream;
 
 /**
@@ -58,10 +59,17 @@ public class XStreamFileProcessor extends AbstractFileProcessor {
             try {
                 inputStream.close();
             } catch (Exception e) {
-                LOGGER.error("关闭文件流时出错,文件路径:{}"+ e, fileObject.getAbsolutePath());
+                LOGGER.error("关闭文件流时出错,文件路径:{}", e, fileObject.getAbsolutePath());
             }
             XStreamFactory.parse(xstreamConfiguration);
-
+//            XStream xStream = XStreamFactory.getXStream(xstreamConfiguration
+//                    .getPackageName());
+//
+//            loadAnnotationClass(xStream, xstreamConfiguration);
+//            if (xstreamConfiguration.getxStreamClassAliases() != null) {
+//                processClassAliases(xStream,
+//                        xstreamConfiguration.getxStreamClassAliases());
+//            }
             LOGGER.info( "XStream配置文件[{0}]，加载完毕。",
                     fileObject.getAbsolutePath());
         } catch (Exception e) {

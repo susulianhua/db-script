@@ -52,9 +52,10 @@
             <initdata-conflict-delete value="false"/>
 
             <!--自增长，是否生成数据库触发器,针对有触发器的数据库-->
-            <autoincrement-use-dbtrigger value="false"/>
+            <autoincrement-use-dbtrigger value="true"/>
         </database-installer>
     </database-install-processor>
+
 
     <datasource id="test" type="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
@@ -62,6 +63,5 @@
         <property name="username" value="scott"/>
         <property name="password" value="xQuant2019"/>
     </datasource>
-
 
 </application>

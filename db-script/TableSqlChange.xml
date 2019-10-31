@@ -8,6 +8,8 @@ CREATE TABLE t_custom (
 COMMENT ON COLUMN t_custom.id IS '整型主键字段 整型id';
 COMMENT ON COLUMN t_custom.name IS '名称 人名';
 CREATE SEQUENCE SEQ_T_CUSTOM;
+CREATE OR REPLACE TRIGGER TRI_T_CUSTOM BEFORE INSERT ON T_CUSTOM FOR EACH ROW WHEN (NEW.ID IS NULL) BEGIN SELECT SEQ_T_CUSTOM.NEXTVAL INTO :NEW.ID FROM DUAL; END;
+/
 DROP SEQUENCE SEQ_T_ORG;
 CREATE TABLE t_org (
 	o_id  NUMBER,
@@ -19,6 +21,8 @@ COMMENT ON COLUMN t_org.o_id IS '机构id';
 COMMENT ON COLUMN t_org.name IS '名称 人名';
 COMMENT ON COLUMN t_org.p_id IS 'int类型上级id';
 CREATE SEQUENCE SEQ_T_ORG;
+CREATE OR REPLACE TRIGGER TRI_T_ORG BEFORE INSERT ON T_ORG FOR EACH ROW WHEN (NEW.O_ID IS NULL) BEGIN SELECT SEQ_T_ORG.NEXTVAL INTO :NEW.O_ID FROM DUAL; END;
+/
 ALTER TABLE t_org ADD CONSTRAINT fk_org_parent FOREIGN KEY (p_id) REFERENCES t_org(o_id);
 CREATE UNIQUE INDEX a ON t_org ( o_id asc,name asc,p_id asc ) ;
 CREATE UNIQUE INDEX b ON t_org ( o_id asc,name asc ) ;
@@ -41,6 +45,7 @@ COMMENT ON COLUMN t_user.o_id IS '机构id';
 COMMENT ON COLUMN t_user.sort IS '排序号';
 ALTER TABLE t_user ADD CONSTRAINT fk_user_parent FOREIGN KEY (parent_id) REFERENCES t_user(v_id);
 ALTER TABLE t_user ADD CONSTRAINT fk_user_org FOREIGN KEY (o_id) REFERENCES t_org(o_id);
+CREATE UNIQUE INDEX dsad ON t_user (  ) ;
 CREATE UNIQUE INDEX IDX_T_USER_NAME ON t_user ( name ) ;
 CREATE UNIQUE INDEX IDX_T_USER_AGE ON t_user ( age ) ;
 CREATE UNIQUE INDEX IDX_T_USER_SORT ON t_user ( sort ) ;
@@ -53,6 +58,11 @@ CREATE TABLE incrementer (
 COMMENT ON COLUMN incrementer.sequence_id IS '主键序列字段';
 COMMENT ON COLUMN incrementer.dummy IS 'dummy';
 CREATE SEQUENCE SEQ_INCREMENTER;
+CREATE OR REPLACE TRIGGER TRI_INCREMENTER BEFORE INSERT ON INCREMENTER FOR EACH ROW WHEN (NEW.SEQUENCE_ID IS NULL) BEGIN SELECT SEQ_INCREMENTER.NEXTVAL INTO :NEW.SEQUENCE_ID FROM DUAL; END;
+/
+CREATE OR REPLACE VIEW org_view AS SELECT * FROM T_ORG;
+CREATE OR REPLACE VIEW user_view AS SELECT * FROM t_user;
+CREATE OR REPLACE VIEW role_user_view AS SELECT o.o_id,o.name,u.name username,u.v_id FROM org_view o, user_view u WHERE o.o_id = u.o_id;
 CREATE OR REPLACE PROCEDURE y_p_test AS   BEGIN                                                    select user from dual;                                                    END;
 /
 /*-------end-----*/

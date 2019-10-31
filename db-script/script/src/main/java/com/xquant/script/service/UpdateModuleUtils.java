@@ -2,19 +2,12 @@ package com.xquant.script.service;
 
 import com.thoughtworks.xstream.XStream;
 import com.xquant.script.pojo.module.*;
+import com.xquant.script.pojo.module.ProcedureName;
+import com.xquant.script.pojo.module.TriggerName;
+import com.xquant.script.pojo.module.ViewName;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 
 public class UpdateModuleUtils {
@@ -29,7 +22,7 @@ public class UpdateModuleUtils {
         modules.getModuleList().add(module);
         file.delete();
         String xml = xStream.toXML(modules);
-        updateMetaDataUtils.classToFile(xml, file);
+        updateMetaDataUtils.objectToFile(xml, file);
     }
 
     public static void deleteModule(File file, String moduleName){
@@ -44,41 +37,39 @@ public class UpdateModuleUtils {
         }
         file.delete();
         String xml = xStream.toXML(modules);
-        updateMetaDataUtils.classToFile(xml, file);
+        updateMetaDataUtils.objectToFile(xml, file);
     }
 
     public static void addTableInModule(File file, String tableName, String moduleName) throws Exception{
-        DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document document = db.parse(file);
-        Element root = document.getDocumentElement();
-        NodeList nodeList = root.getElementsByTagName("module");
-
-        for(int i = 0; i < nodeList.getLength(); i++){
-            if(nodeList.item(i).getAttributes().getNamedItem("id").getNodeValue().equals(moduleName)){
-                Element element = document.createElement("tablename");
-                element.setAttribute("name",tableName);
-                root.getElementsByTagName("module").item(i).appendChild(element);
-                Transformer tf = TransformerFactory.newInstance().newTransformer();
-                tf.setOutputProperty(OutputKeys.INDENT, "yes");
-                tf.transform(new DOMSource(document), new StreamResult(file));
-            }
-        }
+       XStream xStream = new XStream();
+       xStream.processAnnotations(Modules.class);
+       Modules modules = (Modules) xStream.fromXML(file);
+       for(Module module: modules.getModuleList()){
+           if(module.getId().equals(moduleName)){
+               TableName tableName1 = new TableName();
+               tableName1.setName(tableName);
+               module.getTablelist().add(tableName1);
+               break;
+           }
+       }
+       String xml = xStream.toXML(modules);
+       UpdateMetaDataUtils.objectToFile(xml, file);
     }
 
     public static void addProcedureInModule(File file, String procedureName, String moduleName){
-        ProcedureNameInModule procedureNameInModule = new ProcedureNameInModule();
+        ProcedureName procedureNameInModule = new ProcedureName();
         procedureNameInModule.setName(procedureName);
         XStream xStream = new XStream();
         xStream.processAnnotations(Modules.class);
         Modules modules = (Modules) xStream.fromXML(file);
         for(Module module: modules.getModuleList()){
             if(module.getId().equals(moduleName)){
-                module.getProcedureNameInModuleList().add(procedureNameInModule);
+                module.getProcedureNameList().add(procedureNameInModule);
                 break;
             };
         }
         String xml = xStream.toXML(modules);
-        UpdateMetaDataUtils.classToFile(xml, file);
+        UpdateMetaDataUtils.objectToFile(xml, file);
     }
 
     public static void addViewInModule(File file, String viewName, String moduleName){
@@ -94,7 +85,7 @@ public class UpdateModuleUtils {
             };
         }
         String xml = xStream.toXML(modules);
-        UpdateMetaDataUtils.classToFile(xml, file);
+        UpdateMetaDataUtils.objectToFile(xml, file);
     }
 
     public static void addTriggerInModule(File moduleFile, String triggerName,String moduleName){
@@ -110,30 +101,42 @@ public class UpdateModuleUtils {
             };
         }
         String xml = xStream.toXML(modules);
-        UpdateMetaDataUtils.classToFile(xml, moduleFile);
+        UpdateMetaDataUtils.objectToFile(xml, moduleFile);
     }
 
-    public static void deleteTableInModule(File file,String tableName, String FileName) throws Exception{
-        DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Transformer tf = TransformerFactory.newInstance().newTransformer();
-        tf.setOutputProperty(OutputKeys.INDENT, "yes");
-        Document document = db.parse(file);
-        Element root = document.getDocumentElement();
+    public static void addSequenceInModule(File moduleFile,String sequenceName, String moduleName){
+        SequenceName sequenceName1 = new SequenceName();
+        sequenceName1.setName(sequenceName);
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Modules.class);
+        Modules modules = (Modules) xStream.fromXML(moduleFile);
+        for(Module module: modules.getModuleList()){
+            if(module.getId().equals(moduleName)){
+                module.getSequenceNameList().add(sequenceName1);
+                break;
+            };
+        }
+        String xml = xStream.toXML(modules);
+        UpdateMetaDataUtils.objectToFile(xml, moduleFile);
+    }
 
-        NodeList moduleNodeList = root.getElementsByTagName("module");
-        for(int i = 0; i <  moduleNodeList.getLength(); i++){
-            if(moduleNodeList.item(i).getAttributes().getNamedItem("id").getNodeValue().equals(FileName)){
-                Element cruModule = (Element) moduleNodeList.item(i);
-                NodeList tableNodeList = cruModule.getElementsByTagName("tablename");
-                for(int j = 0; j < tableNodeList.getLength(); j++){
-                    if(tableNodeList.item(j).getAttributes().getNamedItem("name").getNodeValue().equals(tableName)){
-                        moduleNodeList.item(i).removeChild(tableNodeList.item(j));
+    public static void deleteTableInModule(File file,String tableName, String moduleName) throws Exception{
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Modules.class);
+        Modules modules = (Modules) xStream.fromXML(file);
+        for(Module module: modules.getModuleList()){
+            if(module.getId().equals(moduleName)){
+                for(TableName table: module.getTablelist()){
+                    if(table.getName().equals(tableName)){
+                        module.getTablelist().remove(table);
+                        break;
                     }
                 }
-                tf.transform(new DOMSource(document), new StreamResult(file));
                 break;
             }
         }
+        String xml = xStream.toXML(modules);
+        UpdateMetaDataUtils.objectToFile(xml, file);
     }
 
     public static void deleteProcedureInModule(File file, String procedureName, String moduleName){
@@ -142,9 +145,9 @@ public class UpdateModuleUtils {
         Modules modules = (Modules) xStream.fromXML(file);
         for(Module module: modules.getModuleList()){
             if(module.getId().equals(moduleName)){
-                for(ProcedureNameInModule procedureNameInModule: module.getProcedureNameInModuleList()){
-                    if(procedureNameInModule.getName().equals(procedureName)){
-                        module.getProcedureNameInModuleList().remove(procedureNameInModule);
+                for(ProcedureName procedure: module.getProcedureNameList()){
+                    if(procedure.getName().equals(procedureName)){
+                        module.getProcedureNameList().remove(procedure);
                         break;
                     }
                 }
@@ -152,7 +155,7 @@ public class UpdateModuleUtils {
             }
         }
         String xml = xStream.toXML(modules);
-        UpdateMetaDataUtils.classToFile(xml, file);
+        UpdateMetaDataUtils.objectToFile(xml, file);
     }
 
     public static void deleteViewInModule(File file, String viewName, String moduleName){
@@ -171,7 +174,7 @@ public class UpdateModuleUtils {
             }
         }
         String xml = xStream.toXML(modules);
-        UpdateMetaDataUtils.classToFile(xml, file);
+        UpdateMetaDataUtils.objectToFile(xml, file);
     }
 
     public static void deleteTriggerInModule(File moduleFile, String triggerName, String moduleName){
@@ -190,7 +193,7 @@ public class UpdateModuleUtils {
             }
         }
         String xml = xStream.toXML(modules);
-        UpdateMetaDataUtils.classToFile(xml, moduleFile);
+        UpdateMetaDataUtils.objectToFile(xml, moduleFile);
     }
 
     public static String  addOtherInModule(File file, String curText, String moduleName){
@@ -203,15 +206,14 @@ public class UpdateModuleUtils {
                     module.setStandardfield(moduleName);
                     curText = "stdfield";
                 }
-                else if(curText.equals("序列") && StringUtils.isEmpty(module.getSequence())){
-                    module.setSequence(moduleName);
-                    curText = "sequence";
+                else if(curText.equals("业务类型") && StringUtils.isEmpty(module.getBusinessType())){
+                    module.setBusinessType(moduleName);
+                    curText = "bizdatatype";
                 }
             }
         }
         String xml = xStream.toXML(modules);
-        System.out.println("xml:" + xml);
-        updateMetaDataUtils.classToFile(xml, file);
+        updateMetaDataUtils.objectToFile(xml, file);
         return curText;
     }
 
@@ -226,14 +228,14 @@ public class UpdateModuleUtils {
                     module.setStandardfield(null);
                     curText = "stdfield";
                 }
-                else if(curText.equals("序列")) {
-                    module.setSequence(null);
-                    curText = "sequence";
+                else if(curText.equals("业务类型")) {
+                    module.setBusinessType(null);
+                    curText = "bizdatatype";
                 }
             }
         }
         String xml = xStream.toXML(modules);
-        updateMetaDataUtils.classToFile(xml, file);
+        updateMetaDataUtils.objectToFile(xml, file);
         return curText;
     }
 }

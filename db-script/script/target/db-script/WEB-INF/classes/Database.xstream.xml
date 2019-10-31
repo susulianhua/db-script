@@ -9,7 +9,10 @@
         <xstream-annotation-class
                 class-name="com.xquant.database.config.procedure.Procedures"/>
         <xstream-annotation-class
-                class-name="com.xquant.database.config.dialectfunction.DialectFunctions">
+                class-name="com.xquant.dialectfunction.DialectFunctions">
+        </xstream-annotation-class>
+        <xstream-annotation-class
+            class-name="com.xquant.database.config.view.Views">
         </xstream-annotation-class>
         <xstream-annotation-class
                 class-name="com.xquant.database.config.trigger.Triggers">
@@ -18,7 +21,8 @@
                 class-name="com.xquant.database.config.sequence.Sequences">
         </xstream-annotation-class>
         <xstream-annotation-class
-            class-name="com.xquant.database.config.view.Views"/>
+            class-name="com.xquant.database.config.defaultvalue.DefaultValues">
+        </xstream-annotation-class>
     </xstream-annotation-classes>
 </xstream-configuration>
 

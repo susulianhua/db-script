@@ -144,7 +144,6 @@ Ext.define('Ext.table.component.IndexFieldGrid',{
         Ext.MessageBox.confirm('提示', '是否确认删除该索引字段', function (btn) {
             if(btn == 'yes'){
                 var record = indexFieldGrid.getStore().getAt(rowIndex);
-                console.log('record:', record);
                 me.store.remove(record);
                 Ext.Msg.alert('成功','删除成功');
             };

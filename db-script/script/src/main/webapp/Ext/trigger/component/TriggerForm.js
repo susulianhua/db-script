@@ -24,7 +24,7 @@ Ext.define('Ext.trigger.component.TriggerForm', {
         var items = [
             {
                 layout: 'form',
-                columnWidth: 0.45,
+                columnWidth: 0.5,
                 frame: true,
                 items: [
                     { fieldLabel: '模块名', name: 'moduleName', xtype: 'textfield', readOnly: true},
@@ -33,7 +33,7 @@ Ext.define('Ext.trigger.component.TriggerForm', {
             },
             {
                 layout: 'form',
-                columnWidth: 0.45,
+                columnWidth: 0.5,
                 frame: true,
                 items: [
                     { fieldLabel: 'title', name: 'title', xtype: 'textfield'},

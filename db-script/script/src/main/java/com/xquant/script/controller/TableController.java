@@ -6,7 +6,7 @@ import com.xquant.metadata.config.stdfield.StandardField;
 import com.xquant.metadata.config.stdfield.StandardFields;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
 import com.xquant.script.pojo.tablereturn.*;
-import com.xquant.script.service.FileFromXmlUtils;
+import com.xquant.script.service.GetCorrespondFileUtils;
 import com.xquant.script.service.UpdateMetaDataUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +30,7 @@ public class TableController {
         String tableName = request.getParameter("tableName");
         String moduleName = fileName.substring(0, fileName.length() - 10);
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getTableFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
@@ -55,7 +55,7 @@ public class TableController {
         String tableName = request.getParameter("tableName");
         String moduleName = FileName.substring(0, FileName.length() - 10);
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getTableFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
@@ -79,7 +79,7 @@ public class TableController {
         String tableName = request.getParameter("tableName");
         String moduleName = FileName.substring(0, FileName.length() - 10);
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getTableFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
@@ -103,7 +103,7 @@ public class TableController {
         String FileName = request.getParameter("FileName");
         String moduleName = FileName.substring(0, FileName.length() - 10);
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getStandardFieldFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getStandardFieldFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(StandardFields.class);
         StandardFields standardFields = (StandardFields) xStream.fromXML(file);
@@ -124,7 +124,7 @@ public class TableController {
         String tableName = request.getParameter("tableName");
         String moduleName = FileName.substring(0, FileName.length() - 10);
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getTableFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
@@ -148,7 +148,7 @@ public class TableController {
         String tableName = request.getParameter("tableName");
         String moduleName = FileName.substring(0, FileName.length() - 10);
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getTableFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
         Tables tables = (Tables) xStream.fromXML(file);
@@ -172,7 +172,7 @@ public class TableController {
     public NormalResponse tableSave(@RequestBody Table table){
         String moduleName = table.getPackageName();
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getTableFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getTableFile(moduleName, filePath);
 
         XStream xStream = new XStream();
         xStream.processAnnotations(Tables.class);
@@ -185,7 +185,7 @@ public class TableController {
             }
         }
         String xml = xStream.toXML(tables);
-        UpdateMetaDataUtils.classToFile(xml, file);
+        UpdateMetaDataUtils.objectToFile(xml, file);
         return new NormalResponse();
     }
 

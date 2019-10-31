@@ -16,13 +16,15 @@
 package com.xquant.fileresolver.impl;
 
 import com.xquant.common.OrderUtil;
-import com.xquant.vfs.FileObject;
 import com.xquant.fileresolver.ChangeListener;
 import com.xquant.fileresolver.FileProcessor;
 import com.xquant.fileresolver.FileResolver;
 import com.xquant.fileresolver.util.FileResolverUtil;
+import com.xquant.vfs.FileObject;
 import com.xquant.vfs.VFS;
 import com.xquant.xmlparser.node.XmlNode;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.lf5.viewer.configure.ConfigurationManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
@@ -118,7 +120,6 @@ public class FileResolverImpl implements FileResolver {
                 fileProcessor.setFileResolver(this);
             }
             OrderUtil.order(fileProcessorList);
-            LOGGER.info( "0" + fileProcessorList.size());
             cleanProcessor();
             // 移动日志信息，文件搜索器中存在处理器时，才会进行全路径扫描，并打印日志信息
             LOGGER.info( "正在进行全路径扫描....");
@@ -137,7 +138,8 @@ public class FileResolverImpl implements FileResolver {
             Long lastModifiedTime = fileDateMap.get(fileObject
                     .getAbsolutePath());
             long modifiedTime = fileObject.getLastModifiedTime();
-            if (lastModifiedTime.longValue() != modifiedTime) {
+            if (lastModifiedTime.longValue() != modifiedTime
+                    || !fileObject.isInPackage()) {
                 fileDateMap.put(fileObject.getAbsolutePath(), modifiedTime);
                 if (fileObject.isExist()) {
                     classPaths.add(fileObject);
@@ -196,7 +198,7 @@ public class FileResolverImpl implements FileResolver {
 
     private void resolveFileObject(FileObject fileObject) {
 
-        LOGGER.info("找到文件：{}", fileObject
+        LOGGER.debug( "找到文件：{}", fileObject
                 .getAbsolutePath().toString());
         processFile(fileObject);
         if (fileObject.isFolder() && fileObject.getChildren() != null) {
@@ -206,7 +208,8 @@ public class FileResolverImpl implements FileResolver {
                         resolveFileObject(f);
                     }
                 } else {
-                    LOGGER.error("文件:[{}]在扫描根路径列表中存在，将作为根路径进行扫描",
+                    LOGGER.info(
+                            "文件:[{}]在扫描根路径列表中存在，将作为根路径进行扫描",
                             f.getAbsolutePath());
                 }
             }
@@ -337,7 +340,7 @@ public class FileResolverImpl implements FileResolver {
                     fileProcessor.process();
                 }
             }
-            LOGGER.info("全路径刷新结束....");
+            LOGGER.info( "全路径刷新结束....");
         }
 
     }
@@ -357,7 +360,6 @@ public class FileResolverImpl implements FileResolver {
     }
 
     private void initConfig() {
-
 
 
     }

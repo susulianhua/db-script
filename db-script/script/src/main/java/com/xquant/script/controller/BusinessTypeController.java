@@ -7,7 +7,7 @@ import com.xquant.metadata.config.bizdatatype.BusinessType;
 import com.xquant.metadata.config.bizdatatype.BusinessTypes;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
 import com.xquant.script.pojo.module.PlaceHolderValueReturn;
-import com.xquant.script.service.FileFromXmlUtils;
+import com.xquant.script.service.GetCorrespondFileUtils;
 import com.xquant.script.service.UpdateMetaDataUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Controller;
@@ -29,7 +29,7 @@ public class BusinessTypeController {
     public NormalResponse getBusinessTypeStore(HttpServletRequest request){
         String moduleName = request.getParameter("moduleName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getBusinessTypeFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getBusinessTypeFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(BusinessTypes.class);
         BusinessTypes businessTypes = (BusinessTypes) xStream.fromXML(file);
@@ -42,7 +42,7 @@ public class BusinessTypeController {
     public NormalResponse getPlaceHolderValue(HttpServletRequest request){
         String moduleName = request.getParameter("moduleName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getBusinessTypeFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getBusinessTypeFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(BusinessTypes.class);
         BusinessTypes businessTypes = (BusinessTypes) xStream.fromXML(file);
@@ -66,11 +66,11 @@ public class BusinessTypeController {
     public NormalResponse saveBusinessType(@RequestBody BusinessTypes businessTypes){
         String moduleName = businessTypes.getPackageName();
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = FileFromXmlUtils.getBusinessTypeFile(moduleName, filePath);
+        File file = GetCorrespondFileUtils.getBusinessTypeFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(BusinessTypes.class);
         String xml = xStream.toXML(businessTypes);
-        UpdateMetaDataUtils.classToFile(xml, file);
+        UpdateMetaDataUtils.objectToFile(xml, file);
         return  new NormalResponse();
     }
 }

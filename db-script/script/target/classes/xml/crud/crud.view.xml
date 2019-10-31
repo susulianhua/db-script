@@ -1,4 +1,15 @@
 <views>
+  <view id="org_user_view_id" name="org_user_view" title="用户视图" description="视图org_user_view_id" schema="test000">
+    <sqls>
+      <sql dialect-type-name="oracle" content="CREATE OR REPLACE VIEW role_user_view AS SELECT o.o_id,o.name,u.name username,u.v_id FROM org_view o, user_view u WHERE o.o_id = u.o_id"/>
+      <sql dialect-type-name="mysql" content="CREATE OR REPLACE VIEW role_user_view AS SELECT o.o_id,o.name,u.name username,u.v_id FROM org_view o, user_view u WHERE o.o_id = u.o_id"/>
+      <sql dialect-type-name="h2" content="CREATE OR REPLACE VIEW role_user_view AS SELECT o.o_id,o.name,u.name username,u.v_id FROM org_view o, user_view u WHERE o.o_id = u.o_id"/>
+    </sqls>
+    <ref-view-ids>
+      <ref-view-id>org_view_id</ref-view-id>
+      <ref-view-id>user_view_id</ref-view-id>
+    </ref-view-ids>
+  </view>
   <view id="user_view_id" name="user_view" title="用户视图" description="视图user_view_id" schema="test000">
     <sqls>
       <sql dialect-type-name="oracle" content="CREATE OR REPLACE VIEW user_view AS SELECT * FROM t_user"/>
@@ -15,16 +26,5 @@
       <sql dialect-type-name="mysql" content="CREATE OR REPLACE VIEW org_view AS SELECT * FROM T_ORG"/>
       <sql dialect-type-name="h2" content="CREATE OR REPLACE VIEW org_view AS SELECT * FROM T_ORG"/>
     </sqls>
-  </view>
-  <view id="org_user_view_id" name="org_user_view" title="用户视图" description="视图org_user_view_id" schema="test0000">
-    <sqls>
-      <sql dialect-type-name="oracle" content="CREATE OR REPLACE VIEW role_user_view AS SELECT o.o_id,o.name,u.name username,u.v_id FROM org_view o, user_view u WHERE o.o_id = u.o_id"/>
-      <sql dialect-type-name="mysql" content="CREATE OR REPLACE VIEW role_user_view AS SELECT o.o_id,o.name,u.name username,u.v_id FROM org_view o, user_view u WHERE o.o_id = u.o_id"/>
-      <sql dialect-type-name="h2dada" content="CREATE OR REPLACE VIEW role_user_view AS SELECT o.o_id,o.name,u.name username,u.v_id FROM org_view o, user_view u WHERE o.o_id = u.o_id"/>
-    </sqls>
-    <ref-view-ids>
-      <ref-view-id>org_view_id</ref-view-id>
-      <ref-view-id>user_view_id</ref-view-id>
-    </ref-view-ids>
   </view>
 </views>

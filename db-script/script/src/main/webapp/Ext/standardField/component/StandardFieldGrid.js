@@ -16,8 +16,8 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
     createColumns: function () {
         var me = this;
         return [
-                { dataIndex: 'typeId', text: 'businessTypeId', width: 120, align: 'center'},
-                { dataIndex: 'id', text: 'id', width: 90, align: 'center'},
+                { dataIndex: 'typeId', text: 'businessTypeId', width: 110, align: 'center'},
+                { dataIndex: 'id', text: 'id', width: 80, align: 'center'},
                 { dataIndex: 'name', text: 'name', width: 90, align: 'center'},
                 { dataIndex: 'title', text: 'title', width: 110, align: 'center'},
                 { dataIndex: 'description', text: 'description', width: 100, align: 'center'},

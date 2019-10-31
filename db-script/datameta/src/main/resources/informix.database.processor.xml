@@ -4,4 +4,5 @@
     <processor name="view" bean="informixViewSqlProcessor"></processor>
     <processor name="procedure" bean="informixProcedureSqlProcessor"></processor>
     <processor name="sequence" bean="sequenceProcessor"></processor>
+    <processor name="trigger" bean="triggerProcessor"></processor>
 </processors>

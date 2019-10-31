@@ -1,6 +1,6 @@
 Ext.define('Ext.table.component.TablePanel', {
     extend: 'Ext.panel.Panel',
-    width: 600,
+    width: 570,
     height: 600,
     title: 'Table',
     titleAlign: 'center',

@@ -21,7 +21,7 @@ Ext.define('Ext.businessType.component.BusinessTypeForm', {
         var items = [
             {
                 layout: 'form',
-                columnWidth: 0.45,
+                columnWidth: 0.5,
                 frame: true,
                 items: [
                     { fieldLabel: 'title', name: 'title', xtype: 'textfield', readOnly: true}
@@ -29,7 +29,7 @@ Ext.define('Ext.businessType.component.BusinessTypeForm', {
             },
             {
                 layout: 'form',
-                columnWidth: 0.45,
+                columnWidth: 0.5,
                 frame: true,
                 border: false,
                 items: [

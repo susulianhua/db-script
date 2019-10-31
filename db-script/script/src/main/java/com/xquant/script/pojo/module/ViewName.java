@@ -3,7 +3,7 @@ package com.xquant.script.pojo.module;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
-@XStreamAlias("viewName")
+@XStreamAlias("view")
 public class ViewName {
     @XStreamAsAttribute
     private String name;
