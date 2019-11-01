@@ -1,10 +1,9 @@
-Ext.define('Ext.sequence.component.Panel', {
+Ext.define('Ext.sequence.component.SequencePanel', {
     extend: 'Ext.panel.Panel',
-    title: 'Sequence',
-    layout: 'form',
     width: 570,
     height: 600,
-    frame: true,
+    title: 'Sequence',
+    layout: 'form',
     moduleName: null,
     sequenceName: null,
 
@@ -18,10 +17,10 @@ Ext.define('Ext.sequence.component.Panel', {
 
     getItems: function () {
         var me = this;
-        items = [
-            this.sequenceForm,
-            this.valueConfigForm,
-            this.seqCacheConfigForm
+        var items = [
+            me.sequenceForm,
+            me.valueConfigForm,
+            me.seqCacheConfigForm
         ];
 
         Ext.Ajax.request({
@@ -65,7 +64,7 @@ Ext.define('Ext.sequence.component.Panel', {
             }
         });
         Ext.Ajax.request({
-            url: 'http://localhost:8080/dbscript//sequence/getSeqCcheConfigForm',
+            url: 'http://localhost:8080/dbscript//sequence/getSeqCacheConfigForm',
             method: 'post',
             reader:{
                 type: 'json',
@@ -85,5 +84,47 @@ Ext.define('Ext.sequence.component.Panel', {
             }
         });
         return items;
+    },
+
+    savePanel: function () {
+        var me = this;
+        var sequenceWithModuleName = {};
+        var sequence = {};
+        var sequenceFormValues = this.sequenceForm.getForm().getValues();
+        sequenceWithModuleName.moduleName = sequenceFormValues.moduleName;
+        sequence.name = sequenceFormValues.name;
+        sequence.dataType = sequenceFormValues.dataType;
+        sequence.incrementBy = sequenceFormValues.incrementBy;
+        sequence.startWith = sequenceFormValues.startWith;
+        sequence.cycle = sequenceFormValues.cycle;
+        sequence.order = sequenceFormValues.order;
+        var valueConfigFormValues = this.valueConfigForm.getForm().getValues();
+        var seqCacheConfigFormValues = this.seqCacheConfigForm.getForm().getValues();
+        var valueConfig = {};
+        var seqCacheConfig = {};
+        valueConfig.minValue = valueConfigFormValues.minValue;
+        valueConfig.maxValue = valueConfigFormValues.maxValue;
+        seqCacheConfig.cache = seqCacheConfigFormValues.cache;
+        seqCacheConfig.number = seqCacheConfigFormValues.number;
+        sequence.valueConfig = valueConfig;
+        sequence.seqCacheConfig = seqCacheConfig;
+        sequenceWithModuleName.sequence = sequence;
+
+        Ext.Ajax.request({
+            url: 'http://localhost:8080/dbscript//sequence/saveSequence',
+            headers: {'ContentType': 'application/json;charset=UTF-8',
+                'Content-Type': 'application/json'
+            },
+            ContentType : 'application/json;charset=UTF-8',
+            dataType: 'json',
+            params: JSON.stringify(sequenceWithModuleName),
+            method: 'Post',
+            success: function () {
+                Ext.Msg.alert('成功', '添加成功');
+            },
+            failure: function () {
+                Ext.Msg.alert('失败', '添加失败，请重试');
+            }
+        })
     }
 })

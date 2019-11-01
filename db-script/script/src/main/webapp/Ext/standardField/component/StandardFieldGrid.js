@@ -6,6 +6,7 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
     loadMask: true,
     selType: 'rowmodel',
     autoScroll:true,
+    businessTypeIdStore: null,
 
     initComponent: function(){
         this.columns = this.createColumns();
@@ -81,7 +82,8 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
                     columnWidth: 0.5,
                     frame: true,
                     items: [
-                        { fieldLabel: 'businessTypeId', name: 'typeId', xtype: 'textfield'},
+                        { fieldLabel: 'businessTypeId', name: 'typeId', xtype: 'combobox', mode: 'remote',
+                        store: me.businessTypeIdStore, displayField: 'name', valueFiled: 'typeId' },
                         { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
                         { fieldLabel: 'description', name: 'description', xtype: 'textfield'}
                     ]
@@ -149,7 +151,8 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
                     columnWidth: 0.5,
                     frame: true,
                     items: [
-                        { fieldLabel: 'businessTypeId', name: 'typeId', xtype: 'textfield'},
+                        { fieldLabel: 'businessTypeId', name: 'typeId', xtype: 'combobox', store: me.businessTypeIdStore,
+                          displayField: 'name', fieldValue: 'typeId', mode: 'remote',},
                         { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
                         { fieldLabel: 'description', name: 'description', xtype: 'textfield'}
                     ]

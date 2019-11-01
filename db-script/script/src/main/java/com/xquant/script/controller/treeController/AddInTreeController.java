@@ -86,4 +86,19 @@ public class AddInTreeController {
         return new NormalResponse();
 
     }
+
+    @RequestMapping("/addFunction")
+    @ResponseBody
+    public NormalResponse addFunction(HttpServletRequest request){
+        String functionName = request.getParameter("metadataName");
+        String module = request.getParameter("moduleName");
+        String moduleName = module.substring(3,module.length()- 1);
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File moduleFile = GetCorrespondFileUtils.getModuleFile(filePath);
+        File file = GetCorrespondFileUtils.getFunctionFile(moduleName,filePath);
+        UpdateModuleUtils.addFunctionInModule(moduleFile, functionName, moduleName);
+        UpdateMetaDataUtils.addFunctionInFunction(file, functionName);
+        return new NormalResponse();
+
+    }
 }

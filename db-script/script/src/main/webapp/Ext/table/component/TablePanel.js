@@ -74,7 +74,7 @@ Ext.define('Ext.table.component.TablePanel', {
         return items;
     },
 
-    panelSave: function () {
+    savePanel: function () {
         var me = this;
         var table = {};
         var formValues = me.tableBaseForm.getForm().getValues();

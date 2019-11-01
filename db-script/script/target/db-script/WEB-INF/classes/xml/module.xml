@@ -18,13 +18,11 @@
     </triggers>
     <procedures>
       <procedure name="procedure1"/>
-      <procedure name="ddd"/>
     </procedures>
     <sequences>
-      <sequence>
-        <name>ddd</name>
-      </sequence>
+      <sequence name="ddd"/>
     </sequences>
+    <functions/>
     <standardfield>crud</standardfield>
     <businessType>crud</businessType>
   </module>

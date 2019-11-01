@@ -2,7 +2,9 @@ Ext.define('Ext.sequence.component.SeqCacheConfigForm', {
     extend: 'Ext.form.Panel',
     frame: true,
     labelWidth: 30,
+    height: 100,
     layout: 'column',
+    title: 'SeqCacheConfig',
     reader: new Ext.data.JsonReader({
         root: 'data',
         type: 'json',
@@ -18,9 +20,9 @@ Ext.define('Ext.sequence.component.SeqCacheConfigForm', {
     },
 
     getItems: function () {
-        items = [
-            { labelWidth: 'cache', name: 'cache', xtype: 'textfield', columnWidth: 0.5 },
-            { labelWidth: 'number', name: 'number', xtype: 'textfield', columnWidth: 0.5}
+        var items = [
+            { fieldLabel: 'cache', name: 'cache', xtype: 'textfield', columnWidth: 0.5 },
+            { fieldLabel: 'number', name: 'number', xtype: 'textfield', columnWidth: 0.5}
         ];
 
         return items;

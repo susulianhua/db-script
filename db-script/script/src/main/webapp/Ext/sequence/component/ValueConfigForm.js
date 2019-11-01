@@ -1,8 +1,10 @@
 Ext.define('Ext.sequence.component.ValueConfigForm', {
     extend: 'Ext.form.Panel',
     frame: true,
-    layout: column,
+    layout: 'column',
     labelWidth: 30,
+    height: 110,
+    title: 'ValueConfig',
     reader: new Ext.data.JsonReader({
         type: 'json',
         totalProperty: 'total',
@@ -18,9 +20,9 @@ Ext.define('Ext.sequence.component.ValueConfigForm', {
     },
 
     getItems: function () {
-        items = [
-            { labelField: 'minValue' , name: 'minValue', xtype: 'textfield', columnWidth: 0.5 },
-            { labelField: 'maxValue', name: 'maxValue', xtype: 'textfield', columnWidth: 0.5 }
+        var items = [
+            { fieldLabel: 'minValue' , name: 'minValue', xtype: 'textfield', columnWidth: 0.5 },
+            { fieldLabel: 'maxValue', name: 'maxValue', xtype: 'textfield', columnWidth: 0.5 }
         ]
         return items;
     }

@@ -13,6 +13,7 @@ import com.xquant.database.config.trigger.Trigger;
 import com.xquant.database.config.trigger.Triggers;
 import com.xquant.database.config.view.View;
 import com.xquant.database.config.view.Views;
+import com.xquant.dialectfunction.DialectFunction;
 import com.xquant.dialectfunction.DialectFunctions;
 import com.xquant.metadata.config.bizdatatype.BusinessTypes;
 import com.xquant.metadata.config.stdfield.StandardFields;
@@ -80,6 +81,18 @@ public class UpdateMetaDataUtils {
         objectToFile(xml, file);
     }
 
+    public static void addFunctionInFunction(File file, String functionName){
+        XStream xStream = new XStream();
+        xStream.processAnnotations(DialectFunctions.class);
+        DialectFunctions dialectFunctions = (DialectFunctions) xStream.fromXML(file);
+        DialectFunction dialectFunction = new DialectFunction();
+        dialectFunction.setName(functionName);
+        dialectFunctions.getFunctions().add(dialectFunction);
+        String xml = xStream.toXML(dialectFunctions);
+        objectToFile(xml, file);
+
+    }
+
     public static void deleteViewInView(File file, String viewName){
         XStream xStream = new XStream();
         xStream.processAnnotations(Views.class);
@@ -106,6 +119,34 @@ public class UpdateMetaDataUtils {
         }
         String xml = xStream.toXML(triggers);
         objectToFile(xml, triggerFile);
+    }
+
+    public static void deleteSequenceInSequence(File sequenceFile, String sequenceName){
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Sequences.class);
+        Sequences sequences = (Sequences) xStream.fromXML(sequenceFile);
+        for(Sequence sequence: sequences.getSequences()){
+            if(sequence.getName().equals(sequenceName)){
+                sequences.getSequences().remove(sequence);
+                break;
+            }
+        }
+        String xml = xStream.toXML(sequences);
+        objectToFile(xml, sequenceFile);
+    }
+
+    public static void deleteFunctionInFunction(File file, String functionName){
+        XStream xStream = new XStream();
+        xStream.processAnnotations(DialectFunctions.class);
+        DialectFunctions dialectFunctions = (DialectFunctions) xStream.fromXML(file);
+        for(DialectFunction dialectFunction: dialectFunctions.getFunctions()){
+            if(dialectFunction.getName().equals(functionName)){
+                dialectFunctions.getFunctions().remove(dialectFunction);
+                break;
+            }
+        }
+        String xml = xStream.toXML(dialectFunctions);
+        objectToFile(xml, file);
     }
 
     public static void deleteProcedureInProcedure(File file, String procedureName){
@@ -145,6 +186,7 @@ public class UpdateMetaDataUtils {
             JSONArray jsonArrayTrigger = new JSONArray();
             JSONArray jsonArrayView = new JSONArray();
             JSONArray jsonArraySequence = new JSONArray();
+            JSONArray jsonArrayFunction = new JSONArray();
             JSONObject jsonObject = new JSONObject();
 
             if(module.getTablelist()!= null){
@@ -201,7 +243,6 @@ public class UpdateMetaDataUtils {
             }
 
             if(module.getSequenceNameList() != null){
-                System.out.println("length:" + module.getSequenceNameList().size());
                 for(SequenceName sequenceName: module.getSequenceNameList()) {
                     JSONObject json = new JSONObject();
                     json.put("text", sequenceName.getName());
@@ -212,6 +253,18 @@ public class UpdateMetaDataUtils {
                 jsonSequence.put("text", "序列");
                 jsonSequence.put("children", jsonArraySequence);
                 jsonArrayModule.add(jsonSequence);
+            }
+            if(module.getFunctionNameList() != null){
+                for(FunctionName functionName: module.getFunctionNameList()) {
+                    JSONObject json = new JSONObject();
+                    json.put("text", functionName.getName() );
+                    json.put("leaf", true);
+                    jsonArrayFunction.add(json);
+                }
+                JSONObject jsonFunction = new JSONObject();
+                jsonFunction.put("text", "函数");
+                jsonFunction.put("children", jsonArrayFunction);
+                jsonArrayModule.add(jsonFunction);
             }
 
             if(!StringUtils.isEmpty(module.getBusinessType())){
@@ -301,6 +354,7 @@ public class UpdateMetaDataUtils {
             writer.flush();
             writer.close();
         }catch (IOException e){
+            System.out.println("hhhhhh");
             e.printStackTrace();
         }
     }

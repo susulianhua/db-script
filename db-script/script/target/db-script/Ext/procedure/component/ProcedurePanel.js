@@ -61,7 +61,7 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
     },
 
 
-    panelSave: function () {
+    savePanel: function () {
         var me = this;
         var procedureWidthModuleName = {};
         procedureWidthModuleName.moduleName = me.moduleName;

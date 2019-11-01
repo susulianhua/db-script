@@ -69,6 +69,14 @@ Ext.define('Ext.tree.Tree', {
                                 sequenceName: record.data.text
                             });
                         }
+                        else if(record.parentNode.data.text == '函数'){
+                            fileName = record.parentNode.parentNode.data.text;
+                            moduleName = fileName.substring(3, fileName.length - 1);
+                            var panel = Ext.create('Ext.function.component.FunctionPanel', {
+                                moduleName: moduleName,
+                                functionName: record.data.text
+                            });
+                        }
                         var win = Ext.create("Ext.window.Window", {
                             draggable: true,
                             height: 500,                          //高度
@@ -83,7 +91,7 @@ Ext.define('Ext.tree.Tree', {
                                 {
                                     text: '保存',
                                     handler: function () {
-                                        panel.panelSave()
+                                        panel.savePanel()
                                     }
                                 },
                                 {
@@ -101,23 +109,27 @@ Ext.define('Ext.tree.Tree', {
                     handler: Ext.bind(function(){
                         if(record.parentNode.data.text == '表'){
                             var upperCase = 'Table';
-                            me.deleteMetaData(record,upperCase);
+                            me.deleteMetaData(record, upperCase);
                         }
                         else if(record.parentNode.data.text == '存储过程'){
                             var upperCase = 'Procedure';
-                            me.deleteMetaData(record,upperCase);
+                            me.deleteMetaData(record, upperCase);
                         }
                         else if(record.parentNode.data.text == '视图'){
                             var upperCase = 'View'
-                            me.deleteMetaData(record,upperCase);
+                            me.deleteMetaData(record, upperCase);
                         }
                         else if(record.parentNode.data.text == '触发器'){
                             var upperCase = 'Trigger';
-                            me.deleteMetaData(record,upperCase);
+                            me.deleteMetaData(record, upperCase);
                         }
                         else if(record.parentNode.data.text == '序列'){
                             var upperCase = 'Sequence';
-                            me.deleteMetaData(record,upperCase);
+                            me.deleteMetaData(record, upperCase);
+                        }
+                        else if(record.parentNode.data.text == '函数'){
+                            var upperCase = 'Function';
+                            me.deleteMetaData(record, upperCase)
                         }
                         else{
                             var fileName = record.parentNode.data.text;
@@ -219,6 +231,20 @@ Ext.define('Ext.tree.Tree', {
                     },this, record)
                 }]
             })
+            var functionMenu = Ext.create('Ext.menu.Menu', {
+                items: [{
+                    text: '新增',
+                    handler: Ext.bind(function(){
+                        var upperCase = 'Function';
+                        me.addMetaData(record, upperCase);
+                    },this, record)
+                }, {
+                    text: '删除',
+                    handler: Ext.bind(function(){
+                        Ext.Msg.alert('失败',record.data.text + '无法刪除')
+                    },this, record)
+                }]
+            })
             var moduleMenu = new Ext.menu.Menu({
                 allowOtherMenus: true,
                 items: [{
@@ -246,6 +272,10 @@ Ext.define('Ext.tree.Tree', {
                                 handler: Ext.Function.bind(me.addMenuItem, null, [record], true)
                             },
                             {
+                                text: '函数',
+                                handler: Ext.Function.bind(me.addMenuItem, null, [record], true)
+                            },
+                            {
                                 text: '业务类型',
                                 handler: Ext.Function.bind(me.onMenuItem,null,[record],true)
                             },
@@ -270,6 +300,7 @@ Ext.define('Ext.tree.Tree', {
             if(record.data.text == "表") tableMenu.showAt(e.getXY());
             if(record.data.text == '视图') viewMenu.showAt(e.getXY());
             if(record.data.text == "存储过程") procedureMenu.showAt(e.getXY());
+            if(record.data.text == '函数') functionMenu.showAt(e.getXY())
             if(record.get('leaf') == true) leafMenu.showAt(e.getXY());
 
         }
@@ -394,12 +425,12 @@ Ext.define('Ext.tree.Tree', {
 
     deleteMetaData: function(record,upperCase){
         var fileName = record.parentNode.parentNode.data.text;
-        fileName = fileName.substring(3,fileName.length - 1);
+        moduleName = fileName.substring(3,fileName.length - 1);
         Ext.Ajax.request({
             url: 'http://localhost:8080/dbscript/deleteInTree/delete' + upperCase,
             params:{
                 metadataName: record.data.text,
-                FileName: fileName
+                moduleName: moduleName
             },
             success: function () {
                 var pNode = record.parentNode;

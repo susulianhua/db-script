@@ -1,6 +1,7 @@
 package com.xquant.script.service;
 
 import com.thoughtworks.xstream.XStream;
+import com.xquant.dialectfunction.DialectFunctions;
 import com.xquant.script.pojo.module.*;
 import com.xquant.script.pojo.module.ProcedureName;
 import com.xquant.script.pojo.module.TriggerName;
@@ -120,6 +121,22 @@ public class UpdateModuleUtils {
         UpdateMetaDataUtils.objectToFile(xml, moduleFile);
     }
 
+    public static void addFunctionInModule(File moduleFile,String functionName, String moduleName){
+        FunctionName functionName1 = new FunctionName();
+        functionName1.setName(functionName);
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Modules.class);
+        Modules modules = (Modules) xStream.fromXML(moduleFile);
+        for(Module module: modules.getModuleList()){
+            if(module.getId().equals(moduleName)){
+                module.getFunctionNameList().add(functionName1);
+                break;
+            }
+        }
+        String xml = xStream.toXML(modules);
+        UpdateMetaDataUtils.objectToFile(xml, moduleFile);
+    }
+
     public static void deleteTableInModule(File file,String tableName, String moduleName) throws Exception{
         XStream xStream = new XStream();
         xStream.processAnnotations(Modules.class);
@@ -186,6 +203,44 @@ public class UpdateModuleUtils {
                 for(TriggerName triggerName1: module.getTriggerNameList()){
                     if(triggerName1.getName().equals(triggerName)){
                         module.getTriggerNameList().remove(triggerName1);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        String xml = xStream.toXML(modules);
+        UpdateMetaDataUtils.objectToFile(xml, moduleFile);
+    }
+
+    public static void deleteSequenceInModule(File moduleFile, String sequenceName, String moduleName){
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Modules.class);
+        Modules modules = (Modules) xStream.fromXML(moduleFile);
+        for(Module module: modules.getModuleList()){
+            if(module.getId().equals(moduleName) && !CollectionUtils.isEmpty(module.getSequenceNameList())){
+                for(SequenceName sequenceName1: module.getSequenceNameList()){
+                    if(sequenceName1.getName().equals(sequenceName)){
+                        module.getSequenceNameList().remove(sequenceName1);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        String xml = xStream.toXML(modules);
+        UpdateMetaDataUtils.objectToFile(xml, moduleFile);
+    }
+
+    public static void deleteFunctionInModule(File moduleFile, String functionName, String moduleName){
+        XStream xStream = new XStream();
+        xStream.processAnnotations(Modules.class);
+        Modules modules = (Modules) xStream.fromXML(moduleFile);
+        for(Module module: modules.getModuleList()){
+            if(module.getId().equals(moduleName) && !CollectionUtils.isEmpty(module.getFunctionNameList())){
+                for(FunctionName functionName1: module.getFunctionNameList()){
+                    if(functionName1.getName().equals(functionName)){
+                        module.getFunctionNameList().remove(functionName1);
                         break;
                     }
                 }

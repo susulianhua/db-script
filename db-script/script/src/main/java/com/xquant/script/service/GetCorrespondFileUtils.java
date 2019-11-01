@@ -64,6 +64,14 @@ public  class GetCorrespondFileUtils {
         return file;
     }
 
+    public static File getFunctionFile(String moduleName, String filePath){
+        filePath = filePath.substring(1, filePath.length() - 51);
+        String functionFilePath = filePath + "/db-script/script/src/main/resources/xml/"
+                + moduleName + "/" + moduleName + ".dialectfunction.xml";
+        File file = new File(functionFilePath);
+        return file;
+    }
+
     public static File getModuleFile(String filePath){
         filePath = filePath.substring(1,filePath.length() - 51);
         filePath = filePath + "/db-script/script/src/main/resources/xml/module.xml";
@@ -83,6 +91,7 @@ public  class GetCorrespondFileUtils {
         else if(curText.equals("视图")) return "view";
         else if(curText.equals("序列")) return "sequence";
         else if(curText.equals("触发器")) return "trigger";
+        else if(curText.equals("函数")) return "dialectfunction";
         else  return "procedure";
     }
 

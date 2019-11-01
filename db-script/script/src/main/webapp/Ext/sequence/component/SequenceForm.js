@@ -1,8 +1,9 @@
 Ext.define('Ext.sequence.component.SequenceForm',{
-    extend : 'Ext.form.FormPanel',
+    extend: 'Ext.form.Panel',
     frame: true,
     labelWidth: 30,
     layout: 'column',
+    height: 200,
     reader: new Ext.data.JsonReader({
         type: 'json',
         totalProperty: 'total',
@@ -23,10 +24,10 @@ Ext.define('Ext.sequence.component.SequenceForm',{
     getItems: function(){
         var items = [
             {
-                layout: 'form',
                 columnWidth: 0.5,
                 frame: true,
-                items: [
+                layout: 'form',
+                items :[
                     { fieldLabel: 'moduleName', name: 'moduleName', xtype: 'textfield', readOnly: true},
                     { fieldLabel: 'dataType', name: 'dataType', xtype: 'textfield'},
                     { fieldLabel: 'startWith', name: 'startWith', xtype: 'textfield', allowBlank: false},
@@ -34,14 +35,14 @@ Ext.define('Ext.sequence.component.SequenceForm',{
                 ]
             },
             {
-                layout: 'form',
                 columnWidth: 0.5,
                 frame: true,
-                border: false,
+                layout: 'form',
                 items: [
                     { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
                     { fieldLabel: 'incrementBy', name: 'incrementBy', xtype: 'textfield'},
-                    { fieldLabel: 'cycle', name: 'cycle', xtype: 'cycle' },
+                    { fieldLabel: 'cycle', name: 'cycle', xtype: 'textfield' },
+                    { xtype: 'hidden'}
                 ]
             }
         ];

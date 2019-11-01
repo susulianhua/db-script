@@ -35,7 +35,7 @@ Ext.define('Ext.businessType.component.BusinessTypePanel', {
         return items;
     },
 
-    panelSave: function () {
+    savePanel: function () {
         var me = this;
         var businessTypes = {};
         businessTypes.packageName = me.moduleName;

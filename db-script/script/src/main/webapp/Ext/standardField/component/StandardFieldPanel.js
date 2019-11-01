@@ -9,16 +9,18 @@ Ext.define('Ext.standardField.component.StandardFieldPanel', {
 
     initComponent: function(){
         this.standardFieldStore = Ext.create('Ext.standardField.store.StandardFieldStore');
+        this.businessTypeIdStore = Ext.create('Ext.standardField.store.BusinessTypeIdStore');
         this.standardFieldBaseForm = Ext.create('Ext.standardField.component.StandardFieldForm');
         this.items = this.getItems();
         this.callParent(arguments);
     },
     getItems: function () {
         var me = this;
-
+        this.businessTypeIdStore.load({params: {moduleName: me.moduleName}});
         this.standardFieldStore.load({params:{moduleName: me.moduleName}});
         var standardFieldGrid = Ext.create('Ext.standardField.component.StandardFieldGrid', {
-            store: me.standardFieldStore
+            store: me.standardFieldStore,
+            businessTypeIdStore: me.businessTypeIdStore
         });
 
         items = [
@@ -33,7 +35,7 @@ Ext.define('Ext.standardField.component.StandardFieldPanel', {
         return items;
     },
 
-    panelSave: function () {
+    savePanel: function () {
         var me = this;
         var standardFields = {};
         var formValues = me.standardFieldBaseForm.getForm().getValues();

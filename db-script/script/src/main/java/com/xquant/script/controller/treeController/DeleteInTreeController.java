@@ -23,7 +23,7 @@ public class DeleteInTreeController {
     @ResponseBody
     public NormalResponse deleteTable(HttpServletRequest request) throws Exception{
         String tableName = request.getParameter("metadataName");
-        String moduleName = request.getParameter("FileName");
+        String moduleName = request.getParameter("moduleName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File file = GetCorrespondFileUtils.getTableFile(moduleName, filePath);
         //删除table.xml中对应表格
@@ -72,6 +72,32 @@ public class DeleteInTreeController {
         File moduleFile = GetCorrespondFileUtils.getModuleFile(filePath);
         UpdateMetaDataUtils.deleteTriggerInTrigger(triggerFile, triggerName);
         UpdateModuleUtils.deleteTriggerInModule(moduleFile, triggerName, moduleName);
+        return new NormalResponse();
+    }
+
+    @RequestMapping("/deleteSequence")
+    @ResponseBody
+    public NormalResponse deleteSequence(HttpServletRequest request){
+        String moduleName = request.getParameter("moduleName");
+        String sequenceName = request.getParameter("metadataName");
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File sequenceFile = GetCorrespondFileUtils.getSequenceFile(moduleName, filePath);
+        File moduleFile = GetCorrespondFileUtils.getModuleFile(filePath);
+        UpdateMetaDataUtils.deleteSequenceInSequence(sequenceFile, sequenceName);
+        UpdateModuleUtils.deleteSequenceInModule(moduleFile, sequenceName, moduleName);
+        return new NormalResponse();
+    }
+
+    @RequestMapping("/deleteFunction")
+    @ResponseBody
+    public NormalResponse deleteFunction(HttpServletRequest request){
+        String moduleName = request.getParameter("moduleName");
+        String functionName = request.getParameter("metadataName");
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File functionFile = GetCorrespondFileUtils.getFunctionFile(moduleName, filePath);
+        File moduleFile = GetCorrespondFileUtils.getModuleFile(filePath);
+        UpdateMetaDataUtils.deleteFunctionInFunction(functionFile, functionName);
+        UpdateModuleUtils.deleteFunctionInModule(moduleFile, functionName, moduleName);
         return new NormalResponse();
     }
 

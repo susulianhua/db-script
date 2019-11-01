@@ -22,6 +22,8 @@ public class Module {
     private List<ProcedureName> procedureNameList;
     @XStreamAlias("sequences")
     private List<SequenceName> sequenceNameList;
+    @XStreamAlias("functions")
+    private List<FunctionName> functionNameList;
 
     @XStreamAlias("standardfield")
     private String standardfield;
@@ -97,7 +99,15 @@ public class Module {
         else if(fileName.equals("trigger")) this.setTriggerNameList(new ArrayList<TriggerName>());
         else if(fileName.equals("view")) this.setViewNameList(new ArrayList<ViewName>());
         else if(fileName.equals("procedure")) this.setProcedureNameList(new ArrayList<ProcedureName>());
+        else if(fileName.equals("dialectfunction")) this.setFunctionNameList(new ArrayList<FunctionName>());
         else this.setSequenceNameList(new ArrayList<SequenceName>());
     }
 
+    public List<FunctionName> getFunctionNameList() {
+        return functionNameList;
+    }
+
+    public void setFunctionNameList(List<FunctionName> functionNameList) {
+        this.functionNameList = functionNameList;
+    }
 }

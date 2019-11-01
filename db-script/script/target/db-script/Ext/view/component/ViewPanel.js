@@ -68,7 +68,7 @@ Ext.define('Ext.view.component.ViewPanel', {
         return items;
     },
 
-    panelSave: function () {
+    savePanel: function () {
         var me = this;
         var viewWidthModuleName = {};
         var view = {};

@@ -3,7 +3,6 @@ Ext.define('Ext.trigger.component.TriggerPanel', {
     width: 580,
     height: 600,
     title: 'Trigger',
-    titleAlign: 'center',
     layout: 'form',
     triggerName: null,
     moduleName: null,
@@ -59,7 +58,7 @@ Ext.define('Ext.trigger.component.TriggerPanel', {
         return items;
     },
 
-    panelSave: function () {
+    savePanel: function () {
         var me = this;
         var triggerWithModuleName = {};
         var trigger = {};
