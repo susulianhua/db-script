@@ -31,6 +31,7 @@ public class TreeController {
         xstream.processAnnotations(Modules.class);
         Modules modules = (Modules) xstream.fromXML(file);
         JSONArray jsonArrayTotal = new JSONArray();
+        UpdateMetaDataUtils.createJsonAddStandardType(jsonArrayTotal, filePath);
         UpdateMetaDataUtils.createJson(jsonArrayTotal, modules);
         return new NormalResponse(jsonArrayTotal, (long) jsonArrayTotal.size());
     }

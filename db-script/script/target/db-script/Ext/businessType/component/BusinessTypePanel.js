@@ -11,6 +11,7 @@ Ext.define('Ext.businessType.component.BusinessTypePanel', {
         this.businessTypeStore = Ext.create('Ext.businessType.store.BusinessTypeStore');
         this.placeHolderStore = Ext.create('Ext.businessType.store.PlaceHolderStore');
         this.businessTypeForm = Ext.create('Ext.businessType.component.BusinessTypeForm');
+        this.standardTypeIdStore = Ext.create('Ext.businessType.store.StandardTypeIdStore')
         this.items = this.getItems();
         this.callParent(arguments);
     },
@@ -19,9 +20,11 @@ Ext.define('Ext.businessType.component.BusinessTypePanel', {
         var me = this;
         this.businessTypeStore.load({ params: { moduleName: me.moduleName}});
         this.placeHolderStore.load({ params: { moduleName: me.moduleName}});
+        this.standardTypeIdStore.load({ params: { moduleName: me.moduleName}})
         var businessTypeGrid = Ext.create('Ext.businessType.component.BusinessTypeGrid', {
             store: me.businessTypeStore,
-            placeHolderStore: me.placeHolderStore
+            placeHolderStore: me.placeHolderStore,
+            standardTypeIdStore: me.standardTypeIdStore
         })
 
         items = [

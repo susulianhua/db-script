@@ -16,6 +16,8 @@ import com.xquant.database.config.view.Views;
 import com.xquant.dialectfunction.DialectFunction;
 import com.xquant.dialectfunction.DialectFunctions;
 import com.xquant.metadata.config.bizdatatype.BusinessTypes;
+import com.xquant.metadata.config.stddatatype.StandardType;
+import com.xquant.metadata.config.stddatatype.StandardTypes;
 import com.xquant.metadata.config.stdfield.StandardFields;
 import com.xquant.script.pojo.module.*;
 import com.xquant.script.pojo.module.ProcedureName;
@@ -179,6 +181,7 @@ public class UpdateMetaDataUtils {
     }
 
     public static void createJson(JSONArray jsonArrayTotal, Modules modules){
+
         for(Module module: modules.getModuleList()){
             JSONArray jsonArrayTable = new JSONArray();
             JSONArray jsonArrayProcedure = new JSONArray();
@@ -188,7 +191,6 @@ public class UpdateMetaDataUtils {
             JSONArray jsonArraySequence = new JSONArray();
             JSONArray jsonArrayFunction = new JSONArray();
             JSONObject jsonObject = new JSONObject();
-
             if(module.getTablelist()!= null){
                 for(TableName tableName: module.getTablelist()){
                     JSONObject json = new JSONObject();
@@ -201,7 +203,6 @@ public class UpdateMetaDataUtils {
                 jsonTable.put("children",jsonArrayTable);
                 jsonArrayModule.add(jsonTable);
             }
-
             if(module.getProcedureNameList() != null){
                 for(ProcedureName procedureName : module.getProcedureNameList()){
                     JSONObject json = new JSONObject();
@@ -215,7 +216,6 @@ public class UpdateMetaDataUtils {
                 jsonArrayModule.add(jsonProcedure);
 
             }
-
             if(module.getViewNameList() != null){
                 for(ViewName viewName: module.getViewNameList()){
                     JSONObject json = new JSONObject();
@@ -228,7 +228,6 @@ public class UpdateMetaDataUtils {
                 jsonView.put("children", jsonArrayView);
                 jsonArrayModule.add(jsonView);
             }
-
             if(module.getTriggerNameList() != null){
                 for(TriggerName triggerName: module.getTriggerNameList()){
                     JSONObject json = new JSONObject();
@@ -241,7 +240,6 @@ public class UpdateMetaDataUtils {
                 jsonTrigger.put("children", jsonArrayTrigger);
                 jsonArrayModule.add(jsonTrigger);
             }
-
             if(module.getSequenceNameList() != null){
                 for(SequenceName sequenceName: module.getSequenceNameList()) {
                     JSONObject json = new JSONObject();
@@ -283,6 +281,24 @@ public class UpdateMetaDataUtils {
             jsonObject.put("children", jsonArrayModule);
             jsonArrayTotal.add(jsonObject);
         }
+    }
+
+    public static void createJsonAddStandardType(JSONArray jsonArrayTotal, String filePath){
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonCommon = new JSONObject();
+        jsonCommon.put("text","标准类型");
+        File file = GetCorrespondFileUtils.getStandardTypeFile(filePath);
+        XStream xStream = new XStream();
+        xStream.processAnnotations(StandardTypes.class);
+        StandardTypes standardTypes = (StandardTypes) xStream.fromXML(file);
+        for(StandardType standardType: standardTypes.getStandardTypeList()){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("leaf", true);
+            jsonObject.put("text", standardType.getId());
+            jsonArray.add(jsonObject);
+        }
+        jsonCommon.put("children", jsonArray);
+        jsonArrayTotal.add(jsonCommon);
     }
 
     public static void addOtherInDetail(String moduleName, String curText, String filePath){

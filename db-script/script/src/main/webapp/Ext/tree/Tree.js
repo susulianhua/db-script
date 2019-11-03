@@ -153,8 +153,37 @@ Ext.define('Ext.tree.Tree', {
                             })
                         }
                     },this,record)
-                }]
+                }
+                ]
             });
+            var standardTypeMenu = Ext.create('Ext.menu.Menu', {
+                items: [
+                    { text: '查看', handler: Ext.bind(function () {
+                            var panel = Ext.create('Ext.standardType.component.StandardTypePanel', {
+                                standardTypeId: record.data.text
+                            });
+                            var win = Ext.create("Ext.window.Window", {
+                                draggable: true,
+                                height: 500,                          //高度
+                                width: 600,                           //宽度
+                                layout: "fit",                        //窗口布局类型
+                                modal: true, //是否模态窗口，默认为false
+                                resizable: false,
+                                constrainsTo: Ext.getDoc(),
+                                items: [panel],
+                                buttonAlign: 'center',
+                                buttons:[
+                                    {
+                                        text: '关闭',
+                                        handler: function () {
+                                            win.close(this);
+                                        }
+                                    }]
+                            });
+                            win.show();
+                        }, this)}
+                ]
+            })
             var tableMenu = new Ext.menu.Menu({
                 items: [{
                     text: '新增',
@@ -294,15 +323,17 @@ Ext.define('Ext.tree.Tree', {
                     },this, [record])
                 }]
             });
-            if(record.data.parentId == "root") moduleMenu.showAt(e.getXY());
+
+            if(record.data.parentId == "root" && record.data.text != '标准类型')
+                moduleMenu.showAt(e.getXY());
             if(record.data.text == '序列') sequenceMenu.showAt(e.getXY());
             if(record.data.text == '触发器') triggerMenu.showAt(e.getXY());
             if(record.data.text == "表") tableMenu.showAt(e.getXY());
             if(record.data.text == '视图') viewMenu.showAt(e.getXY());
             if(record.data.text == "存储过程") procedureMenu.showAt(e.getXY());
             if(record.data.text == '函数') functionMenu.showAt(e.getXY())
-            if(record.get('leaf') == true) leafMenu.showAt(e.getXY());
-
+            if(record.parentNode.data.text == '标准类型') standardTypeMenu.showAt(e.getXY());
+            else if(record.get('leaf') == true) leafMenu.showAt(e.getXY());
         }
     },
     initComponent: function(){

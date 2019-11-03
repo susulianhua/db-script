@@ -86,6 +86,13 @@ public  class GetCorrespondFileUtils {
         return file;
     }
 
+    public static File getStandardTypeFile(String filePath){
+        filePath = filePath.substring(1,filePath.length() - 51);
+        filePath = filePath + "/db-script/script/src/main/resources/xml/Datatype.datatype.xml";
+        File file = new File(filePath);
+        return file;
+    }
+
     public static String transformMetadataToEnglish(String curText){
         if(curText.equals("表")) return "table";
         else if(curText.equals("视图")) return "view";

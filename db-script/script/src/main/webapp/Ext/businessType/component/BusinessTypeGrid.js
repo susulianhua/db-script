@@ -102,7 +102,9 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
                     columnWidth: 0.5,
                     frame: true,
                     items: [
-                        { fieldLabel: '标准类型Id', name: 'typeId', xtype: 'textfield'},
+                        { fieldLabel: '标准类型Id', name: 'typeId', xtype: 'combobox',
+                          store: me.standardTypeIdStore, displayField: 'name',
+                          fieldValue: 'standardTypeId'},
                         { fieldLabel: 'name', name: 'name', xtype: 'textfield'}
                     ]
                 },
@@ -147,6 +149,7 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
     },
 
     editBusinessType: function (businessTypeGrid, rowIndex) {
+        var me = this;
         var record = businessTypeGrid.getStore().getAt(rowIndex).data;
         var editBusinessTypeForm = new Ext.FormPanel({
             bodyStyle: 'padding:5px 5px 0',
@@ -158,8 +161,8 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
                     columnWidth: 0.5,
                     frame: true,
                     items: [
-                        { fieldLabel: '标准类型', name: 'typeId', xtype: 'textfield',
-                            regex: /^\w+$/, allowBlank: false},
+                        { fieldLabel: '标准类型', name: 'typeId', xtype: 'combobox', store: me.standardTypeIdStore,
+                            displayField: 'name', fieldValue: 'standardTypeId'},
                         { fieldLabel: 'name', name: 'name', xtype: 'textfield', allowBlank: false}
                     ]
                 },

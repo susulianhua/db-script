@@ -5,7 +5,10 @@ import com.thoughtworks.xstream.XStream;
 import com.xquant.metadata.config.PlaceholderValue;
 import com.xquant.metadata.config.bizdatatype.BusinessType;
 import com.xquant.metadata.config.bizdatatype.BusinessTypes;
+import com.xquant.metadata.config.stddatatype.StandardType;
+import com.xquant.metadata.config.stddatatype.StandardTypes;
 import com.xquant.script.pojo.ReturnClass.NormalResponse;
+import com.xquant.script.pojo.comboboxStoreRetrun.StandardTypeIdStore;
 import com.xquant.script.pojo.module.PlaceHolderValueReturn;
 import com.xquant.script.service.GetCorrespondFileUtils;
 import com.xquant.script.service.UpdateMetaDataUtils;
@@ -72,5 +75,24 @@ public class BusinessTypeController {
         String xml = xStream.toXML(businessTypes);
         UpdateMetaDataUtils.objectToFile(xml, file);
         return  new NormalResponse();
+    }
+
+    @RequestMapping("/getStandardTypeIdStore")
+    @ResponseBody
+    public NormalResponse getStandardTypeIdStore(){
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = GetCorrespondFileUtils.getStandardTypeFile(filePath);
+        XStream xStream = new XStream();
+        xStream.processAnnotations(StandardTypes.class);
+        StandardTypes standardTypes = (StandardTypes) xStream.fromXML(file);
+        List<StandardTypeIdStore> standardTypeIdStoreList = new ArrayList<StandardTypeIdStore>();
+        for(StandardType standardType: standardTypes.getStandardTypeList()){
+            StandardTypeIdStore standardTypeIdStore = new StandardTypeIdStore();
+            standardTypeIdStore.setName(standardType.getId());
+            standardTypeIdStore.setStandardTypeId(standardType.getId());
+            standardTypeIdStoreList.add(standardTypeIdStore);
+        }
+        return new NormalResponse(standardTypeIdStoreList, (long) standardTypeIdStoreList.size());
+
     }
 }
