@@ -1,5 +1,5 @@
 <sequences>
-  <sequence name="ddd" increment-by="0" start-with="0" cycle="false" order="false">
+  <sequence name="ddd" data-type="da" increment-by="1" start-with="0" cycle="false" order="false">
     <value-config min-value="10" max-value="20"/>
     <seq-cache-config cache="true" number="20"/>
   </sequence>

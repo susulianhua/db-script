@@ -15,10 +15,12 @@
  */
 package com.xquant.fileresolver.util;
 
+import com.xquant.configuration.util.ConfigurationUtil;
 import com.xquant.vfs.FileObject;
 import com.xquant.fileresolver.FileResolver;
 import com.xquant.vfs.VFS;
 import org.apache.commons.lang.StringUtils;
+import org.apache.derby.iapi.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -176,6 +178,67 @@ public class FileResolverUtil {
     private static void addJarFile(List<String> classPaths, String path) {
         LOGGER.info("扫描到jar文件<{}>。", path);
         classPaths.add(path);
+    }
+    public static List<String> getWebClasses() {
+        List<String> allScanningPath = new ArrayList<String>();
+        LOGGER.info( "查找WEB-INF/classes路径开始...");
+        URL url = getURL();
+        String path = url.toString();
+        LOGGER.info( "WEB-INF/classes路径是:" + path);
+        if (path.indexOf("!") < 0) {// 如果在目录中
+            FileObject fileObject = VFS.resolveFile(path);
+            allScanningPath.add(fileObject.getAbsolutePath());
+            String libPath = path.replaceAll("/classes", "/lib");
+            LOGGER.info("WEB-INF/lib路径是:{}" +  libPath);
+            FileObject libFileObject = VFS.resolveFile(libPath);
+
+            allScanningPath.add(libFileObject.getAbsolutePath());
+            int index = path.indexOf("/classes");
+            if (index > 0) {
+                String webInfPath = path.substring(0, index);
+                if (webInfPath.endsWith("WEB-INF")) {
+                    LOGGER.info("WEB-INF路径是:" + webInfPath);
+                    FileObject webInfoFileObject = VFS.resolveFile(webInfPath);
+                    allScanningPath.add(webInfoFileObject.getAbsolutePath());
+                }
+            }
+
+        } else {// 如果在jar包中
+            path = url.getFile().split("!")[0];
+            FileObject fileObject = VFS.resolveFile(path);
+            allScanningPath.add(fileObject.getAbsolutePath());
+            String libPath = path.substring(0, path.lastIndexOf('/'));
+            LOGGER.info( "WEB-INF/lib路径是:" + libPath);
+            FileObject libFileObject = VFS.resolveFile(libPath);
+            allScanningPath.add(libFileObject.getAbsolutePath());
+        }
+        LOGGER.info( "查找WEB-INF/classes路径完成。");
+
+        String webinfPath = ConfigurationUtil.getConfigurationManager().getConfiguration().get("TINY_WEBROOT");
+        if (StringUtils.isEmpty(webinfPath)) {
+            LOGGER.info( "WEBROOT变量找不到");
+            return allScanningPath;
+        }
+        FileObject fileObject = VFS.resolveFile(webinfPath);
+        allScanningPath.add(fileObject.getAbsolutePath());
+        return allScanningPath;
+    }
+
+    private static URL getURL() {
+        URL url = null;
+        String weblogicMode = ConfigurationUtil.getConfigurationManager().getConfiguration("WEBLOGIC_MODE");
+        if (weblogicMode != null && "true".equalsIgnoreCase(weblogicMode)) {
+            url = FileResolverUtil.class.getClassLoader().getResource("/");
+            if (url == null) {
+                url = FileResolverUtil.class.getClassLoader().getResource("");
+            }
+        } else {
+            url = FileResolverUtil.class.getResource("/");
+            if (url == null) {
+                url = FileResolverUtil.class.getResource("");
+            }
+        }
+        return url;
     }
 
 }

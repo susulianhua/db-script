@@ -1,8 +1,7 @@
 <triggers>
-  <trigger name="JJLJL"/>
   <trigger name="trigger1" title="tirg" description="hhh">
     <sqls>
-      <sql dialect-type-name="oracle" content="CREATE OR REPLACE VIEW user_view AS SELECT * FROM t_user"/>
+      <sql dialect-type-name="oracle" content="CREATE OR REPLACE trigger user_view AS SELECT * FROM t_user"/>
       <sql dialect-type-name="mysql" content="CREATE OR REPLACE VIEW user_view AS SELECT * FROM t_user"/>
       <sql dialect-type-name="h2" content="CREATE OR REPLACE VIEW user_view AS SELECT * FROM t_user"/>
     </sqls>

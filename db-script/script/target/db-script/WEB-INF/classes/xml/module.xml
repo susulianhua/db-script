@@ -5,7 +5,6 @@
       <table name="t_org"/>
       <table name="t_customer"/>
       <table name="t_increment"/>
-      <table name="ddd"/>
     </tables>
     <views>
       <view name="org_user_view_id"/>
@@ -14,7 +13,6 @@
     </views>
     <triggers>
       <trigger name="trigger1"/>
-      <trigger name="JJLJL"/>
     </triggers>
     <procedures>
       <procedure name="procedure1"/>
@@ -22,18 +20,11 @@
     <sequences>
       <sequence name="ddd"/>
     </sequences>
-    <functions/>
+    <functions>
+      <function name="fff"/>
+    </functions>
     <standardfield>crud</standardfield>
     <businessType>crud</businessType>
   </module>
-  <module id="hhh">
-    <tables>
-      <table name="ddd"/>
-    </tables>
-  </module>
-  <module id="ddd">
-    <views/>
-    <triggers/>
-    <sequences/>
-  </module>
+  <module id="dadaf"/>
 </modules>

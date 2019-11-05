@@ -1,0 +1,6 @@
+/*-------start-----*/
+DROP TABLE t_custom;
+DROP TABLE t_org;
+DROP TABLE t_user;
+DROP TABLE incrementer;
+/*-------end-----*/

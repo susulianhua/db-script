@@ -1,1 +1,7 @@
-<dialect-function-mappings/>
+<dialect-function-mappings>
+  <dialect-function format="dadad" desc="true" name="fff">
+    <dialects>
+      <dialect name="dada" function-name="dddddddaaaa"/>
+    </dialects>
+  </dialect-function>
+</dialect-function-mappings>

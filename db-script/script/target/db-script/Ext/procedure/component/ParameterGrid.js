@@ -81,7 +81,27 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
                     layout: 'form',
                     columnWidth: 0.5,
                     frame: true,
-                    items: { fieldLabel: 'standardFieldId', name: 'standardFieldId', xtype: 'textfield'}
+                    items: { fieldLabel: 'standardFieldId', name: 'standardFieldId', xtype: 'combobox',
+                            store: me.standardFieldIdStore, displayField: 'name',
+                        listeners : {
+                            'beforequery':function(e){
+
+                                var combo = e.combo;
+                                if(!e.forceAll){
+                                    var input = e.query;
+                                    // 检索的正则
+                                    var regExp = new RegExp(".*" + input + ".*");
+                                    // 执行检索
+                                    combo.store.filterBy(function(record,id){
+                                        // 得到每个record的项目名称值
+                                        var text = record.get(combo.displayField);
+                                        return regExp.test(text);
+                                    });
+                                    combo.expand();
+                                    return false;
+                                }
+                            }
+                        }}
                 },
                 {
                     layout: 'form',
@@ -147,7 +167,27 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
                     layout: 'form',
                     columnWidth: 0.5,
                     frame: true,
-                    items: { fieldLabel: 'standardFieldId', name: 'standardFieldId', xtype: 'textfield'},
+                    items: { fieldLabel: 'standardFieldId', name: 'standardFieldId', xtype: 'combobox',
+                             store: me.standardFieldIdStore, displayField: 'name',
+                             listeners : {
+                            'beforequery':function(e){
+
+                                var combo = e.combo;
+                                if(!e.forceAll){
+                                    var input = e.query;
+                                    // 检索的正则
+                                    var regExp = new RegExp(".*" + input + ".*");
+                                    // 执行检索
+                                    combo.store.filterBy(function(record,id){
+                                        // 得到每个record的项目名称值
+                                        var text = record.get(combo.displayField);
+                                        return regExp.test(text);
+                                    });
+                                    combo.expand();
+                                    return false;
+                                }
+                            }
+                        }},
                 },
                 {
                     layout: 'form',

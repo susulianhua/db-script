@@ -20,8 +20,10 @@ Ext.define('Ext.sequence.component.SeqCacheConfigForm', {
     },
 
     getItems: function () {
+        var booleanStore = Ext.create('Ext.table.store.BooleanStore');
         var items = [
-            { fieldLabel: 'cache', name: 'cache', xtype: 'textfield', columnWidth: 0.5 },
+            { fieldLabel: 'cache', name: 'cache', xtype: 'combobox', columnWidth: 0.5 ,
+              store: booleanStore, displayField: 'name', fieldValue: 'boolean'},
             { fieldLabel: 'number', name: 'number', xtype: 'textfield', columnWidth: 0.5}
         ];
 

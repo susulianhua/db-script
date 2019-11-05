@@ -34,6 +34,7 @@ public class UpdateMetaDataUtils {
         Tables tables = (Tables) xStream.fromXML(file);
         Table table = new Table();
         table.setId(tableName);
+        table.setName(tableName);
         tables.getTableList().add(table);
         String xml = xStream.toXML(tables);
         objectToFile(xml, file);
@@ -56,6 +57,7 @@ public class UpdateMetaDataUtils {
         Views views = (Views) xStream.fromXML(file);
         View view = new View();
         view.setId(viewName);
+        view.setName(viewName);
         views.getViewTableList().add(view);
         String xml = xStream.toXML(views);
         objectToFile(xml, file);
@@ -155,7 +157,6 @@ public class UpdateMetaDataUtils {
         XStream xStream = new XStream();
         xStream.processAnnotations(Procedures.class);
         Procedures procedures = (Procedures) xStream.fromXML(file);
-        System.out.println(procedures.getProcedureList().size());
         for(Procedure procedure: procedures.getProcedureList()){
             if(procedure.getName().equals(procedureName)){
                 procedures.getProcedureList().remove(procedure);
@@ -370,7 +371,6 @@ public class UpdateMetaDataUtils {
             writer.flush();
             writer.close();
         }catch (IOException e){
-            System.out.println("hhhhhh");
             e.printStackTrace();
         }
     }

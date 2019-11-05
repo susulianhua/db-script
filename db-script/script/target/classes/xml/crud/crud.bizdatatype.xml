@@ -1,4 +1,4 @@
-<business-types title="基准类型" package-name="org.tinygroup">
+<business-types title="基准类型" package-name="crud">
     <business-type id="TinyText" name="TinyText" title="短文本255长度"
                    standard-type-id="type_tiny_text">
     </business-type>

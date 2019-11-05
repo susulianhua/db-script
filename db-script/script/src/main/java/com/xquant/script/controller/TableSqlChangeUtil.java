@@ -42,7 +42,7 @@ public class TableSqlChangeUtil {
         long start = System.currentTimeMillis();
         try {
             DataBaseUtil.fromSourceLocal.set("tool");
-            String fileName = "TableSqlChange.xml";
+            String fileName = "TableSqlChange.txt";
             LOGGER.info( "开始生成数据库变更sql");
             try {
                 DatabaseInstallerStart installerStart = new DatabaseInstallerStart();
@@ -50,6 +50,7 @@ public class TableSqlChangeUtil {
                 StringBuilder builder = new StringBuilder();
                 List<String> processSqls = installerStart
                         .getChangeSqls();
+                System.out.println("processSqls.size:" + processSqls.size());
                 TableSqlUtil.appendSqlText(builder, processSqls);
                 StreamUtil.writeText(builder, new FileOutputStream(new File(
                         fileName)), "UTF-8", true);

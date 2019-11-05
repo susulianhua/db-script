@@ -189,17 +189,15 @@ public class FileResolverImpl implements FileResolver {
         List<FileObject> scanPathsList = new ArrayList<FileObject>();
         scanPathsList.addAll(classPaths);
         for(FileObject fileObject:classPaths)     {
-            LOGGER.info( "正在扫描路径[{0}]...",
+            LOGGER.info( "正在扫描路径" +
                     fileObject.getAbsolutePath());
             resolveFileObject(fileObject);
-            LOGGER.info( "路径[{0}]扫描完成。", fileObject.getAbsolutePath());
+            LOGGER.info( "路径" + fileObject.getAbsolutePath() +"扫描完成。");
         }
     }
 
     private void resolveFileObject(FileObject fileObject) {
 
-        LOGGER.debug( "找到文件：{}", fileObject
-                .getAbsolutePath().toString());
         processFile(fileObject);
         if (fileObject.isFolder() && fileObject.getChildren() != null) {
             for (FileObject f : fileObject.getChildren()) {

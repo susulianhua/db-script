@@ -83,7 +83,26 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
                     frame: true,
                     items: [
                         { fieldLabel: 'businessTypeId', name: 'typeId', xtype: 'combobox', mode: 'remote',
-                        store: me.businessTypeIdStore, displayField: 'name', valueFiled: 'typeId' },
+                        store: me.businessTypeIdStore, displayField: 'name', valueFiled: 'typeId' ,
+                            listeners : {
+                                'beforequery':function(e){
+
+                                    var combo = e.combo;
+                                    if(!e.forceAll){
+                                        var input = e.query;
+                                        // 检索的正则
+                                        var regExp = new RegExp(".*" + input + ".*");
+                                        // 执行检索
+                                        combo.store.filterBy(function(record,id){
+                                            // 得到每个record的项目名称值
+                                            var text = record.get(combo.displayField);
+                                            return regExp.test(text);
+                                        });
+                                        combo.expand();
+                                        return false;
+                                    }
+                                }
+                            }},
                         { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
                         { fieldLabel: 'description', name: 'description', xtype: 'textfield'}
                     ]
@@ -140,6 +159,7 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
     },
 
     editStandardField: function (standardFieldGrid, rowIndex) {
+        var me = this;
         var record = standardFieldGrid.getStore().getAt(rowIndex).data;
         var standardFieldForm = new Ext.FormPanel({
             bodyStyle: 'padding:5px 5px 0',
@@ -152,7 +172,26 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
                     frame: true,
                     items: [
                         { fieldLabel: 'businessTypeId', name: 'typeId', xtype: 'combobox', store: me.businessTypeIdStore,
-                          displayField: 'name', fieldValue: 'typeId', mode: 'remote',},
+                          displayField: 'name', fieldValue: 'typeId', mode: 'remote',
+                            listeners : {
+                                'beforequery':function(e){
+
+                                    var combo = e.combo;
+                                    if(!e.forceAll){
+                                        var input = e.query;
+                                        // 检索的正则
+                                        var regExp = new RegExp(".*" + input + ".*");
+                                        // 执行检索
+                                        combo.store.filterBy(function(record,id){
+                                            // 得到每个record的项目名称值
+                                            var text = record.get(combo.displayField);
+                                            return regExp.test(text);
+                                        });
+                                        combo.expand();
+                                        return false;
+                                    }
+                                }
+                            }},
                         { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
                         { fieldLabel: 'description', name: 'description', xtype: 'textfield'}
                     ]

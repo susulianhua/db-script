@@ -11,8 +11,6 @@
         <xstream-annotation-class
                 class-name="com.xquant.metadata.config.stdfield.StandardFields"/>
         <xstream-annotation-class
-                class-name="com.xquant.metadata.config.defaultvalue.DefaultValues"/>
-        <xstream-annotation-class
                 class-name="com.xquant.metadata.config.stdfield.ComplexStandardFields"/>
         <xstream-annotation-class
                 class-name="com.xquant.metadata.config.stddatatype.LanguageTypes"/>

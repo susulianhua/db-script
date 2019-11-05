@@ -10,19 +10,24 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
     initComponent: function(){
         this.sqlStore = Ext.create('Ext.procedure.store.SqlStore');
         this.parameterStore = Ext.create('Ext.procedure.store.ParameterStore');
+        this.standardFieldIdStore = Ext.create('Ext.table.store.StandardFieldIdStore')
         this.items = this.getItems();
         this.callParent(arguments);
     },
 
     getItems: function () {
         var me = this;
+        this.standardFieldIdStore.load({params:{FileName: me.moduleName + 'xxxxxxxxxx'}});
         var sqlGrid = Ext.create('Ext.procedure.component.SqlGrid',{
             store: this.sqlStore,
             width: 298,
+            title: 'SqlBody',
             contentLength:120
         });
         var parameterGrid = Ext.create('Ext.procedure.component.ParameterGrid', {
-            store: this.parameterStore
+            store: this.parameterStore,
+            title: 'ProcedureParameter',
+            standardFieldIdStore: this.standardFieldIdStore
         });
         items = [
             {

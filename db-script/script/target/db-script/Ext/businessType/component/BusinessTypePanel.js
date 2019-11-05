@@ -47,7 +47,6 @@ Ext.define('Ext.businessType.component.BusinessTypePanel', {
         var businessTypeRecords = me.businessTypeStore.getRange();
         var placeHolderValueRecords = me.placeHolderStore.getRange();
         var businessTypeList = [];
-        console.log('placeHolderRecords:', placeHolderValueRecords);
         for(var i in businessTypeRecords){
             var businessType = {};
             businessType.typeId = businessTypeRecords[i].get('typeId');
@@ -84,6 +83,4 @@ Ext.define('Ext.businessType.component.BusinessTypePanel', {
         }
     })
     }
-
-
 })

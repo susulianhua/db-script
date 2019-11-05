@@ -15,10 +15,10 @@
  */
 package com.xquant.databasebuilstaller;
 
+import com.xquant.common.BeanContainerFactory;
 import com.xquant.common.BeanWrapperHolder;
 import com.xquant.common.StreamUtil;
 import com.xquant.database.ProcessorManager;
-import com.xquant.dialectfunction.impl.DialectFunctionProcessorImpl;
 import com.xquant.database.customesql.CustomSqlProcessor;
 import com.xquant.database.customesql.impl.CustomSqlProcessorImpl;
 import com.xquant.database.fileresolver.*;
@@ -37,12 +37,16 @@ import com.xquant.database.trigger.impl.TriggerProcessorImpl;
 import com.xquant.database.view.ViewProcessor;
 import com.xquant.database.view.impl.ViewProcessorImpl;
 import com.xquant.databasebuilstaller.impl.*;
+import com.xquant.dialectfunction.impl.DialectFunctionProcessorImpl;
 import com.xquant.fileresolver.FileResolver;
 import com.xquant.fileresolver.FileResolverFactory;
 import com.xquant.fileresolver.util.FileResolverUtil;
 import com.xquant.metadata.bizdatatype.impl.BusinessTypeProcessorImpl;
 import com.xquant.metadata.constants.impl.ConstantsProcessorImpl;
-import com.xquant.metadata.fileresolver.*;
+import com.xquant.metadata.fileresolver.BusinessTypeFileResolver;
+import com.xquant.metadata.fileresolver.ConstantFileResolver;
+import com.xquant.metadata.fileresolver.StandardFieldFileResolver;
+import com.xquant.metadata.fileresolver.StandardTypeFileResolver;
 import com.xquant.metadata.stddatatype.impl.StandardTypeProcessorImpl;
 import com.xquant.metadata.stdfield.impl.StandardFieldProcessorImpl;
 import com.xquant.metadata.util.ConfigUtil;
@@ -60,7 +64,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * 数据库安装启动类
+ * 数据库按照启动类
  *
  * @author renhui
  */
@@ -128,16 +132,27 @@ public class DatabaseInstallerStart {
         initFileResolver();
     }
 
+    public static void setProperties(Object object,
+                                     Map<String, String> properties) {
+        BeanWrapper wrapperImpl = BeanWrapperHolder.getInstance()
+                .getBeanWrapper(object);
+        for (String attribute : properties.keySet()) {
+            try {
+                String value = properties.get(attribute);
+                wrapperImpl.setPropertyValue(attribute, value);
+            } catch (Exception e) {
+                throw new RuntimeException("设置对象属性出现异常", e);
+            }
+        }
+    }
+
     /**
      * 从application.xml配置获取数据源并创建dataSource
      */
     public void bundlingDataSourceFromConfig() {
         DataSourceHolder.setDataSource(createDataSource());// 绑定数据源
     }
-    /**
-     * 将各类处理器加载到集合中，如view，table，trigger共7种安装处理器
-     * 集合放置到DatabaseInstallerProcess中的installProcess集合并返回
-     */
+
     private DatabaseInstallerProcessor initInstaller() {
         DatabaseInstallerProcessor installer = new DatabaseInstallerProcessor();
         List<InstallProcessor> installProcessors = new ArrayList<InstallProcessor>();
@@ -197,7 +212,6 @@ public class DatabaseInstallerStart {
         return language;
     }
 
-
     private Map<String, String> resolverDatabaseNode() {
         Map<String, String> configMap = new HashMap<String, String>();
         PathFilter<XmlNode> filter = new PathFilter<XmlNode>(applicationNode);
@@ -249,7 +263,7 @@ public class DatabaseInstallerStart {
     }
 
     private void putConfig(XmlNode xmlNode, String propertyName,
-                             Map<String,String> configMap,String configKey){
+                           Map<String,String> configMap,String configKey){
         String value = ConfigUtil
                 .getPropertyValue(xmlNode, propertyName, "value");
         if (!StringUtils.isEmpty(value)) {
@@ -278,28 +292,28 @@ public class DatabaseInstallerStart {
     public void installer() {
         LOGGER.info( "开始启动数据库安装操作");
         databaseInstaller();
-        LOGGER.info("数据库安装操作过程结束");
+        LOGGER.info( "数据库安装操作过程结束");
 
     }
 
     public List<String> getChangeSqls() {
         LOGGER.info( "开始检测数据库变化");
         List<String> sqls = installer.getChangeSqls();
-        LOGGER.info( "检测数据库变化过程结束");
+        LOGGER.info("检测数据库变化过程结束");
         return sqls;
     }
 
     public List<String> getFullSqls() {
-        LOGGER.info("开始生成全量sql");
+        LOGGER.info( "开始生成全量sql");
         List<String> sqls = installer.getFullSqls();
         LOGGER.info( "生成全量sql结束");
         return sqls;
     }
 
     public List<String> getDropSqls() {
-        LOGGER.info("开始生成全量删表sql");
+        LOGGER.info( "开始生成全量删表sql");
         List<String> dropTableSqls = installer.getDropSqls();
-        LOGGER.info("生成全量删表sql结束");
+        LOGGER.info( "生成全量删表sql结束");
         return dropTableSqls;
     }
 
@@ -307,16 +321,18 @@ public class DatabaseInstallerStart {
         FileResolver fileResolver = createFileResolver();
         addXstreamFileProcessor(fileResolver);
         addConstantFileProcessor(fileResolver);
-        addStandardTypeFileProcessor(fileResolver);//标准数据类型
+        addStandardTypeFileProcessor(fileResolver);
         addDialectFunctionFileProcessor(fileResolver);
-        addBusinessTypeFileResolver(fileResolver);  //业务数据类型
-        addStandardFieldFileResolver(fileResolver);  //业务字段
+        addBusinessTypeFileResolver(fileResolver);
+        addStandardFieldFileResolver(fileResolver);
         addTableSpaceFileResolver(fileResolver);
         addTableFileResolver(fileResolver);
         addInitDataFileResolver(fileResolver);
         addCustomSqlFileResolver(fileResolver);
         addViewFileResolver(fileResolver);
         addProcedureFileResolver(fileResolver);
+        addSequenceFileResolver(fileResolver);
+        addTriggerFileResolver(fileResolver);
         startFileResolver(fileResolver);
     }
 
@@ -341,6 +357,17 @@ public class DatabaseInstallerStart {
         fileResolver.addFileProcessor(procedureFileResolver);
     }
 
+    private void addSequenceFileResolver(FileResolver fileResolver){
+        SequenceFileProcessor sequenceFileProcessor = new SequenceFileProcessor();
+        sequenceFileProcessor.setProcessor(SequenceProcessorImpl.getSequenceProcessor());
+        fileResolver.addFileProcessor(sequenceFileProcessor);
+    }
+
+    public void addTriggerFileResolver(FileResolver fileResolver){
+        TriggerFileProcessor triggerFileProcessor = new TriggerFileProcessor();
+        triggerFileProcessor.setProcessor(TriggerProcessorImpl.getTriggerProcessor());
+        fileResolver.addFileProcessor(triggerFileProcessor);
+    }
     private void addViewFileResolver(FileResolver fileResolver) {
         ViewFileResolver viewFileResolver = new ViewFileResolver();
         viewFileResolver.setViewProcessor(ViewProcessorImpl.getViewProcessor());
@@ -409,18 +436,13 @@ public class DatabaseInstallerStart {
         fileResolver.addFileProcessor(new XStreamFileProcessor());
     }
 
+
     private FileResolver createFileResolver() {
         FileResolver fileResolver = FileResolverFactory.getFileResolver();
         FileResolverUtil.addClassPathPattern(fileResolver);
         fileResolver
                 .addResolvePath(FileResolverUtil.getClassPath(fileResolver));
-        try {
-            fileResolver.addResolvePath(FileResolverUtil
-                    .getWebLibJars(fileResolver));
-        } catch (Exception e) {
-            LOGGER.error("为文件扫描器添加webLibJars时出现异常", e);
-        }
-        fileResolver.addIncludePathPattern(TINY_JAR_PATTERN);
+        fileResolver.addResolvePath(FileResolverUtil.getWebClasses());
         loadFileResolverConfig(fileResolver);
         return fileResolver;
     }
@@ -443,9 +465,7 @@ public class DatabaseInstallerStart {
         XmlStringParser parser = new XmlStringParser();
         return parser.parse(applicationConfig).getRoot();
     }
-    /**
-     * 读取解析配置文件
-     */
+
     private Properties parsePropertiesFile() {
         InputStream is = DatabaseInstallerStart.class.getClassLoader()
                 .getResourceAsStream(PROPERTIES_CONFIG);
@@ -503,7 +523,6 @@ public class DatabaseInstallerStart {
         DataSource dataSource = (DataSource) dataSourceType.newInstance();
         return dataSource;
     }
-
 
     private void loadFileResolverConfig(FileResolver fileResolver) {
         if (applicationNode == null) {

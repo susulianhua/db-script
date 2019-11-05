@@ -183,7 +183,26 @@ Ext.define('Ext.table.component.FieldGrid',{
                 frame: true,
                 items: [
                     { fieldLabel: 'standard-field-id', name: 'standardFieldId', xtype: 'combobox',
-                        allowBlank: false, store: me.standardFieldIdStore, displayField:'name'},
+                        allowBlank: false, store: me.standardFieldIdStore, displayField:'name',
+                        listeners : {
+                            'beforequery':function(e){
+
+                                var combo = e.combo;
+                                if(!e.forceAll){
+                                    var input = e.query;
+                                    // 检索的正则
+                                    var regExp = new RegExp(".*" + input + ".*");
+                                    // 执行检索
+                                    combo.store.filterBy(function(record,id){
+                                        // 得到每个record的项目名称值
+                                        var text = record.get(combo.displayField);
+                                        return regExp.test(text);
+                                    });
+                                    combo.expand();
+                                    return false;
+                                }
+                            }
+                        }},
                     { fieldLabel: 'unique', name: 'unique', xtype: 'combobox', store: booleanStore,
                         displayField: 'name', editable: false},
                     { fieldLabel: 'primary', name: 'primary', xtype: 'combobox', store: booleanStore,
