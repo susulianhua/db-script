@@ -49,7 +49,7 @@
             </dialect-type>
         </dialect-type-list>
     </standard-type>
-    <standard-type id="type_tiny_int">
+    <standard-type id="type_int">
         <dialect-type-list>
             <dialect-type language="java" base-type="Integer"/>
             <dialect-type language="derby" base-type="INT" ext-type=""/>

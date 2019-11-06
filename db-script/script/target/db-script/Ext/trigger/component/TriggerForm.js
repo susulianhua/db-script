@@ -9,7 +9,7 @@ Ext.define('Ext.trigger.component.TriggerForm', {
         root: 'data',
     }, [
         { name: 'moduleName', mapping: 'moduleName'},
-        { name: 'name', mapping: 'name'},
+        { name: 'name', mapping: 'name', allowBlank: false},
         { name: 'title', mapping: 'title'},
         { name: 'description', mapping: 'description'},
 

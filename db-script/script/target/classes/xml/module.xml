@@ -3,8 +3,9 @@
     <tables>
       <table name="t_user"/>
       <table name="t_org"/>
-      <table name="t_customer"/>
-      <table name="t_increment"/>
+      <table name="t_custom"/>
+      <table name="incrementer"/>
+      <table name="gggg"/>
     </tables>
     <views>
       <view name="org_user_view_id"/>
@@ -26,5 +27,7 @@
     <standardfield>crud</standardfield>
     <businessType>crud</businessType>
   </module>
-  <module id="dadaf"/>
+  <module id="dafafa">
+    <tables/>
+  </module>
 </modules>

@@ -43,7 +43,7 @@ Ext.define('Ext.function.component.FunctionPanel',{
             failure:function () {
             }
         });
-        me.dialectStore.load({params:{moduleName: me.moduleName, functionName: me.funcitonName}});
+        me.dialectStore.load({params:{moduleName: me.moduleName, functionName: me.functionName}});
         return items;
     },
     

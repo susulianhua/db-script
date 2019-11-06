@@ -69,6 +69,8 @@ Ext.define('Ext.trigger.component.TriggerPanel', {
         trigger.name = formValues.name;
 
         var sqlGridRecords = me.sqlBodyStore.getRange();
+        var flag = true;
+        if(sqlGridRecords.length == 0) flag = false;
         var triggerSqls = [];
         for( var i in sqlGridRecords){
             triggerSqls.push({
@@ -79,21 +81,24 @@ Ext.define('Ext.trigger.component.TriggerPanel', {
         trigger.triggerSqls = triggerSqls;
         triggerWithModuleName.trigger = trigger;
 
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/dbscript//trigger/saveTrigger',
-            headers: {'ContentType': 'application/json;charset=UTF-8',
-                'Content-Type': 'application/json'
-            },
-            ContentType : 'application/json;charset=UTF-8',
-            dataType: 'json',
-            params: JSON.stringify(triggerWithModuleName),
-            method: 'Post',
-            success: function () {
-                Ext.Msg.alert('成功', '保存成功');
-            },
-            failure: function () {
-                Ext.Msg.alert('失败', '添加失败，请重试');
-            }
-        });
+        if(flag){
+            Ext.Ajax.request({
+                url: 'http://localhost:8080/dbscript//trigger/saveTrigger',
+                headers: {'ContentType': 'application/json;charset=UTF-8',
+                    'Content-Type': 'application/json'
+                },
+                ContentType : 'application/json;charset=UTF-8',
+                dataType: 'json',
+                params: JSON.stringify(triggerWithModuleName),
+                method: 'Post',
+                success: function () {
+                    Ext.Msg.alert('成功', '保存成功');
+                },
+                failure: function () {
+                    Ext.Msg.alert('失败', '添加失败，请重试');
+                }
+            });
+        }
+        else Ext.Msg.alert('提示', '请填写完整')
     }
 })

@@ -107,13 +107,16 @@ public class ViewController {
         XStream xStream = new XStream();
         xStream.processAnnotations(Views.class);
         Views views = (Views) xStream.fromXML(file);
+        int flag = 0;
         for(View view1: views.getViewTableList()){
             if(view1.getId().equals(viewName)){
                 views.getViewTableList().remove(view1);
                 views.getViewTableList().add(view);
+                flag = 1;
                 break;
             }
         }
+        if(flag == 0) views.getViewTableList().add(view);
         String xml = xStream.toXML(views);
         UpdateMetaDataUtils.objectToFile(xml, file);
         return new NormalResponse();

@@ -105,14 +105,17 @@ public class SequenceController {
         File file = GetCorrespondFileUtils.getSequenceFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Sequences.class);
+        int flag = 0;
         Sequences sequences = (Sequences) xStream.fromXML(file);
         for(Sequence sequence1: sequences.getSequences()){
             if(sequence1.getName().equals(sequence.getName())){
                 sequences.getSequences().remove(sequence1);
                 sequences.getSequences().add(sequence);
+                flag = 1;
                 break;
             }
         }
+        if(flag == 0) sequences.getSequences().add(sequence);
         String xml = xStream.toXML(sequences);
         UpdateMetaDataUtils.objectToFile(xml, file);
         return new NormalResponse();

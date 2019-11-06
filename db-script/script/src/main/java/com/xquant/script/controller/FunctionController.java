@@ -57,7 +57,6 @@ public class FunctionController {
         XStream xStream = new XStream();
         xStream.processAnnotations(DialectFunctions.class);
         DialectFunctions dialectFunctions = (DialectFunctions) xStream.fromXML(file);
-        FunctionFormReturn functionFormReturn = new FunctionFormReturn();
         for(DialectFunction dialectFunction: dialectFunctions.getFunctions()){
             if(dialectFunction.getName().equals(functionName)){
                 return new NormalResponse(dialectFunction.getDialects(),
@@ -76,13 +75,18 @@ public class FunctionController {
         File file = GetCorrespondFileUtils.getFunctionFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(DialectFunctions.class);
+        int flag = 0;
         DialectFunctions dialectFunctions = (DialectFunctions) xStream.fromXML(file);
         for(DialectFunction dialectFunction1: dialectFunctions.getFunctions()){
             if(dialectFunction1.getName().equals(dialectFunction.getName())){
                 dialectFunctions.getFunctions().remove(dialectFunction1);
                 dialectFunctions.getFunctions().add(dialectFunction);
+                flag = 1;
                 break;
             }
+        }
+        if(flag == 0){
+            dialectFunctions.getFunctions().add(dialectFunction);
         }
         String xml = xStream.toXML(dialectFunctions);
         UpdateMetaDataUtils.objectToFile(xml, file);

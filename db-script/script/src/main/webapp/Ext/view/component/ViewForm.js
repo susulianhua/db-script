@@ -29,7 +29,7 @@ Ext.define('Ext.view.component.ViewForm', {
                 frame: true,
                 items: [
                     { fieldLabel: '模块名', name: 'moduleName', xtype: 'textfield', readOnly: true},
-                    { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
+                    { fieldLabel: 'name', name: 'name', xtype: 'textfield', allowBlank: false},
                     { fieldLabel: 'schema', name: 'schema', xtype: 'textfield'}
                 ]
             },
@@ -38,7 +38,7 @@ Ext.define('Ext.view.component.ViewForm', {
                 columnWidth: 0.5,
                 frame: true,
                 items: [
-                    { fieldLabel: 'id', name: 'id', xtype: 'textfield'},
+                    { fieldLabel: 'id', name: 'id', xtype: 'textfield', allowBlank: false, readyOnly: true},
                     { fieldLabel: 'title', name: 'title', xtype: 'textfield'},
                     { fieldLabel: 'description', name: 'description', xtype: 'textfield'}
                 ]

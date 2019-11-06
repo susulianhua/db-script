@@ -137,7 +137,7 @@ public class UpdateModuleUtils {
         UpdateMetaDataUtils.objectToFile(xml, moduleFile);
     }
 
-    public static void deleteTableInModule(File file,String tableName, String moduleName) throws Exception{
+    public static void deleteTableInModule(File file,String tableName, String moduleName){
         XStream xStream = new XStream();
         xStream.processAnnotations(Modules.class);
         Modules modules = (Modules) xStream.fromXML(file);

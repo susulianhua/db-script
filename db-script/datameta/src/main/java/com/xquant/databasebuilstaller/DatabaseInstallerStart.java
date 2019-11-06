@@ -156,8 +156,8 @@ public class DatabaseInstallerStart {
     private DatabaseInstallerProcessor initInstaller() {
         DatabaseInstallerProcessor installer = new DatabaseInstallerProcessor();
         List<InstallProcessor> installProcessors = new ArrayList<InstallProcessor>();
-        ProcessorManager processorManager = ProcessorManagerImpl
-                .getProcessorManager();
+        ProcessorManager processorManager = new ProcessorManagerImpl();
+        ((ProcessorManagerImpl) processorManager).getProcessorManager();
 
         TableInstallProcessor tableInstallProcessor = new TableInstallProcessor();
         TableProcessor tableProcessor = createTableProcessor(processorManager);
@@ -442,7 +442,14 @@ public class DatabaseInstallerStart {
         FileResolverUtil.addClassPathPattern(fileResolver);
         fileResolver
                 .addResolvePath(FileResolverUtil.getClassPath(fileResolver));
-        fileResolver.addResolvePath(FileResolverUtil.getWebClasses());
+        System.out.println("filePath:" + this.getClass().getClassLoader().getResource("/").getPath());
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        filePath = filePath.substring(1,filePath.length() - 51);
+        filePath= filePath + "/db-script/script/src/main/resources";
+        List<String> scaner = new ArrayList<String>();
+        scaner.add(filePath);
+        System.out.println("filePath: " + filePath);
+        fileResolver.addResolvePath(scaner);
         loadFileResolverConfig(fileResolver);
         return fileResolver;
     }

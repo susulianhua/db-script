@@ -53,6 +53,7 @@ public class MetadataCompareController {
             sqlResultList = SqlResultResolveService.getFullSql(processSqls);
             sqlResultList = SqlResultResolveService.sortSql(sqlResultList);
         }
+        System.out.println("sqlResultList:" + sqlResultList.size());
         return new NormalResponse(sqlResultList, (long) sqlResultList.size());
     }
 

@@ -1,4 +1,4 @@
-Ext.define('Ext.sequence.component.SequenceForm',{
+    Ext.define('Ext.sequence.component.SequenceForm',{
     extend: 'Ext.form.Panel',
     frame: true,
     labelWidth: 30,

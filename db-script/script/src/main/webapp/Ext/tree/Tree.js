@@ -282,6 +282,8 @@ Ext.define('Ext.tree.Tree', {
     addMetaData: function(record, upperCase){
         var pNode = record;
         var chinese = record.data.text;
+        var fileName = record.parentNode.data.text;
+        var moduleName = fileName.substring(3, fileName.length - 1 )
         Ext.MessageBox.prompt("请输入" + chinese + "名称","",function (e,text) {
             var array = pNode.childNodes;
             var flag = 1;
@@ -295,7 +297,7 @@ Ext.define('Ext.tree.Tree', {
                     url: "http://localhost:8080/dbscript/addInTree/add" + upperCase,
                     params: {
                         metadataName: text,
-                        moduleName: record.parentNode.data.text,
+                        moduleName: moduleName,
                     },
                     success: function () {
                         var newNode = [{text: text,leaf: true}];
@@ -332,10 +334,10 @@ Ext.define('Ext.tree.Tree', {
         }
         else if(record.parentNode.data.text == '表') {
             fileName = record.parentNode.parentNode.data.text;
-            fileName = fileName.substring(3, fileName.length - 1) + '.table.xml';
+            var moduleName = fileName.substring(3, fileName.length - 1);
             var panel = Ext.create('Ext.table.component.TablePanel', {
-                FileName: fileName,
-                tableName: record.data.text
+                moduleName: moduleName,
+                metadataName: record.data.text
             });
         }
         else if(record.parentNode.data.text == '存储过程'){

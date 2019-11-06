@@ -20,7 +20,7 @@ Ext.define('Ext.tree.window.WindowWithSave', {
             {
                 text: '保存',
                 handler: function () {
-                    me.panel.savePanel()
+                    me.panel.savePanel();
                 }
             },
             {

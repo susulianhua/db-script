@@ -17,7 +17,7 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
 
     getItems: function () {
         var me = this;
-        this.standardFieldIdStore.load({params:{FileName: me.moduleName + 'xxxxxxxxxx'}});
+        this.standardFieldIdStore.load({params:{moduleName: me.moduleName}});
         var sqlGrid = Ext.create('Ext.procedure.component.SqlGrid',{
             store: this.sqlStore,
             width: 298,
@@ -79,8 +79,10 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
             });
         };
         var procedure = {};
+        var flag = true;
         procedure.procedureBodyList = sqlBodyList;
         var parameterGridRecords = me.parameterStore.getRange();
+        if(parameterGridRecords.length == 0) flag = false;
         var parameterList = [];
         for( var i in parameterGridRecords){
             parameterList.push({
@@ -92,21 +94,24 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
         procedure.parameterList = parameterList;
         procedureWidthModuleName.procedure = procedure;
 
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/dbscript//procedure/saveProcedure',
-            headers: {'ContentType': 'application/json;charset=UTF-8',
-                'Content-Type': 'application/json'
-            },
-            ContentType : 'application/json;charset=UTF-8',
-            dataType: 'json',
-            params: JSON.stringify(procedureWidthModuleName),
-            method: 'Post',
-            success: function () {
-                Ext.Msg.alert('成功', '保存成功');
-            },
-            failure: function () {
-                Ext.Msg.alert('失败', '添加失败，请重试');
-            }
-        });
+        if(flag){
+            Ext.Ajax.request({
+                url: 'http://localhost:8080/dbscript//procedure/saveProcedure',
+                headers: {'ContentType': 'application/json;charset=UTF-8',
+                    'Content-Type': 'application/json'
+                },
+                ContentType : 'application/json;charset=UTF-8',
+                dataType: 'json',
+                params: JSON.stringify(procedureWidthModuleName),
+                method: 'Post',
+                success: function () {
+                    Ext.Msg.alert('成功', '保存成功');
+                },
+                failure: function () {
+                    Ext.Msg.alert('失败', '添加失败，请重试');
+                }
+            });
+        }
+        else Ext.Msg.alert('提示', '请填写完整')
     }
 })

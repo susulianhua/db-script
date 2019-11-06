@@ -20,13 +20,10 @@ public class AddInTreeController {
     @ResponseBody
     public NormalResponse addTable(HttpServletRequest request) throws Exception{
         String tableName = request.getParameter("metadataName");
-        String module = request.getParameter("moduleName");
-        String moduleName = module.substring(3,module.length()- 1);
+        String moduleName = request.getParameter("moduleName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File moduleFile = GetCorrespondFileUtils.getModuleFile(filePath);
-        File file = GetCorrespondFileUtils.getTableFile(moduleName, filePath);
         UpdateModuleUtils.addTableInModule(moduleFile, tableName, moduleName);
-        UpdateMetaDataUtils.addTableInTable(file, tableName);
         return new NormalResponse();
     }
 
@@ -34,13 +31,10 @@ public class AddInTreeController {
     @ResponseBody
     public NormalResponse addProcedure(HttpServletRequest request){
         String procedureName = request.getParameter("metadataName");
-        String module = request.getParameter("moduleName");
-        String moduleName = module.substring(3,module.length()- 1);
+        String moduleName = request.getParameter("moduleName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File moduleFile = GetCorrespondFileUtils.getModuleFile(filePath);
-        File file = GetCorrespondFileUtils.getProcedureFile(moduleName, filePath);
         UpdateModuleUtils.addProcedureInModule(moduleFile, procedureName, moduleName);
-        UpdateMetaDataUtils.addProcedureInProcedure(file, procedureName);
         return new NormalResponse();
     }
 
@@ -48,13 +42,10 @@ public class AddInTreeController {
     @ResponseBody
     public NormalResponse addView(HttpServletRequest request){
         String viewName = request.getParameter("metadataName");
-        String module = request.getParameter("moduleName");
-        String moduleName = module.substring(3,module.length()- 1);
+        String moduleName = request.getParameter("moduleName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File moduleFile = GetCorrespondFileUtils.getModuleFile(filePath);
-        File file = GetCorrespondFileUtils.getViewFile(moduleName, filePath);
         UpdateModuleUtils.addViewInModule(moduleFile, viewName, moduleName);
-        UpdateMetaDataUtils.addViewInView(file, viewName);
         return  new NormalResponse();
     }
 
@@ -62,13 +53,10 @@ public class AddInTreeController {
     @ResponseBody
     public NormalResponse addTrigger(HttpServletRequest request){
         String triggerName = request.getParameter("metadataName");
-        String module = request.getParameter("moduleName");
-        String moduleName = module.substring(3,module.length()- 1);
+        String moduleName = request.getParameter("moduleName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File moduleFile = GetCorrespondFileUtils.getModuleFile(filePath);
-        File file = GetCorrespondFileUtils.getTriggerFile(moduleName, filePath);
         UpdateModuleUtils.addTriggerInModule(moduleFile, triggerName, moduleName);
-        UpdateMetaDataUtils.addTriggerInTrigger(file, triggerName);
         return  new NormalResponse();
     }
 
@@ -76,13 +64,10 @@ public class AddInTreeController {
     @ResponseBody
     public NormalResponse addSequence(HttpServletRequest request){
         String sequenceName = request.getParameter("metadataName");
-        String module = request.getParameter("moduleName");
-        String moduleName = module.substring(3,module.length()- 1);
+        String moduleName = request.getParameter("moduleName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File moduleFile = GetCorrespondFileUtils.getModuleFile(filePath);
-        File file = GetCorrespondFileUtils.getSequenceFile(moduleName,filePath);
         UpdateModuleUtils.addSequenceInModule(moduleFile, sequenceName, moduleName);
-        UpdateMetaDataUtils.addSequenceInSequence(file, sequenceName);
         return new NormalResponse();
 
     }
@@ -91,13 +76,10 @@ public class AddInTreeController {
     @ResponseBody
     public NormalResponse addFunction(HttpServletRequest request){
         String functionName = request.getParameter("metadataName");
-        String module = request.getParameter("moduleName");
-        String moduleName = module.substring(3,module.length()- 1);
+        String moduleName = request.getParameter("moduleName");
         String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         File moduleFile = GetCorrespondFileUtils.getModuleFile(filePath);
-        File file = GetCorrespondFileUtils.getFunctionFile(moduleName,filePath);
         UpdateModuleUtils.addFunctionInModule(moduleFile, functionName, moduleName);
-        UpdateMetaDataUtils.addFunctionInFunction(file, functionName);
         return new NormalResponse();
 
     }

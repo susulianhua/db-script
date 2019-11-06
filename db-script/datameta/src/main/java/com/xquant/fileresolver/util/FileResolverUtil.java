@@ -200,6 +200,7 @@ public class FileResolverUtil {
                     LOGGER.info("WEB-INF路径是:" + webInfPath);
                     FileObject webInfoFileObject = VFS.resolveFile(webInfPath);
                     allScanningPath.add(webInfoFileObject.getAbsolutePath());
+                    System.out.println("webInfoFileObject.getAbsolutePath:" + webInfoFileObject.getAbsolutePath());
                 }
             }
 

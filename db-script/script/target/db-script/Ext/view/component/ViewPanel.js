@@ -79,9 +79,11 @@ Ext.define('Ext.view.component.ViewPanel', {
         view.description = formValues.description;
         view.name = formValues.name;
         view.schema = formValues.schema;
+        var flag = true;
 
         var sqlGridRecords = me.sqlBodyStore.getRange();
         var sqlBodyList = [];
+        if(sqlGridRecords.length == 0 || view.name == '') flag = false;
         for( var i in sqlGridRecords){
             sqlBodyList.push({
                 'dialectTypeName': sqlGridRecords[i].get('dialectTypeName'),
@@ -100,21 +102,24 @@ Ext.define('Ext.view.component.ViewPanel', {
         view.refViewIds = refViewIds
         viewWidthModuleName.view = view;
 
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/dbscript//view/saveView',
-            headers: {'ContentType': 'application/json;charset=UTF-8',
-                'Content-Type': 'application/json'
-            },
-            ContentType : 'application/json;charset=UTF-8',
-            dataType: 'json',
-            params: JSON.stringify(viewWidthModuleName),
-            method: 'Post',
-            success: function () {
-                Ext.Msg.alert('成功', '保存成功');
-            },
-            failure: function () {
-                Ext.Msg.alert('失败', '添加失败，请重试');
-            }
-        });
+        if(flag){
+            Ext.Ajax.request({
+                url: 'http://localhost:8080/dbscript//view/saveView',
+                headers: {'ContentType': 'application/json;charset=UTF-8',
+                    'Content-Type': 'application/json'
+                },
+                ContentType : 'application/json;charset=UTF-8',
+                dataType: 'json',
+                params: JSON.stringify(viewWidthModuleName),
+                method: 'Post',
+                success: function () {
+                    Ext.Msg.alert('成功', '保存成功');
+                },
+                failure: function () {
+                    Ext.Msg.alert('失败', '添加失败，请重试');
+                }
+            });
+        }
+        else Ext.Msg.alert('提示', '请填写完整');
     }
 })

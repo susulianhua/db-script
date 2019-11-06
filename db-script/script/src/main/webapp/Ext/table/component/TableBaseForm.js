@@ -38,7 +38,7 @@ Ext.define('Ext.table.component.TableBaseForm',{
                 border: false,
                 items: [
                     { fieldLabel: 'package-name', name: 'package_name', xtype: 'textfield'},
-                    { fieldLabel: 'name', name: 'table_name', xtype: 'textfield'},
+                    { fieldLabel: 'name', name: 'table_name', xtype: 'textfield', allowBlank: false},
                     { fieldLabel: 'description', name: 'table_description', xtype: 'textfield' },
                 ]
             }

@@ -15,7 +15,6 @@
       <module name="database" target="1.5" />
       <module name="fileresolver" target="1.5" />
       <module name="framework" target="1.5" />
-      <module name="metadata" target="6" />
       <module name="xstream" target="1.5" />
     </bytecodeTargetLevel>
   </component>

@@ -78,13 +78,16 @@ public class TriggerController {
         XStream xStream = new XStream();
         xStream.processAnnotations(Triggers.class);
         Triggers triggers = (Triggers) xStream.fromXML(file);
+        int flag = 0;
         for(Trigger trigger1: triggers.getTriggers()){
             if(trigger1.getName().equals(trigger.getName())){
                 triggers.getTriggers().remove(trigger1);
                 triggers.getTriggers().add(trigger);
+                flag = 1;
                 break;
             }
         }
+        if(flag == 0) triggers.getTriggers().add(trigger);
         String xml = xStream.toXML(triggers);
         UpdateMetaDataUtils.objectToFile(xml, file);
         return new NormalResponse();

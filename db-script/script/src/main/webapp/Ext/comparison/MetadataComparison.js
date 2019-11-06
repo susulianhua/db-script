@@ -33,7 +33,13 @@ Ext.onReady(function () {
                     {
                         tooltip: '删除',
                         icon: "css/images/grid/delete.gif",
-                        handler: function(tableFieldGrid, rowIndex) {
+                        handler: function(metadataGrid, rowIndex) {
+                            Ext.MessageBox.confirm('提示','是否确定删除该语句', function (btn) {
+                                if(btn == 'yes'){
+                                    var record = metadataGrid.getStore().getAt(rowIndex);
+                                    metadataGrid.store.remove(record);
+                                }
+                            })
                         }
                     }
                 ]
@@ -57,7 +63,7 @@ Ext.onReady(function () {
                     { xtype: 'button', text: '全量生成', handler: function () {
                         store.load({params: { type: 'getFullSql'}})
                         }},'-','          ',
-                    { xtype: 'button', text: '重置', handler: function () {
+                    { xtype: 'button', text: '导出', handler: function () {
 
                         }},'-','          ',
                     { xtype: 'button', text: '返回', handler: function () {
@@ -74,7 +80,6 @@ Ext.onReady(function () {
     function readGridDetail(metadataGrid, rowIndex) {
         var record = metadataGrid.getStore().getAt(rowIndex).data;
         var differentDetail = record.differentDetail;
-        console.log("differentDetail", differentDetail);
         var sqlResultGrid = Ext.create('Ext.form.Panel', {
             bodyStyle: 'padding:5px 5px 0',
             height: 250,
@@ -105,4 +110,5 @@ Ext.onReady(function () {
         });
         win.show();
     }
+
 })

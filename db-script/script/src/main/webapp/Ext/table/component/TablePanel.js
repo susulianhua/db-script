@@ -5,8 +5,9 @@ Ext.define('Ext.table.component.TablePanel', {
     title: 'Table',
     titleAlign: 'center',
     layout: 'form',
-    tableName: null,
-    FileName: null,
+    metadataName: null,
+    moduleName: null,
+    flag: null,
 
     initComponent: function(){
         this.fieldStore = Ext.create('Ext.table.store.FieldStore');
@@ -21,7 +22,7 @@ Ext.define('Ext.table.component.TablePanel', {
     getItems: function () {
         var me = this;
 
-        this.standardFieldIdStore.load({params:{FileName: me.FileName}});
+        this.standardFieldIdStore.load({params:{moduleName: me.moduleName}});
         var fieldGrid = Ext.create('Ext.table.component.FieldGrid', {
             fieldStore: me.fieldStore,
             standardFieldIdStore: me.standardFieldIdStore
@@ -30,8 +31,8 @@ Ext.define('Ext.table.component.TablePanel', {
         var indexGrid = Ext.create('Ext.table.component.IndexGrid', {
             store: me.indexStore,
             indexFieldStore: me.indexFieldStore,
-            FileName: me.FileName,
-            tableName: me.tableName
+            moduleName: me.moduleName,
+            metadataName: me.metadataName
         });
 
         items = [
@@ -56,8 +57,8 @@ Ext.define('Ext.table.component.TablePanel', {
                 totalProperty: 'total'
             },
             params: {
-                tableName: me.tableName,
-                FileName: me.FileName
+                metadataName: me.metadataName,
+                moduleName: me.moduleName
             },
             success: function (response) {
                 var result = Ext.JSON.decode(response.responseText).data;
@@ -67,10 +68,10 @@ Ext.define('Ext.table.component.TablePanel', {
             failure:function () {
             }
         });
-        me.fieldStore.load({params:{FileName: me.FileName, tableName: me.tableName}});
-        me.foreignKeyStore.load({params:{FileName: me.FileName, tableName: me.tableName}});
-        me.indexStore.load({params:{FileName: me.FileName, tableName: me.tableName}});
-        me.indexFieldStore.load({params:{FileName: me.FileName, tableName: me.tableName}});
+        me.fieldStore.load({params:{moduleName: me.moduleName, metadataName: me.metadataName}});
+        me.foreignKeyStore.load({params:{moduleName: me.moduleName, metadataName: me.metadataName}});
+        me.indexStore.load({params:{moduleName: me.moduleName, metadataName: me.metadataName}});
+        me.indexFieldStore.load({params:{moduleName: me.moduleName, metadataName: me.metadataName}});
         return items;
     },
 
@@ -83,10 +84,14 @@ Ext.define('Ext.table.component.TablePanel', {
         table.name = formValues.table_name;
         table.description = formValues.table_description;
         table.packageName = formValues.package_name;
+        var flag = true;
         /**
          * 获取字段信息转化为Json数组
          */
         var tableFieldRecords = me.fieldStore.getRange();
+        if(tableFieldRecords.length == 0 && table.name == '') flag = false;
+        console.log("flag:", flag);
+        console.log(tableFieldRecords)
         var fieldList = [];
         for( var i in tableFieldRecords){
             fieldList.push({
@@ -143,23 +148,27 @@ Ext.define('Ext.table.component.TablePanel', {
 
         };
         table.indexList = indexList;
-
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/dbscript//table/tableSave',
-            headers: {'ContentType': 'application/json;charset=UTF-8',
-                'Content-Type': 'application/json'
-            },
-            ContentType : 'application/json;charset=UTF-8',
-            dataType: 'json',
-            params: JSON.stringify(table),
-            method: 'Post',
-            success: function () {
-                Ext.Msg.alert('成功', '添加成功');
-            },
-            failure: function () {
-                Ext.Msg.alert('失败', '添加失败，请重试');
-            }
-        });
+        if(flag){
+            Ext.Ajax.request({
+                url: 'http://localhost:8080/dbscript//table/tableSave',
+                headers: {'ContentType': 'application/json;charset=UTF-8',
+                    'Content-Type': 'application/json'
+                },
+                ContentType : 'application/json;charset=UTF-8',
+                dataType: 'json',
+                params: JSON.stringify(table),
+                method: 'Post',
+                success: function () {
+                    Ext.Msg.alert('成功', '添加成功');
+                },
+                failure: function () {
+                    Ext.Msg.alert('失败', '添加失败，请重试');
+                }
+            });
+        }
+        else{
+            Ext.Msg.alert('提示', '请填写完整')
+        }
     },
 
 })

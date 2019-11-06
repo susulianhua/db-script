@@ -7,8 +7,8 @@ Ext.define('Ext.table.component.IndexGrid',{
     selType: 'rowmodel',
     autoScroll:true,
     indexFieldStore: null,
-    FileName: null,
-    tableName: null,
+    moduleName: null,
+    metadataName: null,
     initComponent: function(){
         this.columns = this.createColumns();
         this.dockedItems = this.createDockedItems();

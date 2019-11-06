@@ -64,19 +64,6 @@ public class BusinessTypeController {
         return new NormalResponse(phvReturnsList, (long) phvReturnsList.size());
     }
 
-    @RequestMapping("/saveBusinessType")
-    @ResponseBody
-    public NormalResponse saveBusinessType(@RequestBody BusinessTypes businessTypes){
-        String moduleName = businessTypes.getPackageName();
-        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
-        File file = GetCorrespondFileUtils.getBusinessTypeFile(moduleName, filePath);
-        XStream xStream = new XStream();
-        xStream.processAnnotations(BusinessTypes.class);
-        String xml = xStream.toXML(businessTypes);
-        UpdateMetaDataUtils.objectToFile(xml, file);
-        return  new NormalResponse();
-    }
-
     @RequestMapping("/getStandardTypeIdStore")
     @ResponseBody
     public NormalResponse getStandardTypeIdStore(){
@@ -94,5 +81,18 @@ public class BusinessTypeController {
         }
         return new NormalResponse(standardTypeIdStoreList, (long) standardTypeIdStoreList.size());
 
+    }
+
+    @RequestMapping("/saveBusinessType")
+    @ResponseBody
+    public NormalResponse saveBusinessType(@RequestBody BusinessTypes businessTypes){
+        String moduleName = businessTypes.getPackageName();
+        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        File file = GetCorrespondFileUtils.getBusinessTypeFile(moduleName, filePath);
+        XStream xStream = new XStream();
+        xStream.processAnnotations(BusinessTypes.class);
+        String xml = xStream.toXML(businessTypes);
+        UpdateMetaDataUtils.objectToFile(xml, file);
+        return  new NormalResponse();
     }
 }

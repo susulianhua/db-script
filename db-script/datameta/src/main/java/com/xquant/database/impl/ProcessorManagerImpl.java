@@ -35,12 +35,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProcessorManagerImpl implements ProcessorManager {
-    private static ProcessorManager processorManager = new ProcessorManagerImpl();
     private Map<String, Map<String, Object>> processorsMap = new HashMap<String, Map<String, Object>>();
 
-    public static ProcessorManager getProcessorManager() {
-        managerInit((ProcessorManagerImpl) processorManager);
-        return processorManager;
+    public  ProcessorManager getProcessorManager() {
+        managerInit( this);
+        return this;
+    }
+
+    public Map<String, Map<String,Object>> getProcessorsMap(){
+        return processorsMap;
     }
 
     private static void managerInit(ProcessorManagerImpl processorManager) {

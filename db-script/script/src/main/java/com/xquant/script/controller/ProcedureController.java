@@ -70,14 +70,17 @@ public class ProcedureController {
         File file = GetCorrespondFileUtils.getProcedureFile(moduleName, filePath);
         XStream xStream = new XStream();
         xStream.processAnnotations(Procedures.class);
+        int flag = 0;
         Procedures procedures = (Procedures) xStream.fromXML(file);
         for(Procedure procedure1: procedures.getProcedureList()){
             if(procedure1.getName().equals(procedureName)){
                 procedures.getProcedureList().remove(procedure1);
                 procedures.getProcedureList().add(procedure);
+                flag = 1;
                 break;
             }
         }
+        if(flag == 0) procedures.getProcedureList().add(procedure);
         String xml = xStream.toXML(procedures);
         UpdateMetaDataUtils.objectToFile(xml, file);
         return new NormalResponse();
