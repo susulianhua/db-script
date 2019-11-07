@@ -86,21 +86,7 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
                         store: me.businessTypeIdStore, displayField: 'name', valueFiled: 'typeId' ,
                             listeners : {
                                 'beforequery':function(e){
-
-                                    var combo = e.combo;
-                                    if(!e.forceAll){
-                                        var input = e.query;
-                                        // 检索的正则
-                                        var regExp = new RegExp(".*" + input + ".*");
-                                        // 执行检索
-                                        combo.store.filterBy(function(record,id){
-                                            // 得到每个record的项目名称值
-                                            var text = record.get(combo.displayField);
-                                            return regExp.test(text);
-                                        });
-                                        combo.expand();
-                                        return false;
-                                    }
+                                    me.fuzzySearch(e)
                                 }
                             }},
                         { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
@@ -124,8 +110,12 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
                     text: '保存',
                     handler: function () {
                         var record = this.up('form').getForm().getValues();
-                        me.store.insert(0,record);
-                        win.close();
+                        if(record.typeId == '' || record.id == '' || record.name == '')
+                            Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            me.store.insert(0,record);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',
@@ -175,21 +165,7 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
                           displayField: 'name', fieldValue: 'typeId', mode: 'remote',
                             listeners : {
                                 'beforequery':function(e){
-
-                                    var combo = e.combo;
-                                    if(!e.forceAll){
-                                        var input = e.query;
-                                        // 检索的正则
-                                        var regExp = new RegExp(".*" + input + ".*");
-                                        // 执行检索
-                                        combo.store.filterBy(function(record,id){
-                                            // 得到每个record的项目名称值
-                                            var text = record.get(combo.displayField);
-                                            return regExp.test(text);
-                                        });
-                                        combo.expand();
-                                        return false;
-                                    }
+                                    me.fuzzySearch(e)
                                 }
                             }},
                         { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
@@ -214,9 +190,13 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
                     handler: function () {
                         var del = standardFieldGrid.getStore().getAt(rowIndex);
                         var record = this.up('form').getForm().getValues();
-                        standardFieldGrid.store.remove(del);
-                        standardFieldGrid.store.insert(rowIndex,record);
-                        win.close();
+                        if(record.typeId == '' || record.id == '' || record.name == '')
+                            Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            standardFieldGrid.store.remove(del);
+                            standardFieldGrid.store.insert(rowIndex,record);
+                            win.close();
+                        }
                     }
                 },
                 {
@@ -240,6 +220,23 @@ Ext.define('Ext.standardField.component.StandardFieldGrid',{
         });
         win.show();
     },
+
+    fuzzySearch: function (e) {
+        var combo = e.combo;
+        if(!e.forceAll){
+            var input = e.query;
+            // 检索的正则
+            var regExp = new RegExp(".*" + input + ".*");
+            // 执行检索
+            combo.store.filterBy(function(record,id){
+                // 得到每个record的项目名称值
+                var text = record.get(combo.displayField);
+                return regExp.test(text);
+            });
+            combo.expand();
+            return false;
+        }
+    }
 
 
 

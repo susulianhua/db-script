@@ -89,21 +89,7 @@ Ext.define('Ext.table.component.FieldGrid',{
                             displayField: 'name', mode: 'remote', typeAhead: true,
                             listeners : {
                                 'beforequery':function(e){
-
-                                    var combo = e.combo;
-                                    if(!e.forceAll){
-                                        var input = e.query;
-                                        // 检索的正则
-                                        var regExp = new RegExp(".*" + input + ".*");
-                                        // 执行检索
-                                        combo.store.filterBy(function(record,id){
-                                            // 得到每个record的项目名称值
-                                            var text = record.get(combo.displayField);
-                                            return regExp.test(text);
-                                        });
-                                        combo.expand();
-                                        return false;
-                                    }
+                                    me.fuzzySearch(e)
                                 }
                             }
                         },
@@ -119,7 +105,7 @@ Ext.define('Ext.table.component.FieldGrid',{
                     frame: true,
                     border: false,
                     items: [
-                        { fieldLabel: 'id', name: 'id', xtype: 'textfield'},
+                        { fieldLabel: 'id', name: 'id', xtype: 'textfield', allowBlank: false},
                         { fieldLabel: 'not-null', name: 'notNull', xtype: 'combobox',
                             store: booleanStore, displayField: 'name' ,editable: false},
                         { fieldLabel: 'auto-increase', name: 'autoIncrease', xtype: 'combobox',
@@ -133,13 +119,16 @@ Ext.define('Ext.table.component.FieldGrid',{
                     text: '保存',
                     handler: function () {
                         var record = this.up('form').getForm().getValues();
-                        me.store.insert(0,record);
-                        win.close(this);
+                        if(record.id == '' || record.standardFieldId == '') Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            me.store.insert(0,record);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]
@@ -186,21 +175,7 @@ Ext.define('Ext.table.component.FieldGrid',{
                         allowBlank: false, store: me.standardFieldIdStore, displayField:'name',
                         listeners : {
                             'beforequery':function(e){
-
-                                var combo = e.combo;
-                                if(!e.forceAll){
-                                    var input = e.query;
-                                    // 检索的正则
-                                    var regExp = new RegExp(".*" + input + ".*");
-                                    // 执行检索
-                                    combo.store.filterBy(function(record,id){
-                                        // 得到每个record的项目名称值
-                                        var text = record.get(combo.displayField);
-                                        return regExp.test(text);
-                                    });
-                                    combo.expand();
-                                    return false;
-                                }
+                                me.fuzzySearch(e)
                             }
                         }},
                     { fieldLabel: 'unique', name: 'unique', xtype: 'combobox', store: booleanStore,
@@ -230,15 +205,18 @@ Ext.define('Ext.table.component.FieldGrid',{
                 handler: function () {
                     var del = tableFieldGrid.getStore().getAt(rowIndex);
                     var record = this.up('form').getForm().getValues();
-                    tableFieldGrid.store.remove(del);
-                    tableFieldGrid.store.insert(rowIndex,record);
-                    win.close(this);
+                    if(record.id == '' || record.standardFieldId == '') Ext.Msg.alert('提示', '请填写完整');
+                    else{
+                        tableFieldGrid.store.remove(del);
+                        tableFieldGrid.store.insert(rowIndex,record);
+                        win.close();
+                    }
                 }
             },
                 {
                 text: '关闭',
                 handler: function () {
-                    win.close(this);
+                    win.close();
                 }
             }
             ]
@@ -255,5 +233,22 @@ Ext.define('Ext.table.component.FieldGrid',{
             items: [tableFieldForm]
         });
         win.show();
+    },
+
+    fuzzySearch: function (e) {
+        var combo = e.combo;
+        if(!e.forceAll){
+            var input = e.query;
+            // 检索的正则
+            var regExp = new RegExp(".*" + input + ".*");
+            // 执行检索
+            combo.store.filterBy(function(record,id){
+                // 得到每个record的项目名称值
+                var text = record.get(combo.displayField);
+                return regExp.test(text);
+            });
+            combo.expand();
+            return false;
+        }
     }
 })

@@ -116,12 +116,12 @@ Ext.define('Ext.table.component.IndexFieldGrid',{
                         indexField_model.data.direction = record.direction;
                         indexField_model.data.index_name = indexName;
                         indexFieldGrid.store.insert(rowIndex,indexField_model.data);
-                        win.close(this);
+                        win.close();
                     }
                 }, {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]
@@ -180,7 +180,7 @@ Ext.define('Ext.table.component.IndexFieldGrid',{
                 }, {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]

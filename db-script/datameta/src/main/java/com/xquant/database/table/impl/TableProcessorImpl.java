@@ -166,11 +166,12 @@ public class TableProcessorImpl implements TableProcessor {
     }
 
     public List<Table> getTables() {
-        if (!CollectionUtils.isEmpty(orderTables)) {
+        /*if (!CollectionUtils.isEmpty(orderTables)) {
             return orderTables;
-        }
+        }*/
+        orderTables.clear();
         for (Table table : idMap.values()) {
-            addOrderTable(table);
+            orderTables.add(table);
         }
         return orderTables;
     }

@@ -3,4 +3,8 @@
     <value-config min-value="10" max-value="20"/>
     <seq-cache-config cache="true" number="20"/>
   </sequence>
+  <sequence name="dafaf" data-type="" increment-by="0" start-with="0" cycle="false" order="false">
+    <value-config min-value="0" max-value="6"/>
+    <seq-cache-config cache="false" number="20"/>
+  </sequence>
 </sequences>

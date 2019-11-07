@@ -27,7 +27,10 @@ Ext.define('Ext.table.component.TablePanel', {
             fieldStore: me.fieldStore,
             standardFieldIdStore: me.standardFieldIdStore
         });
-        var foreignGrid = Ext.create('Ext.table.component.ForeignGrid', { store: me.foreignKeyStore});
+        var foreignGrid = Ext.create('Ext.table.component.ForeignGrid', {
+            store: me.foreignKeyStore,
+            fieldStore: me.fieldStore,
+        });
         var indexGrid = Ext.create('Ext.table.component.IndexGrid', {
             store: me.indexStore,
             indexFieldStore: me.indexFieldStore,
@@ -90,8 +93,6 @@ Ext.define('Ext.table.component.TablePanel', {
          */
         var tableFieldRecords = me.fieldStore.getRange();
         if(tableFieldRecords.length == 0 && table.name == '') flag = false;
-        console.log("flag:", flag);
-        console.log(tableFieldRecords)
         var fieldList = [];
         for( var i in tableFieldRecords){
             fieldList.push({

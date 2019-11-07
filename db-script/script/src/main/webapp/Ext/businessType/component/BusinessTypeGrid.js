@@ -107,21 +107,7 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
                           fieldValue: 'standardTypeId',
                             listeners : {
                                 'beforequery':function(e){
-
-                                    var combo = e.combo;
-                                    if(!e.forceAll){
-                                        var input = e.query;
-                                        // 检索的正则
-                                        var regExp = new RegExp(".*" + input + ".*");
-                                        // 执行检索
-                                        combo.store.filterBy(function(record,id){
-                                            // 得到每个record的项目名称值
-                                            var text = record.get(combo.displayField);
-                                            return regExp.test(text);
-                                        });
-                                        combo.expand();
-                                        return false;
-                                    }
+                                    me.fuzzySearch(e)
                                 }
                             }},
                         { fieldLabel: 'name', name: 'name', xtype: 'textfield'}
@@ -144,13 +130,17 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
                     text: '保存',
                     handler: function () {
                         var record = this.up('form').getForm().getValues();
-                        me.store.insert(0,record);
-                        win.close(this);
+                        if(record.standardFieldId == '' || record.id == '' || record.name == '')
+                            Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            me.store.insert(0,record);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]
@@ -184,21 +174,7 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
                             displayField: 'name', fieldValue: 'standardTypeId',
                             listeners : {
                                 'beforequery':function(e){
-
-                                    var combo = e.combo;
-                                    if(!e.forceAll){
-                                        var input = e.query;
-                                        // 检索的正则
-                                        var regExp = new RegExp(".*" + input + ".*");
-                                        // 执行检索
-                                        combo.store.filterBy(function(record,id){
-                                            // 得到每个record的项目名称值
-                                            var text = record.get(combo.displayField);
-                                            return regExp.test(text);
-                                        });
-                                        combo.expand();
-                                        return false;
-                                    }
+                                    me.fuzzySearch(e)
                                 }
                             }},
                         { fieldLabel: 'name', name: 'name', xtype: 'textfield', allowBlank: false}
@@ -222,9 +198,13 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
                     handler: function () {
                         var del = businessTypeGrid.getStore().getAt(rowIndex);
                         var record = this.up('form').getForm().getValues();
-                        businessTypeGrid.store.remove(del);
-                        businessTypeGrid.store.insert(rowIndex,record);
-                        win.close();
+                        if(record.standardFieldId == '' || record.id == '' || record.name == '')
+                            Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            businessTypeGrid.store.remove(del);
+                            businessTypeGrid.store.insert(rowIndex,record);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',
@@ -262,7 +242,7 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
                     };
                 };
                 me.store.remove(record);
-                Ext.Msg.alter('提示','删除成功');
+                Ext.Msg.alert('提示','删除成功');
             }
         })
     },
@@ -305,4 +285,21 @@ Ext.define('Ext.businessType.component.BusinessTypeGrid',{
         });
         win.show();
     },
+
+    fuzzySearch: function (e) {
+        var combo = e.combo;
+        if(!e.forceAll){
+            var input = e.query;
+            // 检索的正则
+            var regExp = new RegExp(".*" + input + ".*");
+            // 执行检索
+            combo.store.filterBy(function(record,id){
+                // 得到每个record的项目名称值
+                var text = record.get(combo.displayField);
+                return regExp.test(text);
+            });
+            combo.expand();
+            return false;
+        }
+    }
 })

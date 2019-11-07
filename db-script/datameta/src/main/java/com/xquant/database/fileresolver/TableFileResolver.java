@@ -39,7 +39,7 @@ public class TableFileResolver extends AbstractFileProcessor {
     public void process() {
         XStream stream = XStreamFactory
                 .getXStream(DataBaseUtil.DATABASE_XSTREAM);
-        for (FileObject fileObject : deleteList) {
+       /* for (FileObject fileObject : deleteList) {
             LOGGER.info( "正在移除table文件[{0}]",
                     fileObject.getAbsolutePath());
             Tables tables = (Tables) caches.get(fileObject.getAbsolutePath());
@@ -49,7 +49,7 @@ public class TableFileResolver extends AbstractFileProcessor {
             }
             LOGGER.info( "移除table文件[{0}]结束",
                     fileObject.getAbsolutePath());
-        }
+        }*/
         for (FileObject fileObject : changeList) {
             LOGGER.info( "正在加载table文件[{0}]",
                     fileObject.getAbsolutePath());

@@ -7,6 +7,7 @@ Ext.define('Ext.view.component.ViewPanel', {
     layout: 'form',
     viewName: null,
     moduleName: null,
+    sqlContentStart: 'CREATE OR REPLACE VIEW',
 
     initComponent: function(){
         this.sqlBodyStore = Ext.create('Ext.view.store.SqlBodyStore');
@@ -22,6 +23,7 @@ Ext.define('Ext.view.component.ViewPanel', {
         this.refViewIdStore.load({params: { viewName: me.viewName, moduleName: me.moduleName}})
         var sqlBodyGrid = Ext.create('Ext.procedure.component.SqlGrid',{
             moduleName: me.moduelName,
+            sqlContentStart: me.sqlContentStart,
             viewName: me.viewName,
             store: me.sqlBodyStore,
             width: 298,

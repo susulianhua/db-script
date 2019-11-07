@@ -86,12 +86,12 @@ Ext.define('Ext.function.component.DialectGrid', {
                     handler: function () {
                         var record = this.up('form').getForm().getValues();
                         me.store.insert(0,record);
-                        win.close(this);
+                        win.close();
                     }
                 }, {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]
@@ -141,13 +141,13 @@ Ext.define('Ext.function.component.DialectGrid', {
                         var record = this.up('form').getForm().getValues();
                         dialectGrid.store.remove(del);
                         dialectGrid.store.insert(rowIndex,record);
-                        win.close(this);
+                        win.close();
                     }
                 },
                 {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]

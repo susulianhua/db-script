@@ -27,4 +27,10 @@
       <sql dialect-type-name="h2" content="CREATE OR REPLACE VIEW org_view AS SELECT * FROM T_ORG"/>
     </sqls>
   </view>
+  <view id="tttt" name="tttt" title="ttt" description="ttt" schema="ttt">
+    <sqls>
+      <sql dialect-type-name="oracle" content="CREATE OR REPLACE VIEW JJOJDO"/>
+    </sqls>
+    <ref-view-ids/>
+  </view>
 </views>

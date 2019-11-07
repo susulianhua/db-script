@@ -86,10 +86,13 @@ Ext.define('Ext.view.component.RefViewIdGrid', {
                     text: '保存',
                     handler: function () {
                         var record = this.up('form').getForm().getValues();
-                        var refViewIdModel = Ext.create('Ext.view.model.RefViewIdModel');
-                        refViewIdModel.set('refViewId', record.refViewId);
-                        me.store.insert(0,record);
-                        win.close();
+                        if(record.refViewId == '') Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            var refViewIdModel = Ext.create('Ext.view.model.RefViewIdModel');
+                            refViewIdModel.set('refViewId', record.refViewId);
+                            me.store.insert(0,record);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',
@@ -144,17 +147,20 @@ Ext.define('Ext.view.component.RefViewIdGrid', {
                     handler: function () {
                         var del = refViewIdGrid.getStore().getAt(rowIndex);
                         var record = this.up('form').getForm().getValues();
-                        refViewIdGrid.store.remove(del);
-                        var refViewIdModel = Ext.create('Ext.view.model.RefViewIdModel');
-                        refViewIdModel.set('refViewId', record.refViewId);
-                        me.store.insert(rowIndex,record);
-                        win.close();
+                        if(record.refViewId == '') Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            refViewIdGrid.store.remove(del);
+                            var refViewIdModel = Ext.create('Ext.view.model.RefViewIdModel');
+                            refViewIdModel.set('refViewId', record.refViewId);
+                            me.store.insert(rowIndex,record);
+                            win.close();
+                        }
                     }
                 },
                 {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]

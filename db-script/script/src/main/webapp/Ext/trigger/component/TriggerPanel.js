@@ -6,6 +6,7 @@ Ext.define('Ext.trigger.component.TriggerPanel', {
     layout: 'form',
     triggerName: null,
     moduleName: null,
+    sqlContentStart: 'CREATE OR REPLACE TRIGGER',
 
     initComponent: function(){
         this.sqlBodyStore = Ext.create('Ext.trigger.store.SqlBodyStore');
@@ -21,7 +22,8 @@ Ext.define('Ext.trigger.component.TriggerPanel', {
             moduleName: me.moduelName,
             store: me.sqlBodyStore,
             width: 580,
-            contentLength:390
+            contentLength:390,
+            sqlContentStart: me.sqlContentStart
         });
         items = [
             me.triggerForm,

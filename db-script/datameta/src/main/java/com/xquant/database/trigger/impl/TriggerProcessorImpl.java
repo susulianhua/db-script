@@ -75,7 +75,7 @@ public class TriggerProcessorImpl implements TriggerProcessor {
         List<SqlBody> sqls = trigger.getTriggerSqls();
         for (SqlBody sqlBody : sqls) {
             if (sqlBody.getDialectTypeName().equals(language)) {
-                String sql = sqlBody.getContent();
+                String sql = sqlBody.getContent().toUpperCase();
                 if (!sql.endsWith(";")) {
                     sql = sql + ";";
                 }

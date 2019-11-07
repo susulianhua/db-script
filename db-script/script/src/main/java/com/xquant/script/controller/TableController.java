@@ -43,7 +43,7 @@ public class TableController {
             }
         }
         TableBase tableBase = new TableBase(moduleName + ".table.xml", tables.getPackageName(),tableName,
-                table.getName(), table.getTitle(), table.getDescription());
+                tableName, table.getTitle(), table.getDescription());
         List<TableBase> tableBaseList = new ArrayList<TableBase>();
         tableBaseList.add(tableBase);
         return new NormalResponse(tableBaseList, (long)1 );

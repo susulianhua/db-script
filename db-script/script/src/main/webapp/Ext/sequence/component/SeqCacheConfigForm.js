@@ -24,7 +24,7 @@ Ext.define('Ext.sequence.component.SeqCacheConfigForm', {
         var items = [
             { fieldLabel: 'cache', name: 'cache', xtype: 'combobox', columnWidth: 0.5 ,
               store: booleanStore, displayField: 'name', fieldValue: 'boolean'},
-            { fieldLabel: 'number', name: 'number', xtype: 'textfield', columnWidth: 0.5}
+            { fieldLabel: 'number', name: 'number', xtype: 'textfield', columnWidth: 0.5, regex: /^[1-9]\d*$/}
         ];
 
         return items;

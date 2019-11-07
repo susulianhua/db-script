@@ -31,7 +31,7 @@
                 items :[
                     { fieldLabel: 'moduleName', name: 'moduleName', xtype: 'textfield', readOnly: true},
                     { fieldLabel: 'dataType', name: 'dataType', xtype: 'textfield'},
-                    { fieldLabel: 'startWith', name: 'startWith', xtype: 'textfield', allowBlank: false},
+                    { fieldLabel: 'startWith', name: 'startWith', xtype: 'textfield', allowBlank: false, regex: /^[1-9]\d*$/},
                     { fieldLabel: 'order', name: 'order', xtype: 'combobox', store: booleanStore,
                       displayField: 'name', fieldValue: 'boolean'}
                 ]
@@ -42,7 +42,7 @@
                 layout: 'form',
                 items: [
                     { fieldLabel: 'name', name: 'name', xtype: 'textfield'},
-                    { fieldLabel: 'incrementBy', name: 'incrementBy', xtype: 'textfield'},
+                    { fieldLabel: 'incrementBy', name: 'incrementBy', xtype: 'textfield', regex: /^[1-9]\d*$/},
                     { fieldLabel: 'cycle', name: 'cycle', xtype: 'combobox' , store: booleanStore,
                       displayField: 'name', fieldValue: 'boolean'},
                     { xtype: 'hidden'}

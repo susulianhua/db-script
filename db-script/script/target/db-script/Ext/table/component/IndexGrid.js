@@ -124,13 +124,16 @@ Ext.define('Ext.table.component.IndexGrid',{
                     text: '保存',
                     handler: function () {
                         var record = this.up('form').getForm().getValues();
-                        me.store.insert(0,record);
-                        win.close(this);
+                        if(record.index_name == '') Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            me.store.insert(0,record);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]
@@ -183,14 +186,17 @@ Ext.define('Ext.table.component.IndexGrid',{
                 handler: function () {
                     var del = indexGrid.getStore().getAt(rowIndex);
                     var record = this.up('form').getForm().getValues();
-                    indexGrid.store.remove(del);
-                    indexGrid.store.insert(rowIndex,record);
-                    win.close(this);
+                    if(record.index_name == '') Ext.Msg.alert('提示', '请填写完整')
+                    else{
+                        indexGrid.store.remove(del);
+                        indexGrid.store.insert(rowIndex,record);
+                        win.close();
+                    }
                 }
             }, {
                 text: '关闭',
                 handler: function () {
-                    win.close(this);
+                    win.close();
                 }
             }
             ]
@@ -262,7 +268,7 @@ Ext.define('Ext.table.component.IndexGrid',{
                     };
                 };
                 indexGrid.store.remove(record);
-                Ext.Msg.alter('提示','删除成功');
+                Ext.Msg.alert('提示','删除成功');
             }
         })
     }

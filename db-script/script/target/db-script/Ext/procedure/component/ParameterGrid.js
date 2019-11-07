@@ -120,13 +120,17 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
                     text: '保存',
                     handler: function () {
                         var record = this.up('form').getForm().getValues();
-                        me.store.insert(0,record);
-                        win.close(this);
+                        if(record.standardFieldId == '' || record.parameterType == '')
+                            Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            me.store.insert(0,record);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]
@@ -208,15 +212,19 @@ Ext.define('Ext.procedure.component.ParameterGrid', {
                     handler: function () {
                         var del = parameterGrid.getStore().getAt(rowIndex);
                         var record = this.up('form').getForm().getValues();
-                        parameterGrid.store.remove(del);
-                        parameterGrid.store.insert(rowIndex,record);
-                        win.close(this);
+                        if(record.standardFieldId == '' || record.parameterType == '')
+                            Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            parameterGrid.store.remove(del);
+                            parameterGrid.store.insert(rowIndex,record);
+                            win.close();
+                        }
                     }
                 },
                 {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]

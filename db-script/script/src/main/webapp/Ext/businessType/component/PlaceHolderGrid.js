@@ -91,13 +91,16 @@ Ext.define('Ext.businessType.component.PlaceHolderGrid', {
                     handler: function () {
                         var del = placeHolderValueGrid.getStore().getAt(rowIndex);
                         var record = this.up('form').getForm().getValues();
-                        placeHolderValueGrid.store.remove(del);
-                        var placeHolderModel = Ext.create('Ext.businessType.model.PlaceHolderModel');
-                        placeHolderModel.set('value', record.value);
-                        placeHolderModel.set('name', record.name);
-                        placeHolderModel.set('businessId', me.businessId);
-                        placeHolderValueGrid.store.insert(rowIndex,placeHolderModel.data);
-                        win.close();
+                        if(record.name == '' || record.value == '') Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            placeHolderValueGrid.store.remove(del);
+                            var placeHolderModel = Ext.create('Ext.businessType.model.PlaceHolderModel');
+                            placeHolderModel.set('value', record.value);
+                            placeHolderModel.set('name', record.name);
+                            placeHolderModel.set('businessId', me.businessId);
+                            placeHolderValueGrid.store.insert(rowIndex,placeHolderModel.data);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',
@@ -147,12 +150,15 @@ Ext.define('Ext.businessType.component.PlaceHolderGrid', {
                     text: '保存',
                     handler: function () {
                         var record = this.up('form').getForm().getValues();
-                        var placeHolderModel = Ext.create('Ext.businessType.model.PlaceHolderModel');
-                        placeHolderModel.set('value', record.value);
-                        placeHolderModel.set('name', record.name);
-                        placeHolderModel.set('businessId', me.businessId);
-                        me.store.insert(0,[placeHolderModel]);
-                        win.close();
+                        if(record.name == '' || record.value == '') Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            var placeHolderModel = Ext.create('Ext.businessType.model.PlaceHolderModel');
+                            placeHolderModel.set('value', record.value);
+                            placeHolderModel.set('name', record.name);
+                            placeHolderModel.set('businessId', me.businessId);
+                            me.store.insert(0,[placeHolderModel]);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',

@@ -67,6 +67,7 @@ Ext.define('Ext.procedure.component.SqlGrid',{
 
     addSqlBody: function(){
         var me = this;
+        var dialectTypeName = Ext.create('Ext.procedure.store.DialectNameStore');
         var sqlBodyForm = new Ext.FormPanel({
             //labelAlign: 'top',
             bodyStyle: 'padding:5px 5px 0',
@@ -77,15 +78,16 @@ Ext.define('Ext.procedure.component.SqlGrid',{
                     layout: 'form',
                     columnWidth: 0.4,
                     frame: true,
-                    items: { fieldLabel: 'dialectTypeName', name: 'dialectTypeName', xtype: 'textfield',
-                    height: 20}
+                    items: { fieldLabel: 'dialectTypeName', name: 'dialectTypeName', xtype: 'combobox',
+                        store: dialectTypeName, displayField: 'name', fieldValue: 'name', height: 20}
                 },
                 {
                     layout: 'form',
                     columnWidth: 0.6,
                     frame: true,
                     border: false,
-                    items: { fieldLabel: 'Content', name: 'content', xtype: 'textarea', labelWidth: 50}
+                    items: { fieldLabel: 'Content', name: 'content', xtype: 'textarea', labelWidth: 50,
+                             value: me.sqlContentStart}
                 }
             ],
             buttonAlign: 'center',
@@ -93,12 +95,15 @@ Ext.define('Ext.procedure.component.SqlGrid',{
                 {
                     text: '保存',
                     handler: function () {
-                            var record = this.up('form').getForm().getValues();
-                            var sqlModel = Ext.create('Ext.procedure.model.SqlModel');
-                            sqlModel.set('dialectTypeName', record.dialectTypeName);
-                            sqlModel.set('content', record.content);
-                            me.store.insert(0,record);
-                            win.close();
+                        var record = this.up('form').getForm().getValues();
+                        var sqlModel = Ext.create('Ext.procedure.model.SqlModel');
+                        if(record.dialectTypeName == '' || record.content == '') Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                                sqlModel.set('dialectTypeName', record.dialectTypeName);
+                                sqlModel.set('content', record.content);
+                                me.store.insert(0,record);
+                                win.close();
+                            }
                     }
                 }, {
                     text: '关闭',
@@ -133,6 +138,7 @@ Ext.define('Ext.procedure.component.SqlGrid',{
 
     editSqlBody: function(sqlBodyGrid, rowIndex) {
         var me = this;
+        var dialectTypeName = Ext.create('Ext.procedure.store.DialectNameStore');
         var record = sqlBodyGrid.getStore().getAt(rowIndex).data;
         var sqlBodyForm = new Ext.FormPanel({
             bodyStyle: 'padding:5px 5px 0',
@@ -143,7 +149,8 @@ Ext.define('Ext.procedure.component.SqlGrid',{
                     layout: 'form',
                     columnWidth: 0.4,
                     frame: true,
-                    items: { fieldLabel: 'dialectTypeName', name: 'dialectTypeName', xtype: 'textfield'},
+                    items: { fieldLabel: 'dialectTypeName', name: 'dialectTypeName', xtype: 'combobox',
+                        store: dialectTypeName, displayField: 'name', fieldValue: 'name'},
                 },
                 {
                     layout: 'form',
@@ -159,20 +166,23 @@ Ext.define('Ext.procedure.component.SqlGrid',{
                 {
                     text: '保存',
                     handler: function () {
-                            var del = sqlBodyGrid.getStore().getAt(rowIndex);
-                            var record = this.up('form').getForm().getValues();
-                            sqlBodyGrid.store.remove(del);
-                            var sqlModel = Ext.create('Ext.procedure.model.SqlModel');
-                            sqlModel.set('dialectTypeName', record.dialectTypeName);
-                            sqlModel.set('content', record.content);
-                            me.store.insert(rowIndex,record);
-                            win.close();
+                        var del = sqlBodyGrid.getStore().getAt(rowIndex);
+                        var record = this.up('form').getForm().getValues();
+                        sqlBodyGrid.store.remove(del);
+                        if(record.dialectTypeName == '' || record.content == '') Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                                var sqlModel = Ext.create('Ext.procedure.model.SqlModel');
+                                sqlModel.set('dialectTypeName', record.dialectTypeName);
+                                sqlModel.set('content', record.content);
+                                me.store.insert(rowIndex,record);
+                                win.close();
+                            }
                     }
                 },
                 {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]

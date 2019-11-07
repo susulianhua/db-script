@@ -5,29 +5,25 @@
       <table name="t_org"/>
       <table name="t_custom"/>
       <table name="incrementer"/>
-      <table name="gggg"/>
     </tables>
     <views>
       <view name="org_user_view_id"/>
       <view name="user_view_id"/>
       <view name="org_view_id"/>
+      <view name="tttt"/>
     </views>
     <triggers>
       <trigger name="trigger1"/>
+      <trigger name="DAD"/>
     </triggers>
     <procedures>
       <procedure name="procedure1"/>
     </procedures>
     <sequences>
       <sequence name="ddd"/>
+      <sequence name="dafaf"/>
     </sequences>
-    <functions>
-      <function name="fff"/>
-    </functions>
     <standardfield>crud</standardfield>
     <businessType>crud</businessType>
-  </module>
-  <module id="dafafa">
-    <tables/>
   </module>
 </modules>

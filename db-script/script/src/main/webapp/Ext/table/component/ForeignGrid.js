@@ -16,9 +16,9 @@ Ext.define('Ext.table.component.ForeignGrid',{
         var me = this;
         return [
             { dataIndex: 'key_name', text: 'name', align: 'center'},
+            { dataIndex: 'reference_field', text: 'reference-field', align: 'center', width: 110},
             { dataIndex: 'foreign_field', text: 'foreign-field', align: 'center'},
             { dataIndex: 'main_table', text: 'main-table', align: 'center'},
-            { dataIndex: 'reference_field', text: 'reference-field', align: 'center', width: 110},
             {
                 text: '操作',
                 xtype: 'actioncolumn',
@@ -67,6 +67,14 @@ Ext.define('Ext.table.component.ForeignGrid',{
 
     foreignAdd: function(){
         var me = this;
+        var tableFieldRecords = me.fieldStore.getRange();
+        var referenceFieldStore = Ext.create('Ext.table.store.ReferenceFieldStore');
+        for(var i in tableFieldRecords){
+            var data = {};
+            data.id = tableFieldRecords[i].get('id');
+            data.name = tableFieldRecords[i].get('id');
+            referenceFieldStore.insert(i, data);
+        }
         var foreignForm = new Ext.FormPanel({
             //labelAlign: 'top',
             bodyStyle: 'padding:5px 5px 0',
@@ -88,8 +96,14 @@ Ext.define('Ext.table.component.ForeignGrid',{
                     frame: true,
                     border: false,
                     items: [
+                        { fieldLabel: 'reference-field', name: 'reference_field', xtype: 'combobox',
+                         store: referenceFieldStore, displayField: 'name', fieldValue: 'id', queryMode: 'local' ,
+                            listeners : {
+                                'beforequery':function(e){
+                                    me.fuzzySearch(e)
+                                }
+                            }},
                         { fieldLabel: 'main-table', name: 'main_table', xtype: 'textfield'},
-                        { fieldLabel: 'reference-field', name: 'reference_field', xtype: 'textfield'}
                     ]
                 }
             ],
@@ -99,8 +113,12 @@ Ext.define('Ext.table.component.ForeignGrid',{
                     text: '保存',
                     handler: function () {
                         var record = this.up('form').getForm().getValues();
-                        me.store.insert(0,record);
-                        win.close();
+                        if(record.key_name == '' || record.foreign_field == '' || record.main_table == '' ||
+                         record.reference_field == '') Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            me.store.insert(0,record);
+                            win.close();
+                        }
                     }
                 }, {
                     text: '关闭',
@@ -121,8 +139,18 @@ Ext.define('Ext.table.component.ForeignGrid',{
         });
         win.show();
     },
+
     editForeign: function(foreignGrid, rowIndex){
+        var me = this;
         var record = foreignGrid.getStore().getAt(rowIndex).data;
+        var tableFieldRecords = this.fieldStore.getRange();
+        var referenceFieldStore = Ext.create('Ext.table.store.ReferenceFieldStore');
+        for(var i in tableFieldRecords){
+            var data = {};
+            data.id = tableFieldRecords[i].get('id');
+            data.name = tableFieldRecords[i].get('id');
+            referenceFieldStore.insert(i, data);
+        }
         var foreignForm = new Ext.FormPanel({
             bodyStyle: 'padding:5px 5px 0',
             layout: 'column',
@@ -145,10 +173,15 @@ Ext.define('Ext.table.component.ForeignGrid',{
                     frame: true,
                     border: false,
                     items: [
+                        { fieldLabel: 'reference-field', name: 'reference_field', xtype: 'combobox',
+                            store: referenceFieldStore, displayField: 'id', fieldValue: 'name', queryMode: 'local',
+                            regex: /^\w+$/, listeners : {
+                                'beforequery':function(e){
+                                    me.fuzzySearch(e)
+                                }
+                            }},
                         { fieldLabel: 'main-table', name: 'main_table', xtype: 'textfield',
-                            regex: /^\w+$/, allowBlank: false},
-                        { fieldLabel: 'reference-field', name: 'reference_field', xtype: 'textfield',
-                            regex: /^\w+$/, allowBlank: false}
+                            regex: /^\w+$/},
                             ]
                 }
                 ],
@@ -159,14 +192,18 @@ Ext.define('Ext.table.component.ForeignGrid',{
                     handler: function () {
                         var del = foreignGrid.getStore().getAt(rowIndex);
                         var record = this.up('form').getForm().getValues();
-                        foreignGrid.store.remove(del);
-                        foreignGrid.store.insert(rowIndex,record);
-                        win.close(this);
+                        if(record.key_name == '' || record.foreign_field == '' || record.main_table == '' ||
+                            record.reference_field == '') Ext.Msg.alert('提示', '请填写完整')
+                        else{
+                            foreignGrid.store.remove(del);
+                            foreignGrid.store.insert(rowIndex,record);
+                            win.close();
+                        }
                     }
                     }, {
                 text: '关闭',
                 handler: function () {
-                    win.close(this);
+                    win.close();
                 }
             }
         ]
@@ -183,6 +220,7 @@ Ext.define('Ext.table.component.ForeignGrid',{
          });
         win.show();
         },
+
     deleteForeign: function(foreignGrid, rowIndex) {
         Ext.MessageBox.confirm('提示','是否确认删除该外键',function (btn) {
             if(btn == 'yes'){
@@ -191,5 +229,22 @@ Ext.define('Ext.table.component.ForeignGrid',{
                 Ext.Msg.alert('成功','删除成功');
             };
         });
+    },
+
+    fuzzySearch: function (e) {
+        var combo = e.combo;
+        if(!e.forceAll){
+            var input = e.query;
+            // 检索的正则
+            var regExp = new RegExp(".*" + input + ".*");
+            // 执行检索
+            combo.store.filterBy(function(record,id){
+                // 得到每个record的项目名称值
+                var text = record.get(combo.displayField);
+                return regExp.test(text);
+            });
+            combo.expand();
+            return false;
+        }
     }
 })

@@ -21,8 +21,8 @@ Ext.define('Ext.sequence.component.ValueConfigForm', {
 
     getItems: function () {
         var items = [
-            { fieldLabel: 'minValue' , name: 'minValue', xtype: 'textfield', columnWidth: 0.5 },
-            { fieldLabel: 'maxValue', name: 'maxValue', xtype: 'textfield', columnWidth: 0.5 }
+            { fieldLabel: 'minValue' , name: 'minValue', xtype: 'textfield', columnWidth: 0.5, regex: /^[1-9]\d*$/ },
+            { fieldLabel: 'maxValue', name: 'maxValue', xtype: 'textfield', columnWidth: 0.5, regex: /^[1-9]\d*$/ }
         ]
         return items;
     }

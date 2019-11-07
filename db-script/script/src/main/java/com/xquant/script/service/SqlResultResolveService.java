@@ -64,7 +64,15 @@ public class SqlResultResolveService {
                 getParseOfIndex(string, 5).equals("CONSTRAINT")){
             sqlResult.setDifferentDetail(string);
             sqlResult.setDatabaseType("table");
-            sqlResult.setDifferentType("缺失字段");
+            sqlResult.setDifferentType("添加外键");
+            sqlResult.setDatabaseObject(getParseOfIndex(string, 3));
+            sqlResultList.add(sqlResult);
+        }
+        else if(string.startsWith("ALTER TABLE") &&
+                getParseOfIndex(string, 4).equals("ADD")){
+            sqlResult.setDifferentDetail(string);
+            sqlResult.setDatabaseType("table");
+            sqlResult.setDifferentType("字段缺失");
             sqlResult.setDatabaseObject(getParseOfIndex(string, 3));
             sqlResultList.add(sqlResult);
         }

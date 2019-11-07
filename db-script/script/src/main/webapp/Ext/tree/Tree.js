@@ -47,12 +47,7 @@ Ext.define('Ext.tree.Tree', {
                 }, {
                     text: '删除',
                     handler: Ext.bind(function(){
-                        var fileName = 'TableFile'
-                        Ext.MessageBox.confirm('提示','是否确认删除该' + record.data.text, function (btn) {
-                            if(btn == 'yes'){
-                                me.deleteMetadataFile(record, fileName);
-                            }
-                        })
+                        Ext.Msg.alert('失败',record.data.text + '无法刪除')
                     },this, record)
                 }]
             });
@@ -210,8 +205,51 @@ Ext.define('Ext.tree.Tree', {
                         },
                         border: '2px',
                         width: 60,
-                        text:'新增'
+                        text:'新增模块'
                     },'-',
+                    {
+                        xtype: 'button',
+                        text: '导入模块',
+                        handler: function () {
+                            var panel = Ext.create('Ext.form.Panel', {
+                                title: '导入模块',
+                                width: 300,
+                                bodyPadding: 10,
+                                frame: true,
+                                items: [{
+                                    xtype: 'filefield',
+                                    name: '',
+                                    fieldLabel: '模块',
+                                    labelWidth: 50,
+                                    msgTarget: 'side',
+                                    allowBlank: false,
+                                    anchor: '100%',
+                                    buttonText: '选择文件...'
+                                }],
+                                buttons: [{
+                                    text: '导入',
+                                    handler: function() {
+                                        var form = this.up('form').getForm();
+                                        if(form.isValid()){
+                                            form.submit({
+                                                url: 'photo-upload.php',
+                                                waitMsg: 'Uploading your photo...',
+                                                success: function(fp, o) {
+                                                    Ext.Msg.alert('Success', 'Your photo "' + o.result.file + '" has been uploaded.');
+                                                }
+                                            });
+                                        }
+                                    }
+                                }]
+                            });
+                            var win = Ext.create('Ext.tree.window.WindowWithNoSave',{
+                                panel: panel,
+                                height: 350,
+                                width: 350
+                            })
+                            win.show();
+                        }
+                    },'-','   ',
                     {
                         xtype: 'button',
                         text: '返回',
@@ -451,37 +489,21 @@ Ext.define('Ext.tree.Tree', {
     addModule: function () {
         var me = this;
         var record = Ext.getCmp('inputModuleName').getValue();
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/dbscript/tree/addModule',
-            type: 'post',
-            params: {
-                moduleName: record
-            },
-            success: function () {
-                var root = me.getRootNode();
-                var newNode = [{ text: '模块(' + record + ')', leaf: false,}];
-                root.appendChild(newNode);
-            }
-        })
+        if(record == '') Ext.Msg.alert('提示',  '模块名不能为空')
+        else{
+            Ext.Ajax.request({
+                url: 'http://localhost:8080/dbscript/tree/addModule',
+                type: 'post',
+                params: {
+                    moduleName: record
+                },
+                success: function () {
+                    var root = me.getRootNode();
+                    var newNode = [{ text: '模块(' + record + ')', leaf: false,}];
+                    root.appendChild(newNode);
+                }
+            })
+        }
     },
 
-    deleteMetadataFile: function(record, fileName){
-        var moduleAllName = record.parentNode.data.text;
-        moduleName = moduleAllNameName.substring(3,moduleAllName.length - 1);
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/dbscript/deleteInTree/' + fileName,
-            params:{
-                moduleName: moduleName
-            },
-            success: function () {
-                var pNode = record.parentNode;
-                pNode.removeChild(record);
-                pNode.expand();
-                Ext.Msg.alert('成功', '成功删除' + record.data.text)
-            },
-            failure: function () {
-                Ext.Msg.alert('失败', "删除失败")
-            }
-        })
-    }
 })

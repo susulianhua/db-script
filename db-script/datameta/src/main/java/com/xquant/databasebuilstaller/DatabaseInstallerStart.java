@@ -156,8 +156,8 @@ public class DatabaseInstallerStart {
     private DatabaseInstallerProcessor initInstaller() {
         DatabaseInstallerProcessor installer = new DatabaseInstallerProcessor();
         List<InstallProcessor> installProcessors = new ArrayList<InstallProcessor>();
-        ProcessorManager processorManager = new ProcessorManagerImpl();
-        ((ProcessorManagerImpl) processorManager).getProcessorManager();
+        ProcessorManager processorManager = ProcessorManagerImpl
+                .getProcessorManager();
 
         TableInstallProcessor tableInstallProcessor = new TableInstallProcessor();
         TableProcessor tableProcessor = createTableProcessor(processorManager);
@@ -327,7 +327,6 @@ public class DatabaseInstallerStart {
         addStandardFieldFileResolver(fileResolver);
         addTableSpaceFileResolver(fileResolver);
         addTableFileResolver(fileResolver);
-        addInitDataFileResolver(fileResolver);
         addCustomSqlFileResolver(fileResolver);
         addViewFileResolver(fileResolver);
         addProcedureFileResolver(fileResolver);
@@ -337,9 +336,11 @@ public class DatabaseInstallerStart {
     }
 
     private void addDialectFunctionFileProcessor(FileResolver fileResolver) {
-        DialectFunctionlFileResolver dialectFunctionlFileResolver = new DialectFunctionlFileResolver();
-        dialectFunctionlFileResolver.setFunctionProcessor(DialectFunctionProcessorImpl.getDialectFunctionProcessor());
-        fileResolver.addFileProcessor(dialectFunctionlFileResolver);
+        if(fileResolver.getFileProcessorList().size() < 14){
+            DialectFunctionlFileResolver dialectFunctionlFileResolver = new DialectFunctionlFileResolver();
+            dialectFunctionlFileResolver.setFunctionProcessor(DialectFunctionProcessorImpl.getDialectFunctionProcessor());
+            fileResolver.addFileProcessor(dialectFunctionlFileResolver);
+        }
     }
 
     private void databaseInstaller() {
@@ -351,33 +352,43 @@ public class DatabaseInstallerStart {
     }
 
     private void addProcedureFileResolver(FileResolver fileResolver) {
-        ProcedureFileResolver procedureFileResolver = new ProcedureFileResolver();
-        procedureFileResolver.setProcedureProcessor(ProcedureProcessorImpl
-                .getProcedureProcessor());
-        fileResolver.addFileProcessor(procedureFileResolver);
+        if(fileResolver.getFileProcessorList().size() < 14){
+            ProcedureFileResolver procedureFileResolver = new ProcedureFileResolver();
+            procedureFileResolver.setProcedureProcessor(ProcedureProcessorImpl
+                    .getProcedureProcessor());
+            fileResolver.addFileProcessor(procedureFileResolver);
+        }
     }
 
     private void addSequenceFileResolver(FileResolver fileResolver){
-        SequenceFileProcessor sequenceFileProcessor = new SequenceFileProcessor();
-        sequenceFileProcessor.setProcessor(SequenceProcessorImpl.getSequenceProcessor());
-        fileResolver.addFileProcessor(sequenceFileProcessor);
+        if(fileResolver.getFileProcessorList().size() < 14){
+            SequenceFileProcessor sequenceFileProcessor = new SequenceFileProcessor();
+            sequenceFileProcessor.setProcessor(SequenceProcessorImpl.getSequenceProcessor());
+            fileResolver.addFileProcessor(sequenceFileProcessor);
+        }
     }
 
     public void addTriggerFileResolver(FileResolver fileResolver){
-        TriggerFileProcessor triggerFileProcessor = new TriggerFileProcessor();
-        triggerFileProcessor.setProcessor(TriggerProcessorImpl.getTriggerProcessor());
-        fileResolver.addFileProcessor(triggerFileProcessor);
+        if(fileResolver.getFileProcessorList().size() < 14){
+            TriggerFileProcessor triggerFileProcessor = new TriggerFileProcessor();
+            triggerFileProcessor.setProcessor(TriggerProcessorImpl.getTriggerProcessor());
+            fileResolver.addFileProcessor(triggerFileProcessor);
+        }
     }
     private void addViewFileResolver(FileResolver fileResolver) {
-        ViewFileResolver viewFileResolver = new ViewFileResolver();
-        viewFileResolver.setViewProcessor(ViewProcessorImpl.getViewProcessor());
-        fileResolver.addFileProcessor(viewFileResolver);
+        if(fileResolver.getFileProcessorList().size() < 14){
+            ViewFileResolver viewFileResolver = new ViewFileResolver();
+            viewFileResolver.setViewProcessor(ViewProcessorImpl.getViewProcessor());
+            fileResolver.addFileProcessor(viewFileResolver);
+        }
     }
 
     private void addCustomSqlFileResolver(FileResolver fileResolver) {
-        CustomSqlFileResolver customSqlFileResolver = new CustomSqlFileResolver();
-        customSqlFileResolver.setCustomSqlProcessor(CustomSqlProcessorImpl.getCustomSqlProcessor());
-        fileResolver.addFileProcessor(customSqlFileResolver);
+        if(fileResolver.getFileProcessorList().size() < 14){
+            CustomSqlFileResolver customSqlFileResolver = new CustomSqlFileResolver();
+            customSqlFileResolver.setCustomSqlProcessor(CustomSqlProcessorImpl.getCustomSqlProcessor());
+            fileResolver.addFileProcessor(customSqlFileResolver);
+        }
     }
 
     private void addInitDataFileResolver(FileResolver fileResolver) {
@@ -388,52 +399,66 @@ public class DatabaseInstallerStart {
     }
 
     private void addTableSpaceFileResolver(FileResolver fileResolver) {
-        TableSpaceFileResolver tableSpaceFileResolver = new TableSpaceFileResolver();
-        tableSpaceFileResolver.setTableSpaceProcessor(TableSpaceProcessorImpl.getTableSpaceProcessor());
-        fileResolver.addFileProcessor(tableSpaceFileResolver);
+        if(fileResolver.getFileProcessorList().size() < 14){
+            TableSpaceFileResolver tableSpaceFileResolver = new TableSpaceFileResolver();
+            tableSpaceFileResolver.setTableSpaceProcessor(TableSpaceProcessorImpl.getTableSpaceProcessor());
+            fileResolver.addFileProcessor(tableSpaceFileResolver);
+        }
     }
 
     private void addTableFileResolver(FileResolver fileResolver) {
-        TableFileResolver tableFileResolver = new TableFileResolver();
-        tableFileResolver.setTableProcessor(TableProcessorImpl
-                .getTableProcessor());
-        fileResolver.addFileProcessor(tableFileResolver);
+        if(fileResolver.getFileProcessorList().size() < 14){
+            TableFileResolver tableFileResolver = new TableFileResolver();
+            tableFileResolver.setTableProcessor(TableProcessorImpl
+                    .getTableProcessor());
+            fileResolver.addFileProcessor(tableFileResolver);
+        }
     }
 
     private void addStandardFieldFileResolver(FileResolver fileResolver) {
-        StandardFieldFileResolver standardFieldFileResolver = new StandardFieldFileResolver();
-        standardFieldFileResolver
-                .setStandardFieldProcessor(StandardFieldProcessorImpl
-                        .getStandardFieldProcessor());
-        fileResolver.addFileProcessor(standardFieldFileResolver);
+        if( fileResolver.getFileProcessorList().size() < 14){
+            StandardFieldFileResolver standardFieldFileResolver = new StandardFieldFileResolver();
+            standardFieldFileResolver
+                    .setStandardFieldProcessor(StandardFieldProcessorImpl
+                            .getStandardFieldProcessor());
+            fileResolver.addFileProcessor(standardFieldFileResolver);
+        }
     }
 
     private void addBusinessTypeFileResolver(FileResolver fileResolver) {
-        BusinessTypeFileResolver businessTypeFileResolver = new BusinessTypeFileResolver();
-        businessTypeFileResolver
-                .setBusinessTypeProcessor(BusinessTypeProcessorImpl
-                        .getBusinessTypeProcessor());
-        fileResolver.addFileProcessor(businessTypeFileResolver);
+        if(fileResolver.getFileProcessorList().size() < 14){
+            BusinessTypeFileResolver businessTypeFileResolver = new BusinessTypeFileResolver();
+            businessTypeFileResolver
+                    .setBusinessTypeProcessor(BusinessTypeProcessorImpl
+                            .getBusinessTypeProcessor());
+            fileResolver.addFileProcessor(businessTypeFileResolver);
+        }
     }
 
 
     private void addStandardTypeFileProcessor(FileResolver fileResolver) {
-        StandardTypeFileResolver standardTypeFileResolver = new StandardTypeFileResolver();
-        standardTypeFileResolver
-                .setStandardDataTypeProcessor(StandardTypeProcessorImpl
-                        .getStandardTypeProcessor());
-        fileResolver.addFileProcessor(standardTypeFileResolver);
+        if( fileResolver.getFileProcessorList().size() < 14){
+            StandardTypeFileResolver standardTypeFileResolver = new StandardTypeFileResolver();
+            standardTypeFileResolver
+                    .setStandardDataTypeProcessor(StandardTypeProcessorImpl
+                            .getStandardTypeProcessor());
+            fileResolver.addFileProcessor(standardTypeFileResolver);
+        }
     }
 
     private void addConstantFileProcessor(FileResolver fileResolver) {
-        ConstantFileResolver constantFileResolver = new ConstantFileResolver();
-        constantFileResolver.setConstantProcessor(ConstantsProcessorImpl
-                .getConstantProcessor());
-        fileResolver.addFileProcessor(constantFileResolver);
+        if(fileResolver.getFileProcessorList().size() < 14){
+            ConstantFileResolver constantFileResolver = new ConstantFileResolver();
+            constantFileResolver.setConstantProcessor(ConstantsProcessorImpl
+                    .getConstantProcessor());
+            fileResolver.addFileProcessor(constantFileResolver);
+        }
     }
 
     private void addXstreamFileProcessor(FileResolver fileResolver) {
-        fileResolver.addFileProcessor(new XStreamFileProcessor());
+        if(fileResolver.getFileProcessorList().size() < 14){
+            fileResolver.addFileProcessor(new XStreamFileProcessor());
+        }
     }
 
 
@@ -442,14 +467,20 @@ public class DatabaseInstallerStart {
         FileResolverUtil.addClassPathPattern(fileResolver);
         fileResolver
                 .addResolvePath(FileResolverUtil.getClassPath(fileResolver));
-        System.out.println("filePath:" + this.getClass().getClassLoader().getResource("/").getPath());
-        String filePath = this.getClass().getClassLoader().getResource("/").getPath();
+        /*String filePath = this.getClass().getClassLoader().getResource("/").getPath();
         filePath = filePath.substring(1,filePath.length() - 51);
         filePath= filePath + "/db-script/script/src/main/resources";
         List<String> scaner = new ArrayList<String>();
         scaner.add(filePath);
-        System.out.println("filePath: " + filePath);
-        fileResolver.addResolvePath(scaner);
+        fileResolver.addResolvePath(scaner);*/
+        fileResolver.addResolvePath(FileResolverUtil.getWebClasses());
+        try {
+            fileResolver.addResolvePath(FileResolverUtil
+                    .getWebLibJars(fileResolver));
+        } catch (Exception e) {
+            LOGGER.error("为文件扫描器添加webLibJars时出现异常", e);
+        }
+        fileResolver.addIncludePathPattern(TINY_JAR_PATTERN);
         loadFileResolverConfig(fileResolver);
         return fileResolver;
     }

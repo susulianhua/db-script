@@ -6,6 +6,7 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
     titleAlign: 'center',
     layout: 'form',
     moduleName: null,
+    sqlContentStart: 'CREATE OR REPLACE PROCEDURE',
 
     initComponent: function(){
         this.sqlStore = Ext.create('Ext.procedure.store.SqlStore');
@@ -19,6 +20,7 @@ Ext.define('Ext.procedure.component.ProcedurePanel', {
         var me = this;
         this.standardFieldIdStore.load({params:{moduleName: me.moduleName}});
         var sqlGrid = Ext.create('Ext.procedure.component.SqlGrid',{
+            sqlContentStart: me.sqlContentStart,
             store: this.sqlStore,
             width: 298,
             title: 'SqlBody',

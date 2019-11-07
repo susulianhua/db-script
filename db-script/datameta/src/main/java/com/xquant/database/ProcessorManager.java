@@ -17,12 +17,10 @@ package com.xquant.database;
 
 import com.xquant.database.config.processor.Processors;
 
-import java.util.Map;
 
 public interface ProcessorManager {
 
 
-    Map<String, Map<String,Object>> getProcessorsMap();
 
     Object getProcessor(String language, String name);
 

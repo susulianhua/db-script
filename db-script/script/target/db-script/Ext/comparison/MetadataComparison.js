@@ -94,7 +94,7 @@ Ext.onReady(function () {
                 {
                     text: '关闭',
                     handler: function () {
-                        win.close(this);
+                        win.close();
                     }
                 }
             ]
