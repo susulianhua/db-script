@@ -103,7 +103,7 @@
         <sshd-sftp.version>0.11.0</sshd-sftp.version>
         <stax-ex.version>1.7.7</stax-ex.version>
         <xapool.version>1.5.0</xapool.version>
-        <xstream.version>1.4.3</xstream.version>
+        <xstream.version>1.4.17</xstream.version>
         <zookeeper.version>3.4.6</zookeeper.version>
         <paranamer.version>2.8</paranamer.version>
     </properties>
