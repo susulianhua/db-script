@@ -58,7 +58,7 @@
         <hessian.version>4.0.7</hessian.version>
         <hibernate-commons-annotations.version>3.3.0.ga</hibernate-commons-annotations.version>
         <hibernate-entitymanager.version>3.4.0.GA</hibernate-entitymanager.version>
-        <httpclient.version>4.5.1</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
 		<httpmime.version>4.5.1</httpmime.version>
         <itextpdf.version>5.2.1</itextpdf.version>
         <jackson-core-lgpl.version>1.9.13</jackson-core-lgpl.version>
