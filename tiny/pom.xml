@@ -54,7 +54,7 @@
         <ftpserver-core.version>1.0.6</ftpserver-core.version>
         <groovy-all.version>1.8.6</groovy-all.version>
         <guava.version>18.0</guava.version>
-        <h2.version>1.4.184</h2.version>
+        <h2.version>2.0.206</h2.version>
         <hessian.version>4.0.7</hessian.version>
         <hibernate-commons-annotations.version>3.3.0.ga</hibernate-commons-annotations.version>
         <hibernate-entitymanager.version>3.4.0.GA</hibernate-entitymanager.version>
