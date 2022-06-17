@@ -50,7 +50,7 @@
         <easymock.version>3.4</easymock.version>
         <ecj.version>3.7</ecj.version>
         <ehcache-core.version>2.6.3</ehcache-core.version>
-        <fastjson.version>1.2.29</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <ftpserver-core.version>1.0.6</ftpserver-core.version>
         <groovy-all.version>1.8.6</groovy-all.version>
         <guava.version>18.0</guava.version>
