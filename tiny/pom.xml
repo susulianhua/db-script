@@ -85,7 +85,7 @@
         <mail.version>1.4.7</mail.version>      
         <mvel.version>2.0beta1</mvel.version>
         <mvel2.version>2.2.8.Final</mvel2.version>
-        <mysql-connector-java.version>5.1.27</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
 		<mmseg4j-analysis.version>1.9.1</mmseg4j-analysis.version>
         <netty-all.version>4.0.27.Final</netty-all.version>
         <poi.version>3.11</poi.version>
