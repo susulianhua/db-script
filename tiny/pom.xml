@@ -88,7 +88,7 @@
         <mysql-connector-java.version>5.1.27</mysql-connector-java.version>
 		<mmseg4j-analysis.version>1.9.1</mmseg4j-analysis.version>
         <netty-all.version>4.0.27.Final</netty-all.version>
-        <poi.version>3.11</poi.version>
+        <poi.version>4.1.1</poi.version>
 		<poi-scratchpad.version>3.11</poi-scratchpad.version>
 		<poi-ooxml.version>3.11</poi-ooxml.version>
         <servlet-api.version>2.5</servlet-api.version>
