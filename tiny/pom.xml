@@ -45,7 +45,7 @@
         <concurrent.version>1.0</concurrent.version>
         <curator-recipes.version>2.5.0</curator-recipes.version>
         <dbunit.version>2.5.0</dbunit.version>
-        <derby.version>10.6.1.0</derby.version>
+        <derby.version>10.14.2.0</derby.version>
 		<derbyclient.version>10.6.1.0</derbyclient.version>
         <easymock.version>3.4</easymock.version>
         <ecj.version>3.7</ecj.version>
