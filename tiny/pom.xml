@@ -60,7 +60,7 @@
         <hibernate-entitymanager.version>3.4.0.GA</hibernate-entitymanager.version>
         <httpclient.version>4.5.1</httpclient.version>
 		<httpmime.version>4.5.1</httpmime.version>
-        <itextpdf.version>5.2.1</itextpdf.version>
+        <itextpdf.version>5.5.12</itextpdf.version>
         <jackson-core-lgpl.version>1.9.13</jackson-core-lgpl.version>
 		<jackson-mapper-lgpl.version>1.9.13</jackson-mapper-lgpl.version>
         <jackson-databind.version>2.7.9.1</jackson-databind.version>
